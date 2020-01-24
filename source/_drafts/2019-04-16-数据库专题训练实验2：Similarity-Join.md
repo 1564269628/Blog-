@@ -170,13 +170,23 @@ $$
 
 #### 基于多次匹配的方法
 
-待写。。。
+如果$r$和$s$中有多个匹配的字符串，显然可以丢弃其中的一些。
+
+假定$s$的起始位置为$p$的子串$s_m$和倒排列表中的小段$r_m \in \mathcal{L}_l^i$，继续按照之前的方法把$s$和$r$分成$s_l, s_m, s_r$和$r_l, r_m, r_r$三段。
+
+首先考虑左边的部分。记$\Delta_l = |p_i - p|$，显然有$d_l = \operatorname{ED}(r_l, s_l) \geq \Delta_l$。如果$\Delta_l \geq i$，显然有$d_l = \operatorname{ED}(r_l, s_l) \geq \Delta_l \geq i$，此时如果$s$和$r$相似，则需要$d_r = \operatorname{ED}(r_r, s_r) \leq \tau - d_l \leq \tau - i$。由于$r_r$的长度为$\tau + 1 - i$，由鸽巢原理，$s_r$和$r_r$中必须至少有一个小段匹配才能相似。所以我们可以放弃当前这个匹配，等着下一个。
+
+总结：只当$\Delta_l = |p - p_i| \leq i - 1$时才进行查找。记最小起始位置为$\perp_{i}^{l}=\max \left(1, p_{i}-(i-1)\right)$，最大起始位置为$\top_{i}^{l}=\min \left(|s|-l_{i}+1, p_{i}+(i-1)\right)$。
+
+然后考虑右边的部分。因为$|r_r| = \tau + 1 - i$，因此$r_r$
+
+这个方法太难了，写不对==
 
 ### VERIFICATION的改进
 
 #### 动态规划
 
-显然可以直接
+显然可以直接做动态规划。
 
 ## PP-Join
 

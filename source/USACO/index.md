@@ -159,7 +159,7 @@ USACO的题解和文章翻译合集。
 
 ## Chapter 5: Serious challenges
 
-### Section 5.1: 
+### Section 5.1: Convex Hulls
 
 * TEXT: Convex Hulls
 * PROB: Fencing the Cows
@@ -168,7 +168,15 @@ USACO的题解和文章翻译合集。
 
 ### Section 5.2: (Just a task)
 
+* PROB: Snail Trail
+
 ### Section 5.3: Heuristics
+
+* TEXT: Heuristics & Approximate Searches
+* PROB: Milk Measuring
+* PROB: Window Area
+* PROB: Network of Schools
+* PROB: Big Barn
 
 ### Section 5.4: (All tasks)
 

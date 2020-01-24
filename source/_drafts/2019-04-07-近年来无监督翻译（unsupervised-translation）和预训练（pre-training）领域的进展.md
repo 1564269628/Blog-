@@ -22,6 +22,7 @@ categories: NLP
 * [Unsupervised Pretraining for Sequence to Sequence Learning (Ramachandran et al. 2016)](http://arxiv.org/abs/1611.02683)
 * [Enriching Word Vectors with Subword Information (Bojanowski et al. 2017)](https://www.mitpressjournals.org/doi/abs/10.1162/tacl_a_00051)
 * [Word Translation Without Parallel Data (Conneau et al. 2017)](http://arxiv.org/abs/1710.04087)
+* [Learning bilingual word embeddings with (almost) no bilingual data (Artetxe et al. 2017)](https://www.aclweb.org/anthology/P17-1042)
 * [Unsupervised Machine Translation Using Monolingual Corpora Only (Lample et al. 2017)](http://arxiv.org/abs/1711.00043)
 * [Unsupervised Neural Machine Translation (Artetxe et al. 2017)](http://arxiv.org/abs/1710.11041)
 * [Deep contextualized word representations (Peters et al. 2018)](https://arxiv.org/abs/1802.05365)
@@ -29,7 +30,9 @@ categories: NLP
 * [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (Devlin et al. 2018)](http://arxiv.org/abs/1810.04805)
 * [Language Models are Unsupervised Multitask Learners (Radford et al. 2018)](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
 * [Phrase-Based & Neural Unsupervised Machine Translation (Lample et al. 2018)](http://arxiv.org/abs/1804.07755)
+* [Xnli: Evaluating cross-lingual sentence representations (Conneau et al. 2018)](https://arxiv.org/abs/1809.05053)
 * [Cross-lingual Language Model Pretraining (Lample et al. 2019)](http://arxiv.org/abs/1901.07291)
+* [Multi-Task Deep Neural Networks for Natural Language Understanding (Liu et al. 2019)](http://arxiv.org/abs/1901.11504)
 
 ## [Improving Neural Machine Translation Models with Monolingual Data (Sennrich et al. 2015)](http://arxiv.org/abs/1511.06709)
 
@@ -57,7 +60,7 @@ BPE本身和神经网络没什么关系，它只是把一般的分词扩展到�
 
 ## [Learning Distributed Representations of Sentences from Unlabelled Data (Hill et al. 2016)](http://arxiv.org/abs/1602.03483)
 
-这篇文章比较了各种无监督训练生成distributed sentence vector的方法，并提出了Sequential Denoising Autoencoder（SDAE）和fastText两种新的训练方法。结果我忘了。 
+这篇文章比较了各种无监督训练生成distributed sentence vector的方法，并提出了Sequential Denoising Autoencoder（SDAE）和fastText两种新的训练方法。结果我忘了。
 
 - [ ]: 所以新的训练方法和旧的有何差异？
 
@@ -93,9 +96,17 @@ $$\sum_{\omega \in S_{i-1} \cup S_{i+1}} \phi(s_i, v_{\omega})$$
 
 这大概是一个BPT + skipgram + word embedding的混合体。
 
+[Word Translation Without Parallel Data (Conneau et al. 2017)](http://arxiv.org/abs/1710.04087)就引用了这篇文章作为基础，用它得到的无监督单语词向量作为对齐双语词向量的基础。
+
 ## [Word Translation Without Parallel Data (Conneau et al. 2017)](http://arxiv.org/abs/1710.04087)
 
 这大概是无监督词典。
+
+## [Learning bilingual word embeddings with (almost) no bilingual data (Artetxe et al. 2017)](https://www.aclweb.org/anthology/P17-1042)
+
+这大概是弱监督词典。
+
+（Artetxe和Lample最近简直在对着干，也许再过几天我就能看到他们那边的预训练成果了……）
 
 ## [Unsupervised Machine Translation Using Monolingual Corpora Only (Lample et al. 2017)](http://arxiv.org/abs/1711.00043)
 
@@ -121,7 +132,7 @@ $$\sum_{\omega \in S_{i-1} \cup S_{i+1}} \phi(s_i, v_{\omega})$$
 
 （这些内容在他们之后的文章中被大大细化了。[Phrase-Based & Neural Unsupervised Machine Translation (Lample et al. 2018)](http://arxiv.org/abs/1804.07755)）
 
-用denoising autoencoder重建句子的训方法和[Learning Distributed Representations of Sentences from Unlabelled Data (Hill et al. 2016)](http://arxiv.org/abs/1602.03483)类似，但此处作者给出了（写得非常繁复的公式）：
+用denoising autoencoder重建句子的训练方法和[Learning Distributed Representations of Sentences from Unlabelled Data (Hill et al. 2016)](http://arxiv.org/abs/1602.03483)类似，但此处作者给出了（写得非常繁复的公式）：
 
 ![式(1)](denoising-objective-form.png)
 
@@ -168,8 +179,47 @@ GPT-2之前引起了一些争议。
 
 更好的无监督翻译。
 
+## [Xnli: Evaluating cross-lingual sentence representations (Conneau et al. 2018)](https://arxiv.org/abs/1809.05053)
+
+### 问题
+
+目前大部分相关文章都是monolingual的。
+
+### 相关工作
+
+* XLU（corss-lingual language understanding）：系统主要在一种语言上进行训练，然后在其他语言上进行测试
+* NLI（natural language inference）：判断两个句子之间的关系为entailment、contradiction还是neutral
+
+### 实验方法
+
+创建了一个XLU测试集，将MNLI的开发集和测试集翻译成15种语言，称为XNLI，并且实现了很多baseline。
+
+测试集和开发集共有7500个句对，翻译后变成了112500对。
+
+用XNLI测试了一些在训练时使用平行数据的sentence encoder。当然，XNLI也可以测试general-purpose的sentence encoder。
+
+### 实验结果
+
 ## [Cross-lingual Language Model Pretraining (Lample et al. 2019)](http://arxiv.org/abs/1901.07291)
 
 甚至更好的无监督翻译。
 
 还是Lample的工作。
+
+## [Multi-Task Deep Neural Networks for Natural Language Understanding (Liu et al. 2019)](http://arxiv.org/abs/1901.11504)
+
+代码：[namisan/mt-dnn](https://github.com/namisan/mt-dnn)
+
+是之前的[Representation Learning Using Multi-Task Deep Neural Networks for Semantic Classification and Information Retrieval](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/mltdnn.pdf)的延续。
+
+### 问题
+
+### 相关工作
+
+### 方法
+
+在之前工作的基础上加上了一个BERT。
+
+### 实验结果
+
+获得了很多SOTA。
