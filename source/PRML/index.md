@@ -10,3 +10,4 @@ PRML读书笔记合集。
 * [数学基础](/post/prml-math-foundations/)
 * [第5章 神经网络](/post/prml-chap-5-neural-networks/)
   * [5.1 前馈神经网络](/post/prml-chap-5-1-feed-forward-network-functions/)
+  * [5.2 网络训练](/post/prml-chap-5-2-network-training)
