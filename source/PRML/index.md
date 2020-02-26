@@ -13,3 +13,4 @@ PRML读书笔记合集。
   * [5.2 网络训练](/post/prml-chap-5-2-network-training/)
   * [5.3 误差反向传播](/post/prml-chap-5-3-error-backpropagation/)
 * [第7章 稀疏核机](/post/prml-chap-7-sparse-kernel-machines/)
+  * [7.1 最大边缘分类器](/post/prml-chap-7-1-maximum-margin-classifiers/)
