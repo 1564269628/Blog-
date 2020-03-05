@@ -14,3 +14,5 @@ PRML读书笔记合集。
   * [5.3 误差反向传播](/post/prml-chap-5-3-error-backpropagation/)
 * [第7章 稀疏核机](/post/prml-chap-7-sparse-kernel-machines/)
   * [7.1 最大边缘分类器](/post/prml-chap-7-1-maximum-margin-classifiers/)
+* [第9章 混合模型和EM](/post/prml-chap-9-mixture-models-and-em/)
+* 第12章 连续潜在变量
