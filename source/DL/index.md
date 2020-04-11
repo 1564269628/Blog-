@@ -16,6 +16,7 @@ date: 2020-04-19 11:56:04
 * 第二部分 深度网络：现代实践
   * [第6章 深度前馈网络](/post/deep-learning-chap-6-deep-feedforward-networks/)
     * [6.1 实例：学习XOR](/post/deep-learning-chap-6-1-example-learning-xor/)
+    * [6.2 基于梯度的学习](/post/deep-learning-chap-6-2-gradient-based-learning/)
   * 第7章 深度学习中的正则化
   * 第8章 深度模型中的优化
   * 第9章 卷积网络
