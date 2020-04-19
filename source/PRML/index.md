@@ -25,7 +25,7 @@ PRML读书笔记合集。
   * 9.3 EM的另一种观点
   * 9.4 一般形式的EM算法
 * [第11章 采样方法](/post/prml-chap-11-sampling-methods/)
-  * 11.1 基本采样算法
+  * [11.1 基本采样算法](/post/prml-chap-11-1-basic-sampling-algorithms/)
   * 11.2 MCMC
   * 11.3 Gibbs采样
   * 11.4 切片采样
