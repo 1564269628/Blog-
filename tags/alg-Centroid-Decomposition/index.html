@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Tag: alg:Centroid Decomposition | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+    <script>
+        window.subData= { title:'标签 : alg:Centroid Decomposition'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/centroid-decomposition-summaary-and-example/">
+              
+                  重心剖分（Centroid Decomposition）简介及例题
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2019-02-16
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/Codeforces/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Codeforces
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>这篇文章主要参考了<a href="https://codeforces.com/blog/entry/52492" target="_blank" rel="noopener">Centroid Decomposition</a>和<a href="https://medium.com/carpanese/an-illustrated-introduction-to-centroid-decomposition-8c1989d53308" target="_blank" rel="noopener">An illustrated introduction to centroid decomposition</a>两篇文章。</p>
+<hr>
+<h2>问题的描述</h2>
+<p>首先给出一道例题：<a href="http://codeforces.com/problemset/problem/342/E" target="_blank" rel="noopener">Codeforces 342E. Xenia and Tree</a>。这道题的题意是这样的：有一棵结点数量为<code>n</code>的树，结点标号为1到<code>n</code>。起始时，结点1是红色的，其他结点都是蓝色的。编程处理以下两种查询：</p>
+<ul>
+<li><code>update(a)</code>：将<code>a</code>更新为红色</li>
+<li><code>query(a)</code>：查询<code>a</code>离最近的红色点的距离</li>
+</ul>
+<p><img src="xenia.png" alt="两种颜色的结点"></p>
+<p>可以立刻想到两种解法：</p>
+<ol>
+<li>查询时做BFS/DFS（<code>O(N)</code>），更新时直接更新（<code>O(1)</code>）</li>
+<li>维护每个结点到最近的红色点的距离，查询时直接查询（<code>O(1)</code>），更新时做BFS/DFS（<code>O(N)</code>）</li>
+</ol>
+<p>显然这两种解法都不够好。重心剖分（Centroid Decomposition，以下简写为CD）则可以在这两种方法之间取得平衡，使得查询和更新的代价都变成<code>O(log(N))</code>。</p>
+<h3>重心的定义</h3>
+<p>记树的总结点数为<code>n</code>，定义树的重心为，移除后使得留下的所有连通分量（树）的大小均不超过<code>n/2</code>的结点。</p>
+<p><img src="centroid-def.gif" alt="一个重心的例子"></p>
+<p>请注意：重心不是中心。</p>
+<h3>如何找到树的重心？</h3>
+<p>下面给出一种计算树的重心的算法。首先任取结点<code>a</code>，以<code>a</code>为树的根结点，计算它的所有子树的大小。如果这些子树的大小均不超过<code>n/2</code>，则<code>a</code>就是重心。否则，必然存在一棵（且只能有一棵——这一点是平凡的）子树，大小超过<code>n/2</code>。记<code>b</code>为该子树的根结点，对<code>b</code>重复上述算法。</p>
+<p><img src="centroid-alg.gif" alt="上述算法的执行过程"></p>
+<p>对<code>b</code>来说，以<code>a</code>为根的子树的大小必然不超过<code>n/2</code>，因此算法不会重复访问已经访问过的结点，因此算法是正确的，它的复杂度是<code>O(n)</code>。</p>
+<p><img src="centroid-alg-proof.png" alt="为什么算法是正确的"></p>
+<p>在具体实现中，以<code>a</code>为根结点，首先用DFS求出每棵子树的大小；然后用DFS寻找重心。因为算法不需要重复访问已经访问过的结点，因此对于每个结点，考虑它的子结点对应的子树大小即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> subSize[N];</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; tree[N];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算子树大小</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    subSize[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> v: tree[u])</span><br><span class="line">        <span class="keyword">if</span> (v != p)</span><br><span class="line">            subSize[u] += dfs(v, u);</span><br><span class="line">    <span class="keyword">return</span> subSize[u];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算重心</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_centroid</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> p, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> v: tree[u])</span><br><span class="line">        <span class="keyword">if</span> (v != p &amp;&amp; subSize[v] &gt; n/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> get_centroid(v, u, n);</span><br><span class="line">    <span class="keyword">return</span> u;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3>练习</h3>
+<p>练习1：请证明每棵树最多只有一个重心，或者给出反例。</p>
+<p>反例：如下图。</p>
+<p><img src="one-centroid.png" alt="蓝色和红色结点各表示一个重心"></p>
+<p>练习2：在什么样的树中，中心和重心是相同的？</p>
+<p>我感觉，计算出重心之后，以重心为根的树中，如果深度最大的两棵子树的深度相等或只相差1，那么中心等于重心。</p>
+<h2>什么是重心剖分？</h2>
+<p>树的重心剖分是另一棵树，它递归定义为：</p>
+<ul>
+<li>树根是原树的重心</li>
+<li>树根的子结点是原树中移除重心后留下的子树的重心</li>
+</ul>
+<p><img src="cd.png" alt="一棵树的重心剖分"></p>
+<h3>实现</h3>
+<p>直接按照定义实现这棵树即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> subSize[N];</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; tree[N];  <span class="comment">// 为了方便删除……</span></span><br><span class="line"><span class="keyword">int</span> cd_father[N];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算子树大小</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    subSize[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> v: tree[u])</span><br><span class="line">        <span class="keyword">if</span> (v != p)</span><br><span class="line">            subSize[u] += dfs(v, u);</span><br><span class="line">    <span class="keyword">return</span> subSize[u];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算重心</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_centroid</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> p, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> v: tree[u])</span><br><span class="line">        <span class="keyword">if</span> (v != p &amp;&amp; subSize[v] &gt; n/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> get_centroid(v, u, n);</span><br><span class="line">    <span class="keyword">return</span> u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重心分解</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">centroid_decomposition</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = dfs(u, p);</span><br><span class="line">    <span class="keyword">int</span> centroid = get_centroid(u, p, n);</span><br><span class="line">    cd_father[centroid] = p;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> v: tree[centroid])</span><br><span class="line">        <span class="keyword">if</span> (v != p) &#123;</span><br><span class="line">            tree[v].erase(centroid);</span><br><span class="line">            centroid_decomposition(v, centroid);</span><br><span class="line">        &#125;</span><br><span class="line">    tree[centroid].clear();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3>时间复杂度</h3>
+<p>建树的时间复杂度是多少？首先可以给出一个时间复杂度的上界：因为需要对每个结点都执行一次<code>centroid_decomposition</code>，且<code>dfs</code>的代价最多为<code>O(n)</code>，因此时间复杂度最多为<code>O(n^2)</code>。</p>
+<p>不过事实上并没有那么多。对每个结点执行<code>centroid_decomposition</code>时，对应的连通分量大小已经大大减小了，所以<code>dfs</code>的代价也降低了——这是因为根据重心的性质，每个连通分量的大小最多为<code>n/2</code>。事实上这就类似于归并排序的分析：</p>
+<p><img src="complexity.png" alt="每一层的代价之和都是O(n)"></p>
+<p>因为树的高度是<code>O(log(n))</code>，因此总时间复杂度为<code>O(n*log(n))</code>。</p>
+<p>而且实现中移除边的过程不会影响总时间复杂度，因为最多有<code>O(n)</code>条边需要移除，而移除每条边的代价最多是<code>O(log(n))</code>。（当然，你也可以不这么实现，省一点常数。）</p>
+<h3>重心剖分的性质</h3>
+<ol>
+<li>在CD树中，结点属于它的所有祖先对应的连通分量。</li>
+</ol>
+<p><img src="centroid-property.png" alt="结点14属于14、15、11和3对应的连通分量"></p>
+<p>证明：在CD树中，结点<code>a</code>是<code>b</code>的子结点，仅当<code>a</code>属于移除<code>b</code>后产生的连通分量。显然这件事的前提是，<code>a</code>属于<code>b</code>对应的连通分量。（这听起来是平凡的。）</p>
+<ol start="2">
+<li>原树中结点<code>a</code>到结点<code>b</code>的最短路可以分解成结点<code>a</code>到<code>lca(a, b)</code>和<code>lca(a, b)</code>到<code>b</code>的两条路径，其中<code>lca(a, b)</code>是CD树中<code>a</code>和<code>b</code>的LCA。</li>
+</ol>
+<p><img src="cd-property-2.png" alt="原树中从9到10的最短路可以分解成从9到3的路径和从3到10的路径。"></p>
+<p>证明：由性质1，<code>a</code>和<code>b</code>都属于<code>lca(a, b)</code>对应的连通分量。假定<code>lca(a, b)</code>并不在从<code>a</code>到<code>b</code>的最短路上，则在原树中移除<code>lca(a, b)</code>后，<code>a</code>和<code>b</code>仍然在同一个连通分量中，这意味着该连通分量的重心是<code>a</code>和<code>b</code>的比<code>lca(a, b)</code>更低的共同祖先，这显然是荒谬的。</p>
+<ol start="3">
+<li>原树中的<code>n^2</code>条路径（此处把退化的路径也算进去了）均可分解成两条路径，这两条路径都属于在CD树中每个结点到它的所有祖先结点的共<code>O(n*log(n))</code>条路径的集合。（听起来真是晦涩……）</li>
+</ol>
+<p>这个性质比较难，但非常重要。以下图为例：</p>
+<p><img src="centroid-property.png" alt="结点14属于14、15、11和3对应的连通分量"></p>
+<p>共有<code>n</code>条从结点14开始的路径。这些路径可以分成以下几类：</p>
+<ol>
+<li><code>a in {14}</code>：从14到14，再从14到<code>a</code></li>
+<li><code>a in {15}</code>：从14到15，再从15到<code>a</code></li>
+<li><code>a in {6, 9, 13}</code>：从14到11，再从11到<code>a</code></li>
+<li><code>a in {1, 2, 4, 5, 7, 8, 10, 12}</code>：从14到3，再从3到<code>a</code></li>
+</ol>
+<p>显然14、15、11和3都是14在CD树中的祖先。这种分类方法的思路是这样的：不是选择路径的两个端点，而是选择两个结点在CD树中的LCA。</p>
+<p>证明1：性质2说明，原树中的每条路径都可以分解成两条路径（<code>a</code>到<code>lca(a, b)</code>，以及<code>lca(a, b)</code>到<code>b</code>）。下面证明从每个结点到它的CD树中祖先结点的路径总数是<code>O(n*log(n))</code>。显然CD树的高度是<code>O(log(n))</code>，共有<code>n</code>个结点，所以祖先总数是<code>O(n*log(n))</code>。</p>
+<p>证明2：这次考虑CD树中每个结点的后代数量。显然根结点的后代总数是<code>n-1</code>，而且每一层的结点的后代总数都是<code>O(n)</code>，因此总路径数为<code>O(n*log(n))</code>。</p>
+<h3>练习</h3>
+<p>练习3：给定下图中的CD树，求原树。是否有多个可能的答案？</p>
+<p><img src="ex3-tree.png" alt="CD树"></p>
+<p>这棵树看起来好像很有问题，居然有重复结点，算了不管它了。。。不过显然CD树和原树不是一一对应的，举个最简单的例子，如果连通分量只剩下两个结点，那么这两个结点哪一个做重心都可以。</p>
+<p>练习4：证明每棵CD树都是自己的CD树，或者举出反例。</p>
+<p>证明：由CD树的构造过程可知，对于CD树的每棵子树，记其大小为<code>n</code>，去掉根结点后剩下的的每棵子树的大小均不超过<code>n/2</code>。这是因为每棵子树都是和一个联通分量对应的。因此，对CD树做重心剖分时，只需取每层的根结点为重心即可。</p>
+<p>练习5：考虑以下陈述：“对于任意有根树，从<code>a</code>到<code>b</code>的路径都可以分解成从<code>a</code>到<code>lca(a, b)</code>的路径和从<code>lca(a, b)</code>到<code>b</code>的路径，这样我们就可以应用性质3中的方法进行处理。”如果这是真的，我们为什么需要重心剖分？</p>
+<p>答：这确实是真的，但对于高度没有限制的树，这么做没有意义。考虑退化成一条链的树，根结点的后代数量是<code>n-1</code>，深度为1的结点的后代数量是<code>n-2</code>，以此类推，得到的分解路径总数是<code>n(n-1)/2</code>，和树中所有路径总数的数量级相同，没法起到简化表示的作用。</p>
+<h2>例题</h2>
+<h3><a href="https://codeforces.com/contest/342/problem/E" target="_blank" rel="noopener">Codeforces 342E. Xenia and Tree</a></h3>
+<h4>题意</h4>
+<p>略</p>
+<h4>分析</h4>
+<p>这道题就是上面讲解时用到的例题，应该很好理解。将树进行重心剖分之后，每两个结点之间的距离都可以分解成它们在原树中到重心剖分树中的LCA的距离。这句话听起来太绕了，不如说，对于每两个结点，它们在重心剖分树中的LCA必然会出现在它们在原树中的最短路径上。从这就可以直接推导出，原树中的每条路径都能以两个端点在重心剖分树中的LCA为终点分解成两条路径。</p>
+<p>所以我们可以考虑用<code>ans</code>来维护重心剖分树中每个结点到它的子树中最近的红色结点的距离。初始时，<code>ans[a] = inf</code>（之后才将第一个结点涂成红色）。</p>
+<p><img src="xenia-cd.png" alt="左侧是染色的原树，右侧是重心剖分和连通分量。"></p>
+<p>对于每个<code>update(a)</code>操作，因为<code>a</code>出现在它的祖先结点对应的分量中，所以只需对它的每个祖先结点<code>b</code>，更新<code>ans[b] = min(ans[b], dist(a, b))</code>。由于树的高度为<code>O(log(n))</code>，计算<code>dist(a, b)</code>的复杂度是<code>O(log(n))</code>，因此更新操作的复杂度是<code>O(log^2(n))</code>。</p>
+<p>对于每个<code>query(a)</code>操作，只需对它的所有祖先结点<code>b</code>，取<code>dist(a, b) + ans[b]</code>的最小值。如果记<code>ans[b]</code>对应的结点为<code>c</code>，则我们实际上是把从<code>a</code>到<code>c</code>的路径分解成了从<code>a</code>到<code>b</code>的路径（<code>dist(a, b)</code>）和从<code>b</code>到<code>c</code>的路径（<code>ans[b]</code>）。这意味着<code>dist(a, b) + ans[b]</code>是从<code>a</code>到<code>b</code>对应的连通分量中离<code>b</code>最近的红色结点的距离。查询操作的时间复杂度也是<code>O(log^2(n))</code>。</p>
+<hr>
+<p>我花了特别久的时间debug。模板背错之后出现的那些问题就不说了——一背错就很可能会死循环。首先，照原文中那种删除边的写法是行不通的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = dfs(u, p); <span class="comment">// find the size of each subtree</span></span><br><span class="line">    <span class="keyword">int</span> centroid = dfs(u, p, n); <span class="comment">// find the centroid</span></span><br><span class="line">    <span class="keyword">if</span> (p == <span class="number">-1</span>) p = centroid; <span class="comment">// dad of root is the root itself</span></span><br><span class="line">    dad[centroid] = p;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// for each tree resulting from the removal of the centroid</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> v : tree[centroid])</span><br><span class="line">        <span class="comment">// v被删除后，指针就失效了，肯定会挂</span></span><br><span class="line">        tree[centroid].erase(v), <span class="comment">// remove the edge to disconnect</span></span><br><span class="line">        tree[v].erase(centroid), <span class="comment">// the component from the tree</span></span><br><span class="line">        build(v, centroid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改成不会产生指针失效的版本也不行，会超时。我目前看到了两种比较好的解决方案：</p>
+<ul>
+<li>仍然用<code>set</code>，但是在<code>for</code>循环中不从<code>centroid</code>对应的<code>set</code>删除，在<code>for</code>循环结束后再统一清空</li>
+<li>改用<code>vector</code>，单独记录删除标记</li>
+</ul>
+<p>然后我想了想，觉得自己的LCA写的恐怕大有问题（因为太久没写了），于是就找了个地方，抄了一下LCA的主要计算过程。这之后我觉得没有什么问题了，但是交上去却持续WA。我感到很困惑，查了又查，却找不到什么错误。最后我找到了一份相当不错的结构和我类似的<a href="https://codeforces.com/contest/342/submission/23224047" target="_blank" rel="noopener">参考代码</a>，抱着“模块化debug”的心情把我的代码中的LCA整个换成了这份代码里的LCA——</p>
+<p>结果竟然就过了！！！</p>
+<p>原来我太久没写LCA，把初始化时求<code>2^k</code>级祖先的内外循环给搞反了。推导<code>father[i][j]</code>时可能需要的<code>father[?][j-1]</code>的第一维是不确定的，因此应该把<code>j</code>放在外层循环。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lca_init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; <span class="number">21</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            father[i][j] = father[father[i][j<span class="number">-1</span>]][j<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4>代码</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; G[<span class="number">100002</span>];</span><br><span class="line"><span class="keyword">bool</span> deleted[<span class="number">100002</span>];</span><br><span class="line"><span class="keyword">int</span> subTreeSize[<span class="number">100002</span>];</span><br><span class="line"><span class="keyword">int</span> cd_father[<span class="number">100002</span>];</span><br><span class="line"><span class="keyword">int</span> father[<span class="number">100002</span>][<span class="number">21</span>];</span><br><span class="line">LL dist[<span class="number">100002</span>];</span><br><span class="line">LL ans[<span class="number">100002</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算父结点和结点深度（用于LCA）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">int</span> parent, <span class="keyword">int</span> depth)</span> </span>&#123;</span><br><span class="line">    father[cur][<span class="number">0</span>] = parent == <span class="number">-1</span> ? cur : parent;</span><br><span class="line">    dist[cur] = depth;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> u: G[cur])</span><br><span class="line">        <span class="keyword">if</span> (u != parent) &#123;</span><br><span class="line">            dfs(u, cur, depth + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// LCA初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lca_init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; <span class="number">21</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            father[i][j] = father[father[i][j<span class="number">-1</span>]][j<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算x和y的LCA</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dist[x] &lt; dist[y]) swap(x, y);</span><br><span class="line">    <span class="keyword">int</span> d = dist[x] - dist[y];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">20</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (d &amp; (<span class="number">1</span> &lt;&lt; i))</span><br><span class="line">            x = father[x][i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x == y) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">20</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (father[x][i] != father[y][i]) &#123;</span><br><span class="line">            x = father[x][i];</span><br><span class="line">            y = father[y][i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> father[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据LCA和深度计算x和y在树中的距离</span></span><br><span class="line"><span class="function">LL <span class="title">get_dist</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fa = get_lca(x, y);</span><br><span class="line">    <span class="keyword">return</span> dist[x] + dist[y] - <span class="number">2</span> * dist[fa];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算子树大小（每次重心剖分的子树都需要）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_size</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">int</span> parent)</span> </span>&#123;</span><br><span class="line">    subTreeSize[cur] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> u: G[cur]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!deleted[u] &amp;&amp; u != parent) &#123;</span><br><span class="line">            get_size(u, cur);</span><br><span class="line">            subTreeSize[cur] += subTreeSize[u];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算重心</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_centroid</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">int</span> parent, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> u: G[cur]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!deleted[u] &amp;&amp; u != parent &amp;&amp; subTreeSize[u] &gt; n / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> get_centroid(u, cur, n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cur;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 递归进行重心剖分</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">centroid_decomposition</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">int</span> parent)</span> </span>&#123;</span><br><span class="line">    get_size(cur, parent);</span><br><span class="line">    <span class="keyword">int</span> centroid = get_centroid(cur, parent, subTreeSize[cur]);</span><br><span class="line">    cd_father[centroid] = parent;</span><br><span class="line">    <span class="comment">// 这里采取的则是一种比较愚蠢的策略，单独为结点记录了删除标记……</span></span><br><span class="line">    deleted[centroid] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> u: G[centroid])</span><br><span class="line">        <span class="keyword">if</span> (!deleted[u] &amp;&amp; u != parent)</span><br><span class="line">            centroid_decomposition(u, centroid);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将a更新为红色结点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b = a;</span><br><span class="line">    <span class="comment">// 对于a在CD树中的每个祖先（包括a），更新a到它的距离</span></span><br><span class="line">    <span class="comment">// 注意不是a在CD树中到它的距离！！！</span></span><br><span class="line">    <span class="keyword">while</span> (b != <span class="number">-1</span>) &#123;</span><br><span class="line">        ans[b] = min(ans[b], get_dist(a, b));</span><br><span class="line">        b = cd_father[b];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询a和最近的红色结点之间的距离</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b = a;</span><br><span class="line">    LL x = <span class="number">1e9</span>;</span><br><span class="line">    <span class="comment">// 对于a在CD树中的每个祖先（包括a），取答案为（a到该祖先的距离+该祖先到最近红色结点距离）的最小值</span></span><br><span class="line">    <span class="comment">// 注意距离不是CD树中的距离！！！</span></span><br><span class="line">    <span class="keyword">while</span> (b != <span class="number">-1</span>) &#123;</span><br><span class="line">        x = min(x, ans[b] + get_dist(a, b));</span><br><span class="line">        b = cd_father[b];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">int</span> a, b;</span><br><span class="line">    <span class="keyword">int</span> t, v;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;a, &amp;b);</span><br><span class="line">        G[a].push_back(b);</span><br><span class="line">        G[b].push_back(a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 一些必要的初始化</span></span><br><span class="line">    dfs(<span class="number">1</span>, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">    lca_init();</span><br><span class="line">    centroid_decomposition(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        ans[i] = <span class="number">1e9</span>;</span><br><span class="line">    update(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;t, &amp;v);</span><br><span class="line">        <span class="keyword">if</span> (t == <span class="number">1</span>) update(v);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, query(v));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><a href="https://codeforces.com/contest/321/problem/C" target="_blank" rel="noopener">Codeforces 321C. Ciel the Commander</a></h3>
+<h4>题意</h4>
+<p>给定一棵树，要求把上面的所有结点用<code>A</code>到<code>Z</code>标记，使得对于任意两个标记相同的结点，它们之间的最短路上至少有一个标记（字典序）更小的结点。</p>
+<h4>分析</h4>
+<p>只要会重心剖分，想到这道题要用到重心剖分并不难（……这好像是句废话，考虑到这道题是作为例题出现的……），所以难点在于如何证明重心剖分得到的是最优解。（对于实现而言，这并不是个难点）</p>
+<p><a href="https://codeforces.com/blog/entry/8192" target="_blank" rel="noopener">题解</a>里给出了两种证明思路。第一种是自顶向下构造。显然，rank为A的结点只能有一个。选定一个结点为rank A之后，树会被分成几个连通分量，这些连通分量之间不会有非法路径（因为必须要通过这个结点），所以可以单独考虑这些连通分量，于是我们得到了一个递归解法。问题是应该怎么选择A。单从连通分量的大小来考虑，我们希望这些连通分量的大小尽量小，所以不妨取rank A结点为重心。然后判断CD树的高度是否大于26就行。</p>
+<p>不过，问题是我觉得不能单从连通分量的大小来考虑。但到底怎么考虑比较好，这个我也不知道……</p>
+<h4>代码</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; g[<span class="number">100005</span>];</span><br><span class="line"><span class="keyword">int</span> cd_father[<span class="number">100005</span>];</span><br><span class="line"><span class="keyword">int</span> subSize[<span class="number">100005</span>];</span><br><span class="line"><span class="keyword">int</span> cd_depth[<span class="number">100005</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> maxDepth;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_size</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    subSize[cur] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> u: g[cur])</span><br><span class="line">        <span class="keyword">if</span> (u != p)</span><br><span class="line">            subSize[cur] += get_size(u, cur);</span><br><span class="line">    <span class="keyword">return</span> subSize[cur];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_centroid</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">int</span> p, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> u: g[cur])</span><br><span class="line">        <span class="keyword">if</span> (u != p &amp;&amp; subSize[u] &gt; n / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> get_centroid(u, cur, n);</span><br><span class="line">    <span class="keyword">return</span> cur;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">centroid_decomposition</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">int</span> p, <span class="keyword">int</span> depth)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = get_size(cur, p);</span><br><span class="line">    <span class="keyword">int</span> centroid = get_centroid(cur, p, n);</span><br><span class="line">    cd_father[centroid] = p;</span><br><span class="line">    cd_depth[centroid] = depth;</span><br><span class="line">    maxDepth = max(depth, maxDepth);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> u: g[centroid])</span><br><span class="line">        <span class="keyword">if</span> (u != p) &#123;</span><br><span class="line">            g[u].erase(centroid);</span><br><span class="line">            centroid_decomposition(u, centroid, depth + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    g[centroid].clear();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">int</span> u, v;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; u &gt;&gt; v;</span><br><span class="line">        g[u].insert(v);</span><br><span class="line">        g[v].insert(u);</span><br><span class="line">    &#125;</span><br><span class="line">    centroid_decomposition(<span class="number">1</span>, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (maxDepth &gt;= <span class="number">26</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Impossible!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; (<span class="keyword">char</span>) (cd_depth[i] + <span class="string">'A'</span>) &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/alg-Centroid-Decomposition/"><i class="fas fa-hashtag fa-fw"></i>alg:Centroid Decomposition</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

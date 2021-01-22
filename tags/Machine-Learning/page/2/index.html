@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Tag: Machine Learning | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+    <script>
+        window.subData= { title:'标签 : Machine Learning'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/prml-chap-7-1-maximum-margin-classifiers/">
+              
+                  PRML读书笔记：7.1 最大边缘分类器
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2020-02-25
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/读书笔记/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              读书笔记
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3>模型的定义</h3>
+<p>首先定义线性模型为</p>
+      
+        <div class="readmore">
+          <a href="/post/prml-chap-7-1-maximum-margin-classifiers/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/PRML/"><i class="fas fa-hashtag fa-fw"></i>PRML</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/prml-chap-7-sparse-kernel-machines/">
+              
+                  PRML读书笔记：第7章 稀疏核机
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2020-02-25
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/读书笔记/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              读书笔记
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本章中继续研究分类算法。之前的分类算法需要对所有的训练点对进行求值；而本章将介绍具有稀疏（sparse）解的基于核的算法，对新数据的预测只依赖于训练数据点的一个子集。</p>
+<p>本章内容：</p>
+<ul>
+<li>支持向量机（support vector machine，SVM）
+<ul>
+<li>可以解决分类问题、回归问题、异常点检测问题</li>
+<li>模型参数的确定是一个凸的最优化问题</li>
+<li>需要用到拉格朗日乘数法</li>
+<li>不提供后验概率</li>
+</ul>
+</li>
+<li>相关向量机（relevence vector machine，RVM）
+<ul>
+<li>基于贝叶斯方法</li>
+<li>提供后验概率输出</li>
+<li>产生比SVM更稀疏的解</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/PRML/"><i class="fas fa-hashtag fa-fw"></i>PRML</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/prml-chap-5-3-error-backpropagation/">
+              
+                  PRML读书笔记：5.3 误差反向传播
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2020-02-22
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/读书笔记/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              读书笔记
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本节的主要内容是误差反向传播（error propagation），这是一种计算前馈神经网络的误差函数$E(\boldsymbol{w})$的高效方法。</p>
+      
+        <div class="readmore">
+          <a href="/post/prml-chap-5-3-error-backpropagation/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/PRML/"><i class="fas fa-hashtag fa-fw"></i>PRML</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/prml-chap-5-2-network-training/">
+              
+                  PRML读书笔记：5.2 网络训练
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2020-02-18
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/读书笔记/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              读书笔记
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>网络训练的目标是最小化平方和误差函数，或最大化（对数）似然函数，这两者是等价的。在神经网络的文献中通常考虑前者：</p>
+      
+        <div class="readmore">
+          <a href="/post/prml-chap-5-2-network-training/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/PRML/"><i class="fas fa-hashtag fa-fw"></i>PRML</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/prml-math-foundations/">
+              
+                  PRML读书笔记：数学基础
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2020-02-18
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/读书笔记/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              读书笔记
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>这是一些PRML相关的数学基础。</p>
+      
+        <div class="readmore">
+          <a href="/post/prml-math-foundations/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/PRML/"><i class="fas fa-hashtag fa-fw"></i>PRML</a>
+        
+          <a href="/tags/Maths/"><i class="fas fa-hashtag fa-fw"></i>Maths</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/prml-chap-5-1-feed-forward-network-functions/">
+              
+                  PRML读书笔记：5.1 前馈神经网络
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2020-02-18
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/读书笔记/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              读书笔记
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3>神经网络的基本结构</h3>
+<p>基本的神经网络结构：由两层组成</p>
+      
+        <div class="readmore">
+          <a href="/post/prml-chap-5-1-feed-forward-network-functions/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/PRML/"><i class="fas fa-hashtag fa-fw"></i>PRML</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/prml-chap-5-neural-networks/">
+              
+                  PRML读书笔记：第5章 神经网络
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2020-02-18
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/读书笔记/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              读书笔记
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>回顾：固定基函数的线性组合受到维数灾难的限制</p>
+<p>解决方案：根据数据调节基函数</p>
+      
+        <div class="readmore">
+          <a href="/post/prml-chap-5-neural-networks/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/PRML/"><i class="fas fa-hashtag fa-fw"></i>PRML</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/why-we-should-compute-sigmoid-and-softmax-with-cross-entropy/">
+              
+                  为什么sigmoid和softmax需要和cross entropy一起计算
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-12-11
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>众所周知，TensorFlow中原来是不提供单独的cross entropy loss计算函数的，只有<a href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits" target="_blank" rel="noopener">softmax_cross_entropy_with_logits</a>和<a href="https://www.tensorflow.org/api_docs/python/tf/nn/sigmoid_cross_entropy_with_logits" target="_blank" rel="noopener">tf.nn.sigmoid_cross_entropy_with_logits</a>两类。（不过现在Keras里有这种东西了，<a href="https://www.tensorflow.org/api_docs/python/tf/keras/backend/sparse_categorical_crossentropy" target="_blank" rel="noopener">categorical_crossentropy</a>可以指明输入的是logits而非softmax）。据开发者说，这是因为：</p>
+<blockquote>
+<p>We provide optimized cross-entropy implementations that are fused with the softmax/sigmoid implementations because their performance and numerical stability are critical to efficient training.<br>
+If however you are just interested in the cross entropy itself, you can compute it directly using code from the beginners tutorial:</p>
+</blockquote>
+<p><code>cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices=[1]))</code></p>
+<blockquote>
+<p>N.B. DO NOT use this code for training. Use tf.nn.softmax_cross_entropy_with_logits() instead.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+</blockquote>
+<p>那么都有些什么问题呢？</p>
+<h2>softmax计算中的问题</h2>
+<p>softmax的公式是：</p>
+
+$$
+y_i = \frac{e^{x_i}}{\sum_{i=1}^n e^{x_i}}
+$$
+
+<p>一个事实是，如果传入的值稍微大一些，结果就会溢出（因为指数运算的结果太大了）。解决方法是在分式上下除以一个$e^\alpha$：</p>
+
+$$
+\begin{aligned}
+y_i = \frac{e^{x_i}}{\sum_{i=1}^n e^{x_i}}
+= \frac{e^{x_i - \alpha}}{\sum_{i=1}^n e^{x_i - \alpha}}
+\end{aligned}
+$$
+
+<p>令$\alpha = \max{(x_1, \cdots, x_n)}$，则$x_i - \alpha \leq 0$，$e^{x_i - \alpha}$的结果趋近于0，不会发生溢出。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p>结论：不要自己直接手算softmax。</p>
+<h2>sigmoid计算中的问题</h2>
+<p>sigmoid的公式是：</p>
+<p>$$y = \frac{1}{1 + e^{-x}}$$</p>
+<p>这看起来还比较简单，不过仍然要注意分母溢出的问题。之前scipy的<code>expit</code>曾经出过这样的一个bug。在$x$为正数时，它计算的是$\frac{e^x}{e^x + 1}$，而python的<code>math.exp</code>在$x \geq 710$时会溢出。所以<code>expit(710)</code>也会溢出。<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
+<p>结论：最好也不要自己手算sigmoid。</p>
+<h2>cross entropy计算中的问题</h2>
+<p>交叉熵的公式是：</p>
+<p>$$L = -\sum_{i=1}^n y_i \log{\hat{y}_i}$$</p>
+<p>其中$y_i$是正确（分类）结果（概率），$\hat{y}_i$是模型输出的分类概率。</p>
+<p>一般来说，这个函数的输入都是softmax或者sigmoid之后的结果，从数学上说，可以保证在$(0, 1)$范围内；但是计算机的表示范围是有限的，很可能会出现$\hat{y}_i = 0$的情况。如果不管的话，结果就会直接溢出变成nan。所以至少要做一下预处理，把接近0的$\hat{y}_i$变成$\epsilon$之类的。</p>
+<p>Keras的实现中还把接近1的$\hat{y}_i$变成了$1 - \epsilon$，这一点我还没想清楚为什么。<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></p>
+<p>结论：也不要自己手算交叉熵。</p>
+<p>（我之前确实遇到过nan的情况。）</p>
+<h2>softmax + cross entropy</h2>
+<p>把softmax代入到cross entropy的公式中：</p>
+
+$$
+\begin{aligned}
+L &= -\sum_{i=1}^n y_i \log{\hat{y}_i} \\
+&= -\sum_{i=1}^n y_i \log{\frac{e^{x_i}}{\sum_{j=1}^n e^{x_j}}} \\
+&= -\sum_{i=1}^n y_i \left(x_i - \log{\sum_{j=1}^n e^{x_j}}\right) \\
+&= -\sum_{i=1}^n x_i y_i + \left(\sum_{i=1}^n y_i\right) \left(\log{\sum_{j=1}^n e^{x_j}}\right)
+\end{aligned}$$
+
+<p>显然上式里只有$\log{\sum_{j=1}^n e^{x_j}}$会有数值稳定性问题。可以用类似的方法来处理：令$\alpha = \max{(x_1, \cdots, x_n)}$，则</p>
+
+$$
+\log{\sum_{i=1}^n e^{x_i}} = \log{\left(e^\alpha \sum_{i=1}^n e^{x_i - \alpha}\right)} = \alpha + \log{\sum_{i=1}^n e^{x_i - \alpha}}
+$$
+
+<p>这样就可以解决直接计算$e^{x_j}$溢出的问题了。</p>
+<h2>sigmoid + cross entropy</h2>
+
+$$
+\begin{aligned}
+L &= -\sum_{i=1}^n y_i \log{\hat{y}_i} \\
+&= -\sum_{i=1}^n y_i \log{\frac{1}{1+e^{-x_i}}} \\
+&= \sum_{i=1}^n y_i \log{(1+e^{-x_i})}
+\end{aligned}$$
+
+<p>如果$e^{-x_i}$很大，那么不需要计算$\log{(1+e^{-x_i})}$（可能会溢出），直接用$-x_i$作为估计值。否则$e^{-x_i}$会被截断。</p>
+<h2>实现</h2>
+<script src="https://gist.github.com/zhanghuimeng/1fcd5aa6fdf162edce921248c7376d57.js"></script>
+<p>可以看出softmax和cross entropy一起计算效果更好（如果先算出概率分布，由于计算精度的原因，很小的概率会舍入到0，然后直接增大到EPS，所以得到的结果变小了）。</p>
+<p>sigmoid和cross entropy一起计算效果也更好，原因是类似的。</p>
+<p>结论：TensorFlow的API这样设计是有原因的（虽然我还是觉得应该给一个算cross entropy的API），为了保证数值稳定性，应该尽量用API，不要自己写。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://github.com/tensorflow/tensorflow/issues/2462" target="_blank" rel="noopener">TensorFlow issue - Why is there no support for directly computing cross entropy?</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://zhuanlan.zhihu.com/p/27223959" target="_blank" rel="noopener">知乎 - Softmax函数与交叉熵</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a href="https://github.com/scipy/scipy/issues/3385" target="_blank" rel="noopener">scipy issue - expit does not handle large arguments well </a> <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><a href="https://github.com/tensorflow/tensorflow/issues/2462#issuecomment-300702241" target="_blank" rel="noopener">tensorflow issue - Why is there no support for directly computing cross entropy? - comment</a> <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/TensorFlow/"><i class="fas fa-hashtag fa-fw"></i>TensorFlow</a>
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/learn-thumt-1/">
+              
+                  学习THUMT（1）：UserManual和代码结构
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>代码：<a href="https://github.com/thumt/THUMT" target="_blank" rel="noopener">THUMT</a></p>
+<h2>目录结构</h2>
+<p>目前<code>thumt/</code>文件夹下的目录结构是这样的：</p>
+<ul>
+<li><code>bin/</code>
+<ul>
+<li><code>get_relevance.py</code>：输入训练好的模型checkpoints、模型在测试数据上的输入和输出、词表，输出测试数据中每个句子及其翻译之间的关联矩阵。（似乎只对Transformer和RNNsearch模型有效）。</li>
+<li><code>scorer.py</code>：暂时不知道是做什么的。</li>
+<li><code>trainer.py</code>：用于训练模型，输入训练数据、词表、验证数据、参数，输出训练模型的checkpoints和在验证集上的得分。</li>
+<li><code>translator.py</code>：用训练好的模型对测试数据进行翻译，输入模型checkpoints、测试数据、词表，输出翻译结果。</li>
+</ul>
+</li>
+<li><code>data/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>cache.py</code>：从字义上看好像是存储feature用的，实际上看不懂。</li>
+<li><code>dataset.py</code>：输入训练和验证数据文件，将数据分成batch。</li>
+<li><code>record.py</code>：看起来和<code>dataset.py</code>有点像，仍然不知道是干什么的。</li>
+<li><code>vocab.py</code>：加载和处理词表。</li>
+</ul>
+</li>
+<li><code>interface/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>model.py</code>：表示NMT模型的抽象类<code>NMTModel</code>。</li>
+</ul>
+</li>
+<li><code>layers/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>attention.py</code>：Attention机制的实现。</li>
+<li><code>nn.py</code>：一些神经网络层的实现，包括<code>linear</code>和<code>maxout</code>。</li>
+<li><code>rnn_cell.py</code>：GRU的实现，以及一些wrapper。</li>
+</ul>
+</li>
+<li><code>models/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>rnnsearch.py</code>：RNNsearch模型的实现。</li>
+<li><code>rnnsearch_lrp.py</code>：<a href="http://www.aclweb.org/anthology/P17-1106" target="_blank" rel="noopener">LRP</a>和RNNsearch模型的实现。</li>
+<li><code>seq2seq.py</code>：Seq2Seq模型的实现。</li>
+<li><code>transformer.py</code>：Transformer模型的实现。</li>
+<li><code>transformer_lrq.py</code>：LRP和Transformer模型的实现。</li>
+</ul>
+</li>
+<li><code>scripts/</code>
+<ul>
+<li><code>build_vocab.py</code>：通过输入的测试数据创建词表。</li>
+<li><code>checkpoint_averaging.py</code>：输入模型checkpoints，输出平均结果。</li>
+<li><code>convert_old_model.py</code>：看起来好像是用于把旧实现生成的模型转换成新模型的。</li>
+<li><code>convert_vocab.py</code>：不知道是干什么的。</li>
+<li><code>input_converter.py</code>：把输入转换成<code>tf.Record</code>格式。不知道有什么用。</li>
+<li><code>shuffle_corpus.py</code>：随机打乱训练数据。</li>
+<li><code>visualize.py</code>：对Transformer或RNNsearch输出的关联矩阵进行可视化。</li>
+</ul>
+</li>
+<li><code>utils/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>bleu.py</code>：BLEU值的计算。</li>
+<li><code>common.py</code>：看起来好像是一些用于推导形状的函数。</li>
+<li><code>hooks.py</code>：用于保存模型checkpoint。</li>
+<li><code>inference.py</code>：实现了Beam Search和不知道是什么的Inference。</li>
+<li><code>lrp_utils.py</code>：看名字可能和LRP有关，实际上好像有很多模型的实现，并不知道是干什么的。</li>
+<li><code>optimize.py</code>：不知道是干什么的。</li>
+<li><code>parallel.py</code>：看起来好像是用于多GPU训练的。</li>
+<li><code>sampling.py</code>：？</li>
+<li><code>weight_ratio.py</code>：？</li>
+</ul>
+</li>
+<li><code>__init__.py</code>：这是一个模块。</li>
+</ul>
+<h2>训练过程</h2>
+<p>一般来说训练过程可以分成以下几个阶段：</p>
+<ul>
+<li>准备数据
+<ul>
+<li>训练集、验证集、测试集语料</li>
+<li>用训练集生成BPE操作和词典（大概？）</li>
+<li>用上述BPE操作和词典对训练集、验证集和测试集的源语言部分分别进行处理</li>
+<li>将训练集随机排序（<code>shuffle_corpus.py</code>）</li>
+<li>通过训练集生成词表（<code>build_vocab.py</code>）</li>
+</ul>
+</li>
+<li>训练：输入训练集、验证集和词表，输出模型checkpoints、在验证集上得分最高的模型，以及模型在训练过程中在验证集上的评测结果</li>
+<li>测试：
+<ul>
+<li>输入测试集、词表和模型checkpoints，输出翻译结果（<code>translator.py</code>），经过一定处理后可以得到BLEU分值</li>
+<li>可以进行model averaging（<code>checkpoint_averaging.py</code>）</li>
+<li>可以进行model ensemble（<code>translator.py</code>）</li>
+</ul>
+</li>
+<li>可视化：输入测试集、词表、模型checkpoints，输出模型在每个翻译句对上的关联矩阵（<code>get_relevance.py</code>，<code>visualize.py</code>）</li>
+</ul>
+<hr>
+<p>明天我打算用比较少的数据在自己的电脑上试验一下。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Natural-Language-Processing/"><i class="fas fa-hashtag fa-fw"></i>Natural Language Processing</a>
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/THUMT/"><i class="fas fa-hashtag fa-fw"></i>THUMT</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/learning-phrase-representations-using-rnn-encoder-decoder-for-statistical-machine-translation/">
+              
+                  论文：Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-03
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>论文地址：<a href="https://arxiv.org/abs/1406.1078" target="_blank" rel="noopener">https://arxiv.org/abs/1406.1078</a></p>
+<p>这篇文章提出了RNN Encoder-Decoder架构，使得RNN能够处理序列数据的输入输出：先把序列数据encode成一个定长vector，再把它decode成另一个序列。有趣的一点是，这篇文章的题目里带了“SMT”这个词，说明它并不是一种纯NMT的方法——事实上论文里用它替代了现存的方法里给短语打分的部分。当然这种方法也是可以直接用于整句翻译的（<a href="https://arxiv.org/abs/1409.1259" target="_blank" rel="noopener">On the Properties of Neural Machine Translation: Encoder-Decoder Approaches</a>），但由于RNN的特性，使得在长句上表现不太好，最后又改进出了<a href="https://arxiv.org/abs/1409.0473" target="_blank" rel="noopener">Attention方法</a>。<del>目前我还不知道这篇文章和Seq2Seq具体是什么关系。</del></p>
+<p>2018.10.11 UPDATE：Seq2Seq和这篇文章提出的架构很类似，但是提高了长句翻译的表现（通过把句子倒过来的trick），一般说Seq2Seq架构的时候应该指的是那篇文章（至少我认为是这样）。本文的另一个重要贡献是LSTM的简化版，<a href="https://www.tensorflow.org/api_docs/python/tf/nn/rnn_cell/GRUCell" target="_blank" rel="noopener">GRU单元</a>。</p>
+<h2>简介</h2>
+<p>本文中提出了一种新的模型，称为RNN Encoder-Decoder，包括两个RNN。一个RNN（encoder）把符号序列编码成一个定长向量表示（fixed-length vector representation）；另一个RNN（decoder）把该表示解码成另一个符号序列。这两个RNN共同被训练，以最大化输出目标序列的概率。我们同时提出了一种新的隐藏层单元（hidden unit）。将该模型计算出的短语对条件概率作为现有SMT模型的额外特征之后，SMT的翻译结果提升了；且可以发现，该模型学到的短语中间表示在语义上和句法上都是有意义的。</p>
+<h2>RNN</h2>
+<p>RNN是一个神经网络，它输入变长序列$\mathbf{x} = (x_1, ..., x_T)$，内部有一个隐状态$\mathbf{h}$，输出（可选）为$\mathbf{y}$。在每个时刻$t$，RNN的隐状态$\mathbf{h}_{\langle t \rangle}$会被更新：</p>
+<p>$$\mathbf{h}_{\langle t \rangle} = f(\mathbf{h}_{\langle t - 1 \rangle}, x_t)$$</p>
+<p>其中$f$是一个非线性激活函数，可能很简单，也可能很复杂（如LSTM）。</p>
+<p>RNN可以通过被训练为预测序列中的下一个符号来学习序列的概率分布。在这种情况下，$t$时刻输出的就是概率分布$p(x_t | x_{t-1}, ..., x_1)$。比如说，一个multinomial distribution（1-K编码）就可以用一个softmax激活函数输出（这里并没有看懂……）：</p>
+<p>$$p(x_{t, j} = 1 | x_{t-1}, ..., x_1) = \frac{\exp{(\mathbf{w}_j\mathbf{h}_{\langle t \rangle})}}{\sum_{j'=1}^{K} \exp{(\mathbf{w}_{j'}\mathbf{h}_{\langle t \rangle})}}$$</p>
+<p>其中$j = 1, ..., K$，$\mathbf{w}_j$是权重矩阵$\mathbf{W}$的行。</p>
+<p>现在就可以计算出序列$\mathbf{x}$出现的概率了：</p>
+<p>$$p(\mathbf{x}) = \prod_{t=1}^T p(x_t | x_{t-1}, ..., x_1)$$</p>
+<p>通过这一学到的分布，生成一个新的序列的方法是显然的，逐步选择符号即可。</p>
+<h2>RNN Encoder-Decoder</h2>
+<p>之前已经说过了，RNN Encoder-Decoder是把一个变长序列编码为一个定长向量表示，再把这个表示解码为另一个变长序列的过程。从概率论的角度看（但是我不知道为什么要从概率论的角度看），这是学习两个变长序列之间的条件概率的方法：</p>
+<p>$$p(y_1, ..., y_{T'} | x_1, ..., x_T)$$</p>
+<h3>Encoder</h3>
+<p>Encoder是一个RNN，它顺序读入输入序列$\mathbf{x}$，并逐步更新隐状态（和普通的RNN是一样的）：</p>
+<p>$$\mathbf{h}_{\langle t \rangle} = f(\mathbf{h}_{\langle t - 1 \rangle}, x_t)$$</p>
+<p>读到序列结尾（EOS）之后，RNN的隐状态就是整个输入序列对应的表示$\mathbf{c}$。</p>
+<h3>Decoder</h3>
+<p>Decoder也是一个RNN，它通过隐状态$\mathbf{h}_{\langle t \rangle}$预测下一个符号$y_t$。不过，$y_t$和$\mathbf{h}_{\langle t \rangle}$都依赖于$y_{t-1}$和$\mathbf{c}$，所以$t$时刻的隐状态为：</p>
+<p>$$\mathbf{h}_{\langle t \rangle} = f(\mathbf{h}_{\langle t - 1 \rangle}, y_{t-1}, \mathbf{c})$$</p>
+<p>相似地，下一个符号的条件分布就是（虽然不是很懂这是怎么相似出来的）：</p>
+<p>$$P(y_t | y_{t-1}, y_{t-2}, ..., y_1, \mathbf{c}) = g(\mathbf{h}_{\langle t \rangle}, y_{t-1}, \mathbf{c})$$</p>
+<h3>Encoder+Decoder</h3>
+<p><img src="encdec.png" alt="RNN Encoder-Decoder图示"></p>
+<p>Encoder和Decoder共同进行训练，以最大化conditional log-likelihood：</p>
+<p>$$\max_{\mathbf{\theta}} \frac{1}{N} \sum_{n=1}^N \log{p_{\mathbf{\theta}}(\mathbf{y}_n | \mathbf{x}_n)}$$</p>
+<p>其中$\mathbf{\theta}$是模型参数，每个$(\mathbf{x}_n, \mathbf{y}_n)$都是训练集中的一个输入输出对。由于decoder的输出是可微分的， 因此可以通过基于梯度的算法来估计模型参数。</p>
+<p>训练完RNN Encoder-Decoder之后，模型可以通过两种方式使用。一种是根据输入序列来生成输出序列。另一种是对给定的输入输出序列进行打分，分数就是概率$p_{\mathbf{\theta}}(\mathbf{y} | \mathbf{x})$。</p>
+<h2>新的隐藏单元</h2>
+<p><img src="gru.png" alt="隐藏单元图示"></p>
+<p>这一单元的灵感来自LSTM，但是计算和实现都简单得多。图中$z$是update gate，用于控制当前隐状态是否需要被新的隐状态$\tilde{h}$更新；$r$是reset gate，用于确定是否要丢弃上一个隐状态。</p>
+<blockquote>
+<p>这个计算方法是否说明，是很多个隐藏单元一起更新和训练……但是为什么输入是个向量呢？大概是因为1-K表示法和Embedding？</p>
+</blockquote>
+<p>2018.10.11 UPDATE：用一般的术语来说，下列内容实际上说明的是“一个GRU cell中的一个unit的计算过程”，因此$r_j$、$z_j$和$h_j^{\langle t \rangle}$都是标量。在本文中，layer=cell。</p>
+<p>$r_j$通过下式计算：</p>
+<p>$$r_j = \sigma([\mathbf{W}_r\mathbf{x}]_j + [\mathbf{U}_r \mathbf{h}_{\langle t-1 \rangle}]_j)$$</p>
+<p>其中$\sigma$是<a href="https://en.wikipedia.org/wiki/Logistic_function" target="_blank" rel="noopener">Logistic Sigmoid</a>函数，$[.]_j$是向量的第$j$个元素，$\mathbf{x}$是输入，$\mathbf{h}_{\langle t-1 \rangle}$是上一个隐状态，$\mathbf{W}_r$和$\mathbf{U}_r$是学习到的权重矩阵。</p>
+<p>$z_j$类似地通过下式计算：</p>
+<p>$$z_j = \sigma([\mathbf{W}_z\mathbf{x}]_j + [\mathbf{U}_z \mathbf{h}_{\langle t-1 \rangle}]_j)$$</p>
+<p>单元$h_j$的实际激活状态通过下式计算：</p>
+<p>$$h_j^{\langle t \rangle} = z_j h_j^{\langle t-1 \rangle} + (1 - z_j) \tilde{h}_j^{\langle t \rangle}$$</p>
+<p>其中</p>
+<p>$$\tilde{h}_j^{\langle t \rangle} = \phi([\mathbf{W}\mathbf{x}]_j + [\mathbf{U}(\mathbf{r} \odot \mathbf{h}_{\langle t-1 \rangle})]_j)$$</p>
+<p><del>（虽然我看不懂这个式子是怎么使用$r_j$的，以及它对激活状态有什么影响……）</del>reset gate通过与$\mathbf{h}_{\langle t-1 \rangle})$点乘对$\tilde{h}_j^{\langle t \rangle}$产生影响。</p>
+<hr>
+<h3>另一种对GRU的描述方式</h3>
+<h2>SMT模型和RNN Encoder-Decoder的结合</h2>
+<p>传统的SMT系统的目标是对于源句$\mathbf{e}$，找到一个使下式最大化的翻译$\mathbf{f}$：</p>
+<p>$$p(\mathbf{f} | \mathbf{e}) \propto p(\mathbf{e} | \mathbf{f}) p(\mathbf{f})$$</p>
+<p>其中$p(\mathbf{e} | \mathbf{f})$称为翻译模型（translation model），$p(\mathbf{f})$称为语言模型（language model）。</p>
+<p>但在实际中，大部分SMT系统都把$\log{p(\mathbf{f} | \mathbf{e})}$做为一个log-linear模型，包括一些额外的feature和相应的权重：</p>
+<p>$$\log{p(\mathbf{f} | \mathbf{e})} = \sum_{n=1}^N w_n f_n(\mathbf{f}, \mathbf{e}) + \log{Z(\mathbf{e})}$$</p>
+<p>其中$f_n$是feature，$w_n$是权重，$Z(\mathbf{e})$是与权重无关的normalization constant。</p>
+<p>在基于短语的SMT模型中，翻译模型$p(\mathbf{e} | \mathbf{f})$被分解为源句和目标句中短语匹配的概率。这一概率再一次被作为log-linear模型中的额外feature进行优化。</p>
+<hr>
+<p>作者在一个短语对表中训练RNN Encoder-Decoder，并将得到的分数作为log-linear模型中的额外feature。目前的做法是把得到的短语对分数直接加入现有的短语对表中；事实上也可以直接用RNN Encoder-Decoder代替这个表，但这就意味着对于每个源短语，RNN Encoder-Decoder都需要生成一系列好的目标短语，因此需要进行很多采样，这太昂贵了。</p>
+<h2>实验</h2>
+<p>在WMT'14的En-Fr任务上进行了评测。对于每种语言都只保留了最常见的15000个词，将不常用的词标记为[UNK]。</p>
+<p>实验中，RNN Encoder-Decoder的encoder和decoder各有1000个隐藏单元。每个输入符号$x_{\langle t \rangle}$和隐藏单元之间的输入矩阵用两个低秩（100）矩阵来模拟，相当于学习了每个词的100维embedding。隐藏单元中的$\tilde{h}$使用的是双曲余弦函数（hyperbolic tangent function）。decoder中隐状态到输出的计算使用的是一个深度神经网络，含有一个包含了500个maxout单元的中间层。</p>
+<p>RNN Encoder-Decoder的权重初值都是通过对一个各向同性的均值为零的高斯分布采样得到的，其标准差为0.01。（但是另一种权重矩阵的初值不一样，而且我没看懂……）</p>
+<p>通过Adadelta和随机梯度下降法进行训练，其中超参数为$\epsilon = 10^{-6}$，$\rho = 0.95$。每次更新时，从短语表中随机选出64个短语对。模型训练了大约3天。</p>
+<p><img src="table1.png" alt="实验结果"></p>
+<p>因为CSLM和RNN Encoder-Decoder共同使用能进一步提高表现，说明这两种方法对结果的贡献并不相同。</p>
+<p>除此之外，它学习到的word embedding矩阵也是有意义的。</p>
+<p><img src="figure4.png" alt="Word Embedding和词义"></p>
+<p>（不过考虑到这就是Word Embedding的根本用途，这件事听起来就没有那么令人兴奋了……）</p>
+<h2>附录：RNN Encoder-Decoder的详细描述</h2>
+<p>令$X = (\mathbf{x}_1, \mathbf{x}_2, ..., \mathbf{x}_N)$表示源短语，$Y = (\mathbf{y}_1, \mathbf{y}_2, ..., \mathbf{y}_M)$。每个短语都是一系列$K$维的one-hot向量。</p>
+<h3>Encoder</h3>
+<p>源短语的每个词都被embed成了500维：$e(\mathbf{x}_i) \in \mathbb{R}^{500}$。</p>
+<p>encoder的隐状态由1000个隐藏单元组成，其中每一个单元在$t$时刻的状态由下式计算：</p>
+<p>$$h_j^{\langle t \rangle} = z_j h_j^{\langle t-1 \rangle} + (1 - z_j) \tilde{h}_j^{\langle t \rangle}$$</p>
+<p>其中</p>
+<p>$$\tilde{h}_j^{\langle t \rangle} = \tanh([\mathbf{W}e(\mathbf{x}_t)]_j + [\mathbf{U}(\mathbf{r} \odot \mathbf{h}_{\langle t-1 \rangle})]_j)$$</p>
+<p>$$z_j = \sigma([\mathbf{W}_z e(\mathbf{x}_t)]_j + [\mathbf{U}_z \mathbf{h}_{\langle t-1 \rangle}]_j)$$</p>
+<p>$$r_j = \sigma([\mathbf{W}_r e(\mathbf{x}_t)]_j + [\mathbf{U}_r \mathbf{h}_{\langle t-1 \rangle}]_j)$$</p>
+<p>其中$\sigma$是logistic sigmoid函数，$\odot$是元素对应乘积。上式中忽略了偏移项。初始隐状态$h_j^{\langle 0 \rangle} = 0$。</p>
+<p>在隐状态计算完第$N$步之后，就可以得到源短语的表示$\mathbf{c}$：</p>
+<p>$$\mathbf{c} = \tanh{\mathbf{V}\mathbf{h}^{\langle N \rangle}}$$</p>
+<p>（但是$\mathbf{V}$矩阵是哪里来的？也是需要学习的吗？）</p>
+<h3>Decoder</h3>
+<p>decoder通过下式对隐状态进行初始化：</p>
+<p>$$\mathbf{h'}^{\langle 0 \rangle} = \tanh(\mathbf{V'c})$$</p>
+<p>（大概$\mathbf{V'}$矩阵也是一个参数吧。当然和Encoder的参数不一样）</p>
+<p>decoder的隐藏单元在时刻$t$的隐状态通过下式计算：</p>
+<p>$${h'}_j^{\langle t \rangle} = {z'}_j {h'}_j^{\langle t-1 \rangle} + (1 - {z'}_j) \tilde{h'}_j^{\langle t \rangle}$$</p>
+<p>其中</p>
+<p>$$\tilde{h'}_j^{\langle t \rangle} = \tanh([\mathbf{W'}e(\mathbf{y}_{t-1})]_j + r'_j [\mathbf{U'}\mathbf{h'}_{\langle t-1 \rangle} + \mathbf{Cc}]_j)$$</p>
+<p>（我在上式的最后一项上加了个$j$。我觉得可能打错了，虽然更有可能是我看错了，不过也没有找到什么验证的方法。）</p>
+<p>$${z'}_j = \sigma([\mathbf{W'}_z e(\mathbf{y}_{t-1})]_j + [\mathbf{U'}_z \mathbf{h'}_{\langle t-1 \rangle}]_j + [\mathbf{C}_z\mathbf{c}]_j)$$</p>
+<p>$${r'}_j = \sigma([\mathbf{W'}_r e(\mathbf{y}_{t-1})]_j + [\mathbf{U'}_r \mathbf{h'}_{\langle t-1 \rangle}]_j + [\mathbf{C}_r\mathbf{c}]_j)$$</p>
+<p>其中$e(\mathbf{y}_0)$是一个全零向量。类似于encoder中的情况，$e(\mathbf{y})$也是目标词的embedding。</p>
+<p>decoder需要学习如何生成一个目标短语。在$t$时刻，decoder需要计算生成的词是第$j$个的概率：</p>
+<p>$$p(y_{t,j} = 1 | \mathbf{y}_{t-1}, ..., \mathbf{y}_1, X) = \frac{\exp{(\mathbf{g}_j \mathbf{s}_{\langle t \rangle}})}{\sum_{j'=1}^K \exp{(\mathbf{g}_{j'} \mathbf{s}_{\langle t \rangle})}}$$</p>
+<p>其中$\mathbf{s}_{\langle t \rangle}$的第$i$个元素是</p>
+
+$$\mathbf{s}_i^{\langle t \rangle} = \max{{{s'}_{2i-1}^{\langle t \rangle}, {s'}_{2i}^{\langle t \rangle}}}$$
+
+<p>且</p>
+
+$$\mathbf{s'}^{\langle t \rangle} = \mathbf{O}_h \mathbf{h'}^{\langle t \rangle} + \mathbf{O}_y \mathbf{y}_{t-1} + \mathbf{O}_c \mathbf{c}$$
+
+<p>简单来说，$\mathbf{s}_i^{\langle t \rangle}$就是所谓的maxout单元。</p>
+<p>（虽然我目前还不知道maxout是什么，以及这个$\mathbf{g}$是怎么来的，以及这一堆到底是怎么算的……）</p>
+<p>为了计算效率，我们使用两个矩阵的乘积作为输出权重矩阵$\mathbf{G}$：</p>
+<p>$$\mathbf{G} = \mathbf{G}_l \mathbf{G}_r$$</p>
+<p>其中$\mathbf{G}_l \in \mathrm{R}^{K \times 500}$，$\mathbf{G}_r \in \mathrm{R}^{500 \times 1000}$。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Natural-Language-Processing/"><i class="fas fa-hashtag fa-fw"></i>Natural Language Processing</a>
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/Reading-Report/"><i class="fas fa-hashtag fa-fw"></i>Reading Report</a>
+        
+          <a href="/tags/Paper/"><i class="fas fa-hashtag fa-fw"></i>Paper</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/tags/Machine-Learning/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  2 / 3
+              </p>
+              
+                  <a class="next" rel="next" href="/tags/Machine-Learning/page/3/">
+                      <section class="post next">
+                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                      </section>
+                  </a>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+  
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

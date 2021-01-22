@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Archives: 2018 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+	
+    <script>
+        window.subData= { title:'year : 2018'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-21-merge-two-sorted-lists/">
+              
+                  Leetcode 21. Merge Two Sorted Lists（链表操作）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-30
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/merge-two-sorted-lists/description/" target="_blank" rel="noopener">https://leetcode.com/problems/merge-two-sorted-lists/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：100.00%</p>
+<h2>题意</h2>
+<p>合并两个已排序的链表。</p>
+<h2>分析</h2>
+<p>注意边界情况。以及和链表搞来搞去实在并不能算是一件很有趣味的事情。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode* head = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);  <span class="comment">// 新增的头结点，没有实际意义。当然也可以不加，写起来更麻烦一点。</span></span><br><span class="line">        ListNode* p = head;</span><br><span class="line">        <span class="comment">// 其实我刚才写了半天才发现自己理解错了。我以为要求是把两个list交替拼接起来。</span></span><br><span class="line">        <span class="comment">// 但实际上是合并排序……</span></span><br><span class="line">        <span class="keyword">while</span> (l1 != <span class="literal">NULL</span> &amp;&amp; l2 != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (l1-&gt;val &lt; l2-&gt;val) &#123;</span><br><span class="line">                p-&gt;next = l1;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                p-&gt;next = l2;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l1 != <span class="literal">NULL</span>)</span><br><span class="line">            p-&gt;next = l1;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (l2 != <span class="literal">NULL</span>)</span><br><span class="line">            p-&gt;next = l2;</span><br><span class="line"></span><br><span class="line">        p = head-&gt;next;</span><br><span class="line">        <span class="keyword">delete</span> head;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Linked-List/"><i class="fas fa-hashtag fa-fw"></i>alg:Linked List</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-207-course-schedule/">
+              
+                  Leetcode 207. Course Schedule（拓扑排序）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-30
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/course-schedule/description/" target="_blank" rel="noopener">https://leetcode.com/problems/course-schedule/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/2</p>
+<p>代码效率：99.48%</p>
+<h2>题意</h2>
+<p>给定一些课程和每门课对应的若干先修课程，要求必须修完对应先修课程才能修这门课，问是否存在一种修课顺序，能够修完所有的课。</p>
+<h2>分析</h2>
+<p>这本质上就是一个在有向图中寻找拓扑序的问题，直接套用模型就可以了。</p>
+<p>P.S. 我们都知道拓扑排序一般的做法是记录每个结点的入度，然后在删除结点的同时更新其他点的入度。也就是说，我们用一个数字统计量来代替了集合，而这样做是十分合理的，因为在这一问题中，只有入度的<strong>累计</strong>才有意义，其具体内容没有意义。这很有趣。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 我感觉这个只是问一个有向图里有没有圈。</span></span><br><span class="line">    <span class="comment">// 所以感觉简单的拓扑排序就可以了。</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canFinish</span><span class="params">(<span class="keyword">int</span> numCourses, <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (numCourses &lt;= <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; graph;</span><br><span class="line">        <span class="keyword">int</span> in[numCourses];  <span class="comment">// 入度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++) &#123;</span><br><span class="line">            in[i] = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">            graph.push_back(t);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// [0, 1]: 1 -&gt; 0</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prerequisites.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = prerequisites[i].first;</span><br><span class="line">            <span class="keyword">int</span> y = prerequisites[i].second;</span><br><span class="line">            in[x]++;</span><br><span class="line">            graph[y].push_back(x);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 暂时不做堆优化，直接暴力</span></span><br><span class="line">        <span class="keyword">int</span> finished = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (finished &lt; numCourses) &#123;</span><br><span class="line">            <span class="keyword">int</span> found = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++)</span><br><span class="line">                <span class="keyword">if</span> (in[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                    found = i;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span> (found == <span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="comment">// 上这门课</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; graph[found].size(); j++)</span><br><span class="line">                in[graph[found][j]]--;</span><br><span class="line">            in[found] = <span class="number">-1</span>; <span class="comment">// 将这门课从已上列表里去掉……刚才忘了</span></span><br><span class="line">            finished++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2>一些废话</h2>
+<p>因为要准备保研的机试，所以还是要刷题。但是我实在不知道该刷什么比较好。POJ上充满了经典题，CodeForces上每周都有比赛，UVa和《算法竞赛入门经典》是配套的。结果我最后还是来刷炙手可热的Leetcode了，因为最方便，可以勉强维持一点手感。我本来一直觉得用水题刷自己博客的屏很不合适，但是如果不这样，则实在没有办法逼自己继续做下去了。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Graph/"><i class="fas fa-hashtag fa-fw"></i>alg:Graph</a>
+        
+          <a href="/tags/alg-Topological-Sort/"><i class="fas fa-hashtag fa-fw"></i>alg:Topological Sort</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/stretching-spokes-translation/">
+              
+                  如何伸缩Spokes
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-08
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>这篇文章翻译自<a href="https://githubengineering.com/stretching-spokes/" target="_blank" rel="noopener">Stretching Spokes</a>，我加入了一些自己的注解。</p>
+<hr>
+<p>GitHub的Spokes系统存储了Git仓库的多个分布式副本。本文讨论了如何把把Spokes为仓库制作的副本分散到相互之间距离很远的的数据中心。</p>
+<h2>Spokes的背景</h2>
+<p>GitHub开发了一个名为Spokes的系统来存储我们用户的Git仓库的多个副本，并使副本保持同步。Spokes使用多种策略来确保在大多数情况下每个Git更新都能安全地复制到所有副本，并且在所有情况下至少能够复制到严格多数个副本。Spoke取代了在文件系统块级别进行复制的旧系统，改为在Git应用程序级别进行复制。</p>
+<p><img src="spokes-diagram.jpg" alt="Spokes的push操作"></p>
+<p>每个对Git仓库的push操作都会通过代理，这一代理会透明地将操作复制到多个文件服务器。早期版本的Spoke需要代理与所有副本之间都能够进行低延迟通信，以维持较高的更新速率。因此，副本之间的距离必须比较近。</p>
+<p>但是，将仓库副本的位置分离的优点是众所周知的：</p>
+<ul>
+<li>副本分散得越开，在影响一片较大地理区域的灾难中（例如飓风、地震和外星人入侵<a href="#note1" id="note1ref"><sup>1</sup></a>），就越有可能有副本幸存。</li>
+<li>如果多个区域中都有可用的副本，则可以将Git读取请求定向到距离最近的副本，从而减少传输时间。</li>
+</ul>
+<p>本文首先解释了为什么延迟会带来问题，我们如何克服问题，使得Git数据能够分布式地存储在整片大陆上，以及这为我们的用户带来了哪些改进。、</p>
+<h2>副本之间相隔很远。那有什么好大惊小怪的呢？</h2>
+<p>在开发Spokes之前，我们使用<a href="https://en.wikipedia.org/wiki/Distributed_Replicated_Block_Device" target="_blank" rel="noopener">DRBD</a>，对文件系统进行块级复制，以创建仓库副本。该系统对延迟非常敏感，因此我们不得不保证文件服务器副本相互靠近。这显然不够理想，解决这一问题就是最初推动Spokes发展的动力。</p>
+<p>自从我们开始运行Spokes之后，我们就开始增加Spokes的仓库副本彼此之间的距离极限。副本之间相距越远，它们之间的延迟就越大。延迟大小限制了Spokes能够为每个仓库维持的Git引用更新（reference update）<a href="#note2" id="note2ref"><sup>2</sup></a>的最大速率。</p>
+<p>你可能会惊讶，我们居然需要担心这种问题。单个仓库的推送频率不会<strong>那么</strong>高吧？</p>
+<p>嗯，<strong>大多数</strong> 用户根本不会经常推送。但是如果你托管了近7000万个仓库，你总会发现<a href="https://www.youtube.com/watch?v=-ZNKR9wFe8o" target="_blank" rel="noopener">某些项目使用了你从未预料到的工作流程</a>。我们非常努力，才能保证Github能够为几乎所有的项目提供正常服务，但仍有一些极其荒谬的案例除外。</p>
+<p>此外，为了进行内部记录，Github本身也产生了大量的引用更新。例如，每次用户推送一个pull request分支时，我们都必须记录push操作本身，可能需要将该分支同步到目标仓库，为该pull request计算测试merge和测试rebase<a href="#note3" id="note3ref"><sup>3</sup></a>，这些操作都会产生引用。如果用户推送到项目的<code>master</code>分支，我们就需要为每一个目标是<code>master</code>的活跃pull request都计算一个测试merge和测试rebase。在某些仓库中，这可能会触发超过一百个引用的更新。</p>
+<p>能够对具有高延迟的远程副本进行足够快的引用更新对于Spokes的可用性至关重要。具体来说，我们希望能够支持的每个仓库每秒的更新次数大于1。这意味着每次更新操作的预算只有使用几百毫秒。请记住，无论我们采用何种方法优化写操作，都不能因此减慢读操作的速度，因为读操作和写操作数量之比约为100:1。</p>
+<h2>减少往返次数</h2>
+<p>考虑到光速有限之类的烦心事，每次到副本的往返通信都需要时间。例如，横跨美国大陆的一次网络往返通信需要60-80毫秒。多往返几次就会耗尽我们的时间预算。</p>
+<p>我们使用<a href="https://zh.wikipedia.org/wiki/%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4" target="_blank" rel="noopener">三阶段提交</a><a href="#note4" id="note4ref"><sup>4</sup></a>来更新副本，同时将副本作为分布式锁，以确保更新数据库的顺序是正确的。总而言之，远程副本需要四次往返通信；这无疑是昂贵的，但还没有到无法接受的地步。（我们正在计划通过使用更先进的一致性算法来减少往返次数。）</p>
+<p>我们尽可能地利用等待网络请求的时间来完成其他的工作。例如，当一个副本获取互斥锁时<a href="#note5" id="note5ref"><sup>5</sup></a>，另一个副本可能正在计算校验和，而协调器（coordinator）<a href="#note6" id="note6ref"><sup>6</sup></a>可能正在读数据库。</p>
+<h2>Git引用更新事务</h2>
+<p>三阶段提交是保持副本同步的关键。为了实现这一协议，我们需要每个副本能够回答“你能执行这些引用更新吗？”这一问题，然后根据协调器的指示提交或回滚事务。为了实现这一目标，我们在开源Git项目中<a href="https://github.com/git/git/compare/8eaf517835d0534767d6a54d12d072ce30276ad9...2cc70cefdd4a249fab895943890d21071e03f8c7" target="_blank" rel="noopener">实现了Git引用更新事务</a>（可以通过类似于<code>git update-ref --stdin</code>的命令使用这一特性<a href="#note7" id="note7ref"><sup>7</sup>&lt;/a）；为了保证<a href="https://github.com/git/git/compare/538569bc8a212a45b7b3f124822b4c3e458752f5...3ad8b5bf26362ac67c9020bf8c30eee54a84f56d" target="_blank" rel="noopener">事务</a>的<a href="https://github.com/git/git/compare/08bb3500a2a718c3c78b0547c68601cafa7a8fd9...87492cb24d9d8be8e18217b89ae5f090089ff31d" target="_blank" rel="noopener">执行结果</a>在副本间是<a href="https://github.com/git/git/compare/53083f8547cd45cdfabcf2f1bd21461cd6769189...711a11c301dafe84389624f009a2abfb7da5d83f" target="_blank" rel="noopener">确定的</a>（deterministic），我们<a href="https://github.com/git/git/compare/c380cf85a79c78d9dceb9290c9d4017d30804521...33d4669aaa658f3e35f88748ed2db51c84203f62" target="_blank" rel="noopener">做</a>了<a href="https://github.com/git/git/compare/7543dea8b2a33e4a56b0fdd408bc47769238025e...11cb3130d551590ae2dbd582e809763bfc353a47" target="_blank" rel="noopener">大量</a>的<a href="https://github.com/git/git/compare/97c12a8b71e7d42b87b9588ba2fe0e1e44411c21...fd9de868c359a1bbd214e354aefdb0f1eaa898bd" target="_blank" rel="noopener">工作</a>。<a href="#note8" id="note8ref"><sup>8</sup></a>首先，Git获取所有必要的本地引用的锁，然后验证旧值符合预期且新值是有意义的。如果一切正常，则提交这一试探性事务（tentative transaction）；否则，它将回滚一切更改。</a></p>
+<h2>加速Git引用更新</h2>
+<p>除了网络延迟之外，我们还必须考虑在单个副本上更新Git引用所需的时间。为此，我们<a href="https://github.com/git/git/compare/8e606f97f8dee35f839b50900db8ab98fe189b3c...a7ddaa8eacb45fdd5241e52d72e6f75d8b67b953" target="_blank" rel="noopener">还</a>为与引用相关的操作<a href="https://github.com/git/git/compare/5f02274e4c4506b923b510a24da7991656f4db14...be9cb560e31c76c00760dadb151b5e3059970586" target="_blank" rel="noopener">实现</a>了<a href="https://github.com/git/git/compare/a080a5ce8d9f6897668bb36cb1891f70d685b6c3...44c2339e55df11b2cfd8bdc28ceee6b4d1ca1928" target="_blank" rel="noopener">一些</a><a href="https://github.com/git/git/compare/9124cca61f7edfed70dc5d8bced7fb7cb9fe2221...1a2e1a76ec2cbbafe60ffd124f673f62045fb0d3" target="_blank" rel="noopener">加速</a>。这些变化也贡献回了开源Git项目。</p>
+<h2>使用校验和对副本进行比较</h2>
+<p>我们通过计算副本的所有引用及其值（和一些其他的东西）的校验和来概括副本的状态，称之为“Spokes校验和”。如果两个副本的Spokes校验和相同，则它们肯定拥有相同的逻辑内容。我们在每次更新后计算每个副本的Spokes校验和，作为验证它们保持同步的一项额外检查。</p>
+<p>在具有大量引用的繁忙仓库中，从头开始计算Spokes校验和是比较昂贵的，并且会限制引用更新的最大速率。因此，我们会尽可能用逐步的方法来计算Spokes校验和。我们将该值定义为所有<code>(refname, value)</code>对的hash值的异或。因此，在更新引用时，我们可以通过下式来更新校验和的这一部分：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new_checksum = old_checksum XOR hash(refname, oldvalue) XOR hash(refname, newvalue)</span><br></pre></td></tr></table></figure>
+<p>在我们知道旧Spokes校验和的情况下，计算新Spokes校验和的代价就很小了。</p>
+<h2>优先考虑用户发起的更新</h2>
+<p>即使进行了所有这些优化，一次参考更新仍然需要大约三分之一秒。这在大多数情况下都足够了。但是在我们之前提到的情况下，对<code>master</code>进行一次更新可能会导致上百次内部记录的引用更新（bookkeeping reference update），处理这些更新可能会使仓库在30秒内都处于忙状态。如果这些更新会在如此长的时间内阻止用户发起引用更新，则用户请求将被高度延迟，甚至会超时。</p>
+<p>为了解决这一问题，我们将一些内部记录更新合并为几个事务，并且令用户发起的更新优先于内部记录更新（因为它们不需要立即被执行）。</p>
+<h2>GitHub.com和GitHub Enterprise的地理复制</h2>
+<p>Spokes为GitHub用户带来的最切实的好处是，可以通过地理位置较近的Spokes副本提供Git读取操作（fetch和clone）。由于Spokes可以快速找出哪些副本是最新的，它可以将读操作发送到距离最近的最新副本。Spokes已经在这方面加速了GitHub.com的许多用户的传输速度，而且，随着我们在更多地理区域增加副本，传输速度还会进一步提高。</p>
+<p>GitHub Enterprise是GitHub的企业本地版，通过相同的底层Spokes技术，它现在也支持<a href="https://help.github.com/enterprise/2.11/admin/guides/installation/about-geo-replication/" target="_blank" rel="noopener">地理复制</a>（Geo-replication）<a href="#note9" id="note9ref"><sup>9</sup></a>了。甚至当用户远离中心GHE主机（main GHE host）<a href="#note10" id="note10ref"><sup>10</sup></a>时，靠近这样的副本的用户也可以享受更快的Git传输速度。这些副本被配置为无投票权的（non-voting）<a href="#note11" id="note11ref"><sup>11</sup></a>，因此，即使被地理复制的主机暂时无法访问，对中心GHE主机的Git推送也能继续进行。</p>
+<h2>结论</h2>
+<p>通过对Spokes的精心设计，以及对分布式引用更新的性能的仔细优化，Spokes现在能够在更长的距离范围内复制Git仓库了。这提高了GitHub.com和GitHub Enterprise的健壮性、速度和灵活性。</p>
+<h2>注释</h2>
+<p><a id="note1" href="#note1ref"><sup>1</sup></a>虽然我觉得，一旦外星人真的入侵，应该也没有时间考虑这个问题了。</p>
+<p><a id="note2" href="#note2ref"><sup>2</sup></a>我不太明白“reference update”这一术语指代的是什么。<a href="https://git-scm.com/book/zh/v2/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-Git-%E5%BC%95%E7%94%A8" target="_blank" rel="noopener">Git文档</a>似乎表明，这是用于保存commit对应的SHA-1值的文件：</p>
+<blockquote>
+<p>我们可以借助类似于<code>git log 1a410e</code>这样的命令来浏览完整的提交历史，但为了能遍历那段历史从而找到所有相关对象，你仍须记住<code>1a410e</code>是最后一个提交。我们需要一个文件来保存SHA-1值，并给文件起一个简单的名字，然后用这个名字指针来替代原始的SHA-1值。<br>
+在 Git 里，这样的文件被称为“引用（references，或缩写为 refs）”；你可以在<code>.git/refs</code>目录下找到这类含有 SHA-1 值的文件。</p>
+</blockquote>
+<p><a id="note3" href="#note3ref"><sup>3</sup></a>我感觉自己对merge和rebase的区别一无所知，也无从理解为什么要做这样的计算。大概是为了显示差异比较？（<a href="https://github.com/geeeeeeeeek/git-recipes/wiki/5.1-%E4%BB%A3%E7%A0%81%E5%90%88%E5%B9%B6%EF%BC%9AMerge%E3%80%81Rebase-%E7%9A%84%E9%80%89%E6%8B%A9" target="_blank" rel="noopener">5.1 代码合并：Merge、Rebase 的选择</a>）</p>
+<p><a id="note4" href="#note4ref"><sup>4</sup></a><a href="https://zh.wikipedia.org/wiki/%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4" target="_blank" rel="noopener">三阶段提交</a>：</p>
+<blockquote>
+<p>三阶段提交（英语：Three-phase commit），也叫三阶段提交协议（英语：Three-phase commit protocol），是在计算机网络及数据库的范畴下，使得一个分布式系统内的所有节点能够执行事务的提交的一种分布式算法。三阶段提交是为解决两阶段提交协议的缺点而设计的。<br>
+与两阶段提交不同的是，三阶段提交是“非阻塞”协议。三阶段提交在两阶段提交的第一阶段与第二阶段之间插入了一个准备阶段，使得原先在两阶段提交中，参与者在投票之后，由于协调者发生崩溃或错误，而导致参与者处于无法知晓是否提交或者中止的“不确定状态”所产生的可能相当长的延时的问题得以解决。</p>
+</blockquote>
+<p><a id="note5" href="#note5ref"><sup>5</sup></a>并不理解具体是获取什么锁。</p>
+<p><a id="note6" href="#note6ref"><sup>6</sup></a>我猜测这里的协调器指的应该是分布式事务处理协调器（distributed transaction coordinator），这种技术能够使得分布式计算的事务是可靠的。（参考了<a href="https://blogs.msdn.microsoft.com/florinlazar/2004/03/04/what-is-msdtc-and-why-do-i-need-to-care-about-it/" target="_blank" rel="noopener">What is MSDTC and why do I need to care about it?</a>，虽然不知道和数据库有什么关系。分布式系统真有趣！）</p>
+<p><a id="note7" href="#note7ref"><sup>7</sup></a>我之前从未听说过<code>update-ref</code>这个命令。于是查阅<a href="https://git-scm.com/docs/git-update-ref" target="_blank" rel="noopener">手册</a>，得知这是一个用于安全地更新引用中存储的对象名称的命令。</p>
+<p><a id="note8" href="#note8ref"><sup>8</sup></a>为了说明他们<strong>确实</strong>做了很多工作，作者在这一句话里插入了9个链接，全是指向对应的commit和merge记录的。真是辛苦了……</p>
+<p><a id="note9" href="#note9ref"><sup>9</sup></a>简单来说，“<a href="https://help.github.com/enterprise/2.11/admin/guides/installation/about-geo-replication/" target="_blank" rel="noopener">地理复制</a>”（Geo-replication）这个东西指的就是，通过多个活跃副本完成来自地理区域不同的数据中心的请求。不过好像还有一些其他的细节。</p>
+<p><a id="note10" href="#note10ref"><sup>10</sup></a>“GHE”是“Github Enterprise”的缩写。</p>
+<p><a id="note11" href="#note11ref"><sup>11</sup></a>“投票权”说的应该是<a href="/post/building-resilience-in-spokes-translation">在Spokes中实现弹性</a>这篇文章中提到的实现持久性的方法：保证多数一致。在这里，我猜失去投票权的意思是，无论它的写入结果如何，都不参与投票（不需要获得对于它的独占锁定），如果发生不一致，再进行更新。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Translation/"><i class="fas fa-hashtag fa-fw"></i>Translation</a>
+        
+          <a href="/tags/Github/"><i class="fas fa-hashtag fa-fw"></i>Github</a>
+        
+          <a href="/tags/Spokes/"><i class="fas fa-hashtag fa-fw"></i>Spokes</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/ostep-ch-05-summary-interlude-process-api/">
+              
+                  OSTEP第05章总结：Interlude: Process API
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-07
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本章课本见<a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf" target="_blank" rel="noopener">http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf</a>。</p>
+<hr>
+<p>本章的内容是“幕间休息”（interlude）：这些章节讲的是OS中与具体API相关的内容，和原理关系不大，如果不想了解这些具体内容，可以跳过。（但是最好还是不跳过，因为实践出真知，对吧？）本章主要介绍了以下三个与进程创建相关的UNIX系统调用，以及它们的设计原理：</p>
+<ul>
+<li><code>fork()</code></li>
+<li><code>wait()</code></li>
+<li><code>exec()</code></li>
+</ul>
+<h2>fork系统调用：通过复制来创建新进程</h2>
+<p>下面的例子说明了<code>fork()</code>系统调用的使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// p1.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;hello world (pid:%d)\n&quot;, (int) getpid());</span><br><span class="line">    int rc = fork();</span><br><span class="line">    if (rc &lt; 0) &#123; // fork failed; exit</span><br><span class="line">        fprintf(stderr, &quot;fork failed\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125; else if (rc == 0) &#123; // child (new process)</span><br><span class="line">        printf(&quot;hello, I am child (pid:%d)\n&quot;, (int) getpid());</span><br><span class="line">    &#125; else &#123; // parent goes down this path (main)</span><br><span class="line">        printf(&quot;hello, I am parent of %d (pid:%d)\n&quot;,</span><br><span class="line">        rc, (int) getpid());</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述程序的输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./p1</span><br><span class="line">hello world (pid:29146)</span><br><span class="line">hello, I am parent of 29147 (pid:29146)</span><br><span class="line">hello, I am child (pid:29147)</span><br><span class="line">prompt&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看出，程序开始执行的时候打印了一条信息，其中包含了<strong>进程标识符</strong>（process identifier，PID）。该进程的PID是29146。在UNIX系统中，PID是进程的唯一标识。然后进程调用了<code>fork()</code>系统调用，通过拷贝当前进程创建了一个新进程。有趣的是，这两个进程几乎相同，都正准备从<code>fork()</code>系统调用返回。新进程（称为子进程；原来的进程称为父进程）不会从<code>main()</code>开始运行（因为<code>hello world</code>只被打印了一次），而是好像自己已经调用了<code>fork()</code>一样。这样设计的原因，将在后面进行解释。</p>
+<p>子进程和父进程几乎相同（地址空间、寄存器、PC），只有一点区别：<code>fork()</code>调用的返回值不同。父进程的返回值是子进程的PID，而子进程的返回值是0。这一区别使得我们可以撰写代码分别处理这两种情况。</p>
+<p>值得注意的另一点是，p1.c的输出是<strong>不确定的</strong>（nondeterminism）：当子进程创建的时候，系统中出现了两个活跃进程，而CPU调度器选择哪一个先开始运行是不确定的。因此，如果子进程被创建之后立刻开始运行，上述程序的输出就会变成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./p1</span><br><span class="line">hello world (pid:29146)</span><br><span class="line">hello, I am child (pid:29147)</span><br><span class="line">hello, I am parent of 29147 (pid:29146)</span><br><span class="line">prompt&gt;</span><br></pre></td></tr></table></figure>
+<h2>wait系统调用：等待子进程退出</h2>
+<p>下面的例子说明了<code>wait()</code>系统调用的使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// p2.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;sys/wait.h&gt;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;hello world (pid:%d)\n&quot;, (int) getpid());</span><br><span class="line">    int rc = fork();</span><br><span class="line">    if (rc &lt; 0) &#123; // fork failed; exit</span><br><span class="line">        fprintf(stderr, &quot;fork failed\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125; else if (rc == 0) &#123; // child (new process)</span><br><span class="line">        printf(&quot;hello, I am child (pid:%d)\n&quot;, (int) getpid());</span><br><span class="line">    &#125; else &#123; // parent goes down this path (main)</span><br><span class="line">        int wc = wait(NULL);</span><br><span class="line">        printf(&quot;hello, I am parent of %d (wc:%d) (pid:%d)\n&quot;,</span><br><span class="line">        rc, wc, (int) getpid());</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./p2</span><br><span class="line">hello world (pid:29266)</span><br><span class="line">hello, I am child (pid:29267)</span><br><span class="line">hello, I am parent of 29267 (wc:29267) (pid:29266)</span><br><span class="line">prompt&gt;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，父进程调用<code>wait()</code>，使得它在子进程结束执行之后才继续执行。当子进程结束之后，<code>wait()</code>调用才返回。此时，上述代码的输出显然是确定（deterministic）的了。如果父进程先运行，它会立刻调用<code>wait()</code>，等待子进程运行结束；因此子进程必然先运行。</p>
+<h2>exec系统调用：通过覆盖改变当前进程的内容</h2>
+<p>下面的例子说明了<code>exec()</code>系统调用的使用方法，它一般和<code>fork()</code>一起使用，用于创建新进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// p3.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;sys/wait.h&gt;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;hello world (pid:%d)\n&quot;, (int) getpid());</span><br><span class="line">    int rc = fork();</span><br><span class="line">    if (rc &lt; 0) &#123; // fork failed; exit</span><br><span class="line">        fprintf(stderr, &quot;fork failed\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125; else if (rc == 0) &#123; // child (new process)</span><br><span class="line">        printf(&quot;hello, I am child (pid:%d)\n&quot;, (int) getpid());</span><br><span class="line">        char *myargs[3];</span><br><span class="line">        myargs[0] = strdup(&quot;wc&quot;); // program: &quot;wc&quot; (word count)</span><br><span class="line">        myargs[1] = strdup(&quot;p3.c&quot;); // argument: file to count</span><br><span class="line">        myargs[2] = NULL; // marks end of array</span><br><span class="line">        execvp(myargs[0], myargs); // runs word count</span><br><span class="line">        printf(&quot;this shouldn’t print out&quot;);</span><br><span class="line">    &#125; else &#123; // parent goes down this path (main)</span><br><span class="line">        int wc = wait(NULL);</span><br><span class="line">        printf(&quot;hello, I am parent of %d (wc:%d) (pid:%d)\n&quot;,</span><br><span class="line">        rc, wc, (int) getpid());</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./p3</span><br><span class="line">hello world (pid:29383)</span><br><span class="line">hello, I am child (pid:29384)</span><br><span class="line">29 107 1030 p3.c</span><br><span class="line">hello, I am parent of 29384 (wc:29384) (pid:29383)</span><br><span class="line">prompt&gt;</span><br></pre></td></tr></table></figure>
+<p>事实上，在Linux中，<code>exec()</code>是一类系统调用的总称，一共有6个变种：<code>execl()</code>，<code>execlp()</code>，<code>execle()</code>，<code>execv()</code>，<code>execvp()</code>和<code>execvpe()</code>。详情见<a href="http://man7.org/linux/man-pages/man3/exec.3.html" target="_blank" rel="noopener">exec(3)</a></p>
+<p>在这个例子中，在调用<code>fork()</code>创建子进程后，子进程调用了<code>execvp()</code>，用程序<code>wc</code>覆盖自己并开始执行该程序。<code>wc</code>是字数统计（word counting）程序，此处它被用来统计源文件<code>p3.c</code>中行、词和字节的数量。</p>
+<p><code>fork()</code>系统调用的设计固然很怪，它的“同伙”<code>exec()</code>也有够怪的。事实上，<code>exec()</code>所做的事情是这样的：给定一个可执行文件的名字（如<code>wc</code>）和一些参数（如<code>p3.c</code>），它会<strong>加载</strong>（load）这个可执行文件的代码（和静态数据），覆盖当前进程的代码段和静态数据，并且重新初始化进程的堆栈和其他内存空间。然后OS把参数作为新进程的<code>argv</code>数组，直接开始运行新程序。所以<code>exec()</code>调用并没有创建一个新进程；它只是把当前正在运行的进程（<code>p3</code>）换成了一个新的程序（<code>wc</code>）。在子进程执行<code>exec()</code>调用之后，<code>p3.c</code>就好像从未运行过一样了；对<code>exec()</code>的成功调用是不会返回的。</p>
+<h2>fork和exec的设计原因：方便shell和管道的实现</h2>
+<p>我们为什么要这样设计创建新进程的API呢？事实上，对于UNIX shell来说，在创建新进程的过程中把<code>fork()</code>和<code>exec()</code>分开是非常必要的，因为这样shell才能在调用<code>fork()</code>之后，调用<code>exec()</code>的过程之前运行一些代码来改变即将运行的程序的环境，这就使得我们可以创造很多有趣的特性。</p>
+<p>shell是一个帮助你执行程序（命令）的用户程序。它显示一个<strong>命令提示符</strong>（prompt），然后等待你在里面打字。你在里面打一个命令（比如可执行程序的名字和参数）；然后，shell一般会找到这个可执行程序在文件系统中的位置，调用<code>fork()</code>创建一个新的子进程，然后（子进程）调用<code>exec()</code>的某个变种开始执行命令，最后（父进程）调用<code>wait()</code>等待命令执行结束。当子进程运行结束之后，shell（父进程）从<code>wait()</code>返回，再次打印出命令提示符，等待你的下一条指令。</p>
+<p>把<code>fork()</code>和<code>exec()</code>分开使得shell能在其间够做很多有用的东西。比如，我们执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; wc p3.c &gt; newfile.txt</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，<code>wc</code>的输出被<strong>重定向</strong>（redirect）到输出文件<code>newfile.txt</code>中。shell完成这个任务的方法很简单：在创建子进程之后，调用<code>exec()</code>之前，shell关闭<strong>标准输出</strong>（standard output）并打开文件<code>newfile.txt</code>。这样，即将被执行的程序<code>wc</code>的任何输出都会被发送到这个文件而不是屏幕。</p>
+<p>下面的代码实现了子进程输出的重定向。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// p4.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line">#include &lt;sys/wait.h&gt;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    int rc = fork();</span><br><span class="line">    if (rc &lt; 0) &#123; // fork failed; exit</span><br><span class="line">        fprintf(stderr, &quot;fork failed\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125; else if (rc == 0) &#123; // child: redirect standard output to a file</span><br><span class="line">        close(STDOUT_FILENO);</span><br><span class="line">        open(&quot;./p4.output&quot;, O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);</span><br><span class="line"></span><br><span class="line">        // now exec &quot;wc&quot;...</span><br><span class="line">        char *myargs[3];</span><br><span class="line">        myargs[0] = strdup(&quot;wc&quot;); // program: &quot;wc&quot; (word count)</span><br><span class="line">        myargs[1] = strdup(&quot;p4.c&quot;); // argument: file to count</span><br><span class="line">        myargs[2] = NULL; // marks end of array</span><br><span class="line">        execvp(myargs[0], myargs); // runs word count</span><br><span class="line">    &#125; else &#123; // parent goes down this path (main)</span><br><span class="line">        int wc = wait(NULL);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该程序的输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./p4</span><br><span class="line">prompt&gt; cat p4.output</span><br><span class="line">32 109 846 p4.c</span><br><span class="line">prompt&gt;</span><br></pre></td></tr></table></figure>
+<p>这种方法的工作原理与OS管理文件描述符的方法相关。UNIX系统在分配文件描述符时，会从0开始寻找空闲的文件描述符。<a href="/post/ostep-ch-04-summary-the-abstraction-the-process">上一章</a>中曾经讲过，对于一个进程，默认有三个文件描述符是开启的：标准输入（<code>STDIN_FILENO=0</code>）、标准输出（<code>STDOUT_FILENO=1</code>）和标准错误输出（<code>STDERR_FILENO=2</code>）。关闭标准输出之后，在调用<code>open()</code>分配新的文件描述符时，<code>STDOUT_FILENO=1</code>就成了第一个可用的文件描述符，于是它就指向了我们需要的输出文件<code>./p4.output</code>。于是，子进程之后对标准输出文件描述符的写操作会被透明地指向新打开的文件。（真是有趣的设计啊）</p>
+<p>UNIX<strong>管道</strong>（pipe）机制的实现方法类似。通过<code>pipe()</code>系统调用，一个进程的输出被连接到一个内核管道（pipe）中，另一个进程的输入也连接到这个相同的管道；这样，一个进程的输出就无缝连接到另一个进程的输入了。下面的例子通过管道命令实现了在文件中查找词并计算这个词出现次数的功能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -o foo file | wc -l</span><br></pre></td></tr></table></figure>
+<h2>温馨提示</h2>
+<h3>RTFM</h3>
+<p>我们刚才只是大概介绍了这些系统调用的基本原理，还有许多细节没有涉及到。为了了解这些细节，你应当去阅读手册。作为一个系统程序员，阅读<strong>手册</strong>（manual/man pages）是非常重要的，因为里面提供了很多细节，而且还可以帮助你减少烦你的同事的次数。如果你直接去问他们细节问题，他们可能会回答你：“<a href="https://zh.wikipedia.org/zh/RTFM" target="_blank" rel="noopener">RTFM</a>。”（Read the fucking manual！）</p>
+<h3>Get it right</h3>
+<p>兰普森（<a href="https://zh.wikipedia.org/wiki/%E5%B7%B4%E7%89%B9%E5%8B%92%C2%B7%E8%98%AD%E6%99%AE%E6%A3%AE" target="_blank" rel="noopener">Butler W. Lampson</a>）在他那篇广受好评的论文“<a href="https://microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf" target="_blank" rel="noopener">Hints for Computer Systems Design</a>”中这样说：“做正确的事。（<strong>Get it right.</strong>）抽象和简化都不能代替正确的做法。”</p>
+<p>实际上，设计进程创建API有很多方法，但是UNIX的设计者选择了正确的那一种。（虽然我觉得本章中并没有充分论述它的正确性）</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+          <a href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw"></i>OSTEP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/building-resilience-in-spokes-translation/">
+              
+                  在Spokes中实现弹性（resilience）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>这篇文章翻译自<a href="https://githubengineering.com/building-resilience-in-spokes/" target="_blank" rel="noopener">Building resilience in Spokes</a>，我加入了一些自己的注解。</p>
+<hr>
+<p>Spokes是我们的文件服务器的复制系统，我们在里面存储了超过3800万个Git仓库和超过3600万个gists。它至少存储了每个仓库和每个gist的三个副本，这样，即使服务器和网络出现故障，我们也可以提供持久且高可用的内容访问。Spokes使用Git和rsync<a href="#note1" id="note1ref"><sup>1</sup></a>的组合来对存储库进行复制，修复和重新平衡。</p>
+<h2>Spokes是什么？</h2>
+<p>在我们进入这一主题——如何实现弹性——之前，我们需要声明一个新的名字：DGit现在改名为Spokes了。</p>
+<p>今年早些时候，我们<a href="https://githubengineering.com/introducing-dgit/" target="_blank" rel="noopener">宣布了</a>我们的应用级Git复制系统，名为“DGit”（“Distributed Git”）。我们得到的反馈表明，“DGit”这个名字的区分度不高，可能会导致与Git项目本身混淆。所以我们决定重命名这个系统为<em>Spokes</em>。</p>
+<h2>“弹性”的定义</h2>
+<p>在任何系统或服务中，有两种衡量弹性的关键方法：可用性（availability）和持久性（durability）。系统的可用性指的是系统提供它应当提供的服务所需的运行时间。它可以提供内容吗？它能接受写操作吗？可用性可能是部分的，完整的或退化的：每个仓库都可用吗？是否有一些仓库——或者整个服务器——的访问很缓慢？</p>
+<p>系统的持久性指的是它对永久性数据丢失的抵抗能力。一旦系统接受了一个写操作——推送，合并，通过网站进行的编辑，创建新仓库等——它就应该永远不会破坏或回退该内容到之前的状态。这里的关键问题出现在系统接受写入时：需要存储多少副本，以及在哪里存储？显然，必须存储足够数量的副本，才能保证写操作不丢失的可能性足够高。</p>
+<p>系统可以是持久但不可用的。例如，如果系统能够为当前写操作制造的副本数量不能超过最低要求，则系统可能会拒绝接受写操作。这样的系统对于写操作是暂时不可用的，不过它同时能够保证不会丢失数据。当然，系统也可以是不持久但可用的。例如，接收任何写入，无论它们是否可以安全地提交，。</p>
+<p>读者可能会意识到这与<a href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">CAP定理</a><a href="#note2" id="note2ref"><sup>2</sup></a>有关。简而言之，系统最多可以满足以下三个特性中的两个：</p>
+<ul>
+<li>一致性（consistency）：所有节点都读到相同的数据</li>
+<li>可用性（availability）：系统可以满足读写请求</li>
+<li>分区容错性（partition tolerance）：即使节点关闭或无法通信，系统也能正常工作</li>
+</ul>
+<p>Spokes将一致性和分区容错性放在首位。在最坏的情况下，它将拒绝接受一些写入，对于这些写入，它不能同步提交至至少两个副本。</p>
+<h2>可用性</h2>
+<p>Spokes的可用性取决于底层服务器和网络的可用性，以及我们检测和绕过服务器和网络问题的能力。</p>
+<p>单个服务器经常会变得不可用。自从今年春天开始试用Spokes以来，由于内核死锁和RAM芯片故障，我们的一些服务器崩溃了。有时，由于较轻的硬件故障或较高的系统负载，服务器能够提供的服务退化了。在所有这些情况下，Spokes都必须快速检测出问题并绕过它。每个存储库都复制在三台服务器上，因此即使一台服务器处于脱机状态，也基本总会有一个最新的可用副本可以访问。不过，Spokes可不只是它的每个单独的容错部分的总和。<a href="#note3" id="note3ref"><sup>3</sup></a></p>
+<p>快速检测问题只是第一步。Spokes同时使用心跳服务（heartbeat）<a href="#note4" id="note4ref"><sup>4</sup></a>和实际应用程序流量的组合来确定文件服务器何时停止工作。使用实际应用流量很关键，原因如下。首先，心跳服务的学习和反应速度很慢。我们的每个文件服务器每秒需要处理超过100个请求。如果心跳每秒发生一次，则只有在一百个请求都已经失败后才能发现故障。其次，心跳测试只能覆盖服务器功能的一个子集：例如，服务器是否可以接受TCP连接并响应无操作请求。但是如果失败的情形更微妙呢？如果Git二进制文件已损坏怎么办？如果磁盘访问停止了怎么办？如果所有经过身份验证的操作都失败怎么办？当真正的流量失败时，有时无操作服务仍然能够成功。</p>
+<p>因此，Spokes会在处理实际应用程序流量时监视失败情况，如果有太多请求失败，它会将节点标记为脱机。当然，实际请求在正常情况下有时也会失败。例如，有人会尝试读取已经删除的分支，或尝试推送到他们无权访问的分支。因此，Spoke仅仅在三个请求连续失败时才将节点标记为脱机。这有时会导致完全健康的节点脱机——在正常情况下，三个请求也可能会连续失败——但这种情况很少发生，并且导致的代价并不大。</p>
+<p>Spokes也使用心跳服务，但不是作为主要的故障检测机制。相反的是，心跳有两个目的：轮询系统负载，并在节点被标记为脱机后提供全清信号（all-clear signal）<a href="#note5" id="note5ref"><sup>5</sup></a>。一旦心跳成功，该节点将再次标记为在线。如果在服务器出现问题的情况下心跳成功（检索系统负载几乎是无操作），则在三次失败的请求之后，节点将再次标记为脱机。</p>
+<p>因此，Spokes在节点大约发生三次失败之后就会检测到故障。但是连续三次失败的操作仍然太多了！对于干净的故障——连接被拒绝或超时——所有操作都知道如何尝试下一个主机。请记住，Spokes对于每个仓库都维护了三个或更多的副本。对仓库的路由查询不只返回一个服务器，而是返回按优先顺序排序的三个（大约）最新副本的列表。如果对首选副本上的操作失败，则通常还有至少两个个副本可以尝试。</p>
+<p>从一个服务器故障转移到另一个服务器的操作图（此处为远程过程调用（Remote Procedure Call，RPC）<a href="#note6" id="note6ref"><sup>6</sup></a>）清楚地显示了服务器何时脱机。在下图中，有一个服务器在约1.5小时的时间内不可用；在此期间，数千个RPC操作被重定向到其他服务器。这样的图表是Spokes团队发现出错服务器的最佳检测方法。</p>
+<p><img src="one-server-down.png" alt="一台服务器停机"></p>
+<p>Spokes的节点离线检测只是建议性的——这只是一种优化。连续三次失败的节点只会被移动到所有读操作的优先顺序列表的末尾，而不是直接从副本列表中移除。尝试一个可能离线的副本还是比根本不进行尝试要好的。</p>
+<p>这个故障检测器对服务器故障很有效：当服务器过载或脱机时，对它的操作将失败。Spokes检测到这些故障，并暂时停止将流量定向到故障服务器，直到心跳成功为止。但是，网络和应用程序（Rails）服务器的故障更加混乱。给定的文件服务器可能只对应用程序服务器的一个子集处于脱机状态，而一个出错的应用程序服务器可能会看到每个文件服务器都处于脱机状态的假象。因此，Spokess的故障检测实际上是MxN<a href="#note7" id="note7ref"><sup>7</sup></a>的：每个应用程序服务器都保留自己的脱机文件服务器列表。如果我们发现许多应用程序服务器都将某个文件服务器标记为脱机，那么它可能确实脱机了。而如果我们发现某一个应用程序服务器将许多文件服务器标记为脱机，则发现了一个应用程序服务器的错误。</p>
+<p>下图说明了故障检测的MxN特性，并以红色显示，如果文件服务器<code>dfs4</code>处于脱机状态，哪些故障检测器会发现错误。<a href="#note8" id="note8ref"><sup>8</sup></a></p>
+<p><img src="mxn.png" alt="MxN故障检测"></p>
+<p>在最近的一次事件中，开发环境中的一个前端应用程序服务器发生了无法解析文件服务器的DNS名称的错误。因为它无法到达文件服务器以向它们发送RPC操作或心跳，所以它得出结论，每个文件服务器都处于脱机状态。但是，只有那台应用程序服务器发生了这些错误；所有其他应用服务器都在正常工作。因此，这台坏掉的应用程序服务器在RPC故障转移图中变得非常明显，并没有没有生产流量因此受到影响。<a href="#note9" id="note9ref"><sup>9</sup></a></p>
+<h2>持久性</h2>
+<p>有时，服务器会失效。磁盘可能会失效；RAID控制器可能会失败；甚至整个服务器或整个机架上的全部机器都可能出现故障。即使面对这种逆境，Spokes也为仓库数据提供了持久性。</p>
+<p>就像可用性那样，持久性的的实现基础是复制。Spokes至少保留了每个存储库，wiki和gist的三个副本，且这些副本位于不同的机架中。除非严格多数个副本可以应用更改并获得相同的结果，否则不接受对仓库的更新——推送，重命名，编辑维基等。</p>
+<p>Spokes只需要一个额外的副本即可避免单节点故障。那么，为什么需要严格多数呢？存储库很可能在大致相同的时间被多次写入，这种情况是很常见的。这些写入可能会发生冲突：例如，一个用户可能会删除一个分支，而另一个用户将新的提交推送到同一个分支。冲突的写入必须被序列化——也就是说，必须在每个副本上以相同的顺序应用（或拒绝）这些写入，这样每个副本才能得到相同的结果。Spokes将写入序列化的方式是确保每次写入都获得对大多数副本的独占锁定。两个写入不可能同时获得多数锁定，因此Spokes通过完全消除并发写入来避免冲突。</p>
+<p>如果一个仓库恰好有三个副本上，则在两个副本上的成功写入既保证了持久性，也保证了多数。如果仓库有四个或五个副本，则成功写入需要三个副本。</p>
+<p>在很多其他的复制和共识协议（consensus protocols）中，写入到主副本的顺序是官方顺序，所有其他副本都必须按该顺序进行写入。主副本通常需要手动指定，或使用选举协议（election protocol）自动指定。Spokes简单地跳过这一步骤，并将每次写操作都视为一次选举——选择出胜出的顺序之后，可以直接得到写入结果，而不是得到一个能够指示写入顺序的获胜服务器。</p>
+<p>无法在多数副本上以相同方式应用的任何写操作都会被Spokes从它被应用的副本上回退。实质上，每个写入操作都需要经过一个投票协议，投票失败方的任何副本都被标记为不健康——不可读取或写入——直到它们被修复。维修是自动和快速的。由于需要多数副本同意接受或回滚更新，在修复不健康的副本时，仍然至少有两个副本可以继续接受读取和写入。</p>
+<p>需要明确的一点是，分歧和修复发生的概率是很小的。GitHub每天接受数百万次仓库写入操作。在典型的一天里，几十次写入才会导致一次非一致投票，通常是因为一个副本特别繁忙，到它的连接超时了，而其他副本在没有它的情况下投票成功，继续前进。落后的副本几乎总是在一两分钟内恢复，不会对仓库的可用性造成用户可见的影响。</p>
+<p>整个磁盘和整个服务器的故障更罕见，但它们确实会发生。当我们必须移除整个服务器时，突然有数十万个仓库只剩下有两个副本了，而不是三个。这一状况也是可修复的。Spokes会定期检查每个仓库是否具有所需数量的副本；如果没有，则创建更多副本。可以在任何地方创建新副本，并且可以通过每个仓库剩余的两个副本中的任何一个进行复制。因此，服务器故障后的修复是N对N的。文件服务器的集群越大，从单节点故障中恢复的速度就越快。</p>
+<h2>正常关机</h2>
+<p>如上所述，Spokes可以快速透明地处理服务器脱机和永久失效。那么，我们可以将这一方法直接用于需要计划维护时对服务器的重启或移除吗？是，也不是。</p>
+<p>我们的确可以通过<code>sudo reboot</code>重新启动服务器，也可以通过直接把服务器拔掉来移除它。但这样做有一些微妙的缺点，因此我们需要设计一种更谨慎的机制，重用一些用于应对崩溃和故障的相同逻辑。</p>
+<p>简单地重新启动服务器不会影响未来的读写操作，这些操作将被透明地指向其他副本。它也不影响正在进行的写入操作，因为这些操作发生在所有副本上，而其他两个副本可以直接投票成功并继续写入，不需要我们正在重新启动的服务器上的副本。但重启确实会打断正在进行的读取操作。大多数读取操作——例如，获取README以显示在仓库的主页上——速度都很快，能够在服务器正常关闭之前完成。但有些读取，特别是大型仓库的克隆，取决于最终用户的网速，需要几分钟或几小时才能完成。直接打断这些操作是非常粗鲁的。可以在另一个副本上重新启动这些操作，但到目前为止的所有进度都将丢失。</p>
+<p>因此，在Spokes中，为了主动重启一台服务器，我们需要先将它置于静默期（quiescing period）。当服务器处于静默状态时，它对于新的读取操作被标记为脱机，但允许现有的读取操作（包括克隆）完成。静默期可能会持续几秒到几个小时，具体取决于被重启的服务器上哪些读取操作处于活动状态。</p>
+<p>可能会令人惊讶的是，写操作像往常一样被发送到服务器，即使它们静默也是如此。这是因为写操作需要在所有副本上运行，因此单个副本可以随时丢弃，不会发生用户可见的影响。此外，如果副本在静默时没有接收到任何写入操作，那么该副本将大大落后于其他副本，当它最终完全重新上线时，时会产生大量的追赶负载（catch-up load）。</p>
+<p>我们不在Spokes文件服务器上执行“混乱猴子”（chaos monkey）测试<a href="#note10" id="note10ref"><sup>10</sup></a>，原因与我们在重新启动它们之前要将它们置为静默状态的原因相同：避免中断需要长时间运行的读取操作。也就是说，我们不会仅仅为了确认突发的单节点故障仍然（在大多数情况下）是无害的而随机重启文件服务器。</p>
+<p>虽然我们不执行“混乱猴子”测试，我们仍然会按需要对服务器轮流进行重启，这实现了大致相同的测试目标。当我们需要进行一些需要重启的更改时——比如更改内核或文件系统参数，或更改BIOS设置——我们会将这些服务器置于静默状态并重启它们。我们将机架作为可用性区域<a href="#note11" id="note11ref"><sup>11</sup></a>，因此我们一次将整个机架置于静默状态。当给定机架中的服务器结束静默状态——即完成所有未完成的读取操作——我们分批重启这些服务器，每次最多五个。整个机架重启结束后，我们继续前进到下一个机架。</p>
+<p>下图显示了在轮流重启期间失败的RPC操作。用不同的颜色标记每个服务器。值是堆叠的，因此在最高的峰值表示的时刻中，八个服务器在同时重启。浅红色块表示一台服务器未能正常重启，因此离线了大约两个小时。</p>
+<p><img src="rolling-reboots.png" alt="滚动重启"></p>
+<p>用直接插拔的方法移除服务器的弊端与计划外重启的弊端类似。除了会中断任何正在进行的读取操作外，这种行为还会为在这台服务器上托管的所有仓库带来几个小时的额外风险。当一台服务器突然消失时，之前存储在里面的所有仓库现在都只剩下两个副本了。两个副本足够执行任何读取或写入操作，但两个副本无法承受额外的故障。换句话说，在没有警告的情况下就删除服务器，这样会增加在同一天晚些时候写入操作被拒绝的概率。我们的目标是将这种可能性保持在最低水平。</p>
+<p>因此，在准备移除一台服务器之前，我们不再把它存储的仓库副本作为任何仓库的活跃副本。Spokes仍然可以使用该服务器进行读写操作。但当它询问是否所有仓库都有足够的副本时，其中一些仓库——有副本位于将被移除的服务器上的那些 ——将声称不够，然后创建更多的副本。修复这一问题的过程类似于服务器直接消失后的修复过程，不过，区别在于，现在服务器仍然可用，以防其他服务器出现故障。</p>
+<h2>结论</h2>
+<p>可用性是很重要的，而持久性甚至更为重要。可用性衡量的是服务响应请求的时间长度<a href="#note12" id="note12ref"><sup>12</sup></a>。持久性衡量的是，服务能够可信地存储输入数据中的多少。</p>
+<p>为了提供可用性和持久性，Spokes为每个仓库至少保留了三个副本。三个副本意味着，即使一个服务器失效，也不会对用户产生可见的影响。如果两个服务器都发生了故障，Spokes仍然可以为大部分仓库提供完全的访问权限，并为那些恰好有两个副本存储在这两个故障服务器上的存储库提供只读访问。</p>
+<p>Spokes只在大多数副本——一般至少为两个——能够提交写入并得到相同的仓库状态时才接受对仓库的写入，这一要求通过确保所有副本上的写入顺序相同提供了一致性。通过在至少两个位置存储每个已提交的写入，它也可以在单个​​服务器发生故障时提供持久性。</p>
+<p>Spokes的故障检测器通过监视实时应用程序流量，确定服务器何时脱机并绕过该问题。最后，Spokes具有自动修复功能，可在磁盘或服务器发生永久性故障时快速恢复。</p>
+<h2>注解</h2>
+<p><a id="note1" href="#note1ref"><sup>1</sup></a>关于<a href="https://zh.wikipedia.org/wiki/Rsync" target="_blank" rel="noopener">rsync</a>：</p>
+<blockquote>
+<p>rsync是Unix下的一款应用软件，它能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。rsync可以拷贝／显示目录内容，以及拷贝文件，并可选压缩以及递归拷贝。<br>
+在常驻模式（daemon mode）下，rsync默认监听TCP端口873，以原生rsync传输协议或者通过远程shell如RSH或者SSH提供文件。SSH模式下，rsync客户端运行程序必须同时在本地和远程机器上安装。<br>
+rsync是以GNU通用公共许可证发行的自由软件。</p>
+</blockquote>
+<p><a id="note2" href="#note2ref"><sup>2</sup></a><a href="https://zh.wikipedia.org/wiki/CAP%E5%AE%9A%E7%90%86" target="_blank" rel="noopener">CAP定理</a>：</p>
+<blockquote>
+<p>在理论计算机科学中，<strong>CAP定理</strong>（CAP theorem），又被称作<strong>布鲁尔定理</strong>（Brewer's theorem），它指出对于一个分布式计算系统来说，不可能同时满足以下三点：</p>
+</blockquote>
+<ul>
+<li>一致性（<strong>C</strong>onsistence） （等同于所有节点访问同一份最新的数据副本）</li>
+<li>可用性（<strong>A</strong>vailability）（每次请求都能获取到非错的响应——但是不保证获取的数据为最新数据）</li>
+<li>分区容错性（<strong>P</strong> artition tolerance）（以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择。）<br>
+根据定理，分布式系统只能满足三项中的两项而不可能满足全部三项。理解CAP理论的最简单方式是想象两个节点分处分区两侧。允许至少一个节点更新状态会导致数据不一致，即丧失了C性质。如果为了保证数据一致性，将分区一侧的节点设置为不可用，那么又丧失了A性质。除非两个节点可以互相通信，才能既保证C又保证A，这又会导致丧失P性质。</li>
+</ul>
+<p><a id="note3" href="#note3ref"><sup>3</sup></a>不知道这个地方在说什么。是说Spokes能提供的功能远多于冗余性吗？</p>
+<p><a id="note4" href="#note4ref"><sup>4</sup></a>heartbeat的定义（<a href="http://blog.51cto.com/hoolee/1408615" target="_blank" rel="noopener">http://blog.51cto.com/hoolee/1408615</a>）：</p>
+<blockquote>
+<p>Heartbeat 项目是Linux-HA工程的一个组成部分，它实现了一个高可用集群系统。心跳服务和集群通信是高可用集群的两个关键组件，在 Heartbeat 项目里，由 heartbeat 模块实现了这两个功能。<br>
+heartbeat（Linux-HA）的工作原理：heartbeat最核心的包括两个部分，心跳监测部分和资源接管部分，心跳监测可以通过网络链路和串口进行，而且支持冗 余链路，它们之间相互发送报文来告诉对方自己当前的状态，如果在指定的时间内未收到对方发送的报文，那么就认为对方失效，这时需启动资源接管模块来接管运行在对方主机上的资源或者服务。</p>
+</blockquote>
+<p><a id="note5" href="#note5ref"><sup>5</sup></a>所谓“<a href="https://en.wikipedia.org/wiki/All_clear" target="_blank" rel="noopener">All clear</a>”是一种防空警报，它的含义是空袭已经结束，民众可以离开防空洞。</p>
+<p><a id="note6" href="#note6ref"><sup>6</sup></a><a href="https://zh.wikipedia.org/wiki/%E9%81%A0%E7%A8%8B%E9%81%8E%E7%A8%8B%E8%AA%BF%E7%94%A8" target="_blank" rel="noopener">远程过程调用</a>：</p>
+<blockquote>
+<p>远程过程调用（英语：Remote Procedure Call，缩写为 RPC）是一个计算机通信协议。该协议允许运行于一台计算机的程序调用另一台计算机的子程序，而程序员无需额外地为这个交互作用编程。如果涉及的软件采用面向对象编程，那么远程过程调用亦可称作远程调用或远程方法调用，例：Java RMI。</p>
+</blockquote>
+<p><a id="note7" href="#note7ref"><sup>7</sup></a>我没有完全理解M*N是什么意思。不过我猜测，这指的是错误是可以双向检测的。</p>
+<p><a id="note8" href="#note8ref"><sup>8</sup></a>这张图大概显示了3个fetch请求，一个远端git worker请求和一个web api请求。</p>
+<p><a id="note9" href="#note9ref"><sup>9</sup></a>此处令人思考的是，这一故障检测是如何实现的。我们需要了解请求是否会失败，以及一些能够进行请求的非文件服务器记录下的请求失败情况。通过其他服务器的请求情况，实际上，我们可以确定这些服务器的实际运行状况。而RPC图大概是需要通过收集所有请求的实际状况来绘制的。绘制完成之后，Spokes系统可能会根据某种策略自动进行结点状况判断，也可以绘制成实时状态图，让人类判断里面发生错误的结点。</p>
+<p><a id="note10" href="#note10ref"><sup>10</sup></a><a href="https://github.com/Netflix/SimianArmy/wiki/Chaos-Monkey" target="_blank" rel="noopener">Chaos monkey</a>：</p>
+<blockquote>
+<p>Chaos Monkey是一种识别系统组并随机终止组中某个系统的服务。该服务在受控时间（不在周末和假日运行）和间隔（仅在工作时间运行）运行。在大多数情况下，我们将应用程序设计为在对等设备脱机时继续工作，但在这些特殊情况下，我们希望确保周围有人来解决和学习任何问题。考虑到这一点，Chaos Monkey只在工作时间运行，其目的是让工程师保持警觉并能够做出响应。</p>
+</blockquote>
+<p>（其实就是在系统里自动造成随机失败，增加工程师的警觉性）</p>
+<p><a id="note11" href="#note11ref"><sup>11</sup></a>（原注）将机架作为可用性区域处理意味着我们放置仓库副本的时候需要保证同一机架中不会存储同一存储库的两个副本。这样就可以保证，即使丢失了整个服务器机架，也不会影响托管在里面的任何仓库的可用性或持久性。我们选择机架作为可用性区域，是因为几种重要的故障模式（failure mode），特别是与电源和网络相关的故障模式，可能会同时影响整个服务器机架。</p>
+<blockquote>
+<p>“可用性区域”（Availability Zone）由独立的数据中心构成，每个地区都是一个数据中心集群，这些数据中心之间距离足够近，这样可以保证数据库等应用的延迟足够低，但又足够远，这样可以防止出现意外时同时宕机，例如亚马逊在日本的数据中心就分布在不同的地震区。（<a href="https://ctocio.com/ccnews/5685.html" target="_blank" rel="noopener">香港：亚马逊云计算全球化布局下一站？</a>）</p>
+</blockquote>
+<p><a id="note12" href="#note12ref"><sup>12</sup></a>所以这个是单次请求所需的时间长度，和服务器自己的运行时间没有关系？那么，看来前面搞错了……</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Translation/"><i class="fas fa-hashtag fa-fw"></i>Translation</a>
+        
+          <a href="/tags/Github/"><i class="fas fa-hashtag fa-fw"></i>Github</a>
+        
+          <a href="/tags/Spokes/"><i class="fas fa-hashtag fa-fw"></i>Spokes</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/introducing-dgit-translation/">
+              
+                  DGit简介
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>这篇文章翻译自<a href="https://githubengineering.com/introducing-dgit/" target="_blank" rel="noopener">Introducing DGit</a>，我加入了一些自己的注解。（大部分翻译来自谷歌翻译，水平比我更高，只有少数地方译错，我感觉翻译行业的前景很不乐观。）</p>
+<hr>
+<p>Edit：<a href="http://githubengineering.com/building-resilience-in-spokes/" target="_blank" rel="noopener">DGit现在改名叫Spokes了</a></p>
+<p>GitHub在数百台服务器<a href="#note1" id="note1ref"><sup>1</sup></a>上托管了超过3500万个存储库和超过3000万个Gists。在过去的一年中，我们构建了DGit，这是一种新的分布式存储系统，可显著提高对Git内容的提取和存储的可用性（availability），可靠性（reliability）和性能（performance）。</p>
+<p>DGit是“Distributed Git”的缩写。正如许多读者已经知道的那样，Git本身是分布式的——Git存储库的任何副本都包含项目整个历史记录中的每个文件，分支和提交。DGit使用Git的这个属性在三个不同的服务器上保存每个存储库的三个副本。即使其中一个服务器出现故障，DGit的设计也能够使存储库的可用性不会发生中断。即使在极端情况下，存储库的两个副本同时不可用，存储库仍然可读（readable）；即，提取（fetch），克隆（clone）和大多数Web UI仍然能够继续工作。</p>
+<p>DGit在应用程序层执行复制，而不是在磁盘层执行复制。不妨把这些副本看做是三个通过Git协议保持同步的松散耦合的Git仓库，而不是相同的充满了仓库的磁盘映像。此设计使我们能够以极大的灵活性确定仓库副本的存储位置以及用哪个副本进行读取操作。</p>
+<p>如果需要使文件服务器脱机，则DGit会自动确定哪些仓库的副本少于三个，并在其他文件服务器上创建这些存储库的新副本。此“修复”过程将所有剩余的服务器用作源和目标。由于“修复”过程的吞吐量是N-N<a href="#note2" id="note2ref"><sup>2</sup></a>，因此速度非常快。所有这一切都没有任何停机时间。</p>
+<h2>DGit只使用普通的Git</h2>
+<p>大多数最终用户将其Git仓库作为对象、包文件和引用存储在单个<code>.git</code>目录中。他们使用Git命令行客户端、GitHub Desktop等图形客户端或Visual Studio等IDE中内置的Git支持来访问仓库。可能会令人惊讶的是，GitHub的仓库存储层DGit是使用相同的技术构建的。为什么不使用SAN<a href="#note3" id="note3ref"><sup>3</sup></a>，一个分布式文件系统？或者其他的能够将持久存储数据的问题抽象化的神奇的云技术？</p>
+<p>答案很简单：它速度快，而且很健壮。</p>
+<p>Git对延迟非常敏感。一个简单的<code>git log</code>或者<code>git blame</code>命令可能需要顺序加载和遍历数千个Git对象。如果这些低级磁盘访问存在任何延迟，则性能会受到严重影响。因此，将仓库存储在分布式文件系统中是不可行的。Git是为访问高速磁盘而优化的，因此DGit文件服务器将仓库存储在本地高速SSD上。</p>
+<p>在更高的层次上，Git还经过优化，可以在通过协议在Git仓库之间之间高效更新（例如，推送和提取）。因此，我们使用这些协议来保持DGit副本同步。</p>
+<p>Git是一种成熟且经过良好测试的技术。为什么有一级方程式赛车可用时要重新发明轮子？</p>
+<p>GitHub的理念始终是，通过尽可能接近用户使用Git的方式，在我们的服务器上使用Git<a href="#note4" id="note4ref"><sup>4</sup></a>。DGit延续了这一传统。如果我们发现性能瓶颈或其他问题，我们有几个核心的Git和libgit2贡献者会解决这些问题，并将补丁提交到人人可用的开源项目。我们在Git方面的经验和专业知识使其成为用于DGit复制操作的的最优选择。</p>
+<h2>使用DGit前后的GitHub架构</h2>
+<p>之前，我们使用现有的磁盘层复制技术（即RAID和<a href="https://docs.linbit.com/" target="_blank" rel="noopener">DRBD</a><a href="#note5" id="note5ref"><sup>5</sup></a>）保存了仓库数据的副本。我们将文件服务器成对组织起来，每个活动文件服务器都有一个通过交叉电缆连接的专用在线备份服务器。每个磁盘有四个副本：主文件服务器上通过RAID保存两个副本，另外两个副本使用DRBD保存在该文件服务器的热备份上。如果文件服务器出现任何问题——例如，硬件故障，软件崩溃或过载情况——一名人类将确认故障并命令备用服务器接管。因此，冗余级别是良好的，但故障转移过程需要手动干预，并且不可避免地导致故障服务器上的仓库在一段时间内不可用。为了尽量减少此类事件，我们始终将仓库存储在专用且高度可靠的服务器上。</p>
+<p>现在改为使用DGit，每个仓库都存储在三个服务器上，这三个服务器独立地分布在我们的大群文件服务器中。DGit自动选择托管每个仓库的服务器，使这些副本保持同步，并选择处理每个传入的读取请求最的佳服务器。写操作会同时被导入到三个副本中，仅仅当至少两个副本确认写入成功时才会提交。</p>
+<p><img src="fileservers.png" alt="文件服务器复制"></p>
+<p>现在GitHub把仓库存储在一个名为<code>github-dfs</code>的集群中——<code>dfs</code>是“DGit file server”的缩写。这些仓库存储在这些文件服务器上的本地磁盘中，并通过Git和<a href="https://libgit2.github.com/" target="_blank" rel="noopener">libgit2</a>进行服务。此集群的客户端包括Web前端和与用户的Git客户端通信的代理。</p>
+<p><img src="architecture.png" alt="GitHub架构"></p>
+<h2>DGit的优势</h2>
+<p>DGit为GitHub用户和内部GitHub基础架构团队都提供了许多优势。它也是实现更多即将到来的创新的关键基础。</p>
+<ul>
+<li>文件服务器不再必须作为成对的相同服务器部署，彼此靠近，并通过交叉电缆一对一连接。我们现在可以在任何空间配置中使用异构的文件服务器池。</li>
+<li>在开始使用DGit之前，当整个服务器发生故障时，需要尽快将其替换，因为其备份服务器运行时没有备用服务器。两个服务器一起中断可能会使数十万个仓库无法访问。现在，当服务器出现故障时，DGit会快速制作其托管的仓库的新副本，并在整个集群中自动分发它们。</li>
+<li>路由故障的破坏性大大减小了。我们不必重新启动并重新同步整个服务器，只需停止到服务器的路由流量，直到它恢复。现在可以安全地重启生产服务器，没有过渡期。由于服务器中断对DGit的破坏性较小，我们不再需要等待人类确认中断; 我们可以立即绕过它。</li>
+<li>我们不再需要保留大多数时间都在闲置的热备用文件服务器。在DGit中，每个CPU和所有内存都可用于处理用户流量。虽然像push这样的写操作必须转到仓库的每个副本，但是任何副本都可以提供读操作。由于读操作的数量远远超过写操作，因此每个仓库现在可以处理的流量几乎是以前的三倍。下图显示了<code>git</code>处理在旧文件服务器（蓝色）和DGit服务器（绿色）上分别引起的CPU负载。蓝线标识活动服务器的平均值; 它们的热备件不包括在内。DGit服务器上的负载较低：峰值时大约低三倍，而低谷时大约低两倍。由于所有文件服务器都有无法在副本之间分配的后台维护任务，因此低谷性能的改进没有三倍那么多。</li>
+</ul>
+<p><img src="cpu-load.png" alt="DGit减少了CPU负载"></p>
+<ul>
+<li>DGit可以自动平衡磁盘和CPU热点。添加服务器根本不需要计划：DGit只是随机地将现有仓库移动到新服务器，直到磁盘空间和CPU负载恢复平衡。随着现有仓库的扩展或缩小，DGit会移动它们以保持磁盘空间平衡。随着仓库受欢迎程度的增加或降低，DGit会转移负载以缓解CPU和内存热点。在下图中，一个DGit服务器集群（以红色显示）大部分已满，直到我们添加了一个新的服务器集群（以蓝色显示），其中包含更大的磁盘，以减轻磁盘空间压力。第三个集群（绿色）有两个服务器接收仓库，一个服务器放弃它们。继续移动存储库，直到所有服务器的磁盘空闲空间比例相近。</li>
+</ul>
+<p><img src="disk-balancing.png" alt="磁盘平衡图"></p>
+<ul>
+<li>DGit减少了存储库之间的命运共享（fate sharing）<a href="#note6" id="note6ref"><sup>6</sup></a>。在使用DGit之前，一组固定的仓库一起存储在单个服务器上和该服务器的备用服务器上。如果一个存储库太大，代价太昂贵或太受欢迎，那么该文件服务器上的其他仓库可能会变慢。在使用DGit之后，可以通过其他副本服务其他的仓库，这些副本不太可能与繁忙仓库的其他副本位于相同的服务器上。</li>
+<li>副本的分离意味着我们可以将存储库的副本放在不同的可用区域中，甚至可以放在不同的数据中心中。可用性得到改善，我们（终于）可以通过在地理上靠近用户的服务器为用户提供内容。</li>
+</ul>
+<h2>DGit的试运行</h2>
+<p>DGit带来的变化是巨大的，所以我们一直在逐步推广它。DGit最复杂的特性是，复制不再是透明的：现在，每个存储库都显式存储在三台服务器上，而不是一台有自动同步热备份的服务器上。因此，DGit不能再依靠DRBD和RAID控制器来保持副本同步，必须实现自己的序列化处理（serializability）<a href="#note7" id="note7ref"><sup>7</sup></a>，锁定（locking），故障检测（failure detection）和二次同步（resynchronization）<a href="#note8" id="note8ref"><sup>8</sup></a>。我们将在以后的帖子中探讨这些内容丰富的主题。这些足以说明，在依赖DGit存储客户数据之前，我们需要彻底测试这些功能。我们的部署经过多个步骤：</p>
+<ul>
+<li>我们首先移动了DGit开发人员的个人仓库。</li>
+<li>我们移动了一些私人的，GitHub拥有的仓库，这些仓库不属于运行网站的一部分。我们首先在每个存储库中打开一个issue，请求我们的同事的允许。这既是一个礼貌的预先通知，也是一种开始向GitHub其余部分解释DGit的方法。</li>
+<li>我们移动了GitHub的其余大部分私有仓库。</li>
+<li>我们停止移动存仓库大约三个月，同时我们进行了大量测试，对DGit相关流程进行自动化，为DGit撰写了操作级别的文档，并且（咳咳）修复了偶尔发生的错误。</li>
+<li>经过三个月的稳定运行后，我们移动了大多数GitHub拥有的公共存储库，以及外部用户拥有的那些存储库的fork。例如，<a href="https://github.com/github/linguist" target="_blank" rel="noopener">Linguist</a>的拥有者是GitHub，但其大约1,500个fork属于外部用户。托管公共仓库测试了DGit处理大型仓库的网络和更高流量负载的能力。</li>
+<li>我们开始移动不属于GitHub的公共仓库。我们立即从GitHub的<a href="https://github.com/explore" target="_blank" rel="noopener">showcases</a>和<a href="https://github.com/trending" target="_blank" rel="noopener">流行仓库</a>中找出一些有很多分支的繁忙的仓库：包括<a href="https://github.com/ruby/ruby" target="_blank" rel="noopener">Ruby</a>、<a href="https://github.com/rails/rails" target="_blank" rel="noopener">Rails</a>、<a href="https://github.com/twbs/bootstrap" target="_blank" rel="noopener">Bootstrap</a>和<a href="https://github.com/mbostock/d3" target="_blank" rel="noopener">D3</a>等等，并且搬运了它们。我们的目标是在DGit中尽可能多地获取流量和不同的使用模式，同时仍然手工采集一小部分仓库的数据。</li>
+<li>距离我们第一次移动自己的仓库六个月后，令人满意的是，DGit能够很好地托管网站，于是我们开始批量移动仓库。</li>
+</ul>
+<p><img src="growth.png" alt="DGit中存储库的百分比"></p>
+<p>在试运行阶段，我们不断尝试关闭服务器，有时会同时关闭几个服务器，此时它们正在提供实时生产流量。用户操作并没有受到影响。</p>
+<p>在撰写本文时，58％的存储库和96％的Gists（占Git操作的67％）都迁移到了DGit中。我们正在尽快将剩余的文件服务器对转换为DGit服务器。</p>
+<h2>结论</h2>
+<p>GitHub始终致力于快速可靠地获取，推送和查看仓库。在未来几年内，我们将使用DGit作为我们的仓库存储层以实现这些目标，同时进行横向扩展并提高容错能力。</p>
+<p>在接下来的一个月里，我们将发布更多对DGit背后的技术进行深入研究的帖子。</p>
+<h2>总结</h2>
+<p>我之前曾经在网上看到一篇相关的评论帖子，但是现在找不到了，我明天再找……</p>
+<h2>注解</h2>
+<p><a id="note1" href="#note1ref"><sup>1</sup></a>这个服务器的数量比我想象的要少。（或者谷歌翻译错了，应该是成百上千台。）</p>
+<p><a id="note2" href="#note2ref"><sup>2</sup></a>大概是因为源可以有多个，目标也可以有多个。不过这个吞吐量可能翻译错了，我也不懂“N-by-N”具体是什么意思。</p>
+<p><a id="note3" href="#note3ref"><sup>3</sup></a>关于SAN（摘自维基百科）：</p>
+<blockquote>
+<p>存储区域网络（英语：storage area network，缩写作 SAN）是一种连接外接存储设备和服务器的架构。人们采用包括光纤通道技术、磁盘阵列、磁带柜、光盘柜的各种技术进行实现。该架构的特点是，连接到服务器的存储设备，将被操作系统视为直接连接的存储设备。除针对大型企业的企业级存储方案外，随着在2000年后价格和复杂度的降低，越来越多的中小型企业也在逐步采用该项技术。</p>
+</blockquote>
+<p>它访问的是磁盘设备，而不是文件。<br>
+<a id="note4" href="#note4ref"><sup>4</sup></a>虽然我现在并不理解这个传统的存在意义和价值。</p>
+<p><a id="note5" href="#note5ref"><sup>5</sup></a>DRBD=Distributed Replicated Block Device，一个基于软件在不同宿主之间创建块设备（硬盘、翻去、逻辑分区等）的镜像的存储复制服务。功能特性包括：</p>
+<ul>
+<li>实时</li>
+<li>透明</li>
+<li>同步或异步</li>
+</ul>
+<p>（<a href="https://docs.linbit.com/docs/users-guide-9.0/#p-intro" target="_blank" rel="noopener">https://docs.linbit.com/docs/users-guide-9.0/#p-intro</a>）</p>
+<p><a id="note6" href="#note6ref"><sup>6</sup></a>关于命运共享：</p>
+<blockquote>
+<p>命运共享（Fate Sharing）建议将所有必要的状态放在通信端点，这些状态用于维护一个互动的通信关联（例如虚拟连接）。由于这个原因，导致通信失效的情况也会导致一个或更多端点失效，这样显然会导致整个通信的失败。命运共享是一种通过虚拟连接（例如，由TCP实现的连接）维持活动的设计理念，即便网络在一段时间内失效。命运共享也支持一种“带智能终端主机的哑网络”模型。</p>
+</blockquote>
+<p>（<a href="https://blog.csdn.net/qq_37653144/article/details/80297681" target="_blank" rel="noopener">端到端原则与命运共享原则</a>；还是没太看懂）</p>
+<p><a id="note7" href="#note7ref"><sup>7</sup></a>可串行化（<a href="https://csruiliu.github.io/blog/2018/02/15/db-serialization/" target="_blank" rel="noopener">Database Conflict Serializability [数据库冲突可串行化]</a>）：</p>
+<blockquote>
+<p>多个事务[Transaction]的并发执行是正确的，当且仅当其结果与按某一次串行地执行这些事务时的结果相同，称这种调度策略为可串行化的调度。–数据库系统概论第四版</p>
+</blockquote>
+<p><a id="note8" href="#note8ref"><sup>8</sup></a>查了之后，发现一堆心脏病疗法，仍然无法很好地认识什么是resynchronization。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Translation/"><i class="fas fa-hashtag fa-fw"></i>Translation</a>
+        
+          <a href="/tags/Github/"><i class="fas fa-hashtag fa-fw"></i>Github</a>
+        
+          <a href="/tags/Spokes/"><i class="fas fa-hashtag fa-fw"></i>Spokes</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/ostep-ch-04-summary-the-abstraction-the-process/">
+              
+                  OSTEP第04章总结：The Abstraction: The Process
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本章课本见<a href="http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf" target="_blank" rel="noopener">http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf</a>。</p>
+<hr>
+<p>这一章主要讲了OS的一种基本抽象模型：进程（Process）。</p>
+<ul>
+<li>进程的定义</li>
+<li>与进程相关的API</li>
+<li>进程的创建过程和状态（生命周期）</li>
+<li>进程的数据结构（进程控制块和进程状态队列）</li>
+</ul>
+<h2>CPU的虚拟化</h2>
+<p>我们首先给出一个进程的非正式定义：进程是一个正在运行的程序。</p>
+<p>我们通常希望同时运行多个（甚至成百上千个）程序。这样用起来很方便，但是我们遇到的挑战是：如何创造这样由很多个虚拟CPU的假象？</p>
+<p>OS通过对CPU进行虚拟化创造这一假象。它不断地运行一个程序，暂停，然后再运行下一个。这被称作CPU的分时共享（time sharing），这种技术允许程序的并发，同时也会牺牲一定的性能，因为一个程序的运行时间肯定会慢得多。</p>
+<p>我们可以把实现CPU的虚拟化的过程拆分成两个步骤：</p>
+<ul>
+<li>机制（mechanism）：这是实现一种功能的底层方法或协议；如上下文切换（context switch），这是一种分时机制（time-sharing mechanism），用于帮助OS实现暂停一个程序后切换到下一个的功能</li>
+<li>策略（policy）：这是利用底层机制，在OS内进行决策的算法；如调度（scheduling）算法会利用历史信息、程序信息和性能评价方式进行决策</li>
+</ul>
+<p>这是一种模块化的程序设计思路。不过，本节中我们似乎既没有讲机制也没有讲策略，而是讲了一些抽象内容（进程）的基本概念。</p>
+<h2>进程的正式定义</h2>
+<p>上面给出的那个定义是正确的，然而并不全面。如何更具体地描述一个进程？一般来说，我们可以通过记录进程在运行过程中访问或影响的系统部分来描述一个进程。于是我们可以定义进程的机器状态（machine state）：</p>
+<ul>
+<li>内存（地址空间）：包含指令和程序读写的数据</li>
+<li>寄存器：通用寄存器和一些特殊寄存器，如PC（program counter）和栈指针、帧指针</li>
+<li>I/O信息：进程开启的文件列表</li>
+</ul>
+<h2>与进程相关的API</h2>
+<p>既然进程是OS为我们提供的一种抽象，那么显然需要一些使用它的方法。因此下面介绍了一些与进程相关的API，一般来说，任何现代OS都提供了这些API：</p>
+<ul>
+<li>创建（create）：创建新进程</li>
+<li>销毁（destroy）：强制终止进程，对于失控的进程来说是很必要的</li>
+<li>等待（wait）：等待其他进程结束运行</li>
+<li>其他控制（miscellaneous control）：除了杀死或等待进程以外的控制方式，如将进程挂起后恢复运行的机制</li>
+<li>状态（status）：通常会提供一些能够获得进程状态信息的接口，包括运行时间和状态</li>
+</ul>
+<h2>进程的生命周期</h2>
+<h3>进程的创建过程</h3>
+<p>为了启动一个进程，OS需要做以下事情：</p>
+<ol>
+<li>将程序的代码和静态数据（初始化了的变量）加载到进程地址空间中。通常程序以某种可执行文件格式存储在磁盘（或者SSD）中，所以OS需要从磁盘读取数据。</li>
+</ol>
+<ul>
+<li>此时有一个加载策略的选择问题：积极加载（eager load）还是懒惰加载（lazy load）</li>
+<li>积极加载：将所有代码和数据在运行之前就全部装入内存中，是早期和简单OS的做法</li>
+<li>懒惰加载：用到对应的代码和数据时才加载，是现代OS的做法。</li>
+<li>这个问题与分页（paging）和交换（swapping）有关，之后还会谈到。</li>
+</ul>
+<ol start="2">
+<li>为程序的运行栈分配内存；对栈进行初始化（比如把<code>main</code>函数的<code>argc</code>和<code>argv</code>放进去）</li>
+<li>为程序的堆分配内存。堆用于在程序运行中动态分配内存，程序调用<code>malloc()</code>请求内存，调用<code>free()</code>释放内存。</li>
+<li>对I/O进行初始化：对于类UNIX系统，每个进程默认有三个打开的文件描述符（file descriptor），用于标准输入、标准输出和标准错误输出，这使得进程能够从终端读入输入并打印到屏幕。我们将在本书的第三部分（持久化）中更多的谈到这个问题。</li>
+<li>跳转到<code>main()</code>函数的起始点，将CPU的控制权交给新创建的进程。</li>
+</ol>
+<h3>进程的状态模型</h3>
+<p>创建了一个进程之后，它的状态（state）会不断变化。一个简化的进程三状态模型如下：</p>
+<ul>
+<li>运行态（running）：进程正在处理器上运行，正在执行指令。</li>
+<li>就绪态（ready）：进程已经准备好执行了，但由于某些原因，OS现在并没有运行它。</li>
+<li>等待态（blocked）：进程执行了一些操作，使得它不能继续运行，直到发生某些其他事件为止。例如，进程启动对磁盘的I/O请求时，它就被阻塞了，此时其他的进程可以使用处理器。</li>
+</ul>
+<p><img src="fig4-2_process-state-transitins.png" alt="进程在状态之间的迁移"></p>
+<p>上图说明了这个简化模型中进程如何在状态间迁移：</p>
+<ul>
+<li>OS可以通过调度使进程在运行态和就绪态之间转换</li>
+<li>如果进程进入了等待态，则只有对应的事件发生时才会进入就绪态</li>
+</ul>
+<p>下面举两个例子进行说明。在第一个例子中，两个进程只使用CPU而不进行I/O；调度策略是进程0执行完之后进程1才能开始执行。</p>
+<p><img src="fig4-3_tracing-process-state-cpu-only.png" alt="只使用CPU的两个进程的状态变化"></p>
+<p>在第二个例子中，进程会进行I/O操作。当进程0进行I/O之后，它进入阻塞状态。于是进程1开始运行。进程0的I/O完成之后，它进入就绪态，等待进程1执行结束之后继续执行。</p>
+<p><img src="fig4-4_tracing-process-state-cpu-and-io.png" alt="使用CPU并进行I/O的两个进程的状态变化"></p>
+<p>事实上，在上述过程中，OS采用了以下两种策略：</p>
+<ul>
+<li>在进程0进行I/O时切换到进程1：这个决策看起来是明智的，因为可以增加CPU使用率</li>
+<li>在进程0的I/O操作结束之后，没有立即切换回切换0：这个策略的好坏很难说</li>
+</ul>
+<p>（上述内容将出现在作业中）</p>
+<h2>进程的数据结构</h2>
+<p>上面的内容可以说是非常抽象了。所以下面会讲到，这些抽象的内容如何用OS中具体的数据结构来表示。</p>
+<h3>进程控制块</h3>
+<p>我们把进程信息对应的数据结构称为进程控制块（Process Control Block，PCB）。下面是xv6教学OS中一个实际的进程控制块的定义（也就是说，会涉及大量<strong>底层机制</strong>内容）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// the registers xv6 will save and restore</span><br><span class="line">// to stop and subsequently restart a process</span><br><span class="line">struct context &#123;</span><br><span class="line">    int eip;</span><br><span class="line">    int esp;</span><br><span class="line">    int ebx;</span><br><span class="line">    int ecx;</span><br><span class="line">    int edx;</span><br><span class="line">    int esi;</span><br><span class="line">    int edi;</span><br><span class="line">    int ebp;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// the different states a process can be in</span><br><span class="line">enum proc_state &#123; UNUSED, EMBRYO, SLEEPING,</span><br><span class="line">                  RUNNABLE, RUNNING, ZOMBIE &#125;;</span><br><span class="line"></span><br><span class="line">// the information xv6 tracks about each process</span><br><span class="line">// including its register context and state</span><br><span class="line">struct proc &#123;</span><br><span class="line">    char *mem;                  // Start of process memory</span><br><span class="line">    uint sz;                    // Size of process memory</span><br><span class="line">    char *kstack;               // Bottom of kernel stack</span><br><span class="line">                                // for this process</span><br><span class="line">    enum proc_state state;      // Process state</span><br><span class="line">    int pid;                    // Process ID</span><br><span class="line">    struct proc *parent;        // Parent process</span><br><span class="line">    void *chan;                 // If non-zero, sleeping on chan</span><br><span class="line">    int killed;                 // If non-zero, have been killed</span><br><span class="line">    struct file *ofile[NOFILE]; // Open files</span><br><span class="line">    struct inode *cwd;          // Current directory</span><br><span class="line">    struct context context;     // Switch here to run process</span><br><span class="line">    struct trapframe *tf;       // Trap frame for the</span><br><span class="line">                                // current interrupt</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面对其中一些比较重要的内容给出说明。首先可以看到，<code>context</code>中存储了通用寄存器的内容，用于上下文切换（保存一个暂停的进程的寄存器的值；在进程恢复运行时，这些值将被重新加载到寄存器中），这是之前讲到的。其次可以发现，这里定义了6种状态，和之前讲到的三状态模型不完全相符（这可能也体现了抽象策略和底层机制的区别）。除了运行态、就绪态和等待态以外，此处还定义了其他的状态，如初始（initial）态（进程刚被创建时的状态，对应的大概是上述代码中的EMBRYO态）和终止（final）态（进程已经退出，但尚未被完全清理，在类UNIX系统中，这一状态被称为僵尸（zombie）态）。进入终止态的进程允许其他进程（通常是创建这个进程的父进程）检查进程的返回值，查看它是否成功结束。父进程在自己结束之前会执行最后一个调用（<code>wait()</code>），等待子进程执行完成（进入终止态），此时OS可以清理子进程相关的数据结构。</p>
+<p>（我不知道我有没有理解清楚关于僵尸态的内容）</p>
+<h3>进程状态队列</h3>
+<p>为了管理进程的状态，OS会维护一些进程状态队列，用来跟踪就绪进程、正在运行的进程和阻塞进程，并且在发生事件的时候唤醒正确的进程。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+          <a href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw"></i>OSTEP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/ostep-ch-03-summary-a-dialogue-on-virtualization/">
+              
+                  OSTEP第03章总结：A Dialogue on Virtualization
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-03
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本章课本见<a href="http://pages.cs.wisc.edu/~remzi/OSTEP/dialogue-virtualization.pdf" target="_blank" rel="noopener">http://pages.cs.wisc.edu/~remzi/OSTEP/dialogue-virtualization.pdf</a>。</p>
+<hr>
+<p>这篇对话是本书第一部分——虚拟化（Virtualization）——的开头，简单叙述了一下虚拟化的概念。</p>
+<p>Professor教授（我今后就这样叫他了，毕竟这位教授的名字就是“Professor”）举了一个这样的例子：假设我们有一个物理的桃子，有很多人都想吃桃子，但桃子只有一个，不能满足所有人的需求。于是我们通过某种神奇的技术，在物理桃子的基础上创造出许多虚拟桃子，仿佛每个人都拥有自己的桃子一般，但事实上只有一个桃子。</p>
+<p>这时Student学生（同理）提了一个很好的问题：如果很多人同时共享一个桃子，他们应该会注意到这一点。Professor教授指出，这些人大部分时间都在干别的，所以把桃子直接拿走是完全可行的。</p>
+<p>Student学生要求Professor教授举一个具体的例子——那就PCU吧。假定系统里有一个物理CPU，虚拟化技术使得系统里好像有很多虚拟CPU在同时运行。每个进程都认为它独占了一个虚拟CPU，而实际上只有一个物理CPU。OS的工作就是将实际的CPU进行虚拟化。</p>
+<p>最后Professor教授表示，今后不会再有这么多桃子的例子，因为他自己也不是很喜欢吃桃子。（但是作者很喜欢吧？）</p>
+<hr>
+<p>我很想探讨一下这个故事中的比喻到底指代的什么。桃子当然指的是被虚拟化后共享的资源——除了物理CPU之外，物理内存也被进程这样共享。不过桃子和CPU相比有一个小问题：桃子是会被吃完的，也就是说，这是一种不可再生资源，和CPU可以不断重复利用的性质不同。那我们就当这些食客只是在舔桃子好啦……</p>
+<p>所谓“很多人同时共享一个桃子会被注意到”也许只是Student学生随口一说的结果，但我觉得这一点说的更像是同步互斥问题。毕竟进程没有思想和感受，它们之间一般是相互隔离的，所谓“注意到”必然是进程通信或共享资源的结果，而这种时候是一定会出现同步互斥问题的。但是，如果这样认为，Professor教授给出的解决方案就有点儿怪了——这些人大部分时间都在干别的？我想这说的是CPU运行进程和设备I/O的并行化——I/O需要的时间很多，所以在需要进行I/O时，进程就主动放弃控制权，切换别的进程来继续占用CPU。这一点当然很好，不过好像并不能解决同步互斥问题。</p>
+<p>不过这也并没有那么重要，希望Professor教授和Student在书里过得开心，吃点自己想吃的水果好啦。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+          <a href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw"></i>OSTEP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/ostep-ch-02-summary-introduction-to-operating-systems/">
+              
+                  OSTEP第02章总结：Introduction to Operating Systems
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-01
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本章课本见<a href="http://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf" target="_blank" rel="noopener">http://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf</a>。</p>
+<hr>
+<p>这一章对全书内容做了一些简单的概括：</p>
+<ul>
+<li>用三个程序概括了本书将讲到的三个基本概念（虚拟化、并发、持久化）</li>
+<li>讲了一些OS的设计目标和OS的历史</li>
+</ul>
+<h2>基本概念概述</h2>
+<h3>虚拟化</h3>
+<p>虚拟化是本书第一部分的主题。</p>
+<h4>CPU的虚拟化</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &quot;common.h&quot;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">        fprintf(stderr, &quot;usage: cpu &lt;string&gt;\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">    char *str = argv[1];</span><br><span class="line"></span><br><span class="line">    while (1) &#123;</span><br><span class="line">        printf(&quot;%s\n&quot;, str);</span><br><span class="line">        Spin(1);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述程序中调用的<code>Spin()</code>函数（具体程序见本章附带的<a href="http://pages.cs.wisc.edu/~remzi/OSTEP/Code/code.intro.tgz" target="_blank" rel="noopener">代码</a>）会在运行1秒后返回。这个程序会不断运行，每秒输出一个<code>A</code>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; gcc -o cpu cpu.c -Wall</span><br><span class="line">prompt&gt; ./cpu &quot;A&quot;</span><br><span class="line">A</span><br><span class="line">A</span><br><span class="line">A</span><br><span class="line">A</span><br><span class="line">ˆC</span><br><span class="line">prompt&gt;</span><br></pre></td></tr></table></figure>
+<p>如果同时运行不同的程序实例，CPU会不断在程序之间切换，使得每个程序都认为自己独占了CPU，这被称为CPU的<strong>虚拟化</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./cpu A &amp; ; ./cpu B &amp; ; ./cpu C &amp; ; ./cpu D &amp;</span><br><span class="line">[1] 7353</span><br><span class="line">[2] 7354</span><br><span class="line">[3] 7355</span><br><span class="line">[4] 7356</span><br><span class="line">A</span><br><span class="line">B</span><br><span class="line">D</span><br><span class="line">C</span><br><span class="line">A</span><br><span class="line">B</span><br><span class="line">D</span><br><span class="line">C</span><br><span class="line">A</span><br><span class="line">C</span><br><span class="line">B</span><br><span class="line">D</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>而OS选择什么程序来运行是一种<strong>策略</strong>，之后我们会学到相关内容（进程调度）。</p>
+<h4>内存的虚拟化</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;assert.h&gt;</span><br><span class="line">#include &quot;common.h&quot;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">        fprintf(stderr, &quot;usage: mem &lt;value&gt;\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">    int *p;                   // memory for pointer is on &quot;stack&quot;</span><br><span class="line">    p = malloc(sizeof(int));  // malloc&apos;d memory is on &quot;heap&quot;</span><br><span class="line">    assert(p != NULL);</span><br><span class="line">    printf(&quot;(pid:%d) addr of p:        %llx\n&quot;, (int) getpid(),</span><br><span class="line">        (unsigned long long) &amp;p);</span><br><span class="line">    printf(&quot;(pid:%d) addr stored in p: %llx\n&quot;, (int) getpid(),</span><br><span class="line">        (unsigned long long) p);</span><br><span class="line">    *p = atoi(argv[1]);       // assign value to addr stored in p</span><br><span class="line">    while (1) &#123;</span><br><span class="line">        Spin(1);</span><br><span class="line">        *p = *p + 1;</span><br><span class="line">        printf(&quot;(pid:%d) value of p: %d\n&quot;, getpid(), *p);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现代机器的内存模型就是一个数组，读写都需要给出地址。</p>
+<p>上述程序所做的事很简单：</p>
+<ul>
+<li>分配一些内存</li>
+<li>打印内存的地址，以及程序的PID</li>
+<li>将数0放入新分配的内存的第一个位置（4字节的int）中</li>
+<li>循环，将p中存储的值+1</li>
+</ul>
+<p>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./mem</span><br><span class="line">(2134) address pointed to by p: 0x200000</span><br><span class="line">(2134) p: 1</span><br><span class="line">(2134) p: 2</span><br><span class="line">(2134) p: 3</span><br><span class="line">(2134) p: 4</span><br><span class="line">(2134) p: 5</span><br><span class="line">ˆC</span><br></pre></td></tr></table></figure>
+<p>如果仍然同时运行几个程序的实例，则会发现，每个程序都在同一地址处分配内存，而且对这一内存处存储的值的更新是相互独立的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./mem &amp;; ./mem &amp;</span><br><span class="line">[1] 24113</span><br><span class="line">[2] 24114</span><br><span class="line">(24113) address pointed to by p: 0x200000</span><br><span class="line">(24114) address pointed to by p: 0x200000</span><br><span class="line">(24113) p: 1</span><br><span class="line">(24114) p: 1</span><br><span class="line">(24114) p: 2</span><br><span class="line">(24113) p: 2</span><br><span class="line">(24113) p: 3</span><br><span class="line">(24114) p: 3</span><br><span class="line">(24113) p: 4</span><br><span class="line">(24114) p: 4</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>这说明OS对内存进行了虚拟化，每个进程访问的是自己的虚拟地址空间。</p>
+<h3>并发</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &quot;common_threads.h&quot;</span><br><span class="line"></span><br><span class="line">volatile int counter = 0;</span><br><span class="line">int loops;</span><br><span class="line"></span><br><span class="line">void *worker(void *arg) &#123;</span><br><span class="line">    int i;</span><br><span class="line">    for (i = 0; i &lt; loops; i++) &#123;</span><br><span class="line">        counter = counter + 1;</span><br><span class="line">    &#125;</span><br><span class="line">    pthread_exit(NULL);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">        fprintf(stderr, &quot;usage: threads &lt;loops&gt;\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">    loops = atoi(argv[1]);</span><br><span class="line">    pthread_t p1, p2;</span><br><span class="line">    printf(&quot;Initial value : %d\n&quot;, counter);</span><br><span class="line">    Pthread_create(&amp;p1, NULL, worker, NULL);</span><br><span class="line">    Pthread_create(&amp;p2, NULL, worker, NULL);</span><br><span class="line">    Pthread_join(p1, NULL);</span><br><span class="line">    Pthread_join(p2, NULL);</span><br><span class="line">    printf(&quot;Final value   : %d\n&quot;, counter);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这一程序通过调用<code>Pthread_create</code>创建了两个线程，分别将一个计数器自增N次，然后将计数器的结果输出。显然，正常情况下程序输出应该为2N。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; gcc -o thread thread.c -Wall -pthread</span><br><span class="line">prompt&gt; ./thread 1000</span><br><span class="line">Initial value : 0</span><br><span class="line">inal value : 2000</span><br></pre></td></tr></table></figure>
+<p>但如果两个线程执行的次数N比较大，则程序的输出可能不再会为2N，而且会不太稳定。这是由于+1的操作不是原子的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./thread 100000</span><br><span class="line">Initial value : 0</span><br><span class="line">Final value : 143012 // huh??</span><br><span class="line">prompt&gt; ./thread 100000</span><br><span class="line">Initial value : 0</span><br><span class="line">Final value : 137298 // what the??</span><br></pre></td></tr></table></figure>
+<p>这体现了并发中可能出现的一些问题，我们将要在本书的第二部分讲到这些问题。</p>
+<h3>持久化</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;assert.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">void do_work() &#123;</span><br><span class="line">    int fd = open(&quot;/tmp/file&quot;, O_WRONLY | O_CREAT | O_TRUNC,</span><br><span class="line">		  S_IRUSR | S_IWUSR);</span><br><span class="line">    assert(fd &gt;= 0);</span><br><span class="line">    char buffer[20];</span><br><span class="line">    sprintf(buffer, &quot;hello world\n&quot;);</span><br><span class="line">    int rc = write(fd, buffer, strlen(buffer));</span><br><span class="line">    assert(rc == strlen(buffer));</span><br><span class="line">    printf(&quot;wrote %d bytes\n&quot;, rc);</span><br><span class="line">    fsync(fd);</span><br><span class="line">    close(fd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line">    do_work();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码会创建文件<code>/tmp/file</code>，并在里面写入字符串<code>hello world</code>。</p>
+<p>内存是一种易失性存储，所以需要能够持续性地存储程序的硬件和软件，也就是硬盘（SSD）和文件系统。</p>
+<p>和虚拟化的内存地址空间相比，因为用户通常会使用文件来共享信息，所以OS并不会为每个应用进程创建虚拟化的磁盘。OS向硬盘写数据的过程是十分复杂的，但OS对此进行了抽象，可以通过系统调用来访问设备。因此OS可以被看成是一个标准库。</p>
+<h2>OS的设计目标</h2>
+<ul>
+<li>抽象：使系统更易用</li>
+<li>高性能</li>
+<li>保护：在应用程序之间，以及应用程序和系统之间提供保护和隔离</li>
+<li>可靠性</li>
+<li>节能、安全性、可移动性……</li>
+</ul>
+<h2>OS的历史</h2>
+<ul>
+<li>早期操作系统（大型机批处理系统）：基本只是标准库，需要操作员参与管理</li>
+<li>中期操作系统：提供了文件系统和保护机制，系统调用和硬件特权级的概念出现了</li>
+<li>多道程序系统：内存保护和并发的概念</li>
+<li>现代操作系统：……</li>
+</ul>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+          <a href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw"></i>OSTEP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/ostep-ch-01-summary-a-dialogue-on-the-book/">
+              
+                  OSTEP第01章总结：A Dialogue on the Book
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-01
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本章课本见<a href="http://pages.cs.wisc.edu/~remzi/OSTEP/dialogue-virtualization.pdf" target="_blank" rel="noopener">http://pages.cs.wisc.edu/~remzi/OSTEP/dialogue-virtualization.pdf</a>。</p>
+<hr>
+<p>这是全书开头的第一章，奠定了全书逗比的基调（雾）。这一章主要只是用来扯皮的，真正的介绍性内容在下一章。</p>
+<p>本章讲述了一位叫“Professor”的教授和一位叫“Student”的学生的故事。</p>
+<p>Professor指出，“Three Easy Pieces”这个题目是为了致敬费曼的“Six Easy Pieces”这本书。因为操作系统只有物理学的一半那么难，所以核心概念也只有物理学的一半那么多。（真的吗？）</p>
+<p>我们将要讲授的3个核心概念是：虚拟化（virtualization），并发（concurrency）和持久化（persistence）。</p>
+<p>我们将要学到OS如何工作，具体内容包括：</p>
+<ul>
+<li>OS如何决定下一个将在CPU上运行的是什么程序</li>
+<li>如何在虚拟内存系统中处理内存过载</li>
+<li>如何管理磁盘上的信息</li>
+<li>如何建立一个可靠的分布式系统</li>
+<li>等等</li>
+</ul>
+<p>Professor对学习者的建议：</p>
+<ul>
+<li>上课，听讲</li>
+<li>每周结束时读这本书</li>
+<li>考试之前再读一遍书（虽然可能我没有那么多的时间，我就没有）</li>
+<li>做教授留的作业和项目</li>
+</ul>
+<p>Professor：“不闻不若闻之，闻之不若见之，见之不若知之，知之不若行之；学至于行之而止矣。”（荀子《儒效篇》）</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+          <a href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw"></i>OSTEP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/archives/2018/page/22/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  23 / 29
+              </p>
+              
+                  <a class="next" rel="next" href="/archives/2018/page/24/">
+                      <section class="post next">
+                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                      </section>
+                  </a>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+
+
+
+
+
+<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

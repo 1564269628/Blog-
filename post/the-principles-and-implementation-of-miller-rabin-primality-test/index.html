@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Miller-Rabin素性检测的原理与实现 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">Miller-Rabin素性检测的原理与实现</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-06-29
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h2>Miller-Rabin素性检测的原理</h2>
+<p>按维基百科的说法，这个算法似乎本来是一个依赖于广义黎曼假设的确定性算法，后来经过改造，变成了一个依赖于二次剩余理论的非确定性算法。不过这个地方我也还没有完全搞懂，再说吧。</p>
+<p>当然，即使不从历史角度出发，也是能比较清楚地搞懂这个算法的思路来源的。下面的介绍参考了相关的维基百科。<a href="#bib1" id="bib1ref"><sup>[1]</sup></a></p>
+<p>首先介绍一个引理。$1^2 \bmod p$和$(-1)^2 \bmod p$总是得到1，我们称这两个数为1的“平凡平方根”。引理的内容是：当$p$为素数且$p&gt;2$时，不存在$1 \bmod p$的“非平凡平方根”。为了证明该引理，我们假设$x$是$1 \bmod p$的平方根，于是有</p>
+<p>$$x^2 \equiv 1 (\bmod p)$$<br>
+$$(x + 1)(x - 1) \equiv 0 (\bmod p)$$</p>
+<p>也就是说，$(x - 1)(x + 1)$能够被素数$p$整除。根据欧几里得引理，必有$p$能够整除$x-1$或$x+1$，即$x \equiv 1 (\bmod p)$或$x \equiv -1 (\bmod p)$。因此，$1 \bmod p$的平方根均为$p$的平凡平方根，引理得证。</p>
+<p>下面我们进行一个信仰之跃，介绍Miller-Rabin算法的思路。假设$n$是一个奇素数，且$n &gt; 2$，此时$n - 1$必然为一个偶数，可以被表示为$2^s \times d$的形式，其中$s$和$d$均为正整数，且$d$是奇数。由费马小定理，对于一个素数$n$，有</p>
+<p>$$a^{n-1} \equiv 1 (\bmod n)$$</p>
+<p>因此</p>
+<p>$$a^{2^s d} \equiv 1 (\bmod n)$$</p>
+<p>由上述引理，我们可以对上式取平方根，得到的必然为平凡平方根1或-1。假如我们得到的平方根为1，则继续取平方根，如此循环，最后必然会得到下列两种情况之一：</p>
+<ol>
+<li>得到某个$0 \leq r \leq s -1$，它满足$a^{2^r d} \equiv -1 (\bmod n)$</li>
+<li>发现对于任意$0\leq r \leq s -1$，都满足$a^{2^r d} \equiv 1 (\bmod n)$，即$a^d \equiv 1 (\bmod n)$</li>
+</ol>
+<p>Miller-Rabin素性检测就是上述原理的逆否：如果我们能找到这样一个$a$，使得对任意$0 \leq r \leq s - 1$，都满足以下两个式子：</p>
+<p>$$a^{2^r d} \not\equiv 1 (\bmod n)$$<br>
+$$a^d \not\equiv 1 (\bmod n)$$</p>
+<p>则$n$必然不是一个素数。我们用记号$W_n(a)$表示$a$满足上述条件，称$a$是$n$为合数的一个凭证（witness to the compositeness of n）。</p>
+<h2>Miller-Rabin素性检测的算法伪代码</h2>
+<p>下面给出一种Miller-Rabin素性检测的算法伪代码。<a href="#bib2" id="bib2ref"><sup>[2]</sup></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Miller-Rabin(n)</span><br><span class="line">    把n-1写成n-1 = 2^k * m，其中m是一个奇数</span><br><span class="line">    选取随机整数a，使得1 &lt;= a &lt;= n-1</span><br><span class="line">    b = a^m (mod n)</span><br><span class="line">    if b == 1 (mod n)</span><br><span class="line">        return (&quot;n is prime&quot;)</span><br><span class="line">    for i = 0 to k-1</span><br><span class="line">        if b == -1 (mod n)</span><br><span class="line">            return (&quot;n is prime&quot;)</span><br><span class="line">        else</span><br><span class="line">            b = b^2 (mod n)</span><br><span class="line">    return (&quot;n is composite&quot;)</span><br></pre></td></tr></table></figure>
+<h2>Miller-Rabin算法的正确性</h2>
+<p>上述证明虽然说明了Miller-Rabin算法能够在某些情况下证明$n$不是一个素数，但并没有证明这个算法对于素数不会做出错误判断，也没有说明这个算法能够给出正确判断的概率。事实上，上述算法是一个<strong>偏是</strong>的Monte-Carlo算法，且错误概率至多为$\frac{1}{4}$。</p>
+<p>下面首先说明什么是“偏是的Monte-Carlo算法”（定义摘自<a href="#bib2" id="bib2ref"><sup>[2]</sup></a>）。第一个问题是，何为判定问题和随机算法？</p>
+<blockquote>
+<p>一个判定问题（decision problem）是指只能回答“是（yes）”或者“否（no）”的问题。一个随机算法是指任一使用了随机数的算法（反过来，一个算法没有使用随机数，称为确定的算法）。</p>
+</blockquote>
+<p>下面是对“判定问题的随机算法”的定义。</p>
+<blockquote>
+<p>对于一个判定问题的一个偏是（yes-biased）Monte Carlo算法是具有下列性质的一个概率算法：一个“是”回答总是正确的，但一个“否”回答也许是不正确的。类似地，可定义一个偏否的（no-biased）Monte Carlo算法。我们说一个偏是Monte Carlo算法具有错误概率$\epsilon$，如果算法对任何回答应该为“是”的实例（instance）至多以$\epsilon$的概率给出一个不正确的回答“否”（这个概率是对于给定的输入，通过算法产生所有可能的随机选择进行计算而得出的）。</p>
+</blockquote>
+<p>我们要回答的判定问题是这样的：给定一个正整数$n \geq 2$，问$n$是一个合数吗？</p>
+<h3>证明Miller-Rabin算法是一个偏是的Monte Carlo算法</h3>
+<p>使用反证法证明这一结论：假定上述算法对于某个素数$n$回答了“$n$为合数”，然后推出矛盾。由于算法回答“$n$为合数”，必有$a^m \not\equiv 1 (\bmod n)$。现在考虑在算法中检测的$b$的序列。由于$b$在<code>for</code>循环的每一步中都做平方运算，因此我们测试的值序列为$a^m, a^{2m}, a^{2^{(k-1)}m}$。由于算法回答“$n$为合数”，可知对于$0 \leq i \leq k-1$，都满足：</p>
+<p>$$a^{2^i m} \not\equiv -1 (\bmod n)$$</p>
+<p>由于我们假设$n$为素数，由于$n - 1 = 2^k m$，由费马小定理可知：</p>
+<p>$$a^{2^k m} \equiv 1 (\bmod n)$$</p>
+<p>因此$a^{2^{k-1}m}$是模$n$的1的平方根。由于$n$为素数，由引理可知，模$n$的1的平方根只有两个，即$\pm 1 \bmod n$。由算法执行过程，我们可以知道：</p>
+<p>$$a^{2^{k-1} m} \not\equiv -1 (\bmod n)$$</p>
+<p>由此可得</p>
+<p>$$a^{2^{k-1} m} \equiv 1 (\bmod n)$$</p>
+<p>因此$a^{2^{k-2}m}$是模$n$的1的平方根。以此类推，重复上述过程，我们最后可以得到：</p>
+<p>$$a^m \equiv 1 (\bmod n)$$</p>
+<p>但在这种情况下，算法一开始就会回答“$n$为素数”，因此推出矛盾。</p>
+<p>（好吧，其实我们并不是很需要这个证明，我只是把《密码学原理与实践》上的证明又抄了一遍而已……）</p>
+<h3>证明Miller-Rabin的错误概率不大于1/4</h3>
+<p>Rabin在1977年的论文<a href="#bib3" id="bib3ref"><sup>[3]</sup></a>中证明了下列定理：若$n$为大约4的合数，则有</p>
+<p>$$\frac{3(n-1)}{4} \leq c({b | W_n(b)})$$</p>
+<p>其中$W_n(b)$的意思上面已经讲过了，表示$b$是$n$为合数的一个凭证；$c(S)$表示集合$S$中元素的数目。上述定理表明，在$[1, n-1]$的整数中，最多只有$\frac{1}{4}(n-1)$个数不是$n$为合数的凭证。因此，在$[1, n-1]$中任选整数$a$进行测试，能够测试出$n$为合数的概率$\leq \frac{3}{4}$，即Miller-Rabin算法的错误概率不大于$\frac{1}{4}$。（证明太长了，懒得看也懒得写了，总之论文里什么都有）</p>
+<p>我们可能因此认为，连续对某个合数$n$进行$N$次测试，无法发现$n$为合数的概率小于$(\frac{1}{4})^N$。这个界当然是正确的，但它并不紧。事实上，有人<a href="#bib4" id="bib4ref"><sup>[4]</sup></a>证明了更紧的界：如果我们不断随机选取$k$位（二进制位）的奇数，对这个数进行$t$次互相独立的随机Miller-Rabin检测，，输出第一个通过所有测试的数，令$p_{k, t}$表示这个数是合数的概率，则$p_{k, t}$比$4^{-t}$小得多。事实上，$p_{k, t}$满足下列公式：</p>
+<p>$k \geq 2$时，$p_{k, t} &lt; k^2 4^{2 - \sqrt{k}}$</p>
+<p>$t = 2, k \geq 88$或$3 \leq t \leq k/9, k \geq21$时，$p_{k, t} &lt; k^{3/2} 2^t t^{-1/2} 4^{2 -\sqrt{tk}}$</p>
+<p>$t \geq k/9, k \geq 21$时，$p_{k, t} &lt; \frac{7}{20} k 2^{-5t} + \frac{1}{7} k^{15/4} 2^{-k/2 - 2t} + 12k 2^{-k/4 - 3t}$</p>
+<p>$t \geq k/4, k \geq 21$时，$p_{k, t} &lt; \frac{1}{7} k^{15/4} 2^{-k/2 -2t}$</p>
+<h2>Miller-Rabin算法的实现</h2>
+<p>实际上这是今年密码学的最后一个编程作业：要求生成若干个512bit的奇数并用Miller-Rabin算法验证它们是否为素数，可以用2000以下的素数进行试除。代码见<a href="https://gist.github.com/zhanghuimeng/e2305a5324c6705f4eba9d94f7308769" target="_blank" rel="noopener">https://gist.github.com/zhanghuimeng/e2305a5324c6705f4eba9d94f7308769</a>。</p>
+<p>选择python进行程序编写是因为python自带长整型功能，很方便。但是仍然有一些需要注意的地方，比如除法的精度<a href="#bib5" id="bib5ref"><sup>[5]</sup></a>，我在这里debug了一段时间。如果需要验证自己生成的素数的正确性，可以参考这个网站<a href="#bib6" id="bib6ref"><sup>[6]</sup></a>，可以检测很大（512bit是可以的，再大没试过）的数的素性。</p>
+<p>如果我们把这个验证问题看做是“不断生成长度为512bit的奇数并进行验证，直到得到一个素数为止；之后重新进行这一实验”的过程，则可以应用论文<a href="#bib4" id="bib4ref"><sup>[4]</sup></a>中给出的界：</p>
+<p>$3 \leq t \leq k/9, k \geq21$时，$p_{k, t} &lt; k^{3/2} 2^t t^{-1/2} 4^{2 -\sqrt{tk}}$</p>
+<p>当$k = 512$时，对于几个比较小的$t$，可以计算出上述概率界：</p>
+<table>
+<thead>
+<tr>
+<th>$t$</th>
+<th>$p_{k, t}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>$2.1713 \times 10^{-18}$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$8.4138 \times 10^{-22}$</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$9.1537 \times 10^{-25}$</td>
+</tr>
+<tr>
+<td>6</td>
+<td>$2.0681 \times 10^{-27}$</td>
+</tr>
+<tr>
+<td>7</td>
+<td>$8.1180 \times 10^{-30}$</td>
+</tr>
+<tr>
+<td>8</td>
+<td>$4.9304 \times 10^{-32}$</td>
+</tr>
+<tr>
+<td>9</td>
+<td>$4.2755 \times 10^{-34}$</td>
+</tr>
+<tr>
+<td>10</td>
+<td>$4.9937 \times 10^{-36}$</td>
+</tr>
+<tr>
+<td>11</td>
+<td>$7.5175 \times 10^{-38}$</td>
+</tr>
+<tr>
+<td>12</td>
+<td>$1.4097 \times 10^{-39}$</td>
+</tr>
+<tr>
+<td>13</td>
+<td>$3.2047 \times 10^{-41}$</td>
+</tr>
+</tbody>
+</table>
+<p>可以看出，取$n = 13$已经能够保证错误概率$&lt; 10^{-40}$了。事实上，计算机发生随机错误的概率大约是$1.8 \times 10^{-24}$，再增加迭代次数，将Miller-Rabin算法的准确度提得更高并无意义。<a href="#bib7" id="bib7ref"><sup>[7]</sup></a></p>
+<h2>参考文献</h2>
+<p><a id="bib1" href="#bib1ref"><sup>[1]</sup></a> 米勒-拉宾素性检验. <a href="https://zh.wikipedia.org/wiki/%E7%B1%B3%E5%8B%92-%E6%8B%89%E5%AE%BE%E6%A3%80%E9%AA%8C" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/米勒-拉宾检验</a><br>
+<a id="bib2" href="#bib2ref"><sup>[2]</sup></a> 《密码学原理与实践》第二版 P154 5.4 素性检测.<br>
+<a id="bib3" href="#bib3ref"><sup>[3]</sup></a> Probabilistic Algorithm for Testing Primality. <a href="https://ac.els-cdn.com/0022314X80900840/1-s2.0-0022314X80900840-main.pdf?_tid=a83dac24-31c7-42a4-bb29-f9ef85871027&amp;acdnat=1530269388_63d4d83bf5a9aebc8c2ddf333f080240" target="_blank" rel="noopener">https://ac.els-cdn.com/0022314X80900840/1-s2.0-0022314X80900840-main.pdf?_tid=a83dac24-31c7-42a4-bb29-f9ef85871027&amp;acdnat=1530269388_63d4d83bf5a9aebc8c2ddf333f080240</a><br>
+<a id="bib4" href="#bib4ref"><sup>[4]</sup></a> Average case error estimates for the strong probable prime test. <a href="https://www.math.dartmouth.edu/~carlp/PDF/paper88.pdf" target="_blank" rel="noopener">https://www.math.dartmouth.edu/~carlp/PDF/paper88.pdf</a><br>
+<a id="bib5" href="#bib5ref"><sup>[5]</sup></a> How to get the correct accuracy with big integer division in python. <a href="https://stackoverflow.com/questions/42709746/how-to-get-the-correct-accuracy-with-big-integer-division-in-python" target="_blank" rel="noopener">https://stackoverflow.com/questions/42709746/how-to-get-the-correct-accuracy-with-big-integer-division-in-python</a><br>
+<a id="bib6" href="#bib6ref"><sup>[6]</sup></a> Integer factorization calculator. <a href="https://alpertron.com.ar/ECM.HTM" target="_blank" rel="noopener">https://alpertron.com.ar/ECM.HTM</a><br>
+<a id="bib7" href="#bib7ref"><sup>[7]</sup></a> RSA and prime-generator algorithms. <a href="https://stackoverflow.com/questions/4159333/rsa-and-prime-generator-algorithms/4160517#4160517" target="_blank" rel="noopener">https://stackoverflow.com/questions/4159333/rsa-and-prime-generator-algorithms/4160517#4160517</a></p>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-09-12T19:55:00+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2018-09-12
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Cryptography/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Cryptography</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/ostep-ch-01-summary-a-dialogue-on-the-book/" rel="prev" title="OSTEP第01章总结：A Dialogue on the Book">
+                                  
+                                      OSTEP第01章总结：A Dialogue on the Book
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a> <a class="tag" href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OSTEP</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/art-thou-poor-by-t-dekker/" rel="prev" title="《英诗金库》I-54：Art thou poor, by T. Dekker">
+                                    
+                                        《英诗金库》I-54：Art thou poor, by T. Dekker
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/GoldenTreasury/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>GoldenTreasury</a> <a class="tag" href="/tags/戴镏龄/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>戴镏龄</a> <a class="tag" href="/tags/T-Dekker/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>T.Dekker</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: 'Miller-Rabin素性检测的原理与实现',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Miller-Rabin素性检测的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Miller-Rabin素性检测的算法伪代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Miller-Rabin算法的正确性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">证明Miller-Rabin算法是一个偏是的Monte Carlo算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">证明Miller-Rabin的错误概率不大于1/4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Miller-Rabin算法的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">参考文献</span></a></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

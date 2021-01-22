@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Archives: 2018/8 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+	
+    <script>
+        window.subData= { title:'year : 2018.8'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/usaco-1-2-1-your-ride-is-here/">
+              
+                  USACO 1.2.1: Your Ride Is Here
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-19
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>额，我竟然开始重刷USACO了……希望这次能刷完，不要像高中时那样半途而废吧。USACO的题目对现在的我说不上多有用，但这可能是种情结。</p>
+<h2>题意</h2>
+<p>见<a href="https://www.luogu.org/problemnew/show/P1200" target="_blank" rel="noopener">洛谷 P1200</a>。（网上这道题的相关翻译到处都是，但我不知道现在NOCOW的镜像站还能活多久，所以还是看洛谷好了。）</p>
+<h2>分析</h2>
+<p>很水，直接乘了之后取模就可以了。考虑到<code>26^5 = 11881376</code>，甚至都不需要考虑乘法溢出的问题（虽然我还是做了）。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ID: zhanghu15</span></span><br><span class="line"><span class="comment">TASK: ride</span></span><br><span class="line"><span class="comment">LANG: C++14</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">ofstream <span class="title">fout</span><span class="params">(<span class="string">"ride.out"</span>)</span></span>;</span><br><span class="line">    <span class="function">ifstream <span class="title">fin</span><span class="params">(<span class="string">"ride.in"</span>)</span></span>;</span><br><span class="line">    <span class="built_in">string</span> comet, group;</span><br><span class="line">    fin &gt;&gt; comet &gt;&gt; group;</span><br><span class="line">    <span class="keyword">int</span> cometProd = <span class="number">1</span>, groupProd = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c: comet)</span><br><span class="line">        cometProd = (cometProd * (c - <span class="string">'A'</span> + <span class="number">1</span>)) % <span class="number">47</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c: group)</span><br><span class="line">        groupProd = (groupProd * (c - <span class="string">'A'</span> + <span class="number">1</span>)) % <span class="number">47</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (cometProd == groupProd)</span><br><span class="line">        fout &lt;&lt; <span class="string">"GO"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        fout &lt;&lt; <span class="string">"STAY"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/USACO/"><i class="fas fa-hashtag fa-fw"></i>USACO</a>
+        
+          <a href="/tags/alg-String/"><i class="fas fa-hashtag fa-fw"></i>alg:String</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-621-task-scheduler/">
+              
+                  Leetcode 621. Task Scheduler（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-18
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/task-scheduler/description/" target="_blank" rel="noopener">https://leetcode.com/problems/task-scheduler/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/5</p>
+<p>代码效率：</p>
+<ul>
+<li>排序+贪心：6.90%</li>
+<li>直接贪心：98.84%</li>
+</ul>
+<h2>题意</h2>
+<p>有若干种任务，每种任务有若干个时间片，同一任务的两个时间片之间的间隔必须超过<code>n</code>。问执行完所有任务至少需要多少个时间片。</p>
+<h2>分析</h2>
+<p>很容易想到一种直接的贪心方法：每次选择已经到了冷却时间且剩余个数最多的任务来执行。</p>
+<p>另一种思路则十分巧妙。事实上，上一种思路中我们浪费了过多的信息。从题意中可以看出，任务的名称和执行并没有明确的关系，因此不妨假设我们已经按任务所需时间片的数量从大到小排好序了，为<code>A</code>到<code>Z</code>。若<code>n &gt;= 25</code>，则任务的执行必然呈现出周期性，因为：</p>
+<ul>
+<li>第<code>1</code>个时间片：因为之前没有执行过A，且A所需时间片最多，所以执行A</li>
+<li>第<code>2</code>个时间片：A未到冷却时间；之前没有执行过B，且B在剩余任务中所需时间片最多，所以执行B</li>
+<li>第<code>3</code>个时间片：A、B未到冷却时间；之前没有执行过C，且C在剩余任务中所需时间片最多，所以执行C</li>
+<li>……</li>
+<li>第<code>26</code>个时间片：只有Z未到冷却时间，执行Z</li>
+<li>空闲……</li>
+<li>第<code>n+2</code>个时间片：由于A-Z已经各执行了一次，剩余时间片大小的顺序关系不变，因此仍然按上述顺序执行</li>
+<li>……</li>
+<li>第？个时间片：此时只有时间片总量最大的A（也许还有B，等等）还没有执行完，执行完A后，我们就可以结束执行了。</li>
+</ul>
+<p>此时用图来表现执行顺序，就会变成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ABCD......ZXXXX</span><br><span class="line">ABCD......ZXXXX</span><br><span class="line">ABCD......ZXXXX</span><br><span class="line">......</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+<p>显然我们应该把<code>n</code>的界再缩小一些：假设实际任务的总数为<code>m</code>，则<code>n &gt;= m - 1</code>时，实际执行状况都是这样的。不妨设A的时间片个数为<code>maxIntervals</code>，时间片数量与A相等的任务个数为<code>maxCount</code>，则所需时间片总量为<code>(maxIntervals - 1) * (n + 1) + maxCount</code>。</p>
+<p>当<code>n &lt; m - 1</code>时，我们只需先把前<code>n + 1</code>个任务安排好：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ABCDE</span><br><span class="line">ABCDE</span><br><span class="line">ABCDE</span><br><span class="line">ABCDE</span><br><span class="line">...</span><br><span class="line">ABC</span><br></pre></td></tr></table></figure>
+<p>然后把剩余的任务按顺序插进去，有多少个就插多少个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ABCDEFGHI</span><br><span class="line">ABCDEFGH</span><br><span class="line">ABCDEFGH</span><br><span class="line">ABCDEFG</span><br><span class="line">...</span><br><span class="line">ABC</span><br></pre></td></tr></table></figure>
+<p>此时没有空闲时间片，所以需要的时间片总量为全部任务时间片的总量。</p>
+<p>特别地，当<code>n &lt; m - 1</code>且<code>maxCount &gt;= n - 1</code>时，我们不需要按照<code>n</code>的循环来安排任务，直接按照<code>m</code>来循环即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ABCD......Z</span><br><span class="line">ABCD......Z</span><br><span class="line">ABCD......Z</span><br><span class="line">......</span><br><span class="line">AB</span><br></pre></td></tr></table></figure>
+<p>上述思路参考了<a href="https://leetcode.com/problems/task-scheduler/discuss/104496/concise-Java-Solution-O%28N%29-time-O%2826%29-space" target="_blank" rel="noopener">concise Java Solution O(N) time O(26) space</a>和<a href="https://leetcode.com/problems/task-scheduler/discuss/104500/Java-O%28n%29-time-O%281%29-space-1-pass-no-sorting-solution-with-detailed-explanation" target="_blank" rel="noopener">Java O(n) time O(1) space 1 pass, no sorting solution with detailed explanation</a>。</p>
+<h2>代码</h2>
+<h3>排序+贪心</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; tasks, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> taskLeft[<span class="number">26</span>];</span><br><span class="line">        <span class="built_in">memset</span>(taskLeft, <span class="number">0</span>, <span class="keyword">sizeof</span>(taskLeft));</span><br><span class="line">        <span class="keyword">int</span> lastExecute[<span class="number">26</span>];</span><br><span class="line">        <span class="built_in">memset</span>(lastExecute, <span class="number">-1</span>, <span class="keyword">sizeof</span>(lastExecute));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c: tasks)</span><br><span class="line">            taskLeft[c - <span class="string">'A'</span>]++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> task = <span class="number">-1</span>, left = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (taskLeft[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    found = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (lastExecute[i] == <span class="number">-1</span> || now - lastExecute[i] &gt; n) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (left == <span class="number">-1</span> || taskLeft[i] &gt; left) &#123;</span><br><span class="line">                            left = taskLeft[i];</span><br><span class="line">                            task = i;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!found)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">// cout &lt;&lt; now &lt;&lt; ' ' &lt;&lt; task &lt;&lt; endl;</span></span><br><span class="line">            <span class="keyword">if</span> (found &amp;&amp; task == <span class="number">-1</span>) &#123;</span><br><span class="line">                now++;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            taskLeft[task]--;</span><br><span class="line">            lastExecute[task] = now;</span><br><span class="line">            now++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> now;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>直接贪心</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; tasks, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> taskLeft[<span class="number">26</span>];</span><br><span class="line">        <span class="built_in">memset</span>(taskLeft, <span class="number">0</span>, <span class="keyword">sizeof</span>(taskLeft));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c: tasks)</span><br><span class="line">            taskLeft[c - <span class="string">'A'</span>]++;</span><br><span class="line"></span><br><span class="line">        sort(taskLeft, taskLeft + <span class="number">26</span>);</span><br><span class="line">        <span class="keyword">int</span> maxes = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">25</span>; i &gt;= <span class="number">0</span> &amp;&amp; taskLeft[i] == taskLeft[<span class="number">25</span>]; i--)</span><br><span class="line">            maxes++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max((<span class="keyword">int</span>) tasks.size(), (taskLeft[<span class="number">25</span>] - <span class="number">1</span>) * (n + <span class="number">1</span>) + maxes);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-202-happy-number/">
+              
+                  Leetcode 202. Happy Number（数列）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-17
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/happy-number/description/" target="_blank" rel="noopener">https://leetcode.com/problems/happy-number/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：3/3</p>
+<p>代码效率：</p>
+<ul>
+<li>普通方法：16.77%</li>
+<li>Floyd判圈算法：100.00%</li>
+<li>42是万物的答案：16.77%</li>
+</ul>
+<h2>题意</h2>
+<p>判断一个正整数是否是<a href="https://zh.wikipedia.org/wiki/%E5%BF%AB%E6%A8%82%E6%95%B8" target="_blank" rel="noopener">快乐数</a>。</p>
+<h2>分析</h2>
+<p>这道题本身倒是很简单：直接迭代对数位平方求和，直到找到循环或者得到1即可。但是快乐数还有很多非常有趣的性质。除此之外，我们还可以应用<a href="https://zh.wikipedia.org/wiki/Floyd%E5%88%A4%E5%9C%88%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">Floyd判圈算法</a>来解决找循环的问题。（<a href="https://leetcode.com/problems/happy-number/discuss/56917/My-solution-in-C%28-O%281%29-space-and-no-magic-math-property-involved-%29" target="_blank" rel="noopener">My solution in C( O(1) space and no magic math property involved )</a>）这样会稍微牺牲一点计算的常数，但会大大减少Hash所需的存储空间。我记得上个学期《现代密码学》讲碰撞攻击的时候也用到了相似的思路。</p>
+<h3>快乐数的性质</h3>
+<p>有两篇题解都讲到了快乐数的性质（<a href="https://leetcode.com/problems/happy-number/discuss/56918/All-you-need-to-know-about-testing-happy-number!" target="_blank" rel="noopener">All you need to know about testing happy number!</a>和<a href="https://leetcode.com/problems/happy-number/discuss/56919/Explanation-of-why-those-posted-algorithms-are-mathematically-valid" target="_blank" rel="noopener">Explanation of why those posted algorithms are mathematically valid</a>），不过并不是很全面。<a href="http://math.bard.edu/student/pdfs/alison-mutter.pdf" target="_blank" rel="noopener">这篇论文</a>中讲到了更多的内容。</p>
+<p>下面令$f(n)$表示对n进行数位平方和运算得到的结果。</p>
+<p>性质1：集合$H = {1}$是一个不动点。</p>
+<p>证明：显然，$f(1) = 1^2 = 1$。</p>
+<p>性质2：集合$S = {4, 16, 37, 58, 89, 145, 42, 20}$表示了一个长度为8的循环。对于任意$n \in S$，$f^m(n) \in S$。</p>
+<p>证明：$f(4) = 4^2 = 16$，$f(16) = 1^2 + 6^2 = 37$，$f(37) = 3^2 + 7^2 = 58$，$f(58) = 5^2 + 8^2 = 89$，$f(89) = 8^2 + 9^2 = 145$，$f(145) = 1^2 + 4^2 + 5^2 = 42$，$f(42) = 4^2 + 2^2 = 20$，$f(20) = 2^2 + 0^2 = 4$。</p>
+<p>定理：对于任意自然数$n$，总存在自然数$m$，使得$f^m(n) \in S$或$f^m(n) \in H$。这意味着一个自然数或者是快乐数，或者在经过足够多次的$f$运算后，总会落入$S$表示的循环中。</p>
+<p>证明：对于任何自然数$n$，每一位数字的最大值都是9。当$n$为$k$位时，$f(n)$在$n$的每一位都为9时取到最大值$9^2 k$，因此$f(n) &lt; 81k$。由于$k$位数的第一位必然不是0，因此$10^{k-1} \leq n &lt; 10^k$。显然，$10^{k-1}$增长的速度比$81k$快得多，因此$k \geq 4$时，$81k \leq 10^{k-1}$。由$10^{k-1} \leq n$和$f(n) \leq 81k$可知，$f(n) \leq 81k \leq 10^{k-1} \leq n$，因此$k \geq 4$时$f(n) &lt; n$，这意味着对于1000以上的数，它对应的计算结果必然比原来的数要小，函数是递减的。因此，只有$k &lt; 4$时，$f(n)$可能会大于等于$n$。这种情况下$n$最大可能值为999，此时$f(n) = 243$。</p>
+<p>因此我们得到了999这个界：仅当$n \leq 999$时，$f(n)$可能会大于等于$n$。但事实上我们可以把这个界缩得更小一些：显然，在$[1, 999]$的所有数中，$f(999)$是最大的，对于任意$n \in [1, 999]$，有$f(n) \leq f(999) = 243$。因此，当$243 &lt; n \leq 999$时，$f(n) \leq 243 &lt; n$。所以，仅当$n \leq 243$时，$f(n)$可能会大于等于$n$。</p>
+<p>当$n &gt; 243$时，函数是单调递减的，因此单由这样的$n$是不可能组成循环的；且必然存在自然数$m$，使得$1 \leq f^{(m)}(n) \leq 243$。下面，我们只需编程检查$[1, 243]$范围内的所有数。代码如下，运行之后检查结果，可以发现定理是正确的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">calcHappy</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        sum += (x % <span class="number">10</span>) * (x % <span class="number">10</span>);</span><br><span class="line">        x /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">243</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> x = i;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">", "</span>;</span><br><span class="line">        <span class="keyword">while</span> (x != <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (x == <span class="number">4</span> || x == <span class="number">16</span> || x == <span class="number">37</span> || x == <span class="number">58</span> || x == <span class="number">89</span> || x == <span class="number">145</span> || x == <span class="number">42</span> || x == <span class="number">20</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            x = calcHappy(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2>代码</h2>
+<h3>普通方法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calcHappy</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            sum += (x % <span class="number">10</span>) * (x % <span class="number">10</span>);</span><br><span class="line">            x /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// 对于一个int，10 * 9^2 = 810，所以这样计算肯定不会爆栈的</span></span><br><span class="line">        <span class="keyword">bool</span> visited[<span class="number">1000</span>];</span><br><span class="line">        <span class="built_in">memset</span>(visited, <span class="number">0</span>, <span class="keyword">sizeof</span>(visited));</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="comment">// cout &lt;&lt; n &lt;&lt; endl;</span></span><br><span class="line">            n = calcHappy(n);</span><br><span class="line">            <span class="keyword">if</span> (visited[n] == <span class="literal">true</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            visited[n] = <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">while</span> (n != <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>Floyd判圈算法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calcHappy</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            sum += (x % <span class="number">10</span>) * (x % <span class="number">10</span>);</span><br><span class="line">            x /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">int</span> slow = n, fast = n;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            slow = calcHappy(slow);</span><br><span class="line">            fast = calcHappy(fast);</span><br><span class="line">            fast = calcHappy(fast);</span><br><span class="line">        &#125; <span class="keyword">while</span> (slow != fast);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> slow == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>42是万物的答案</h3>
+<p>这一方法来自<a href="https://leetcode.com/problems/happy-number/discuss/57028/42-is-the-answer" target="_blank" rel="noopener">StephanPochmann</a>，看上去非常有趣。由于10进制快乐数一共只有一个非平凡的循环：<code>[4, 16, 37, 58, 89, 145, 42, 20]</code>，而<a href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy#Answer_to_the_Ultimate_Question_of_Life.2C_the_Universe.2C_and_Everything_.2842.29" target="_blank" rel="noopener">42</a>恰好在这个集合中，所以我们可以利用42做一点事情——比如在代码中只写出一个数字，42。</p>
+<p>我尝试在C++中复制这一做法，但彻底失败了。可能是因为我对lambda表达式不够熟悉吧……</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calcHappy</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> s = to_string(x);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; squares;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)</span><br><span class="line">            squares.push_back(stoi(s.substr(i, <span class="number">1</span>)) * stoi(s.substr(i, <span class="number">1</span>)));</span><br><span class="line">        <span class="keyword">return</span> accumulate(squares.begin(), squares.end(), <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> prev;</span><br><span class="line">        <span class="keyword">while</span> (n != <span class="number">42</span>) &#123;</span><br><span class="line">            prev = n;</span><br><span class="line">            n = calcHappy(n);</span><br><span class="line">            <span class="keyword">if</span> (prev == n)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Math/"><i class="fas fa-hashtag fa-fw"></i>alg:Math</a>
+        
+          <a href="/tags/alg-Hash-Table/"><i class="fas fa-hashtag fa-fw"></i>alg:Hash Table</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-539-minimum-time-difference/">
+              
+                  Leetcode 539. Minimum Time Difference（排序和取模）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-17
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/minimum-time-difference/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimum-time-difference/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：</p>
+<ul>
+<li>普通排序：25.78%</li>
+<li>优化和桶排序：89.80%</li>
+</ul>
+<h2>题意</h2>
+<p>给定若干个时间点（格式为<code>HH:mm</code>），求其中最小的时间间隔。</p>
+<h2>分析</h2>
+<p>总的来说是道非常水的题，直接把小时全都化成分钟，然后排序求间隔就可以了。唯一需要注意的是排序完之后开头和末尾的时间需要特殊处理。（就像12月和1月也是相连的那样。）</p>
+<p>题解区里有很多很妙的想法。比如，<a href="https://leetcode.com/problems/minimum-time-difference/discuss/100694/7-liner-%2522O%281%29%2522-solution%3A-only-60*24-possible-different-time-points!" target="_blank" rel="noopener">有人声称</a>，最多只有<code>60*24</code>个时间点，如果输入数据超过这一规模，则可以直接返回<code>0</code>，因为根据鸽巢原理，必然有重复的时间。因此，我们最多只需处理<code>60*24</code>规模的数据，所以这个算法是<code>O(1)</code>的！我觉得，这个算法由于格式限制，是无法scale的，所以说是<code>O(1)</code>倒也没有什么太大的问题，虽然这么说没什么意义。</p>
+<p>因为数据规模的原因，显然可以用桶排序进行优化。</p>
+<h2>代码</h2>
+<h3>普通排序</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMinDifference</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; timePoints)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 可以转换成int，然后计算模1440情况下的最小差值</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intTimes;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> pnt: timePoints) &#123;</span><br><span class="line">            <span class="keyword">int</span> minutes = stoi(pnt.substr(<span class="number">0</span>, <span class="number">2</span>)) * <span class="number">60</span> + stoi(pnt.substr(<span class="number">3</span>, <span class="number">2</span>));</span><br><span class="line">            intTimes.push_back(minutes);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(intTimes.begin(), intTimes.end());</span><br><span class="line">        <span class="keyword">int</span> minDif = (intTimes.front() - intTimes.back() + <span class="number">1440</span>) % <span class="number">1440</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; intTimes.size(); i++)</span><br><span class="line">            minDif = min(minDif, intTimes[i] - intTimes[i - <span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">return</span> minDif;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>优化和桶排序</h3>
+<p>快了大约8ms。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMinDifference</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; timePoints)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (timePoints.size() &gt; <span class="number">1440</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 可以转换成int，然后计算模1440情况下的最小差值</span></span><br><span class="line">        <span class="keyword">int</span> bucket[<span class="number">1440</span>];</span><br><span class="line">        <span class="built_in">memset</span>(bucket, <span class="number">0</span>, <span class="keyword">sizeof</span>(bucket));</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> pnt: timePoints) &#123;</span><br><span class="line">            <span class="keyword">int</span> minutes = stoi(pnt.substr(<span class="number">0</span>, <span class="number">2</span>)) * <span class="number">60</span> + stoi(pnt.substr(<span class="number">3</span>, <span class="number">2</span>));</span><br><span class="line">            bucket[minutes]++;</span><br><span class="line">            <span class="keyword">if</span> (bucket[minutes] &gt; <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> first = <span class="number">-1</span>, last = <span class="number">-1</span>, minDif = <span class="number">1440</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1440</span>; i++)</span><br><span class="line">            <span class="keyword">if</span> (bucket[i] != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (first == <span class="number">-1</span>)</span><br><span class="line">                    first = i;</span><br><span class="line">                <span class="keyword">if</span> (last != <span class="number">-1</span>)</span><br><span class="line">                    minDif = min(minDif, i - last);</span><br><span class="line">                last = i;</span><br><span class="line">            &#125;</span><br><span class="line">        minDif = min(minDif, (first - last + <span class="number">1440</span>) % <span class="number">1440</span>);</span><br><span class="line">        <span class="keyword">return</span> minDif;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-String/"><i class="fas fa-hashtag fa-fw"></i>alg:String</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-881-boats-to-save-people/">
+              
+                  Leetcode 881. Boats to Save People（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-17
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/boats-to-save-people/description/" target="_blank" rel="noopener">https://leetcode.com/problems/boats-to-save-people/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：25.56%</p>
+<h2>题意</h2>
+<p>给定若干个人的重量，以及一条船的载重限制，一条船上最多载两个人，且总重量不能超过载重限制，问至少需要多少条船运载所有人。</p>
+<h2>分析</h2>
+<h3>一种证明贪心算法正确的方法</h3>
+<p>一道非常简单（经典）的贪心问题，但我却被<a href="https://leetcode.com/problems/boats-to-save-people/discuss/156748/Python-short-2-pointer-solution-and-some-thoughts" target="_blank" rel="noopener">这样的一个问题</a>困扰住了：对于当前重量最大的人，为何我们寻找的匹配是当前重量最小的人，而不是所有可能的匹配中重量最大的人？</p>
+<p>当然，寻找当前重量最小的匹配方法是正确的。<a href="https://leetcode.com/problems/boats-to-save-people/discuss/156855/6-lines-Java-O%28nlogn%29-code-sorting-+-greedy-with-greedy-algorithm-proof." target="_blank" rel="noopener">6 lines Java O(nlogn) code, sorting + greedy, with greedy algorithm proof. </a>中提供了一份形式化的证明，翻译如下（作为贪心算法证明方法的参考）：</p>
+<p>令<code>S</code>表示一种最优解（显然，由于优化目标只是船的数量，最优解可能不止有一种），<code>O</code>表示我们的算法输出的解。</p>
+<ol>
+<li>贪心选择性质（greedy choice property）：选择只需依赖于当前情形，不需要依赖于未来的选择和子问题的其他解。</li>
+</ol>
+<p>从最沉的人<code>hi</code>开始，有2种可能的情况：</p>
+<p>(a) 如果<code>hi</code><strong>不能</strong>和其他任何人进入同一艘船，则在<code>S</code>和<code>O</code>中，<code>hi</code>都独自处于一艘船中。显然，在这种情况下，我们的这一选择是最优的，贪心选择性质维持不变。</p>
+<p>(b) 如果<code>hi</code><strong>可以</strong>和其他某一个人进入一艘船，则在<code>O</code>中，根据我们的算法，<code>hi</code>和最轻的人<code>lo</code>必然位于同一条船上。</p>
+<p>在<code>S</code>中，如果他们也在同一条船上，则我们的这一步骤是最优的，贪心选择性质保持不变；如果他们不在同一条船上，则我们可以把<code>hi</code>和<code>lo</code>在船上的同伴<code>m</code>交换一下。显然，<code>m &lt;= hi</code>，因此交换是可以进行的。因为交换没有导致船变多，我们得到了一个新的最优解<code>T</code>，且在这种解中，<code>hi</code>和<code>lo</code>在同一条船上。这表明，我们的第一个步骤——把<code>hi</code>和<code>lo</code>放进同一条船中——是一个最优步骤，贪心选择性质也维持不变。</p>
+<ol start="2">
+<li>最优子结构性质（optimal substructure property）：对原问题的最优解必然包含对子问题的最优解</li>
+</ol>
+<p>令<code>P</code>表示规模为<code>n</code>的原问题，其中<code>n = people.length</code>。从上述推导中，可以看出，在第一步之后，我们得到了一个子问题<code>P'</code>，规模为<code>n'</code>（如果<code>hi</code>独自占据一艘船，则<code>n' = n - 1</code>，否则<code>n' = n - 2</code>）。我们可以相似地对<code>P'</code>中的<code>hi'</code>和<code>lo'</code>进行和刚才一样的操作。</p>
+<p>由于我们已经证明了，<code>T</code>也是一种最优解，且<code>P'</code>的解（不妨称之为<code>O'</code>）包含在<code>T</code>内，也是一种最优解，所以这一问题具有最优子结构性质。</p>
+<p>综上，我们的算法符合贪心选择性质和最优子结构性质，证毕。</p>
+<hr>
+<p>好吧，我之前并不知道<a href="https://en.wikipedia.org/wiki/Greedy_algorithm" target="_blank" rel="noopener">贪心算法的这两种性质</a>。按照算法导论上的说法，这两种性质实际上是用来分析问题的——只有证明问题具有这两种性质时，才能确定可以应用贪心算法。而在此处的证明里，作者把实际的解法也混在证明过程中了。而“证明问题符合贪心的两种性质”和“证明贪心算法的正确性”本质上是两个问题。事实上，此处作者的证明策略应该叫做“exchange arguments”。<a href="http://www.idi.ntnu.no/~mlh/algkon/greedy.pdf" target="_blank" rel="noopener">Proof methods and greedy algorithms</a>这篇文章中包含了对两种策略的详细论述。</p>
+<h3>对于上述贪心算法的另一种理解</h3>
+<p>在开始查找这些资料之前，我尝试从直觉上去理解这种算法的重要性，并且确实找到了一种理解方法。</p>
+<p>由于有一条船上最多坐两个人的限制，在这种算法下，实际上，我们是在为那些<code>weight &gt; floor(limit/2)</code>的人寻找配对的，能坐在同一条船里的人；结束寻找之后，那些<code>weight &lt;= floor(limit/2)</code>的人之间则可以随意组合。</p>
+<p>把所有的人按重量排序，记<code>mid = floor(limit/2)+1</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| 0 | 1 | ... | mid-1 | mid | ... | n-1 |</span><br></pre></td></tr></table></figure>
+<p>显然，此时最重的人能够配对的人是最少的，次重的人能够配对的人可能会稍微多一些。记最重的人能够配对的人的位置区间为<code>[0, r_1]</code>，次重的人能够配对的人的位置区间为<code>[0, r_2]</code>……直到<code>[0, r_mid]</code>。显然，<code>r_1 &lt;= r_2 &lt;= ... &lt;= r_mid</code>。</p>
+<p>现在我们实际上是在做这样一件事：从上述整数区间中选择一些点，使得它们具有这样的性质：</p>
+<ul>
+<li>每个人只能在自己对应的区间中选点</li>
+<li>点不能重复选择</li>
+</ul>
+<p>我们的目的是最大化能选到点的人的数量。</p>
+<p>此时，将最重的人与最轻的人匹配（假如他们能够匹配）的做法就很好理解了：我们实际上是为他选择了对应的线段中（还没被选择过的）最靠前的一个点。而“所有可能的匹配中重量最大的人”相当于是选择了线段上（还没被选择过的）最靠后的一个点。</p>
+<p>对于这两种算法，不能找到匹配的情况都满足<code>r_i &lt; i</code>。所以这两种算法本质上是一样的。</p>
+<hr>
+<p>我感觉我的证明能力不是很强。以后再遇到贪心问题的时候，我也会尝试去做一下问题的贪心性质和贪心算法的正确性这两种证明的。</p>
+<h3>在Leetcode上的英文回答</h3>
+<p><a href="https://leetcode.com/problems/boats-to-save-people/discuss/156748/Python-short-2-pointer-solution-and-some-thoughts/166286" target="_blank" rel="noopener">https://leetcode.com/problems/boats-to-save-people/discuss/156748/Python-short-2-pointer-solution-and-some-thoughts/166286</a></p>
+<p>In short: I think both &quot;smallest&quot; and &quot;possibly maximum&quot; methods are correct, and they are in some way equivalent.</p>
+<p>Another person has provided a formal proof for the &quot;smallest&quot; selection method. (<a href="https://leetcode.com/problems/boats-to-save-people/discuss/156855/6-lines-Java-O%28nlogn%29-code-sorting-+-greedy-with-greedy-algorithm-proof." target="_blank" rel="noopener">6 lines Java O(nlogn) code, sorting + greedy, with greedy algorithm proof. </a>) Of course, that method is correct, but this might not be immediately obvious. So I'd like to share my understanding of this problem with you. (So it's not a formal proof.)</p>
+<p>Let <code>mid = floor(limit/2)</code>, and divide those people into two groups: 'heavy' people, whose <code>weight &gt; mid</code>; and 'light' people, whose <code>weight &lt;= mid</code>. Minimizing the number of boats is equivalent to maximizing the number of boats with two people in them. It is obvious that, if a 'heavy' person wants to sit in a boat with another person, the other person must be a 'light' one; on the other hand, a 'light' person can certainly sit with another 'light' person, and maybe some of the 'heavy' people.</p>
+<p>Now, a solution is at hand: we first try to pair each 'heavy' person with a 'light' person, and put them in a boat; when a 'heavy' person can't find a pair, we put him alone in a boat; finally, if there are any 'light' person left, we can arbitrarily pair them together. The biggest question is, how can we maximize these 'heavy'-'light' pairs?</p>
+<p>Sort all the people in ascending order. Let <code>n = people.length</code>, and suppose there are altogether <code>m</code> heavy people, denoted by <code>people[n-m]</code>, <code>people[n-m+1]</code>, ... <code>people[n-1]</code>. After sorting, the 'light' people that a 'heavy' person can pair with will form a <strong>interval</strong>. Denote these intervals by <code>[0, r_{n-m})</code>, <code>[0, r_{n-m+1})</code>, ..., <code>[0, r_{n-1})</code>. (Intervals might be empty)</p>
+<p>Example: <code>limit = 8</code>, <code>people = [2, 3, 3, 5, 6, 7]</code></p>
+<p>In this example, <code>heavy = [5, 6, 7]</code>, <code>light =</code>[2, 3, 3]`.</p>
+<ul>
+<li>For <code>7</code>, the interval is <code>[0, 0)</code> (no one can sit with <code>7</code>);</li>
+<li>For <code>6</code>, the interval is <code>[0, 1)</code> (<code>2</code> can sit with <code>6</code>);</li>
+<li>For <code>5</code>, the interval is <code>[0, 3)</code> (<code>[2, 3, 3]</code> can all sit with <code>5</code>).</li>
+</ul>
+<p>And it is obvious that <code>r_{n-m} &gt;= r_{n-m+1} &gt;= ... &gt;= r_{n-1} &gt;= 0</code>. So these intervals are all overlapping, and the left endpoints are all zero.</p>
+<p>Now we can analyze the difference between &quot;smallest&quot; and &quot;possibly maximum&quot; methods. When we choose the &quot;smallest&quot; person, we are choosing the <strong>leftmost</strong> point of the interval (which hasn't be chosen yet); when we choose the &quot;possibly maximum&quot; person, we are choosing the <strong>rightmost</strong> point of the interval (which hasn't be chosen yet).</p>
+<p>Because all intervals has 0 as the left endpoint, when we start from the heaviest person, only when <code>r_k &lt; k</code> (<code>k</code> is the number of 'heavy' people we have considered or is considering) can this 'heavy' person not find a 'light' person to pair. So, in these two methods, we find different 'light' people for the 'heavy' people to pair, but the set of 'heavy' people who cannot find a pair is the same.</p>
+<p>Example: <code>limit = 8</code>, <code>people = [1, 2, 2, 2, 3, 4, 5, 6, 7, 7]</code></p>
+<table>
+<thead>
+<tr>
+<th><code>people[i]</code></th>
+<th><code>k</code></th>
+<th>interval</th>
+<th>&quot;smallest&quot; pair</th>
+<th>&quot;possibly maximum&quot; pair</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>people[9] = 7</code></td>
+<td>1</td>
+<td><code>[0, 1)</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>people[8] = 7</code></td>
+<td>2</td>
+<td><code>[0, 1)</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>people[7] = 6</code></td>
+<td>3</td>
+<td><code>[0, 4)</code></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>people[6] = 5</code></td>
+<td>4</td>
+<td><code>[0, 5)</code></td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numRescueBoats</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; people, <span class="keyword">int</span> limit)</span> </span>&#123;</span><br><span class="line">        sort(people.begin(), people.end());</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = people.size() - <span class="number">1</span>, sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; people[i] + people[j] &gt; limit) &#123;</span><br><span class="line">                j--;</span><br><span class="line">                sum++;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">            sum++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i == j)</span><br><span class="line">            sum++;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+          <a href="/tags/alg-Two-Pointers/"><i class="fas fa-hashtag fa-fw"></i>alg:Two Pointers</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-474-ones-and-zeroes/">
+              
+                  Leetcode 474. Ones and Zeroes（01背包）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-17
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/ones-and-zeroes/description/" target="_blank" rel="noopener">https://leetcode.com/problems/ones-and-zeroes/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/2</p>
+<p>代码效率：25.73%</p>
+<h2>题意</h2>
+<p>有两种资源（0和1）的01背包。（倒是很符合“01”之义。）</p>
+<h2>分析</h2>
+<p>没什么好说的咯……因为是01背包，所以时间复杂度应该是无法优化的，为<code>O(m * n * K)</code>；但是空间复杂度可以通过滚动优化降低到<code>O(m * n)</code>。</p>
+<p>我有时候很好奇，为什么动态规划的复杂度会这么高，无法进行更好的优化。我想，可能是因为我们要求的是最优解，所以必须遍历整个解空间，动态规划只是用一种聪明的方式进行了剪枝而已。</p>
+<p>提交中Runtime Error了一次。经过试验，我发现，在Leetcode这里，在栈上定义<code>526 * 100 * 100</code>的int数组是会爆栈的，他们的栈空间到底是开了多大啊？我在网上查了一圈也没有查到。反正后来就换成滚动数组了。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMaxForm</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// f[N][i][j]：在前N个字符串中，用i个0，j个1最多能组成多少个串</span></span><br><span class="line">        <span class="keyword">int</span> N = strs.size(), digitCnt[N+<span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">        <span class="built_in">memset</span>(digitCnt, <span class="number">0</span>, <span class="keyword">sizeof</span>(digitCnt));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c: strs[i]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (c == <span class="string">'0'</span>)</span><br><span class="line">                    digitCnt[i+<span class="number">1</span>][<span class="number">0</span>]++;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    digitCnt[i+<span class="number">1</span>][<span class="number">1</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// cout &lt;&lt; N &lt;&lt; ' ' &lt;&lt; m &lt;&lt; ' ' &lt;&lt; n &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">int</span> f[<span class="number">2</span>][m+<span class="number">1</span>][n+<span class="number">1</span>], ans = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// seems 526 100 100 is not ok</span></span><br><span class="line">        <span class="built_in">memset</span>(f, <span class="number">0</span>, <span class="keyword">sizeof</span>(f));</span><br><span class="line">        <span class="comment">// 对k进行滚动优化时，必须把k放在最外层循环</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= N; k++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n; j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (i &lt; digitCnt[k][<span class="number">0</span>] || j &lt; digitCnt[k][<span class="number">1</span>])</span><br><span class="line">                        f[k % <span class="number">2</span>][i][j] = f[(k<span class="number">-1</span>) % <span class="number">2</span>][i][j];</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        f[k % <span class="number">2</span>][i][j] = max(f[(k<span class="number">-1</span>) % <span class="number">2</span>][i][j], f[(k<span class="number">-1</span>) % <span class="number">2</span>][i-digitCnt[k][<span class="number">0</span>]][j-digitCnt[k][<span class="number">1</span>]] + <span class="number">1</span>);</span><br><span class="line">                    ans = max(ans, f[k % <span class="number">2</span>][i][j]);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// cout &lt;&lt; i &lt;&lt; ' ' &lt;&lt; j &lt;&lt; ' ' &lt;&lt; k &lt;&lt; ' ' &lt;&lt; f[k % 2][i][j] &lt;&lt; endl;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Dynamic-Programming/"><i class="fas fa-hashtag fa-fw"></i>alg:Dynamic Programming</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/wir-sind-helden-song-translation-3-aurelie/">
+              
+                  Wir Sind Helden歌词翻译（3）：Aurélie
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-16
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2>歌词和翻译</h2>
+<table>
+<thead>
+<tr>
+<th>歌词</th>
+<th>翻译</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aurélies Akzent ist ohne Frage sehr charmant</td>
+<td>奥瑞莉的口音无疑是非常迷人的</td>
+</tr>
+<tr>
+<td>Auch wenn sie schweigt wird sie als wunderbar erkannt</td>
+<td>即便她一动不动，她仍然看上去非常美丽</td>
+</tr>
+<tr>
+<td>Sie braucht mit Reizen nicht zu geizen</td>
+<td>她无需谨慎使用自己的吸引力</td>
+</tr>
+<tr>
+<td>denn ihr Haar ist Meer und Weizen</td>
+<td>因为她的秀发像是海浪和麦浪</td>
+</tr>
+<tr>
+<td>Noch mit Glatze fräß ihr jeder aus der Hand</td>
+<td>即使她变成光头，大家也都会爱她的</td>
+</tr>
+<tr>
+<td>Doch Aurélie kapiert das nie</td>
+<td>但奥瑞莉永远不明白</td>
+</tr>
+<tr>
+<td>Jeden Abend fragt sie sich</td>
+<td>每天晚上她都问自己</td>
+</tr>
+<tr>
+<td>wann nur verliebt sich wer in mich</td>
+<td>什么时候才会有人爱上我</td>
+</tr>
+<tr>
+<td>Aurélie so klappt das nie</td>
+<td>奥瑞莉，那样永远不会奏效的</td>
+</tr>
+<tr>
+<td>Du erwartest viel zu viel</td>
+<td>你期望得太多了</td>
+</tr>
+<tr>
+<td>Die Deutschen flirten sehr subtil</td>
+<td>德国人的调情是非常微妙的</td>
+</tr>
+<tr>
+<td>Aurélie die Männer mögen dich hier sehr</td>
+<td>奥瑞莉，这里的男人都非常喜欢你</td>
+</tr>
+<tr>
+<td>Schau auf der Straße schaut dir jeder hinterher</td>
+<td>你上街时，大家都在看你</td>
+</tr>
+<tr>
+<td>Doch du merkst nichts weil sie nicht pfeifen</td>
+<td>但因为他们不吹口哨，你什么都没注意到</td>
+</tr>
+<tr>
+<td>und pfeifst du selbst die Flucht ergreifen</td>
+<td>如果你开始吹口哨，他们就会逃跑</td>
+</tr>
+<tr>
+<td>Du musst wissen hier ist weniger oft mehr</td>
+<td>你必须知道，在这里，“少”才是“多”</td>
+</tr>
+<tr>
+<td>Ach Aurélie in Deutschland braucht die Liebe Zeit</td>
+<td>哦，奥瑞莉，在德国，爱情需要时间</td>
+</tr>
+<tr>
+<td>Hier ist man nach Tagen erst zum ersten Schritt bereit</td>
+<td>过了这些天，你终于为第一步做好准备了</td>
+</tr>
+<tr>
+<td>Die nächsten Wochen wird gesprochen</td>
+<td>接下来的几周，你们将聊天</td>
+</tr>
+<tr>
+<td>sich aufs Gründlichste berochen</td>
+<td>你们极其仔细地打量对方</td>
+</tr>
+<tr>
+<td>und erst dann trifft man sich irgendwo zu zweit</td>
+<td>这之后你们才会在某处单独见面</td>
+</tr>
+<tr>
+<td>Aurelie so klappt das nie…</td>
+<td>奥瑞莉，那样永远不会奏效的……</td>
+</tr>
+<tr>
+<td>Aurélie so einfach ist das eben nicht</td>
+<td>奥瑞莉，事情远不是那么简单</td>
+</tr>
+<tr>
+<td>Hier haben andre Worte ein ganz anderes Gewicht</td>
+<td>这里不同词语的重要性有微妙的差别</td>
+</tr>
+<tr>
+<td>All die Jungs zu deinen Füßen</td>
+<td>所有的男孩都躺在你的脚下</td>
+</tr>
+<tr>
+<td>wollen sie küssen auch die Süßen</td>
+<td>想要亲吻像你这么可爱的人</td>
+</tr>
+<tr>
+<td>aber du du merkst das nicht</td>
+<td>但你完全没有注意到</td>
+</tr>
+<tr>
+<td>wenn er dabei von Fußball spricht</td>
+<td>因为他同时还在谈论足球</td>
+</tr>
+<tr>
+<td>Ach Aurélie du sagst ich solle dir erklären</td>
+<td>哦，奥瑞莉，你让我向你解释这一切</td>
+</tr>
+<tr>
+<td>wie in aller Welt sich die Deutschen dann vermehren</td>
+<td>德国人到底是怎样繁衍后代的</td>
+</tr>
+<tr>
+<td>wenn die Blumen und die Bienen in Berlin nichts tun als grienen</td>
+<td>柏林的鲜花和蜜蜂只会傻笑</td>
+</tr>
+<tr>
+<td>und sich nen Teufel um Bestäubungsfragen scheren</td>
+<td>从来不管传粉这类见鬼的问题</td>
+</tr>
+<tr>
+<td>Aurélie so klappt das nie…</td>
+<td>奥瑞莉，那样永远不会奏效的……</td>
+</tr>
+</tbody>
+</table>
+<h2>一些想法</h2>
+<p>哈哈哈哈哈哈哈哈哈哈哈哈！</p>
+<p>这首歌的歌词非常俏皮，而且富有画面感。虽然只有叙事者一个人在说话，我却能通过Ta的话想象出奥瑞莉都说了些什么：</p>
+<p>“你说，什么时候才会有人爱上我啊？”——“你期望得太多了，德国人的调情是非常微妙的。”</p>
+<p>“真的吗？”——“这里的男人都非常喜欢你……在这里，‘少’才是‘多’。”</p>
+<p>“啊？德国男人为什么都这么胆小啊？”——“在德国，爱情需要时间……这之后你们才会在某处单独见面。”</p>
+<p>“这么闷骚的话到底怎样才有可能开始谈恋爱啊？？”——“事情远不是那么简单……因为他同时还在谈论足球”</p>
+<p>“算了，我放弃了。德国人到底是怎么从互相有好感进展到拉手拥抱接吻上床的？贵国是不是连小蜜蜂都不会传粉，只会对着鲜花傻笑的？”</p>
+<p>我很喜欢最后一段的脑补。我不能直接看到奥瑞莉对叙事者抱怨德国人性格的具体内容，只能通过叙事者的转述想象，这使得歌词变得非常有趣。</p>
+<p><a href="https://en.wikipedia.org/wiki/Aur%C3%A9lie" target="_blank" rel="noopener">Aurélie</a>看起来像是一个法语名字。法国人大概是要浪漫直接得多吧……</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Translation/"><i class="fas fa-hashtag fa-fw"></i>Translation</a>
+        
+          <a href="/tags/Lyric/"><i class="fas fa-hashtag fa-fw"></i>Lyric</a>
+        
+          <a href="/tags/artist-Wir-Sind-Helden/"><i class="fas fa-hashtag fa-fw"></i>artist:Wir Sind Helden</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-623-add-one-row-to-tree/">
+              
+                  Leetcode 623. Add One Row to Tree（树）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-15
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/add-one-row-to-tree/description/" target="_blank" rel="noopener">https://leetcode.com/problems/add-one-row-to-tree/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：</p>
+<ul>
+<li>DFS：10.14%</li>
+<li>栈：6.76%</li>
+<li>BFS：98.07%</li>
+</ul>
+<h2>题意</h2>
+<p>按照一定的规则，在一棵二叉树中增加一整层。</p>
+<h2>分析</h2>
+<p>总的来说是道水题，不过我开始做的时候并不能立刻反应出DFS、栈和BFS这三种<a href="https://leetcode.com/problems/add-one-row-to-tree/solution/" target="_blank" rel="noopener">经典思路</a>。当然，这里面DFS是最好写的，且思路的本质是一样的。</p>
+<p>以及我发现，如果现在输入数据是树，Leetcode的自定义输入数据框在聚焦的时候，上方会自动渲染出树的图形。Leetcode真是越来越强了……</p>
+<h2>代码</h2>
+<p>这三份代码的内容真是差不多。但是队列实现的BFS明显比另外两种更快，不知道是什么缘故。</p>
+<h3>DFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">findDepth</span><span class="params">(TreeNode* curNode, <span class="keyword">int</span> curDep, <span class="keyword">const</span> <span class="keyword">int</span>&amp; targetDep, <span class="keyword">const</span> <span class="keyword">int</span>&amp; value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (curNode == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (curDep &lt; targetDep) &#123;</span><br><span class="line">            findDepth(curNode-&gt;left, curDep + <span class="number">1</span>, targetDep, value);</span><br><span class="line">            findDepth(curNode-&gt;right, curDep + <span class="number">1</span>, targetDep, value);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (curDep == targetDep) &#123;</span><br><span class="line">            TreeNode* newLeft = <span class="keyword">new</span> TreeNode(value);</span><br><span class="line">            newLeft-&gt;left = curNode-&gt;left;</span><br><span class="line">            TreeNode* newRight = <span class="keyword">new</span> TreeNode(value);</span><br><span class="line">            newRight-&gt;right = curNode-&gt;right;</span><br><span class="line">            curNode-&gt;left = newLeft;</span><br><span class="line">            curNode-&gt;right = newRight;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">addOneRow</span><span class="params">(TreeNode* root, <span class="keyword">int</span> v, <span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d == <span class="number">1</span>) &#123;</span><br><span class="line">            TreeNode* newRoot = <span class="keyword">new</span> TreeNode(v);</span><br><span class="line">            newRoot-&gt;left = root;</span><br><span class="line">            <span class="keyword">return</span> newRoot;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        findDepth(root, <span class="number">1</span>, d - <span class="number">1</span>, v);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>栈</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">addOneRow</span><span class="params">(TreeNode* root, <span class="keyword">int</span> v, <span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d == <span class="number">1</span>) &#123;</span><br><span class="line">            TreeNode* newRoot = <span class="keyword">new</span> TreeNode(v);</span><br><span class="line">            newRoot-&gt;left = root;</span><br><span class="line">            <span class="keyword">return</span> newRoot;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">stack</span>&lt;pair&lt;TreeNode*, <span class="keyword">int</span>&gt;&gt; s;</span><br><span class="line">        d--;</span><br><span class="line">        s.push(make_pair(root, <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            pair&lt;TreeNode*, <span class="keyword">int</span>&gt; p = s.top();</span><br><span class="line">            s.pop();</span><br><span class="line">            TreeNode* cur = p.first;</span><br><span class="line">            <span class="keyword">int</span> depth = p.second;</span><br><span class="line">            <span class="keyword">if</span> (depth &gt; d)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (depth &lt; d) &#123;</span><br><span class="line">                <span class="keyword">if</span> (cur-&gt;left != <span class="literal">NULL</span>)</span><br><span class="line">                    s.push(make_pair(cur-&gt;left, depth + <span class="number">1</span>));</span><br><span class="line">                <span class="keyword">if</span> (cur-&gt;right != <span class="literal">NULL</span>)</span><br><span class="line">                    s.push(make_pair(cur-&gt;right, depth + <span class="number">1</span>));</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            TreeNode* newLeft = <span class="keyword">new</span> TreeNode(v);</span><br><span class="line">            newLeft-&gt;left = cur-&gt;left;</span><br><span class="line">            TreeNode* newRight = <span class="keyword">new</span> TreeNode(v);</span><br><span class="line">            newRight-&gt;right = cur-&gt;right;</span><br><span class="line">            cur-&gt;left = newLeft;</span><br><span class="line">            cur-&gt;right = newRight;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>BFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">addOneRow</span><span class="params">(TreeNode* root, <span class="keyword">int</span> v, <span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d == <span class="number">1</span>) &#123;</span><br><span class="line">            TreeNode* newRoot = <span class="keyword">new</span> TreeNode(v);</span><br><span class="line">            newRoot-&gt;left = root;</span><br><span class="line">            <span class="keyword">return</span> newRoot;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">queue</span>&lt;pair&lt;TreeNode*, <span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line">        d--;</span><br><span class="line">        q.push(make_pair(root, <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            pair&lt;TreeNode*, <span class="keyword">int</span>&gt; p = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            TreeNode* cur = p.first;</span><br><span class="line">            <span class="keyword">int</span> depth = p.second;</span><br><span class="line">            <span class="keyword">if</span> (depth &gt; d)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (depth &lt; d) &#123;</span><br><span class="line">                <span class="keyword">if</span> (cur-&gt;left != <span class="literal">NULL</span>)</span><br><span class="line">                    q.push(make_pair(cur-&gt;left, depth + <span class="number">1</span>));</span><br><span class="line">                <span class="keyword">if</span> (cur-&gt;right != <span class="literal">NULL</span>)</span><br><span class="line">                    q.push(make_pair(cur-&gt;right, depth + <span class="number">1</span>));</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            TreeNode* newLeft = <span class="keyword">new</span> TreeNode(v);</span><br><span class="line">            newLeft-&gt;left = cur-&gt;left;</span><br><span class="line">            TreeNode* newRight = <span class="keyword">new</span> TreeNode(v);</span><br><span class="line">            newRight-&gt;right = cur-&gt;right;</span><br><span class="line">            cur-&gt;left = newLeft;</span><br><span class="line">            cur-&gt;right = newRight;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Tree</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-884-uncommon-words-from-two-sentences-and-weekly-contest-97/">
+              
+                  Leetcode 884. Uncommon Words from Two Sentences（字符串），及周赛（97）总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-14
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/uncommon-words-from-two-sentences/description/" target="_blank" rel="noopener">https://leetcode.com/problems/uncommon-words-from-two-sentences/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：100.00%</p>
+<h2>题意</h2>
+<p>找出两个字符串中所有不重叠的词。不要求顺序。</p>
+<h2>分析</h2>
+<p>第一次参加Leetcode周赛，得到了233 / 3760的“好”成绩，这个数看起来简直特别吉利……</p>
+<p><img src="rank.png" alt="233"></p>
+<p>此题完成于0:09:46，总的来说是一道超级水题，但我做的时候又遇到了那个经典的问题……嗯，没错，C++ std::string不提供split方法。于是我又一次紧张地去<a href="https://stackoverflow.com/questions/236129/the-most-elegant-way-to-iterate-the-words-of-a-string" target="_blank" rel="noopener">stackoverflow</a>上查了一通。这之后我得出了一个这样的结论：分隔符为<code></code>时的情况是平凡的，可以直接用<code>std::stringstream</code>的方法解决；至于其他情况，还是自己手动瞎搞吧。</p>
+<p>知乎上有一些<a href="https://www.zhihu.com/question/36642771" target="_blank" rel="noopener">相关的讨论</a>，但我还是对此很不满，每次有字符串处理需求的时候，就想丢下C++去用Python算了。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; split(<span class="built_in">string</span> str) &#123;</span><br><span class="line">        <span class="comment">// https://stackoverflow.com/questions/236129/the-most-elegant-way-to-iterate-the-words-of-a-string</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> buf;                 <span class="comment">// Have a buffer string</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="function"><span class="built_in">stringstream</span> <span class="title">ss</span><span class="params">(str)</span></span>;       <span class="comment">// Insert the string into a stream</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; tokens; <span class="comment">// Create vector to hold our words</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (ss &gt;&gt; buf)</span><br><span class="line">            tokens.push_back(buf);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> tokens;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; uncommonFromSentences(<span class="built_in">string</span> A, <span class="built_in">string</span> B) &#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; freq;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v1 = split(A);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v2 = split(B);</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> s: v1)</span><br><span class="line">            freq[s]++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> s: v2)</span><br><span class="line">            freq[s]++;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> s: v1)</span><br><span class="line">            <span class="keyword">if</span> (freq[s] == <span class="number">1</span>)</span><br><span class="line">                ans.push_back(s);</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> s: v2)</span><br><span class="line">            <span class="keyword">if</span> (freq[s] == <span class="number">1</span>)</span><br><span class="line">                ans.push_back(s);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-String/"><i class="fas fa-hashtag fa-fw"></i>alg:String</a>
+        
+          <a href="/tags/alg-Hash-Table/"><i class="fas fa-hashtag fa-fw"></i>alg:Hash Table</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-478-generate-random-point-in-a-circle/">
+              
+                  Leetcode 478. Generate Random Point in a Circle（随机）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-14
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/generate-random-point-in-a-circle/description/" target="_blank" rel="noopener">https://leetcode.com/problems/generate-random-point-in-a-circle/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：</p>
+<ul>
+<li>极坐标法：64.06%</li>
+<li>拒绝取样：97.20%</li>
+</ul>
+<h2>题意</h2>
+<p>给定平面上一个圆的圆心位置和半径，从圆中以<strong>均匀</strong>的概率随机选取点。</p>
+<h2>分析</h2>
+<h3>拒绝取样</h3>
+<p>其实我的第一反应是用拒绝取样（<a href="https://en.wikipedia.org/wiki/Rejection_sampling" target="_blank" rel="noopener">Rejection Sampling</a>）的思路来做：首先从这个圆的与坐标轴平行的外切正方形中均匀随机选取点，然后判断点是否位于圆中；如果不在，重新生成一个新的点，再次进行判断；否则直接返回。</p>
+<p>直觉上来说，拒绝取样显然是正确的；不过我们可以用一种稍微更加形式化的方法来描述。（以下内容参考了<a href="https://gaolei786.github.io/statistics/reject.html" target="_blank" rel="noopener">拒绝采样（reject sampling）的简单认识</a>，非常直观形象。）</p>
+<blockquote>
+<p>下图是一个随机变量的密度函数曲线，试问如何获得这个随机变量的样本呢？</p>
+</blockquote>
+<p>如果你像我一样，已经把概率论与数理统计统统还给数学老师了，那么提示一下，概率密度函数（PDF）是累积分布函数（CDF）的导数，反映的是概率的“密集程度”。你可以设想一根极细的无穷长的金属杆，概率密度相当于杆上各点的质量密度。由于上述原因，概率密度函数曲线下的面积表示的就是取值概率。（参考了<a href="https://www.jianshu.com/p/b570b1ba92bb" target="_blank" rel="noopener">应该如何理解概率分布函数和概率密度函数？</a>）</p>
+<p><img src="reject1.png" alt="概率密度函数曲线"></p>
+<blockquote>
+<p>我们首先用一个矩形将这个密度曲线套起来，把密度曲线框在一个矩形里，如下图所示：</p>
+</blockquote>
+<p><img src="reject2.png" alt="被框起来的概率密度函数曲线"></p>
+<blockquote>
+<p>然后，向这个矩形里随机投点。随机投点意味着在矩形这块区域内，这些点是满足均匀分布的。投了大概10000个点，如下面这个样子：</p>
+</blockquote>
+<p><img src="reject3.png" alt="投点之后的分布情况"></p>
+<blockquote>
+<p>显然，有的点落在了密度曲线下侧，有的点落在了密度曲线的上侧。上侧的点用绿色来表示，下侧的点用蓝色来表示，如下图：</p>
+</blockquote>
+<p><img src="reject4.png" alt="落在上侧和下侧的点"></p>
+<blockquote>
+<p>只保留密度曲线下侧的点，即蓝色的点：</p>
+</blockquote>
+<p><img src="reject5.png" alt="保留下侧的点"></p>
+<blockquote>
+<p>到这里，提一个问题：在密度曲线以下的这块区域里，这些点满足什么分布？均匀分布！这是拒绝采样最关键的部分，搞个矩形、向矩形里投点等等，所做的一切都是为了获得一个密度曲线所围成区域的均匀分布。只要能获得这样一个在密度曲线下满足均匀分布的样本，我们就可以获得与该密度曲线相匹配的随机变量的采样样本。方法是，只需把每个蓝点的横坐标提取出来，这些横坐标所构成的样本就是我们的目标样本。下图左侧，是按照以上方法获得的一个样本的直方图以及核密度估计，下图右侧，是开始的密度曲线。</p>
+</blockquote>
+<p><img src="reject6.png" alt="统计结果"></p>
+<p><a href="https://leetcode.com/problems/generate-random-point-in-a-circle/discuss/154790/Reject-sampling-solution" target="_blank" rel="noopener">Reject sampling solution</a>中给出了一种简单明了的用拒绝采样实现此题的方法。</p>
+<h3>极坐标法</h3>
+<p>但是我觉得这个方法的逼格不够高。于是我心想，我们怎么表示一个圆内的点呢？那自然就是用极坐标法，半径+角度。那么我们随机一个半径，再随机一个角度，最后换算成直角坐标系里的坐标，不就可以了嘛！</p>
+<p>……只是听上去可以而已……</p>
+<p>交上去之后我发现，一共有8个测试样例，最后一个我总是过不去。我的随机性是不是真的写出了bug？我实在是想不出来错在哪里了，于是去看了看题解区——原来有这么多人和我有一样的困惑。是的，上述思路确实有问题。</p>
+<p>当我写出上述代码的时候，我心里想的是：先用角度随机选择一条半径，然后在这条半径上随机选择一个点。但问题是我们不能把圆这样看成是很多半径的集合——或者说，这条半径上不同位置的点的密集程度是不一样的。显然距离圆心更远的一端被选择的概率应该更大。</p>
+<p><img src="circle.jpg" alt="在圆上随机选择"></p>
+<p>直接对角度和半径都进行随机取样会产生这样的后果，靠近圆心的点被选择的概率偏大（<a href="http://www.anderswallin.net/2009/05/uniform-random-points-in-a-circle-using-polar-coordinates/" target="_blank" rel="noopener">Uniform random points in a circle using polar coordinates</a>）：</p>
+<p><img src="distribution.jpg" alt="左侧是错误的随机结果，右侧是正确的结果"></p>
+<p>我们重新考虑一下半径的问题。以半径$r$作为随机变量，则随机点落在$r$范围内的概率分布为</p>
+<p>$$\text{CDF}(r) = \frac{r^2}{R^2}$$</p>
+<p>$$\text{PDF}(r) = \frac{d}{dr} \text{CDF}(r) = \frac{2r}{R^2}$$</p>
+<p>以<code>[0, 1]</code>均匀分布对$\text{CDF}(r)$进行随机，则有$r = R \sqrt{\text{rand}()}$。</p>
+<h3>C++中的数学运算</h3>
+<p>使用<a href="http://en.cppreference.com/w/cpp/numeric/random/uniform_real_distribution" target="_blank" rel="noopener">std::uniform_real_distribution</a>生成随机实数比直接用<code>rand()</code>好得多，至少<a href="https://stackoverflow.com/questions/686353/c-random-float-number-generation" target="_blank" rel="noopener">stackoverflow</a>上是这么说的。具体使用方法如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::random_device rd;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// Engines</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    std::mt19937 e2(rd());</span><br><span class="line">    <span class="comment">//std::knuth_b e2(rd());</span></span><br><span class="line">    <span class="comment">//std::default_random_engine e2(rd()) ;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// Distribtuions</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="built_in">std</span>::uniform_real_distribution&lt;&gt; dist(<span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    <span class="comment">//std::normal_distribution&lt;&gt; dist(2, 2);</span></span><br><span class="line">    <span class="comment">//std::student_t_distribution&lt;&gt; dist(5);</span></span><br><span class="line">    <span class="comment">//std::poisson_distribution&lt;&gt; dist(2);</span></span><br><span class="line">    <span class="comment">//std::extreme_value_distribution&lt;&gt; dist(0,2);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">double</span> rand = dist(e2));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>目前C++中并没有提供什么特别高级的获得<code>PI</code>值的方法，仍然是用C中提供的<code>M_PI</code>宏：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _USE_MATH_DEFINES  <span class="comment">// 根据实际情况；参见https://stackoverflow.com/questions/1727881/how-to-use-the-pi-constant-in-c</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line">M_PI</span><br></pre></td></tr></table></figure>
+<p><code>std::cos</code>和<code>std::sin</code>函数使用的是弧度。好久不写，都忘光了。</p>
+<h2>代码</h2>
+<h3>拒绝取样</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> radius, x_center, y_center, x_leftdown, y_leftdown;</span><br><span class="line">    <span class="built_in">std</span>::random_device rd;</span><br><span class="line">    <span class="built_in">std</span>::mt19937 gen;</span><br><span class="line">    <span class="built_in">std</span>::uniform_real_distribution&lt;&gt; dis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Solution(<span class="keyword">double</span> radius, <span class="keyword">double</span> x_center, <span class="keyword">double</span> y_center): gen(rd()), dis(<span class="number">0</span>, <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;radius = radius;</span><br><span class="line">        <span class="keyword">this</span>-&gt;x_center = x_center;</span><br><span class="line">        <span class="keyword">this</span>-&gt;y_center = y_center;</span><br><span class="line">        x_leftdown = x_center - radius;</span><br><span class="line">        y_leftdown = y_center - radius;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; randPoint() &#123;</span><br><span class="line">        <span class="keyword">double</span> x, y;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            x = x_leftdown + <span class="number">2</span> * radius * dis(gen);</span><br><span class="line">            y = y_leftdown + <span class="number">2</span> * radius * dis(gen);</span><br><span class="line">        &#125; <span class="keyword">while</span> ( (x - x_center) * (x - x_center) + (y - y_center) * (y - y_center) &gt; radius * radius);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> &#123;x, y&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>极坐标</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> radius, x_center, y_center;</span><br><span class="line">    <span class="built_in">std</span>::random_device rd;</span><br><span class="line">    <span class="built_in">std</span>::mt19937 gen;</span><br><span class="line">    <span class="built_in">std</span>::uniform_real_distribution&lt;&gt; randDeg, randRadius;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Solution(<span class="keyword">double</span> radius, <span class="keyword">double</span> x_center, <span class="keyword">double</span> y_center): gen(rd()), randDeg(<span class="number">0</span>, <span class="number">2</span> * M_PI), randRadius(<span class="number">0</span>, <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;radius = radius;</span><br><span class="line">        <span class="keyword">this</span>-&gt;x_center = x_center;</span><br><span class="line">        <span class="keyword">this</span>-&gt;y_center = y_center;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; randPoint() &#123;</span><br><span class="line">        <span class="keyword">double</span> r = <span class="built_in">sqrt</span>(randRadius(gen)) * radius;  <span class="comment">// !</span></span><br><span class="line">        <span class="keyword">double</span> deg = randDeg(gen);</span><br><span class="line">        <span class="keyword">double</span> x = x_center + r * <span class="built_in">cos</span>(deg);</span><br><span class="line">        <span class="keyword">double</span> y = y_center + r * <span class="built_in">sin</span>(deg);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> &#123;x, y&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Math/"><i class="fas fa-hashtag fa-fw"></i>alg:Math</a>
+        
+          <a href="/tags/alg-Random/"><i class="fas fa-hashtag fa-fw"></i>alg:Random</a>
+        
+          <a href="/tags/alg-Rejection-Sampling/"><i class="fas fa-hashtag fa-fw"></i>alg:Rejection Sampling</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/archives/2018/08/page/3/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  4 / 7
+              </p>
+              
+                  <a class="next" rel="next" href="/archives/2018/08/page/5/">
+                      <section class="post next">
+                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                      </section>
+                  </a>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+  
+
+
+
+
+
+<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+
+
+
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

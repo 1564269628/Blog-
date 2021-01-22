@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Tag: alg:Array | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+    <script>
+        window.subData= { title:'标签 : alg:Array'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-162-find-peak-element/">
+              
+                  Leetcode 162. Find Peak Element（二分查找）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-25
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/find-peak-element/description/" target="_blank" rel="noopener">https://leetcode.com/problems/find-peak-element/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>线性扫描：8ms</li>
+<li>二分查找：4ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定一个数组，其中任意两个相邻元素不等，请返回其中一个peak元素（即比两边元素都大；可以认为<code>nums[-1]=nums[n]=+inf</code>）。</p>
+<p>要求代码时间复杂度为<code>O(log(n))</code>。</p>
+<h2>分析</h2>
+<p>线性扫描的方法太简单了，不值得细说。不过在写的时候很容易想到一个很有趣的问题：在题设条件下是否保证有这样的peak元素出现呢？我觉得显然是有的。不妨利用反证法：假设这样的peak元素不存在，则对于<code>nums[0]</code>和<code>nums[n-1]</code>，由于它们旁边各有一个比它们小的元素（<code>nums[-1]</code>和<code>nums[n]</code>），为了保证peak元素不存在，必有<code>nums[0] &lt; nums[1]</code>和<code>nums[n-2] &gt; nums[n-1]</code>。然后以此类推，即可推出矛盾。</p>
+<p>通过上述方法大概可以想到一种二分的思路。选择<code>i = n/2</code>，判断是否满足<code>nums[i-1] &lt; nums[i] &gt; nums[i+1]</code>：</p>
+<ul>
+<li>如果满足，则显然<code>i</code>就是满足要求的peak元素</li>
+<li>否则，如果<code>nums[i-1] &lt; nums[i] &lt; nums[i+1]</code>，则必存在一个peak元素位于<code>[i+1, n-1]</code>范围中</li>
+<li>如果<code>nums[i-1] &gt; nums[i] &gt; nums[i+1]</code>，则必存在一个peak元素位于<code>[0, i-1]</code>范围中</li>
+<li>如果<code>nums[i-1] &gt; nums[i] &lt; nums[i+1]</code>，则i两侧都可能存在peak元素</li>
+</ul>
+<h2>代码</h2>
+<h3>线性扫描</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)</span><br><span class="line">            <span class="keyword">if</span> ((i == <span class="number">0</span> || nums[i] &gt; nums[i<span class="number">-1</span>]) &amp;&amp; (i == nums.size() - <span class="number">1</span> || nums[i] &gt; nums[i+<span class="number">1</span>]))</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>二分查找</h3>
+<p>参考了题解<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>的写法……题解的细节写得还是挺不错的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = nums.size() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[mid + <span class="number">1</span>]) r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/articles/find-peak-element/" target="_blank" rel="noopener">Leetcode Offcial Solution for 162. Find Peak Element</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Binary-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-941-valid-mountain-array-and-weekly-contest-111/">
+              
+                  Leetcode 941. Valid Mountain Array（数组），及周赛（111）总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-18
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/valid-mountain-array/description/" target="_blank" rel="noopener">https://leetcode.com/problems/valid-mountain-array/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：2/4</p>
+<p>代码效率：</p>
+<ul>
+<li>two-pass：40ms</li>
+<li>one-pass：24ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定数组<code>A</code>，判断<code>A</code>是否是一个合法的mountain array：</p>
+<ul>
+<li><code>A.length &gt;= 3</code></li>
+<li>存在<code>0 &lt; i &lt; A.length - 1</code>使得：
+<ul>
+<li><code>A[0] &lt; A[1] &lt; ... &lt; A[i-1] &lt; A[i]</code></li>
+<li><code>A[i] &gt; A[i + 1] &gt; ... &gt; A[A.length - 1]</code></li>
+</ul>
+</li>
+</ul>
+<h2>分析</h2>
+<p>这次比赛的排名是410 / 3585。前三题都意想不到地简单；第四题的DP有点难想，但我觉得也许给我更多的时间我就能做出来。</p>
+<p>然后这道题因为误以为“题目保证<code>A.length&gt;=3</code>”而RE了一次（实际上应该是<code>A.length&gt;=3</code>的输入才需要考虑）。</p>
+<hr>
+<p>比赛的时候我整了一个比较复杂的做法：用<code>increasing[i]</code>数组表示是否满足<code>A[0] &lt; A[1] &lt; ... &lt; A[i-1] &lt; A[i]</code>，<code>decreasing[i]</code>数组表示是否满足<code>A[i] &gt; A[i + 1] &gt; ... &gt; A[A.length - 1]</code>，然后寻找是否有同时满足两个条件的<code>i</code>。</p>
+<p>上述做法显然太复杂了。实际上直接找到最大的满足<code>A[0] &lt; A[1] &lt; ... &lt; A[i-1] &lt; A[i]</code>的<code>i</code>然后判断<code>A[i] &gt; A[i + 1] &gt; ... &gt; A[A.length - 1]</code>是否成立即可。题解中也是这种做法。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<h2>代码</h2>
+<p>One-pass版本，因为忘记判断<code>0 &lt; i &lt; n - 1</code>，WA了一次。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validMountainArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">3</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (A[i] &lt; A[i + <span class="number">1</span>] &amp;&amp; i &lt; n - <span class="number">1</span>) i++;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span> || i == n - <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; n - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (A[i] &lt;= A[i + <span class="number">1</span>]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/valid-mountain-array/solution/" target="_blank" rel="noopener">Leetcode official solution for 941. Valid Mountain Array</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-930-binary-subarrays-with-sum/">
+              
+                  Leetcode 930. Binary Subarrays With Sum（数组）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/binary-subarrays-with-sum/description/" target="_blank" rel="noopener">https://leetcode.com/problems/binary-subarrays-with-sum/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：4/4</p>
+<p>代码效率：</p>
+<ul>
+<li>场上乱写的：108ms</li>
+<li>连续0：20ms</li>
+<li>前缀和：32ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定一个只包含0和1的数组A，问A中有多少个和为<code>S</code>的非空子序列？</p>
+<h2>分析</h2>
+<p>Leetcode最近放题解的速度明显变慢了。这道题并不是很好实现（如果没有想到前缀和的方法的话），所以场上WA了一次。</p>
+<hr>
+<h3>连续0</h3>
+<p>这种方法是我在现场想到的：对于一个和为S的非空子序列，它的两侧可能有连续的0，也可能没有。我们可以从两侧都是1的合法的子序列出发，生成对应的所有两侧可能多出来一些0的子序列的数量。这种方法的一个缺点是需要特判<code>S = 0</code>的情形。</p>
+<p>我看到的一种比较巧妙的方法是，记录所有1之间的间隔里的0的数量，然后就可以直接枚举和为S的子序列了。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>例如：对于序列<code>1 0 0 1 0 1</code>，记录数组会变成<code>zeros = [0, 2, 1, 0]</code>；当<code>S = 2</code>时，可以直接通过<code>(zeros[0] + 1) * (zeros[2] + 1)</code>和<code>(zeros[1] + 1) * (zeros[3] + 1)</code>计算出所有合法子序列的数量。</p>
+<h3>前缀和</h3>
+<p>直接用一个map存储前缀和，然后在里面查找对应的值的数量。看起来是十分容易想到的做法，不过我并没有想到。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<h2>代码</h2>
+<p>（场上乱写的就不放了）</p>
+<h3>连续0</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubarraysWithSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; zeros;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A) &#123;</span><br><span class="line">            <span class="keyword">if</span> (x == <span class="number">1</span>) &#123;</span><br><span class="line">                zeros.push_back(cnt);</span><br><span class="line">                cnt = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        zeros.push_back(cnt);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (S == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x: zeros)</span><br><span class="line">                ans += x * (x + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + S &lt; zeros.size(); i++)</span><br><span class="line">            ans += (zeros[i] + <span class="number">1</span>) * (zeros[i + S] + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>前缀和</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubarraysWithSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; prefixSum;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        prefixSum[<span class="number">0</span>]++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A) &#123;</span><br><span class="line">            sum += x;</span><br><span class="line">            ans += prefixSum[sum - S];</span><br><span class="line">            prefixSum[sum]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/binary-subarrays-with-sum/discuss/186693/Java-O%28N%29-Time-O%28N%29-Space-counting-contiguous-zeros" target="_blank" rel="noopener">Leetcode 930 Solution by Evilnearby - Java O(N) Time O(N) Space, counting contiguous zeros</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://leetcode.com/problems/binary-subarrays-with-sum/discuss/186683/C++JavaPython-Straight-Forward" target="_blank" rel="noopener">Leetcode 930 Solution by lee215 - [C++/Java/Python] Straight Forward</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-927-three-equal-parts/">
+              
+                  Leetcode 927. Three Equal Parts（构造）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-21
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/three-equal-parts/description/" target="_blank" rel="noopener">https://leetcode.com/problems/three-equal-parts/description/</a></p>
+<p>标记难度：Hard</p>
+<p>提交次数：2/6</p>
+<p>代码效率：</p>
+<ul>
+<li>暴力set：MLE</li>
+<li>枚举构造：212ms</li>
+<li>直接构造：44ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定一个只由0和1组成的数组，要求把数组分成三份，每一份表示的二进制数都相等。返回一种划分方法。</p>
+<h2>分析</h2>
+<p>比赛的时候这道题我做了好久。我先是想了一种比较暴力的方法：把数组所有的前缀去掉前导零后都放到一个<code>set</code>里面，然后再在这个<code>set</code>中查找所有的后缀是否存在，如果存在，则验证去掉前缀和后缀之后剩余的部分是否相等。结果就MLE了，因为花费的内存是<code>O(N^2)</code>。我觉得如果要维持这种做法的话，用Trie会比较好，但是我又不想写Trie。遂MLE/WA了4次。</p>
+<p>之后我突然意识到根本没有使用<code>set</code>的必要，因为二进制数相等的前提是长度相等（去掉前导零）。只要确定了后缀去掉前导零之后的长度，就可以立即知道前缀去掉前导零之后的长度了，也即前缀的结束位置；然后判断剩余的部分去掉前导零和它们是否相等就可以了。</p>
+<hr>
+<p>更好的方法是直接构造。为了保证三段表示的二进制数各自相等，显然需要保证每一段中1的数量相等；那么，可以先统计1的数量，如果这个数模3不为0则显然没有合法的解；否则就可以得到每一段中应有的1的数量了。然后就可以构造最后一段了：从后向前遍历数组，直到找到相应数量的1为止（因为再向前找只能找到前导0；否则1的数量就不合法了）。此时就可以知道二进制数的长度了，可以构造第一段；然后判断中间的一段和两边是否相等即可。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<h2>代码</h2>
+<h3>枚举构造</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; threeEqualParts(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="built_in">string</span> S;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A)</span><br><span class="line">            S += to_string(x);</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// remove str1 preceeding 0</span></span><br><span class="line">        <span class="keyword">while</span> (S[start] == <span class="string">'0'</span> &amp;&amp; start &lt; n) start++;</span><br><span class="line">        <span class="keyword">if</span> (start &gt;= n) <span class="keyword">return</span> &#123;<span class="number">0</span>, n - <span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123; <span class="comment">// str3 = [i, n)</span></span><br><span class="line">            <span class="keyword">int</span> start3 = i;</span><br><span class="line">            <span class="comment">// remove str3 preceeding 0</span></span><br><span class="line">            <span class="keyword">while</span> (start3 &lt; n &amp;&amp; S[start3] == <span class="string">'0'</span>) start3++;</span><br><span class="line">            <span class="keyword">if</span> (start3 &gt;= n) start3 = n - <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">string</span> str3 = S.substr(start3, n - start3);</span><br><span class="line">            <span class="built_in">string</span> str1 = S.substr(start, n - start3);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// assert str1 == str3</span></span><br><span class="line">            <span class="keyword">if</span> (str1 == str3) &#123;</span><br><span class="line">                <span class="comment">// remove str2 preceeding 0</span></span><br><span class="line">                <span class="keyword">int</span> start2 = start + str3.size(), end2 = i;</span><br><span class="line">                <span class="keyword">if</span> (start2 &gt;= end2) <span class="keyword">break</span>;  <span class="comment">// exceeded...</span></span><br><span class="line">                <span class="keyword">while</span> (start2 &lt; end2 &amp;&amp; S[start2] == <span class="string">'0'</span>) start2++;</span><br><span class="line">                <span class="keyword">if</span> (start2 &gt;= end2) start2 = end2 - <span class="number">1</span>;</span><br><span class="line">                <span class="built_in">string</span> str2 = S.substr(start2, end2 - start2);</span><br><span class="line">                <span class="keyword">if</span> (str2 == str3) &#123;</span><br><span class="line">                    <span class="keyword">return</span> &#123;start + str3.size() - <span class="number">1</span>, i&#125;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>直接构造</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; threeEqualParts(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A) &#123;</span><br><span class="line">        <span class="keyword">int</span> ones = <span class="number">0</span>, n = A.size();</span><br><span class="line">        <span class="built_in">string</span> S;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A) &#123;</span><br><span class="line">            ones += x;</span><br><span class="line">            S += to_string(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ones % <span class="number">3</span> != <span class="number">0</span>) <span class="keyword">return</span> &#123;<span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span> (ones == <span class="number">0</span>) <span class="keyword">return</span> &#123;<span class="number">0</span>, n - <span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造最后一段</span></span><br><span class="line">        <span class="keyword">int</span> one = ones / <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> start3 = n - <span class="number">1</span>, cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">string</span> str3;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            cnt += A[i];</span><br><span class="line">            <span class="keyword">if</span> (cnt == one) &#123;</span><br><span class="line">                start3 = i;</span><br><span class="line">                str3 = S.substr(i, n - i);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len = str3.size();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造第一段</span></span><br><span class="line">        <span class="keyword">int</span> start1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (start1 &lt; n &amp;&amp; A[start1] == <span class="number">0</span>) start1++;</span><br><span class="line">        <span class="built_in">string</span> str1 = S.substr(start1, len);</span><br><span class="line">        <span class="keyword">if</span> (str1 != str3) <span class="keyword">return</span> &#123;<span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造第二段</span></span><br><span class="line">        <span class="keyword">int</span> start2 = start1 + len;</span><br><span class="line">        <span class="keyword">while</span> (start2 &lt; n &amp;&amp; A[start2] == <span class="number">0</span>) start2++;</span><br><span class="line">        <span class="comment">// 保证str2没有越过str3且中间只有0（作为str3的前导0）</span></span><br><span class="line">        <span class="keyword">if</span> (start2 + len &gt; start3) <span class="keyword">return</span> &#123;<span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="built_in">string</span> str2 = S.substr(start2, len);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start2 + len; i &lt; start3; i++)</span><br><span class="line">            <span class="keyword">if</span> (A[i] != <span class="number">0</span>) <span class="keyword">return</span> &#123;<span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span> (str2 != str3) <span class="keyword">return</span> &#123;<span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> &#123;start1 + len - <span class="number">1</span>, start2 + len&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/three-equal-parts/discuss/183922/C++-O%28n%29-time-O%281%29-space-12-ms-with-explanation-and-comments" target="_blank" rel="noopener">primeNumber's solution for Leetcode 927 - [C++] O(n) time, O(1) space, 12 ms with explanation &amp; comments</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-926-flip-string-to-monotone-increasing/">
+              
+                  Leetcode 926. Flip String to Monotone Increasing（字符串）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-21
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/flip-string-to-monotone-increasing/description/" target="_blank" rel="noopener">https://leetcode.com/problems/flip-string-to-monotone-increasing/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>普通的做法：12ms</li>
+<li>神奇的做法：8ms</li>
+</ul>
+<h2>题意</h2>
+<p>有一个只包含0和1的串，希望把里面的一些位翻转，使得这个串变成连续的若干个0（可以没有）后跟着连续的若干个1（也可以没有）。问翻转次数最少是多少。</p>
+<h2>分析</h2>
+<p>一个立即可以想到的思路是枚举。枚举每一位作为1的起始点，然后根据这一位左边的1的个数和右边的0的个数算出总的翻转次数，然后取最小值。前缀中1的个数和后缀中0的个数都很好维护。</p>
+<p>另一个相当神奇的思路<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>应用了贪心法。在从左向右扫描的过程中，我们动态维护这个分割点，分割点左侧1的数量，分割点右侧1的数量和0的数量；一旦发现分割点右侧0的数量超过了1的数量，说明此时把分割点直接右移到当前扫描点可以减小翻转次数。举个例子：</p>
+<p><code>S = &quot;00011000&quot;</code></p>
+<table>
+<thead>
+<tr>
+<th><code>i</code></th>
+<th>virtual split point</th>
+<th>left 1 cnt</th>
+<th>right 0 cnt</th>
+<th>right 1 cnt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0 (<code>| 00011000</code>)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1 (<code>0| 0011000</code>)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2 (<code>00| 011000</code>)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3 (<code>000| 11000</code>)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3 (<code>000|1 1000</code>)</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3 (<code>000|11 000</code>)</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3 (<code>000|110 00</code>)</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>3 (<code>000|1100 0</code>)</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8 (<code>00011000|</code>)</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>这个算法的正确性怎么证明……好吧，懒得去想了。大概应该用反证法。</p>
+<h2>代码</h2>
+<h3>普通的做法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minFlipsMonoIncr</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = S.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> totZeros = <span class="number">0</span>, totOnes = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// actually, ones array can be omitted.</span></span><br><span class="line">        <span class="keyword">int</span> ones[n];  <span class="comment">// num of ones &lt;= i</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (S[i] == <span class="string">'0'</span>) &#123;</span><br><span class="line">                totZeros++;</span><br><span class="line">                ones[i] = i == <span class="number">0</span> ? <span class="number">0</span> : ones[i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                totOnes++;</span><br><span class="line">                ones[i] = i == <span class="number">0</span> ? <span class="number">1</span> : ones[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123; <span class="comment">// flip [i, ) to be 1</span></span><br><span class="line">            <span class="keyword">int</span> leftOnes = i == <span class="number">0</span> ? <span class="number">0</span> : ones[i - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">int</span> leftFlip = leftOnes;</span><br><span class="line">            <span class="keyword">int</span> rightFlip = n - i - (totOnes - leftOnes);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// cout &lt;&lt; i &lt;&lt; ' ' &lt;&lt; leftOnes &lt;&lt; ' ' &lt;&lt; leftFlip &lt;&lt; ' ' &lt;&lt; rightFlip &lt;&lt; endl;</span></span><br><span class="line">            ans = min(ans, leftFlip + rightFlip);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// flip all to be zero</span></span><br><span class="line">        ans = min(totOnes, ans);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>神奇的做法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minFlipsMonoIncr</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> leftOnes = <span class="number">0</span>, rightOnes = <span class="number">0</span>, rightZeros = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; S.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (S[i] == <span class="string">'0'</span>) rightZeros++;</span><br><span class="line">            <span class="keyword">else</span> rightOnes++;</span><br><span class="line">            <span class="keyword">if</span> (rightZeros &gt; rightOnes) &#123;  <span class="comment">// move split point to i</span></span><br><span class="line">                leftOnes += rightOnes;</span><br><span class="line">                rightOnes = rightZeros = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> leftOnes + rightZeros;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/flip-string-to-monotone-increasing/discuss/183851/C++-4-lines-O%28n%29-or-O%281%29-DP" target="_blank" rel="noopener">Leetcode 926 Solution by vortubac - C++ 4 lines O(n) | O(1), DP</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-923-3sum-with-multiplicity/">
+              
+                  Leetcode 923. 3Sum With Multiplicity（数组）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-14
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/3sum-with-multiplicity/description/" target="_blank" rel="noopener">https://leetcode.com/problems/3sum-with-multiplicity/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：3/7</p>
+<p>代码效率：</p>
+<ul>
+<li>计数：8ms</li>
+<li>2Sum：4ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定整数数组<code>A</code>和<code>target</code>，返回满足<code>i &lt; j &lt; k, A[i] + A[j] + A[k] == target</code>的<code>(i, j, k)</code>数量。其中<code>3 &lt;= A.length &lt;= 3000</code>，<code>0 &lt;= A[i] &lt;= 100</code>，<code>0 &lt;= target &lt;= 300</code>。</p>
+<h2>分析</h2>
+<p>比赛的时候这道题挂了三次：</p>
+<ul>
+<li>没有判断<code>k</code>是否在<code>[0, 100]</code>范围内，所以RE了</li>
+<li>忘记<code>A[i]</code>的下限是0了，所以WA了</li>
+<li>数量计算的时候爆int了，所以又WA了</li>
+</ul>
+<p>……</p>
+<hr>
+<p>显然最暴力的做法就是直接枚举，时间复杂度是<code>O(N^3)</code>。当然，这样太暴力了。有两个主要的优化方向：</p>
+<ul>
+<li>根据<code>0 &lt;= A[i] &lt;= 100</code>进行去重</li>
+<li>根据2Sum或者<a href="https://leetcode.com/problems/3sum/description/" target="_blank" rel="noopener">3Sum</a>的思路进行指针优化</li>
+</ul>
+<p>由于数据规模的原因，去重的思路是很容易想到的。至于指针优化，它的思路大概是这样的：如果已经确定了<code>(i, j)</code>，在<code>i</code>不变，<code>j</code>递增的情况下，如果合法的<code>k</code>存在，则<code>k</code>必然是递减的。所以只需要枚举<code>(i, j)</code>并通过这一方法确定<code>k</code>即可。当然，在本题使用去重的情况下，只要在hash表中直接查找<code>target - i - j</code>元素是否存在即可；不过这一思路仍然很有趣。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<h2>代码</h2>
+<h3>计数</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">threeSumMulti</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> cnt[<span class="number">101</span>];</span><br><span class="line">        <span class="built_in">memset</span>(cnt, <span class="number">0</span>, <span class="keyword">sizeof</span>(cnt));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i: A) cnt[i]++;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = <span class="number">0</span>, MOD = <span class="number">1000000007</span>;</span><br><span class="line">        <span class="comment">// different: i &lt;= j &lt;= k</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= min(<span class="number">100</span>, target); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!cnt[i]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= <span class="number">100</span> &amp;&amp; i + j &lt;= target &amp;&amp; j &lt;= target - i - j; j++) &#123;</span><br><span class="line">                <span class="keyword">int</span> k = target - i - j;</span><br><span class="line">                <span class="keyword">if</span> (k &gt; <span class="number">100</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (!cnt[j] || !cnt[k]) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (i != j &amp;&amp; j != k)</span><br><span class="line">                    ans = (ans + cnt[i] * cnt[j] * cnt[k]) % MOD;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i != j &amp;&amp; j == k &amp;&amp; cnt[j] &gt;= <span class="number">2</span>)</span><br><span class="line">                    ans = (ans + cnt[i] * cnt[j] * (cnt[j] - <span class="number">1</span>) / <span class="number">2</span>) % MOD;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i == j &amp;&amp; j != k &amp;&amp; cnt[i] &gt;= <span class="number">2</span>)</span><br><span class="line">                    ans = (ans + cnt[i] * (cnt[i] - <span class="number">1</span>) * cnt[k] / <span class="number">2</span>) % MOD;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i == j &amp;&amp; j == k &amp;&amp; cnt[i] &gt;= <span class="number">3</span>)</span><br><span class="line">                    ans = (ans + cnt[i] * (cnt[i] - <span class="number">1</span>) * (cnt[i] - <span class="number">2</span>) / <span class="number">6</span>) % MOD;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>2Sum</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">threeSumMulti</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">int</span> cnt[<span class="number">101</span>];</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> value[<span class="number">101</span>];</span><br><span class="line">        <span class="keyword">int</span> key[<span class="number">101</span>], m;</span><br><span class="line">        <span class="built_in">memset</span>(cnt, <span class="number">0</span>, <span class="keyword">sizeof</span>(cnt));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i: A) cnt[i]++;</span><br><span class="line"></span><br><span class="line">        m = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt[i]) &#123;</span><br><span class="line">                key[m] = i;</span><br><span class="line">                value[m++] = cnt[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = <span class="number">0</span>, MOD = <span class="number">1000000007</span>;</span><br><span class="line">        <span class="comment">// different: i &lt;= j &lt;= k</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> k = m - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= k; j++) &#123;</span><br><span class="line">                <span class="keyword">while</span> (j &lt;= k &amp;&amp; key[i] + key[j] + key[k] &gt; target) k--;</span><br><span class="line">                <span class="keyword">if</span> (j &gt; k) <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">if</span> (key[i] + key[j] + key[k] &lt; target) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (i &lt; j &amp;&amp; j &lt; k) ans += value[i] * value[j] * value[k] % MOD;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i == j &amp;&amp; j &lt; k) ans += (value[i] * (value[i] - <span class="number">1</span>) * value[k] / <span class="number">2</span>) % MOD;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i &lt; j &amp;&amp; j == k) ans += (value[i] * value[j] * (value[j] - <span class="number">1</span>) / <span class="number">2</span>) % MOD;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i == j &amp;&amp; j == k) ans += (value[i] * (value[i] - <span class="number">1</span>) * (value[i] - <span class="number">2</span>) / <span class="number">6</span>) % MOD;</span><br><span class="line">                ans %= MOD;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/3sum-with-multiplicity/solution/" target="_blank" rel="noopener">Leetcode 923 - Official Solution</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+          <a href="/tags/alg-Two-Pointers/"><i class="fas fa-hashtag fa-fw"></i>alg:Two Pointers</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-922-sort-array-by-parity-ii/">
+              
+                  Leetcode 922. Sort Array By Parity II（数组）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-14
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/sort-array-by-parity-ii/description/" target="_blank" rel="noopener">https://leetcode.com/problems/sort-array-by-parity-ii/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>额外空间：96ms</li>
+<li>双指针：68ms</li>
+</ul>
+<h2>题意</h2>
+<p>有一个数组<code>A</code>，其中奇元素和偶元素的数量相等。请把<code>A</code>排序，使得奇元素位于奇数位置，偶元素位于偶数位置。任何满足上述条件的排序都是合法的。</p>
+<h2>分析</h2>
+<h3>额外空间</h3>
+<p>需要额外空间的做法是非常简单的：再开一个数组<code>B</code>，维护<code>even</code>和<code>odd</code>指针，对于每一个<code>A[i]</code>，根据它的奇偶性放到<code>B</code>中对应的位置。</p>
+<h3>双指针</h3>
+<p>事实上并不需要额外的空间，而仍然可以采用类似于快排的做法：用两个指针分别维护合法的奇序列和合法的偶序列的结束位置，将元素交换，直到排序完成。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<h2>代码</h2>
+<h3>额外空间</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sortArrayByParityII(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; B(A);</span><br><span class="line">        <span class="keyword">int</span> odd = <span class="number">1</span>, even = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (A[i] % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">                B[odd] = A[i];</span><br><span class="line">                odd += <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                B[even] = A[i];</span><br><span class="line">                even += <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> B;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>双指针</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sortArrayByParityII(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A) &#123;</span><br><span class="line">        <span class="keyword">int</span> odd = <span class="number">1</span>, even = <span class="number">0</span>, n = A.size();</span><br><span class="line">        <span class="keyword">while</span> (odd &lt; n &amp;&amp; even &lt; n) &#123;</span><br><span class="line">            <span class="keyword">while</span> (odd &lt; n &amp;&amp; A[odd] % <span class="number">2</span> == <span class="number">1</span>) odd += <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">while</span> (even &lt; n &amp;&amp; A[even] % <span class="number">2</span> == <span class="number">0</span>) even += <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (odd &gt;= n || even &gt;= n) <span class="keyword">break</span>;</span><br><span class="line">            swap(A[odd], A[even]);</span><br><span class="line">            odd += <span class="number">2</span>;</span><br><span class="line">            even += <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> A;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/sort-array-by-parity-ii/solution/" target="_blank" rel="noopener">Leetcode 922 - Official Solution</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+          <a href="/tags/alg-Two-Pointers/"><i class="fas fa-hashtag fa-fw"></i>alg:Two Pointers</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-918-maximum-sum-circular-subarray/">
+              
+                  Leetcode 918. Maximum Sum Circular Subarray（动态规划）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-07
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/maximum-sum-circular-subarray/description/" target="_blank" rel="noopener">https://leetcode.com/problems/maximum-sum-circular-subarray/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：4/6</p>
+<p>代码效率：</p>
+<ul>
+<li>前缀和+堆：356ms</li>
+<li>半限定的拆分：32.68%</li>
+<li>前缀和+双端队列：104ms</li>
+<li>最大和+最小和：38.06%</li>
+</ul>
+<h2>题意</h2>
+<p>有一个循环数组，求非空子序列的最大可能值（子序列不能和自己重叠）。</p>
+<h2>分析</h2>
+<p>比赛的时候我没找到正解，WA了两次。然后匆匆想了一个我觉得能过的<code>O(N * log(N))</code>的算法交上去了。</p>
+<p>算法是这样的，思路挺简单：把数组复制一份到后面（循环），得到<code>B = A + A</code>，然后计算<code>B</code>的前缀和数组<code>P</code>。遍历<code>P</code>，用一个堆（实际上是<code>map</code>，因为可能有重复元素，而且还要求最小值）维护<code>P[max(i - N, 0)] ~ P[i-1]</code>的前缀和，从中找出最小的（记为<code>P[j]</code>），就可以求出以<code>i</code>结尾的子序列的最大的和，为<code>P[i] - P[j]</code>（以及需要考虑<code>i &lt; N</code>时取整个前缀的情况）。最后取所有子序列的和的最大值即可。</p>
+<h3>前缀和+双端队列</h3>
+<p>我这个思路没什么太大的问题，但是用堆对前缀和进行维护实际上是不必要的——</p>
+<p>事实上，又遇到一道<a href="/post/leetcode-84-largest-rectangle-in-histogram">用栈求最大值</a>一类的问题了，真是惊人……</p>
+<p>这次我们需要做的是用一个<code>deque</code>保存一系列<code>index</code>，它们对应的前缀和是从小到大递增的。当<code>index = i</code>时，如果<code>deque.front() &lt; i - N</code>，则将队头弹出。然后队头就是目前范围内的最小前缀和了。之后在队列非空且<code>deque.back() &gt;= B[i]</code>时不断弹出队尾。最后将<code>i</code>插入到队尾。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>我的第一个问题是将队头弹出之后队列是否会变空？答案是不会，因为<code>i-1</code>此时刚被插入队列，它是不会被弹出来的，所以队列不会为空。</p>
+<p>第二个问题是这个算法为何正确。它和之前使用栈的想法很类似，差别是之前求的是每个元素左（右）侧比它大（小）的元素，现在求的是一个连续范围内的最小值。所以这个算法维护了一个以该连续范围的右界为结尾的且在连续范围内的严格递增的序列，序列开头处的值就是符合要求的最小值。但是怎么说明这样做的道理呢……</p>
+<p>还是题解里说得好：若<code>i &lt; j</code>且<code>P[i] &gt;= P[j]</code>，则<code>i</code>在此时无论如何都没有用处了。</p>
+<h3>半限定的拆分</h3>
+<p>在非循环的情况下，显然我们都会做这道题：令<code>f[i]</code>表示以<code>i</code>结尾的子序列的最大和，则<code>f[i] = max(0, f[i-1]) + A[i]</code>。在循环的情况下，仍然可以尝试这么做。令<code>g[i]</code>表示以<code>i</code>结尾的<strong>循环</strong>子序列的最大和（只计算循环的）；此时，<code>g[i] = max(A[j: A.length-1] + A[0, i])</code>，其中<code>j &lt; i</code>。由于我们规定了<code>g[i]</code>必须是一个循环子序列的和，因此可以把上式改写为<code>g[i] = max(A[j: A.length-1]) + (A[0] + ... + A[i]), j &lt; i</code>。</p>
+<p>则此时可以开始递推了。令<code>T[j] = A[j] + A[j+1] + ... + A[A.length-1]</code>，<code>R[j] = max(T[k]) (k &gt;= j)</code>，则<code>g[i] = R[i+1] + (A[0] + ... + A[i])</code>。<sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1]</a></sup></p>
+<p>一个细节是，题解里写的实际上是<code>g[i] = R[i+2] + (A[0] + ... + A[i])</code>。我觉得这是因为使用<code>R[i+1]</code>时可能会得到整个数组（<code>A[i+1] + ... + A[A.length-1] + A[0] + ... + A[i]</code>），这是没有必要的；不过这好像也不会增加什么复杂度。</p>
+<h3>最大和+最小和</h3>
+<p>这是一种很妙的想法。题解里写了两个贪心算法的变种：sign变种和min变种，但我觉得它们本质上是差不多的。对于循环子序列<code>A[0] + ... + A[i] + A[j] + ... + A[A.length-1]</code>，可以把它写成<code>sum(A) - (A[i+1] + ... + A[j-1])</code>，也就意味着我们现在只需要求出一个和最小的子序列，然后用整个数列的和减去这个最小的和，就可以得到循环子序列的最大和了。（虽然其中大概包含了一些边界情况）</p>
+<p>需要注意一种特殊情况：和最小的子序列是整个数组。这种情况只会发生在整个数组都是负数的时候，因此需要特判。题解里的做法要稍微更麻烦一些，我觉得没有必要。<sup class="footnote-ref"><a href="#fn1" id="fnref1:2">[1]</a></sup></p>
+<h2>代码</h2>
+<h3>前缀和+堆</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> p[<span class="number">2</span> * n];</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> a[<span class="number">2</span> * n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            a[i] = a[i + n] = A[i];</span><br><span class="line">        p[<span class="number">0</span>] = a[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">2</span> * n; i++)</span><br><span class="line">            p[i] = p[i - <span class="number">1</span>] + a[i];</span><br><span class="line"></span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = a[<span class="number">0</span>];</span><br><span class="line">        m[p[<span class="number">0</span>]]++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">2</span> * n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt;= n) &#123;</span><br><span class="line">                m[p[i - n]]--;</span><br><span class="line">                <span class="keyword">if</span> (m[p[i - n]] == <span class="number">0</span>) m.erase(p[i - n]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> minVal = m.begin()-&gt;first;</span><br><span class="line">            ans = max(ans, p[i] - minVal);</span><br><span class="line">            <span class="keyword">if</span> (i &lt; n) ans = max(ans, p[i]);</span><br><span class="line">            m[p[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>前缀和+双端队列</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> p[<span class="number">2</span> * n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> a[<span class="number">2</span> * n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            a[i] = a[i + n] = A[i - <span class="number">1</span>];</span><br><span class="line">        p[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span> * n; i++)</span><br><span class="line">            p[i] = p[i - <span class="number">1</span>] + a[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = a[<span class="number">1</span>];</span><br><span class="line">        <span class="built_in">deque</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>&gt; q;</span><br><span class="line">        q.push_back(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span> * n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (q.front() &lt; i - n) q.pop_front();</span><br><span class="line">            ans = max(ans, p[i] - p[q.front()]);</span><br><span class="line">            <span class="keyword">while</span> (!q.empty() &amp;&amp; p[q.back()] &gt;= p[i]) q.pop_back();</span><br><span class="line">            q.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>半限定的拆分</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> A[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Don't forget the uncircular intervals!</span></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> p[n], t[n], f[n], ans = A[<span class="number">0</span>];</span><br><span class="line">        f[<span class="number">0</span>] = A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            f[i] = max(f[i<span class="number">-1</span>], (<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>) <span class="number">0</span>) + A[i];</span><br><span class="line">            ans = max(ans, f[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// The uncircular intervals.</span></span><br><span class="line">        p[<span class="number">0</span>] = A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">            p[i] = p[i - <span class="number">1</span>] + A[i];</span><br><span class="line">        t[n - <span class="number">1</span>] = A[n - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> r = t[n - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            ans = max(ans, p[i] + r);</span><br><span class="line">            t[i] = t[i + <span class="number">1</span>] + A[i];</span><br><span class="line">            r = max(r, t[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>最大和+最小和</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> A[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// f: max sum; g: min sum; minSum: min of g</span></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> f[n], g[n], ans = A[<span class="number">0</span>], minSum = A[<span class="number">0</span>], sum = A[<span class="number">0</span>];</span><br><span class="line">        f[<span class="number">0</span>] = g[<span class="number">0</span>] = A[<span class="number">0</span>];</span><br><span class="line">        <span class="comment">// not necessary - can directly test if ans &lt; 0 in the end.</span></span><br><span class="line">        <span class="keyword">bool</span> hasPos = A[<span class="number">0</span>] &gt;= <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            sum += A[i];</span><br><span class="line">            hasPos = hasPos ? hasPos : A[i] &gt;= <span class="number">0</span>;</span><br><span class="line">            f[i] = max(f[i<span class="number">-1</span>], (<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>) <span class="number">0</span>) + A[i];</span><br><span class="line">            g[i] = min(g[i<span class="number">-1</span>], (<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>) <span class="number">0</span>) + A[i];</span><br><span class="line">            ans = max(ans, f[i]);</span><br><span class="line">            minSum = min(minSum, g[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!hasPos) <span class="keyword">return</span> ans;</span><br><span class="line">        <span class="keyword">return</span> max(ans, sum - minSum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/maximum-sum-circular-subarray/solution/" target="_blank" rel="noopener">Leetcode Solution - 918. Maximum Sum Circular Subarray</a> <a href="#fnref1" class="footnote-backref">↩</a> <a href="#fnref1:1" class="footnote-backref">↩</a> <a href="#fnref1:2" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-915-partition-array-into-disjoint-intervals/">
+              
+                  Leetcode 915. Partition Array into Disjoint Intervals（数组）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-30
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/partition-array-into-disjoint-intervals/description/" target="_blank" rel="noopener">https://leetcode.com/problems/partition-array-into-disjoint-intervals/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/3</p>
+<p>代码效率：</p>
+<ul>
+<li>3 Passes：28ms</li>
+<li>1 Pass：28ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定一个数组，要求将它分成<code>left</code>和<code>right</code>两半，满足：</p>
+<ul>
+<li><code>len(left) &gt; 0</code>，<code>len(right) &gt; 0</code></li>
+<li><code>max(left) &lt;= min(right)</code></li>
+<li><code>left</code>的长度最小</li>
+</ul>
+<p>数据保证存在合法的分割方法，求<code>left</code>的最小长度。</p>
+<h2>分析</h2>
+<p>这道题还挺有意思的。</p>
+<h3>建立辅助数组</h3>
+<p>比赛的时候我用的就是这种方法，因为最好想。令<code>maxn[i] = max(A[0], ..., A[i])</code>，<code>minn[i] = min(A[i], ..., A[n-1])</code>，这两个数组可以分别通过一次遍历求得；然后再进行一次遍历，找出满足<code>maxn[i] &lt;= minn[i + 1]</code>的最小的<code>i</code>即可。时间复杂度和额外空间复杂度都是<code>O(N)</code>。</p>
+<p>我在考虑怎么优化这个算法的时候思考了一下这两个数组的性质。显然<code>maxn[i]</code>是递增的，而<code>minn[i]</code>也是递增的，但增长速度不同，所以会出现一些<code>maxn[i] &lt;= minn[i+1]</code>的区间。我们要做的就是找到第一个这样的区间。但是这个东西似乎也没有很强的单调性……</p>
+<h3>不建立辅助数组</h3>
+<p>很显然，因为要求<code>len(left) &gt; 0</code>，因此必然有<code>max(left) &gt;= A[0]</code>。然后从左向右进行扫描，记<code>leftMax</code>为已经确定需要包括在<code>left</code>数组中的数的最大值，<code>j</code>为当前已经确定的<code>left</code>数组的右边界，<code>curMax</code>为当前已经发现的最大值。对于下一个数<code>A[i]</code>：</p>
+<ul>
+<li>如果<code>A[i] &lt; leftMax</code>，则它必须被包含在<code>left</code>中（否则<code>right</code>中将出现比<code>left</code>的最大值更小的数）。因此需要更新<code>j = i</code>，<code>leftMax = curMax</code>（因为<code>left</code>是连续的，所以之前已经发现过的最大值现在也必须包含于<code>left</code>中）。</li>
+<li>如果<code>leftMax &lt;= A[i] &lt;= curMax</code>，则这个数有可能被包含在<code>left</code>中（如果右侧出现比<code>leftMax</code>更小的数），也有可能不需要（如果右侧没有出现这样的数）。所以暂时不作处理。</li>
+<li>如果<code>A[i] &gt; curMax</code>，则这个数也不一定被包含在<code>left</code>中（和前一种情况同理）。更新<code>curMax = A[i]</code>。</li>
+</ul>
+<p>最后的结果为<code>j+1</code>。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>以数组<code>[5, 7, 3, 8, 6, 9, 10]</code>为例。初始时，令<code>leftMax = 5</code>，<code>curMax = 5</code>，<code>j = 0</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Initial State:</span><br><span class="line">leftMax = 5, curMax = 5, j = 0</span><br><span class="line">5  7  3  8  6  9  10</span><br><span class="line">l  -  -  -  -  -  -</span><br><span class="line"></span><br><span class="line">i = 1: Update curMax to 7</span><br><span class="line">leftMax = 5, curMax = 7, j = 0</span><br><span class="line">5  7  3  8  6  9  10</span><br><span class="line">l  ^  -  -  -  -  -</span><br><span class="line"></span><br><span class="line">i = 2: Update leftMax to 7 and j to 2</span><br><span class="line">leftMax = 7, curMax = 7, j = 2</span><br><span class="line">5  7  3  8  6  9  10</span><br><span class="line">l  l  l  -  -  -  -</span><br><span class="line"></span><br><span class="line">i = 3: Update curMax to 8</span><br><span class="line">leftMax = 7, curMax = 8, j = 2</span><br><span class="line">5  7  3  8  6  9  10</span><br><span class="line">l  l  l  ^  -  -  -</span><br><span class="line"></span><br><span class="line">i = 4: Update leftMax to 8, j to 4</span><br><span class="line">leftMax = 8, curMax = 8, j = 4</span><br><span class="line">5  7  3  8  6  9  10</span><br><span class="line">l  l  l  l  l  -  -</span><br><span class="line"></span><br><span class="line">i = 5: Update curMax to 9</span><br><span class="line">leftMax = 8, curMax = 9, j = 4</span><br><span class="line">5  7  3  8  6  9  10</span><br><span class="line">l  l  l  l  l  ^  -</span><br><span class="line"></span><br><span class="line">i = 6: Update curMax to 10</span><br><span class="line">leftMax = 8, curMax = 10, j = 4</span><br><span class="line">5  7  3  8  6  9  10</span><br><span class="line">l  l  l  l  l  ^  ?</span><br></pre></td></tr></table></figure>
+<p>这一方法的时间复杂度仍然为<code>O(N)</code>，额外空间复杂度为<code>O(1)</code>。</p>
+<h3>更多</h3>
+<p>我花了一些时间，用于思考这个问题的复杂度能否降得更低。但我并不能想出来：我既不能很好地利用<code>O(log(N))</code>的最大值选择算法，也不能证明复杂度的下界是<code>O(N)</code>。所以反正就是想不出来。</p>
+<h2>代码</h2>
+<h3>3 Passes</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">partitionDisjoint</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">int</span> maxn[n], minn[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">0</span> || A[i] &gt; maxn[i<span class="number">-1</span>])</span><br><span class="line">                maxn[i] = A[i];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                maxn[i] = maxn[i - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == n - <span class="number">1</span> || A[i] &lt; minn[i+<span class="number">1</span>])</span><br><span class="line">                minn[i] = A[i];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                minn[i] = minn[i + <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (maxn[i] &lt;= minn[i+<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>1 Pass</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">partitionDisjoint</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> leftMax = A[<span class="number">0</span>], curMax = A[<span class="number">0</span>], j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (A[i] &lt; leftMax) &#123;</span><br><span class="line">                j = i;</span><br><span class="line">                leftMax = curMax;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (A[i] &gt; curMax) &#123;</span><br><span class="line">                curMax = A[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> j + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>这一想法的灵感来自<a href="https://leetcode.com/problems/partition-array-into-disjoint-intervals/discuss/175985/Different-Thinking-Intuitive-Explanation" target="_blank" rel="noopener">Different Thinking - Intuitive Explanation</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-896-monotonic-array-and-weekly-contest-100/">
+              
+                  Leetcode 896. Monotonic Array，及周赛（100）总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-02
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/monotonic-array/description/" target="_blank" rel="noopener">https://leetcode.com/problems/monotonic-array/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：96ms</p>
+<h2>题意</h2>
+<p>判断一个数组是否是递增或递减的。</p>
+<h2>分析</h2>
+<p>这次比赛的排名继续稳步下降（1393 / 4008），我意识到我可能只能稳定做出Easy来，难一点的Medium就做不出来了。当然事实上有的时候也许Hard还会简单一点。比赛时第二题的题目描述出了问题，导致我心态很崩，并在上面花了很长时间和很多罚时。然后还看错了第三题的题面。最后一题本来有希望推导出来，但是没有时间了。</p>
+<p>反正这道题只写了3分钟，还行吧。</p>
+<hr>
+<p>水题，水到难以分类（Array……？），直接扫描两遍分别判断递增和递减就可以了。当然也可以压缩为一遍，但没有什么本质区别。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMonotonic</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (A.size() &lt;= <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">bool</span> mono = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (A[i] &lt; A[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                mono = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (mono)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        mono = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (A[i] &gt; A[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                mono = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mono;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/tags/alg-Array/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  2 / 3
+              </p>
+              
+                  <a class="next" rel="next" href="/tags/alg-Array/page/3/">
+                      <section class="post next">
+                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                      </section>
+                  </a>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

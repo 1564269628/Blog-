@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>PRML读书笔记：7.1 最大边缘分类器 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">PRML读书笔记：7.1 最大边缘分类器</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2020-02-25
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/读书笔记/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              读书笔记
+            </a>
+          </div>
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h3>模型的定义</h3>
+<p>首先定义线性模型为</p>
+<a id="more"></a>
+<p>$$<br>
+y(\boldsymbol{x})=\boldsymbol{w}^{T} \boldsymbol{\phi}(\boldsymbol{x})+b<br>
+$$</p>
+<p>其中$\boldsymbol{\phi}(\boldsymbol{x})$表示一个固定的特征空间变换，之后会用核函数$k\left(\boldsymbol{x}, \boldsymbol{x}^{\prime}\right)=\boldsymbol{\phi}(\boldsymbol{x})^{T} \boldsymbol{\phi}\left(\boldsymbol{x}^{\prime}\right)$的形式进行表达。</p>
+<p>训练数据集为输入向量$\left\{\boldsymbol{x}_1, ..., \boldsymbol{x}_N\right\}$和对应的目标值$\left\{t_1, ..., t_N\right\}$，其中$t_n \in {-1, 1}$。假定训练数据集在特征空间中是线性可分的，即存在至少一种$\boldsymbol{w}$和$b$，能够使得$t_n=+1$时$y(\boldsymbol{x}_n)&gt;0$，$t_n=-1$时$y(\boldsymbol{x}_n)&lt;0$，即$t_n y(\boldsymbol{x}_n) &gt; 0$。</p>
+<p>新的数据点$\boldsymbol{x}$根据$y(\boldsymbol{x})$的符号进行分类，正号分为正类，负号分为负类。</p>
+<p>支持向量寻找泛化错误最小的解的方法是，引入边缘（margin）的概念，即决策边界与任意样本之间的最小距离，如下图所示。</p>
+<p><img src="fig-7-1.png" alt="边界示意图"></p>
+<p>由于点$\boldsymbol{x}$距离超平面$y(\boldsymbol{x})$的垂直距离为</p>
+<p>$$<br>
+\frac{|y(\boldsymbol{x})|}{|\boldsymbol{w}|}<br>
+$$</p>
+<p>且我们只关心能够正确分类所有数据点的解，因此$t_n y(\boldsymbol{x}_n) &gt; 0$，代入到距离公式中：</p>
+<p>$$<br>
+\frac{|y(\boldsymbol{x})|}{|\boldsymbol{w}|} = \frac{t_n y(\boldsymbol{x}_n)}{|\boldsymbol{w}|} = \frac{t_n (\boldsymbol{w}^{T} \boldsymbol{\phi}(\boldsymbol{x_n})+b)}{|\boldsymbol{w}|}<br>
+$$</p>
+<p>由于边缘由数据集里垂直距离最近的$\boldsymbol{x}_n$给出，我们希望最优化参数$\boldsymbol{w}$和$b$，使得这个距离能够最大化：</p>
+
+$$
+\underset{\boldsymbol{w}, b}{\arg \max }\left\{\frac{1}{\|\boldsymbol{w}\|} \min _{n}\left[t_{n}\left(\boldsymbol{w}^{T} \boldsymbol{\phi}\left(\boldsymbol{x}_{n}\right)+b\right)\right]\right\}
+$$
+
+<h3>模型的转化</h3>
+<p>下面将这个最优化问题转化为一个更容易求解的等价问题。</p>
+<p>首先注意到，如果令$\boldsymbol{w}' = \kappa \boldsymbol{w}$，$b' = \kappa b$，则任意点距离决策面的距离不会发生改变：</p>
+
+$$
+\begin{aligned}
+\frac{|y'(\boldsymbol{x})|}{\|\boldsymbol{w}'\|} &= \frac{t_n (\kappa\boldsymbol{w}^{T} \boldsymbol{\phi}(\boldsymbol{x_n})+ \kappa b)}{\|\kappa \boldsymbol{w}\|} \\
+&= \frac{t_n (\boldsymbol{w}^{T} \boldsymbol{\phi}(\boldsymbol{x_n})+b)}{\|\boldsymbol{w}\|} \\
+&= \frac{|y(\boldsymbol{x})|}{\|\boldsymbol{w}\|}
+\end{aligned}
+$$
+
+<p>因此不妨对$\boldsymbol{w}$和$b$进行放缩，令距离决策面最近的点满足</p>
+<p>$$<br>
+t_{n}\left(\boldsymbol{w}^{T} \boldsymbol{\phi}\left(\boldsymbol{x}_{n}\right)+b\right)=1<br>
+$$</p>
+<p>称为有效（active），其他数据点称为无效（inactive）。</p>
+<p>在这种情况下，所有的数据点都满足限制</p>
+<p>$$<br>
+t_n\left(\boldsymbol{w}^{T} \boldsymbol{\phi}\left(\boldsymbol{x}_{n}\right)+b\right) \geq 1, \quad n=1, \ldots, N<br>
+$$</p>
+<p>根据定义，最大化边缘之后，决策超平面两侧至少有两个有效的数据点，因此有</p>
+
+$$
+\min _{n}\left[t_{n}\left(\boldsymbol{w}^{T} \boldsymbol{\phi}\left(\boldsymbol{x}_{n}\right)+b\right)\right] = 1
+$$
+
+<p>因此最优化问题简化为（在限制条件下的）</p>
+<p>$$<br>
+\underset{\boldsymbol{w}, b}{\arg \max }\frac{1}{|\boldsymbol{w}|}<br>
+$$</p>
+<p>即</p>
+<p>$$<br>
+\underset{\boldsymbol{w}, b}{\arg \min } \frac{1}{2}|\boldsymbol{w}|^{2}<br>
+$$</p>
+<h3>用拉格朗日乘数法得到对偶问题</h3>
+<p>拉格朗日乘数法请参见<a href="/post/prml-math-foundations/">数学基础</a>。</p>
+<p>引入拉格朗日乘子$a_n \ge 0$，得到拉格朗日函数</p>
+
+$$
+L(\boldsymbol{w}, b, \boldsymbol{a})=\frac{1}{2}\|\boldsymbol{w}\|^{2}-\sum_{n=1}^{N} a_{n}\left\{t_{n}\left(\boldsymbol{w}^{T} \boldsymbol{\phi}\left(\boldsymbol{x}_{n}\right)+b\right)-1\right\}
+$$
+
+<p>将$L$分别对$\boldsymbol{w}$和$b$求导，得到</p>
+
+$$
+\begin{aligned}
+\nabla_{\boldsymbol{w}} L &= \boldsymbol{w} - \sum_{n=1}^N a_n t_n \boldsymbol{\phi}(\boldsymbol{x}_{n}) = 0 \\
+\frac{\partial L}{\partial b} &= \sum_{n=1}^N a_n t_n = 0
+\end{aligned}
+$$
+
+<p>将这两个条件代入到$L(\boldsymbol{w}, b, \boldsymbol{a})$中，消去$\boldsymbol{w}$和$b$，得到原问题的对偶表示：</p>
+
+$$
+\begin{aligned}
+\tilde{L}(\boldsymbol{a}) &= \frac{1}{2} \left\| \sum_{n=1}^N a_n t_n \boldsymbol{\phi}(\boldsymbol{x}_{n}) \right\|^2 - \sum_{n=1}^N a_n t_n \boldsymbol{w}^T \boldsymbol{\phi}(\boldsymbol{x}_{n}) - \sum_{n=1}^N a_n t_n b + \sum_{n=1}^N a_n \\
+&= \frac{1}{2} \sum_{n=1}^N a_n t_n \boldsymbol{\phi}(\boldsymbol{x}_{n})^T \sum_{m=1}^N a_m t_m \boldsymbol{\phi}(\boldsymbol{x}_{m}) - \sum_{n=1}^N a_n t_n \boldsymbol{\phi}(\boldsymbol{x}_{n}) \sum_{m=1}^N a_m t_m \boldsymbol{\phi}(\boldsymbol{x}_{m})^T + \sum_{n=1}^N a_n \\
+&= \sum_{n=1}^N a_n - \frac{1}{2} \sum_{n=1}^N \sum_{m=1}^N a_n a_m t_n t_m \boldsymbol{\phi}(\boldsymbol{x}_{n})^T \boldsymbol{\phi}(\boldsymbol{x}_{n}) \\
+&= \sum_{n=1}^N a_n - \frac{1}{2} \sum_{n=1}^N \sum_{m=1}^N a_n a_m t_n t_m k(\boldsymbol{x}_{n}, \boldsymbol{x}_{m})
+\end{aligned}
+$$
+
+<p>其中$k(\boldsymbol{x}_ {n}, \boldsymbol{x}_ {m}) = \boldsymbol{\phi}(\boldsymbol{x}_ {n})^T \boldsymbol{\phi}(\boldsymbol{x}_ {n})$。这一二次函数的求解将在7.1.1节中进行讨论。（到时候会有一个差不多的二次函数，我们将用SMO算法对其进行求解。）</p>
+<p>求解对偶问题相比原问题是有优势的。原问题是在限制下求解$M$维（$M$是特征空间的维数，或者说数据的维数）的二次规划问题。对偶问题同样是求解二次规划问题，维数是$N$（数据点的个数），这种做法的优点是模型能够用核函数重新表示，这样SVM就可以被高效应用于维数超过数据点个数的特征空间，包括无穷维特征空间。</p>
+<p>将问题通过拉格朗日乘数法转换为此对偶问题需要满足KKT条件：</p>
+
+$$
+\begin{aligned}
+a_n & \ge 0 \\
+t_n y(\boldsymbol{x}_n) - 1 & \ge 0 \\
+a_n \left[t_n y(\boldsymbol{x}_n) - 1\right] &= 0
+\end{aligned}
+$$
+
+<p>这说明对于每个数据点必然有$a_n=0$或$t_n y(\boldsymbol{x}_n) = 1$。</p>
+<h3>求出分类器的形式</h3>
+<p>假定对偶问题已经得到求解，可以求出分类器的形式为</p>
+
+$$
+\begin{aligned}
+y(\boldsymbol{x}) &= \boldsymbol{w}^T \boldsymbol{\phi}(\boldsymbol{x}) + b \\
+&= \left[\sum_{n=1}^N a_n t_n \boldsymbol{\phi}(\boldsymbol{x}_{n})\right]^T \boldsymbol{\phi}(\boldsymbol{x}) + b \\
+&= \sum_{n=1}^N a_n t_n k(\boldsymbol{x}_{n}, \boldsymbol{x})+b
+\end{aligned}
+$$
+
+<p>可以看出，$a_n=0$的数据点对新数据点的预测没有作用，只有$t_n y(\boldsymbol{x}_n) = 1$的数据点有作用（有效），这些点被称为支持向量（support vector），它们恰好位于分类超平面距离为1的超平面上（称为最大边缘超平面）。这说明SVM具有稀疏性，训练结束之后大部分数据点都可以丢弃，只保留支持向量即可。</p>
+<p>接下来考虑$b$的计算。由于支持向量$\boldsymbol{x}_n$满足$t_n y(\boldsymbol{x}_n) = 1$，可以利用这些支持向量求出一个数值稳定的$b$的解。令$\mathcal{S}$表示支持向量的下标集合，则</p>
+
+$$
+\begin{aligned}
+y(\boldsymbol{x}_n) &= \sum_{m=1}^N a_m t_m k(\boldsymbol{x}_{m}, \boldsymbol{x}_n)+b \\
+&= \sum_{m \in \mathcal{S}} a_m t_m k(\boldsymbol{x}_{m}, \boldsymbol{x}_n)+b \\
+t_n y(\boldsymbol{x}_n) &= t_n \left(\sum_{m \in \mathcal{S}} a_m t_m k(\boldsymbol{x}_{m}, \boldsymbol{x}_n)+b\right) = 1
+\end{aligned}
+$$
+
+<p>由于$t_n^2 = 1$，两侧乘以$t_n$，再对所有的支持向量$\boldsymbol{x}_n$取平均值：</p>
+
+$$
+\begin{aligned}
+\sum_{m \in \mathcal{S}} a_m t_m k(\boldsymbol{x}_{m}, \boldsymbol{x}_n)+b = t_n \\
+b = t_n - \sum_{m \in \mathcal{S}} a_m t_m k(\boldsymbol{x}_{m}, \boldsymbol{x}_n) \\
+\sum_{n \in \mathcal{S}} b = \sum_{n \in \mathcal{S}}\left(t_n - \sum_{m \in \mathcal{S}} a_m t_m k(\boldsymbol{x}_{m}, \boldsymbol{x}_n)\right) \\
+b = \frac{1}{|\mathcal{S}|} \sum_{n \in \mathcal{S}}\left(t_n - \sum_{m \in \mathcal{S}} a_m t_m k(\boldsymbol{x}_{m}, \boldsymbol{x}_n)\right)
+\end{aligned}
+$$
+
+<h3>隐含的模型误差函数</h3>
+<p>为了接下来的模型比较，将SVM的最优化问题$\underset{\boldsymbol{w}, b}{\arg \min } \frac{1}{2}|\boldsymbol{w}|^{2}$用带有简单二次正则化项的误差函数表示，形式为</p>
+
+$$
+\sum_{n=1}^{N} E_{\infty}\left(y\left(\boldsymbol{x}_{n}\right) t_{n}-1\right)+\lambda\|\boldsymbol{w}\|^{2}
+$$
+
+<p>下面说明上述误差函数与原最优化问题的等价性。</p>
+<ul>
+<li>$E_{\infty}(z)$是一个函数，当$z \ge 0$时，函数值为0，其他情况下函数值为$\infty$。这保证了限制$t_n y\left(\boldsymbol{x}_{n}\right) \geq 1$成立，否则误差函数值将变成无穷大。</li>
+<li>在保证前一项为0的前提下，正则化参数$\lambda$的实际值没有意义。</li>
+</ul>
+<h2>7.1.1 重叠类分布</h2>
+<h3>引入松弛变量</h3>
+<p>显然训练数据点不一定是线性可分的。之前已经指出，线性可分（“硬边缘”）的SVM隐式地使用了一个误差函数，当数据点被正确分类时，这个误差函数为0，而错误分类时为无穷大。我们现在修改这种方法，使得错误分类时的惩罚不再是无穷大，而是随着分错的数据点与决策边界的距离的增大而增大，这样我们就可以得到线性不可分（“软边缘”）的SVM了。</p>
+<p>下面引入松弛变量（slack variable）$\xi_n$。将原有的精确分类限制条件$t_n y\left(\boldsymbol{x}_ {n}\right) \geq 1$修改为$t_ n y\left(\boldsymbol{x}_ {n}\right) \geq 1 - \xi_n$，考虑以下几种情况：</p>
+<ul>
+<li>点位于正确边界内部或边界上：原限制条件不用修改，$\xi_n = 0$</li>
+<li>其他点：令$\xi_n$表示点距离正确分类边界的距离，$\xi_n = |t _ n y\left(\boldsymbol{x} _ {n}\right) - 1| = |y\left(\boldsymbol{x} _ {n}\right) - t_ n|$
+<ul>
+<li>$0 &lt; \xi_n &lt; 1$的点位于边界内部，在决策边界的正确一侧</li>
+<li>$\xi_n = 1$的点位于决策面上</li>
+<li>$\xi_n &gt; 1$的点位于决策边界的错误一侧</li>
+</ul>
+</li>
+</ul>
+<p><img src="fig-7-3.png" alt="圆圈标记的数据点是支持向量"></p>
+<h3>新的误差函数</h3>
+<p>现在的目标是最大化边缘并惩罚分类错误的点，于是将硬边缘SVM的误差函数$\sum_{n=1}^{N} E_ {\infty}\left(y\left(\boldsymbol{x}_ {n}\right) t_ {n}-1\right)+\lambda|\boldsymbol{w}|^{2}$修改为</p>
+<p>$$<br>
+C\sum_{n=1}^N \xi_n + \frac{1}{2}|\boldsymbol{w}|^{2}<br>
+$$</p>
+<p>其中参数$C&gt;0$控制了松弛变量惩罚与最大化边缘之间的折中。由于任何被误分类的数据点都有$\xi_n &gt; 1$，因此$\sum_n \xi_n$是误分类数据点数量的上界，相当于训练误差，因此上式可以看作是训练误差和模型参数L2正则化之和，$C$类似于作用相反的正则化系数。</p>
+<p>当$C \rightarrow \infty$时，上式就回到了硬边缘SVM的误差函数。</p>
+<h3>用拉格朗日乘数法得到对偶问题</h3>
+<p>为了在$t_n y\left(\boldsymbol{x}_{n}\right) \geq 1 - \xi_n$和$\xi_n \ge 0$的条件下最小化误差函数，引入拉格朗日乘数${a_n \ge 0}$和${\mu_n \ge 0}$，得到拉格朗日函数</p>
+
+$$
+L(\boldsymbol{w}, b, \boldsymbol{\xi}, \boldsymbol{a}, \boldsymbol{\mu})=\frac{1}{2}\|\boldsymbol{w}\|^{2}+C \sum_{n=1}^{N} \xi_{n}-\sum_{n=1}^{N} a_{n}\left\{t_{n} y\left(\boldsymbol{x}_{n}\right)-1+\xi_{n}\right\}-\sum_{n=1}^{N} \mu_{n} \xi_{n}
+$$
+
+<p>对应的KKT条件为</p>
+
+$$
+\begin{aligned}
+a_{n} \geq 0 \\
+t_{n} y\left(\boldsymbol{x}_{n}\right)-1+\xi_{n} \geq 0 \\
+a_{n}\left(t_{n} y\left(\boldsymbol{x}_{n}\right)-1+\xi_{n}\right)=0 \\
+\mu_{n} \geq 0 \\
+\xi_{n} \geq 0 \\
+\mu_{n} \xi_{n}=0
+\end{aligned}
+$$
+
+<p>下面对$\boldsymbol{w}$、$b$和${\xi_n}$求偏导：</p>
+
+$$
+\begin{aligned}
+\frac{\partial L}{\partial \boldsymbol{w}} &= \boldsymbol{w} - \sum_{n=1}^{N} a_{n} t_{n} \boldsymbol{\phi}\left(\boldsymbol{x}_{n}\right) = 0 \\
+\frac{\partial L}{\partial b} &= \sum_{n=1}^N a_n t_n = 0 \\
+\frac{\partial L}{\partial \xi_n} &= C - a_n - \mu_n = 0
+\end{aligned}
+$$
+
+<p>使用上述结果从拉格朗日函数中消去$\boldsymbol{w}$、$b$和${\xi_n}$，得到拉格朗日函数的对偶形式：</p>
+
+$$
+\tilde{L}(\boldsymbol{a})=\sum_{n=1}^{N} a_{n}-\frac{1}{2} \sum_{n=1}^{N} \sum_{m=1}^{N} a_{n} a_{m} t_{n} t_{m} k\left(\boldsymbol{x}_{n}, \boldsymbol{x}_{m}\right)
+$$
+
+<p>上述函数形式与硬边缘SVM完全相同，区别在于限制条件。由于$a_n, \mu_n \ge 0$，$a_n = C - \mu_n$，因此有$0 \le a_n \le C$，且要求$\sum_{n=1}^N a_n t_n = 0$。</p>
+<h3>求出分类器的形式</h3>
+<p>假设${a_n}$已经求出，下面求解分类器的形式。</p>
+<p>将$\boldsymbol{w} = \sum_{n=1}^{N} a_{n} t_{n} \boldsymbol{\phi}\left(\boldsymbol{x}_{n}\right)$代入$y(\boldsymbol{x}) = \boldsymbol{w}^T \boldsymbol{\phi}(\boldsymbol{x}) + b$中，得到与之前相同的分类器形式</p>
+<p>$$<br>
+y(\boldsymbol{x}) = \sum_{n=1}^N a_n t_n k(\boldsymbol{x}_{n}, \boldsymbol{x})+b<br>
+$$</p>
+<p>同样，$a_n = 0$的点对上述模型没有贡献；$a_n \neq 0$的数据点称为支持向量，它们满足$a_n &gt; 0$，因此根据KKT条件，必然有</p>
+
+$$
+t_ {n} y\left(\boldsymbol{x}_ {n}\right) = 1 - \xi_ {n}
+$$
+
+<p>下面讨论$a_n$和$C$的关系：</p>
+<ul>
+<li>如果$a_n &lt; C$：由于$C - a_n - \mu_n = 0$，有$\mu_n &gt; 0$；根据KKT条件的$\mu_{n} \xi_{n}=0$，得到$\xi_n = 0$，这些点位于正确边界内部或边界上</li>
+<li>如果$a_n = C$：此时$\mu_n = 0$，由KKT条件（不等式约束的两个0不同时取到），此时$\xi_n &gt; 0$，说明这些点位于边缘内部，且$\xi_n &lt; 1$时被正确分类，$\xi_n \ge 1$时分类错误</li>
+</ul>
+<p>最后求解参数$b$。和之前一样，可以通过对所有满足$\xi_n = 0$（即$t_{n} y\left(\boldsymbol{x}_{n}\right)=1$）的支持向量取平均值，得到</p>
+
+$$
+b=\frac{1}{N_{\mathcal{M}}} \sum_{n \in \mathcal{M}}\left(t_{n}-\sum_{m \in \mathcal{S}} a_{m} t_{m} k\left(\boldsymbol{x}_{n}, \boldsymbol{x}_{m}\right)\right)
+$$
+
+<h3>ν-SVM</h3>
+<p>$\nu$-SVM是支持向量机的另一种等价形式，它的构造方法为</p>
+
+$$
+\begin{aligned}
+&\underset{\mathbf{w} \in \mathcal{H}, \boldsymbol{\xi} \in \mathbb{R}^{m}, \rho, b \in \mathbb{R}}{\operatorname{minimize}} \quad & \tau(\mathbf{w}, \boldsymbol{\xi}, \rho)=\frac{1}{2}\|\mathbf{w}\|^{2}-\nu \rho+\frac{1}{m} \sum_{i=1}^{m} \xi_{i}\\
+&\text { subject to } \quad & y_{i}\left(\left\langle\mathbf{x}_{i}, \mathbf{w}\right\rangle+ b\right) \geq \rho-\xi_{i}, i=1, \ldots, m\\
+&\text { and } \quad & \xi_{i} \geq 0, \quad \rho \geq 0
+\end{aligned}
+$$
+
+<p>对偶函数为</p>
+
+$$
+\tilde{L}(\boldsymbol{a})=-\frac{1}{2} \sum_{n=1}^{N} \sum_{m=1}^{N} a_{n} a_{m} t_{n} t_{m} k\left(\boldsymbol{x}_{n}, \boldsymbol{x}_{m}\right)
+$$
+
+<p>限制条件为</p>
+
+$$
+\begin{aligned}
+0 \le a_n \le \frac{1}{N} \\
+\sum_{n=1}^N a_n t_n = 0 \\
+\sum_{n=1}^N a_n \ge \nu
+\end{aligned}
+$$
+
+<p>这种方法的优点是，参数$\nu$代替了参数$C$，它既可以被看做边缘错误（margin error）（$\xi_n \ge 0$的点）的上界，也可以被看做支持向量比例的下界。具体可以参见<a href="https://www.csie.ntu.edu.tw/~cjlin/papers/nusvmtutorial.pdf" target="_blank" rel="noopener">A Tutorial on ν-Support Vector Machines</a>中的第6节。</p>
+<h3>用SMO算法求解参数</h3>
+<p>公式$\tilde{L}(\boldsymbol{a})$通常是二次的，且限制条件定义了一个凸区域，因此任意局部最优解也是全局最优解。下面列出一些常见的求解方法：</p>
+<ul>
+<li>分块（chunking）：将完整的二次规划问题分解为一系列小的二次规划问题，小问题的目标是找到所有的非零拉格朗日乘数，并丢弃其他的乘数</li>
+<li>分解（decomposition）</li>
+<li>SMO（sequential minimal optimazation）：每次只选择两个拉格朗日乘数，求出子问题的解析解</li>
+</ul>
+<p>下面给出一个<a href="http://cs229.stanford.edu/materials/smo.pdf" target="_blank" rel="noopener">简化的SMO算法的描述</a>。</p>
+<p>首先选择两个参数$a_i$和$a_j$。选择方法是，首先选出一个（在一定数值范围内）不满足KKT条件（$a_{n} \geq 0$且$a _ {n}\left(t _ {n} y\left(\boldsymbol{x} _ {n}\right)-1+\xi _ {n}\right)=0$）的$a_i$，然后随机选择$a_j$。（这一简化使得算法不一定能收敛到全局最优解）</p>
+<p>然后计算出$a_j$的下界$L$和上界$H$：</p>
+<ul>
+<li>如果$t_i \neq t_j$，则$L = \max{(0, a_j - a_i)}$，$H = \min{(C, C+a_j-a_i)}$</li>
+<li>如果$t_i = t_j$，则$L = \max{(0, a_i + a_j - C)}$，$H = \min{(C, a_i+a_j)}$</li>
+</ul>
+<p>求出最大化目标函数的$a_j = a_j - \frac{y_j (E_i - E_j)}{\eta}$，其中</p>
+<ul>
+<li>$E_k = f(\boldsymbol{x}_k) - t_k$</li>
+<li>$\eta = 2k(\boldsymbol{x}_i, \boldsymbol{x}_j) - k(\boldsymbol{x}_i, \boldsymbol{x}_i) - k(\boldsymbol{x}_j, \boldsymbol{x}_j)$（如果$\eta=0$，则换一对$a_i$，$a_j$）</li>
+</ul>
+<p>将$a_j$限制在$[L, H]$范围内：</p>
+
+$$
+a_j = \begin{cases}
+H & \text{if} \, a_j > H \\
+a_j & \text{if} \, L \le a_j \le H \\
+L & \text{if} \, a_j < L \\
+\end{cases}
+$$
+
+<p>然后计算出$a_i$的值：</p>
+<p>$$<br>
+a_{i} = a_{i}+t_i t_j\left(a_{j}^{(\text {old })}-a_{j}\right)<br>
+$$</p>
+<p>最后计算出相应的$b$的值：</p>
+
+$$
+\begin{aligned}
+b_1 &= b - E_i - t_i(a_i - a_i^{(\text{old})})k(\boldsymbol{x}_i, \boldsymbol{x}_j) - t_j(a_j - a_j^{(\text{old})})k(\boldsymbol{x}_i, \boldsymbol{x}_j) \\
+b_2 &= b - E_j - t_i(a_i - a_i^{(\text{old})})k(\boldsymbol{x}_i, \boldsymbol{x}_j) - t_j(a_j - a_j^{(\text{old})})k(\boldsymbol{x}_i, \boldsymbol{x}_j)
+\end{aligned}
+$$
+
+
+$$
+b = \begin{cases}
+b_1 & \text {if} \quad 0<a_i<c 2="" \\="" b_2="" &="" \text="" {if}="" \quad="" 0<a_i<c="" \left(b_{1}+b_{2}\right)="" {otherwise}="" \end{cases}="" $$="" <p=""><strong>例：实现一个使用SMO算法的SVM</strong><p></p>
+<p><a href="https://github.com/zhanghuimeng/prml-code/blob/master/chp_07/07-01_01_svm.py" target="_blank" rel="noopener">代码</a></p>
+<p>说实话，这段代码的数值稳定性不是很好，我都不知道自己写对了没有。下面的输出看起来还不错，但是所有的$a_i=C$，不禁令人怀疑有什么问题。</p>
+<p><img src="07-01_01_svm.png" alt="一次看起来还不错的输出"></p>
+<h3>核函数和维度灾难</h3>
+<p>核函数对应于特征空间中的内积。特征空间可以是高维的，甚至是无穷维的。</p>
+<p>（这一段我实在不知道他在说什么……）</p>
+<h3>用SVM预测概率</h3>
+<p>为了用SVM预测概率，可以用logistic sigmoid函数拟合训练过的SVM的输出。假设需要求解的条件概率具有以下形式：</p>
+<p>$$<br>
+p(t=1 | \boldsymbol{x})=\sigma(A y(\boldsymbol{x})+B)<br>
+$$</p>
+<ul>
+<li>$y(\boldsymbol{x}) = \boldsymbol{w}^{T} \boldsymbol{\phi}(\boldsymbol{x})+b$</li>
+<li>参数$A$和$B$的值通过最小化交叉熵误差函数确定</li>
+<li>为了防止过拟合，用于拟合sigmoid函数的数据需要独立于训练原始SVM的数据</li>
+</ul>
+<p>这种两阶段的方法等价于假设支持向量机的输出$y(\boldsymbol{x})$表示属于类别$t=1$的$\boldsymbol{x}$的对数概率。由于SVM的训练过程并没有体现这种倾向，因此SVM给出的对后验概率的近似结果比较差。</p>
+<h2>7.1.2 与logistic回归的关系</h2>
+<p><img src="fig-7-5.png" alt="各种分类器的误差函数"></p>
+<p>上图中$z = yt$。</p>
+<p>误分类误差函数（图中的黑色线）的含义为，$z &gt; 0$（分类正确）时误差函数为0，否则为1。</p>
+<p>铰链误差函数（图中的蓝色线）是软边缘SVM的误差函数，是对误分类误差函数的一个近似，$z &gt;= 1$（点位于正确分类边界一侧）时误差函数为0，否则误差函数随点距边界的距离线性增长。</p>
+<p>红色线是放缩过的logistic回归的误差函数，也可以被看成是对误分类误差函数的近似。</p>
+<p>绿色线是平方和误差函数。</p>
+<h3>铰链误差函数</h3>
+<p>硬边缘SVM和软边缘SVM的误差函数都可以用最小化正则化来表示：</p>
+<p>$$\sum_{n=1}^{N} E_ {\infty}\left(y\left(\boldsymbol{x}_ {n}\right) t_ {n}-1\right)+\lambda|\boldsymbol{w}|^{2}$$</p>
+<p>$$<br>
+C\sum_{n=1}^N \xi_n + \frac{1}{2}|\boldsymbol{w}|^{2}<br>
+$$</p>
+<p>对于软边缘SVM：</p>
+<ul>
+<li>对于$y_n t_n &gt; 1$的数据点（完全正确分类），有$\xi_n = 0$</li>
+<li>对于其他数据点，有$\xi_n = 1 - y_n t_n$</li>
+</ul>
+<p>因此可以将软边缘SVM的误差函数改写为</p>
+<p>$$<br>
+\sum_{n=1}^{N} E_{S V}\left(y_{n} t_{n}\right)+\lambda|\boldsymbol{w}|^{2}<br>
+$$</p>
+<p>其中</p>
+<ul>
+<li>$\lambda = (2C)^{-1}$</li>
+<li>$E_{S V}$是铰链（hinge）误差函数，定义为$E_{S V}\left(y_{n} t_{n}\right)=\left[1-y _ {n} t _ {n}\right] _ {+}$，其中$[\cdot] _+$表示正数部分</li>
+</ul>
+<h3>logistic回归的误差函数</h3>
+<p>可以通过对似然函数取负对数的方式构造一个误差函数。带有正则化项的误差函数的形式为</p>
+<p>$$<br>
+\sum_{n=1}^{N} E_{L R}\left(y_{n} t_{n}\right)+\lambda|\boldsymbol{w}|^{2}<br>
+$$</p>
+<p>其中</p>
+<p>$$<br>
+E_{L R}(y t)=\ln (1+\exp (-y t))<br>
+$$</p>
+<p>这一误差函数的形式与支持向量机的误差函数类似。</p>
+<h3>平方和误差函数</h3>
+<p>这一误差函数会着重强调那些被正确分类的在正确的一侧距离决策边界较远的点。</p>
+<h2>7.1.3 多类SVM</h2>
+<p>// TODO</p>
+<h2>7.1.4 回归问题的SVM</h2>
+<p>// TODO</p>
+<h2>7.1.5 计算学习理论</h2>
+<p>// TODO</p>
+</a_i<c>
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-25T21:50:57+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2020-02-25
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Machine-Learning/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Machine Learning</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/PRML/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;PRML</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/prml-chap-9-mixture-models-and-em/" rel="prev" title="PRML读书笔记：第9章 混合模型和EM">
+                                  
+                                      PRML读书笔记：第9章 混合模型和EM
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Machine Learning</a> <a class="tag" href="/tags/PRML/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>PRML</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/prml-chap-7-sparse-kernel-machines/" rel="prev" title="PRML读书笔记：第7章 稀疏核机">
+                                    
+                                        PRML读书笔记：第7章 稀疏核机
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Machine Learning</a> <a class="tag" href="/tags/PRML/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>PRML</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: 'PRML读书笔记：7.1 最大边缘分类器',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">模型的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">模型的转化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">用拉格朗日乘数法得到对偶问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">求出分类器的形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">隐含的模型误差函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">7.1.1 重叠类分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">引入松弛变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">新的误差函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">用拉格朗日乘数法得到对偶问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">求出分类器的形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">ν-SVM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">用SMO算法求解参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">核函数和维度灾难</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">用SVM预测概率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">7.1.2 与logistic回归的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">铰链误差函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">logistic回归的误差函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">平方和误差函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">7.1.3 多类SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">7.1.4 回归问题的SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">7.1.5 计算学习理论</span></a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

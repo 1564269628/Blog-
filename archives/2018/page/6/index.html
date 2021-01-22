@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Archives: 2018 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+	
+    <script>
+        window.subData= { title:'year : 2018'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-933-number-of-recent-calls-and-weekly-contest-109/">
+              
+                  Leetcode 933. Number of Recent Calls（队列），及周赛（109）总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/number-of-recent-calls/description/" target="_blank" rel="noopener">https://leetcode.com/problems/number-of-recent-calls/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：148ms</p>
+<h2>题意</h2>
+<p>给定一系列严格递增的ping时间戳，问每个时间戳3000毫秒前共有几次ping。</p>
+<h2>分析</h2>
+<p>今天比赛的时候发生了一点incident。实验室没开门，于是我坐在外面的桌子上又冷又没电地打比赛，然后第三题的Dijstra居然还写错了调不出来，最后紧张地在没电和比赛结束之前换成了用<code>priority_queue</code>的做法……（事实证明不加堆优化还是会超时的）然后当然没时间做第四题了。我一眼望去以为第四题要用后缀树之类的做法，结果好像比我想象的要简单。</p>
+<p>最后排名是466 / 2948。今天北京下雨了。</p>
+<hr>
+<p>直接用队列维护一个时间窗口就可以了。（不知道为什么我比赛的时候用的是deque）</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RecentCounter</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; pings;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    RecentCounter() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ping</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!pings.empty() &amp;&amp; pings.front() &lt; t - <span class="number">3000</span>)</span><br><span class="line">            pings.pop_front();</span><br><span class="line">        pings.push_back(t);</span><br><span class="line">        <span class="keyword">return</span> pings.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Queue/"><i class="fas fa-hashtag fa-fw"></i>alg:Queue</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/bilingual-expert-can-find-translation-errors/">
+              
+                  论文：“Bilingual Expert” Can Find Translation Errors
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-03
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>论文地址：<a href="https://arxiv.org/pdf/1807.09433.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1807.09433.pdf</a></p>
+<p>这篇文章描述了2018 WMT Quality Estimation中效果最好的系统。作者认为他们的工作有以下几项主要贡献：</p>
+<ol>
+<li>提出了一个新的经过预训练的基于Bi-Transformer的prior-knowledge模型，且可以用于APE（auto post-editing）</li>
+<li>提出了3种mis-match feature</li>
+<li>用Bi-LSTM通过输入特征进行quality estimation</li>
+<li>提出了一种在计算流图中使用BPE的方法</li>
+</ol>
+<h2>Quality Estimation的传统方法和形式定义</h2>
+<p>一种传统方法是把预测sentence-level得分看做是一个constraint regression问题，把预测word-level标签看做是sequence labeling问题；然后先提取特征，再对翻译质量进行预测。</p>
+<p>从统计学的角度，可以把翻译系统形式化地看成是$p(\mathbf{t} | \mathbf{s}) = p(\mathbf{t} | \mathbf{z}) p(\mathbf{z} | \mathbf{s})$，其中$\mathbf{s}$表示源句的token sequence，$\mathbf{t}$表示译句，$\mathbf{z}$是表示encode过的源句的隐变量。因此，可以把$p(\mathbf{z} | \mathbf{s})$看成是encoder，$p(\mathbf{t} | \mathbf{z})$看成是decoder。</p>
+<p>在QE任务中，MT系统是未知的，输入数据是$(\mathbf{s}, \mathbf{m}, \mathbf{t})$，其中$\mathbf{m}$是未知系统的输出，$\mathbf{t}$是对$\mathbf{m}$ post-edit之后的结果。一般来说，至少可以在两个层面对$\mathbf{m}$进行评价：</p>
+<ul>
+<li>word-level：根据$\mathbf{m}$和$\mathbf{t}$对$\mathbf{m}$中的token生成的OK/BAD标签</li>
+<li>sentence-level：根据$\mathbf{m}$和$\mathbf{t}$之间的差异计算HTER分数</li>
+</ul>
+<p>因此可以假定训练数据实际上是$(\mathbf{s}, \mathbf{m}, \mathbf{t}, h, \mathbf{y})$，其中$h$是HTER，$\mathbf{y}$是OK/BAD标签。QE任务即训练回归模型$p(h | \mathbf{s}, \mathbf{m})$和sequence labeling模型$p(\mathbf{y} | \mathbf{s}, \mathbf{m})$。</p>
+<p>（这项工作的架构类似于predictor-estimator的架构，但是两边是共同训练的，因此效果得到提升。）</p>
+<h2>Conditional Language/Feature Extration Model: Bilingual Expert Model</h2>
+<p>作者首先形式化地描述了如何训练这个模型（实际上我没太看懂）。</p>
+<p>通过贝叶斯公式，可以写出隐变量$\mathbf{z}$的后验分布公式：</p>
+<p>$$p(\mathbf{z} | \mathbf{t}, \mathbf{s}) = \frac{p(\mathbf{t} | \mathbf{z}) p(\mathbf{z} | \mathbf{s})}{p(\mathbf{t} | \mathbf{s})}$$</p>
+<p>由于$p(\mathbf{t} | \mathbf{s})$无法直接计算，因此用分布$q(\mathbf{z} | \mathbf{t}, \mathbf{s})$通过最小化KL散度来逼近实际的后验：</p>
+<p>$$\min{D_{KL} (q(\mathbf{z} | \mathbf{t}, \mathbf{s}) || p(\mathbf{z} | \mathbf{t}, \mathbf{s}))}$$</p>
+<p>可以把上述目标函数换成下面这个（我猜这和KL散度的性质有关，但我不会）：</p>
+
+$$\max{\mathbb{E}_{q(\mathbf{z} | \mathbf{t}, \mathbf{s})}[p(\mathbf{t} | \mathbf{z})] - D_{KL} (q(\mathbf{z} | \mathbf{t}, \mathbf{s}) || p(\mathbf{z} | \mathbf{s}))}$$
+
+<p>这个新目标函数的优点是不需要直接估计机器翻译模型$p(\mathbb{t} | \mathbb{s})$。（至少在这里仍然把MT和QE区分开了，但在实际模型架构中几乎是一样的。）而且可以直接计算$p(\mathbf{z} | \mathbf{s})$；左边的期望似然实际上是一个VAE（variational autoencoder），可以进行估计：</p>
+
+$$\max{\mathbb{E}_{q(\mathbf{z} | \mathbf{t}, \mathbf{s})}[p(\mathbf{t} | \mathbf{z})] \approx p(\mathbf{t} | \mathbf{\tilde{z}})}, \quad \tilde{z} \sim q(\mathbf{z} | \mathbf{t}, \mathbf{s})$$
+
+<p>下面只需通过Transformer构造出$p(\mathbf{t} | \mathbf{z})$和$q(\mathbf{z} | \mathbf{t}, \mathbf{s})$这两个概率。</p>
+<hr>
+<p>Transformer部分模型架构如下图右侧部分：</p>
+<p><img src="qebrain-mode.png" alt="模型整体结构"></p>
+<p>其中有三个主要模块：</p>
+<ul>
+<li>self-attention encoder：encode源句</li>
+<li>前向+后向self-attention encoder：encode译句</li>
+<li>reconstructor：重新生成译句</li>
+</ul>
+<p>（这架构和Transformer几乎没有区别……除了译句encoder换成了双向的）</p>
+<p>将$p(\mathbf{t} | \mathbf{z})$和$q(\mathbf{z} | \mathbf{t}, \mathbf{s})$进行如下分解：</p>
+
+$$p(\mathbf{t} | \mathbf{z}) = \prod_{k} p(t_k | \overrightarrow{\mathbf{z}_k}, \overleftarrow{\mathbf{z}_k})$$
+
+$$q(\mathbf{z} | \mathbf{t}, \mathbf{s} = \prod_{k} q(\overrightarrow{\mathbf{z}_k} | \mathbf{s}, \mathbf{t}_{< k}, \overleftarrow{\mathbf{z}_k} | \mathbf{s}, \mathbf{t}_{> k})$$
+
+<h2>三种特征</h2>
+<p>在训练完expert model之后，可以从中提取句对$(\mathbf{s}, \mathbf{m})$中的3种特征：</p>
+<ul>
+<li>隐变量$\mathbf{z}_k$：它应当包含了源句和译句的所有信息，以及正确翻译第k个token所需的语义信息</li>
+<li>token embedding：对于第k个token，使用它前后token的embedding，即$(\mathbf{e}_{t_{k-1}}, \mathbf{e}_{t_{k+1}})$</li>
+<li>分类分布：令$p(t_k | \cdot)$为类别数量与词表大小相等的分类分布（categorical distribution），则$p(t_k | \cdot) \sim \text{Categorical}(softmax(\mathbf{I}_k))$</li>
+</ul>
+<p>于是可以构造4维的mis-matching feature：</p>
+
+$$\mathbf{f}_k^{mm} = (\mathbf{I}_{k, m_k}, \mathbf{I}_{k, i_{max}}, \mathbf{I}_{k, m_k} - \mathbf{I}_{k, i_{max}}, \mathbb{I}_{m_k \neq i_{max}})$$
+
+<p>其中$m_k$是翻译输出中的第k个token，$i_max = \arg\max_i{\mathbf{I}_k}$为expert model预期的输出token，$\mathbb{I}$是概率分布。</p>
+<p>（这预期输出token基本上就相当于是自己翻译了一遍吧……）</p>
+<h2>Bi-LSTM Quality Estimation</h2>
+<p>实验中发现encoder self-attention、Bi-Transformer和Bi-LSTM+CRF的效果都不如普通的Bi-LSTM，可能是因为训练数据不够多。因此直接使用了Bi-LSTM。</p>
+<p>Bi-LSTM输入expert model生成的feature：</p>
+
+$$\overrightarrow{\mathbf{h}_{1:T}}, \overleftarrow{\mathbf{h}_{1:T}} = \text{Bi-LSTM}(\{\mathbf{f}_k\}_{k=1}^T)$$
+
+<p>然后通过回归方法预测HTER（因为HTER是整个句子的评分，因此只考虑Bi-LSTM的最后两个状态）：</p>
+
+$$\arg\min{\lVert h - \text{sigmoid}(\mathbf{w}^T [\overrightarrow{\mathbf{h}_{T}}, \overleftarrow{\mathbf{h}_{T}}]) \rVert^2_2}$$
+
+<p>通过sequence labeling方法预测词的标签（其中XENT是cross entropy）：</p>
+
+$$\arg\min{\sum_{k=1}^T \text{XENT}(y_k, \mathbf{W}[\overrightarrow{\mathbf{h}_{k}}, \overleftarrow{\mathbf{h}_{k}}])}$$
+
+<h2>计算流图中的BPE</h2>
+<p>对于sentence-level QE，由于HTER是全局参数，显然使用BPE和不使用BPE没有太大的差别。但是对于word-level QE，BPE下序列的长度$L_b \neq L_{\omega}$（原序列长度）。因此作者提出了一种对一个词的所有subword unit的feature进行平均的方法：将BPE信息存储在一个$L_{\omega} \times L_b$的稀疏矩阵$S$中，其中仅当第j个subword unit属于第i个词时，$s_{ij} \neq 0$。此时就可以通过矩阵乘法计算平均后的feature，这使得计算流图是可微的。</p>
+<p>通过这一方法使用BPE后，效果有一定的提升。</p>
+<p><img src="bpe.png" alt="左侧为矩阵，右侧为实验效果"></p>
+<h2>实验结果</h2>
+<p>预处理：筛选长度&lt;=70且长度比在1/3~3范围内的句对</p>
+<p>参数：</p>
+<ul>
+<li>Bi-Transformer中每个模块的层数为2</li>
+<li>feed-forward层的大小为512</li>
+<li>8 head self-attention</li>
+</ul>
+<p><img src="wmt17-sentence-level.png" alt="WMT17中sentence-level QE的结果"></p>
+<p><img src="wmt18-sentence-level.png" alt="WMT18中sentence-level QE的结果"></p>
+<p><img src="wmt-17-18-word-level.png" alt="WMT17/18中word-level QE的结果"></p>
+<p>总的来说这一模型大获全胜。</p>
+<p>在实验中，即使只留下mis-match feature（而去掉另外两种），结果仍然是比较好的（皮尔森相关系数r降低了约0.04）。（这不禁令人怀疑QE和MT到底有什么区别。）</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Natural-Language-Processing/"><i class="fas fa-hashtag fa-fw"></i>Natural Language Processing</a>
+        
+          <a href="/tags/Reading-Report/"><i class="fas fa-hashtag fa-fw"></i>Reading Report</a>
+        
+          <a href="/tags/Machine-Translation/"><i class="fas fa-hashtag fa-fw"></i>Machine Translation</a>
+        
+          <a href="/tags/Paper/"><i class="fas fa-hashtag fa-fw"></i>Paper</a>
+        
+          <a href="/tags/Quality-Estimation/"><i class="fas fa-hashtag fa-fw"></i>Quality Estimation</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/a-simple-fast-and-effective-reparameterization-of-ibm-model-2/">
+              
+                  论文：A Simple, Fast and Effective Reparameterization of IBM Model 2
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-31
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>论文地址：<a href="http://www.aclweb.org/anthology/N13-1073" target="_blank" rel="noopener">http://www.aclweb.org/anthology/N13-1073</a></p>
+<p>这篇文章对IBM Model 2，一种在无监督情况下将双语语料进行对齐的方法进行了改进，提高了计算速度和对齐质量。</p>
+<h2>IBM Model 2</h2>
+<p>文章本身很短，但是为了明白文章在讲什么，首先需要搞懂IBM Model 2是什么。<a href="http://www.cs.columbia.edu/~mcollins/courses/nlp2011/notes/ibm12.pdf" target="_blank" rel="noopener">这篇文章</a>用Fr-En翻译的例子说明了IBM Model 2的定义和训练方法。</p>
+<p>用$(f_1, ..., f_m)$表示源句中的$m$个词，$(e_1, ..., e_l)$表示译句中的$l$个词，用$(f^{(k)}, e^{(k)})$表示第$k$个句对。</p>
+<p>IBM Model 2是一种Noisy-Channel Approach，也就是说，它的模型分成以下两个部分：</p>
+<ul>
+<li>语言模型：$p(e)$，表示英语句子$e$在英语中出现的概率</li>
+<li>翻译模型：$p(f | e)$，表示在给定译句为$e$的条件下，源句为$f$的概率。</li>
+</ul>
+<p>有趣的一点是，翻译模型是$p(f | e)$而非$p(e | f)$。（我也不知道为什么）</p>
+<h3>对齐模型（alignment model）</h3>
+<p>在翻译模型$p(f | e)$中加入对齐变量（alignment variables）$a_1, ..., a_m \in {0, 1, ..., l}$，得到$p(f_1 ... f_m, a_1 ... a_m | e_1 ...e_l, m)$。（上述模型假设已知分布$p(m | l)$，因此把$m$看作是定值）。其中$a_j$表示源句中的$f_j$与译句中的$e_{a_j}$对齐，或者说在概率模型中，$f_j$是由$e_{a_j}$生成的；$e_0$表示NULL，如果$a_j = 0$，说明$f_j$是由NULL生成的。</p>
+<p>（上述“生成”说的是概率模型的生成，并不是实际翻译中的生成。）</p>
+<h3>IBM-M2模型的正式定义</h3>
+<p>一个IBM-M2模型包括一个固定的英语词集合$\mathcal{E}$，一个固定的法语词集合$\mathcal{F}$，以及$M$和$L$，分别表示法语和英语句子的最大长度。模型的参数如下：</p>
+<ul>
+<li>$t(f | e), f \in \mathcal{F}, e \in \mathcal{E} \cup {\text{NULL}}$：表示从英语词$e$生成法语词$f$的概率</li>
+<li>$q(j | i, l, m), l \in {1, ..., L}, m \in {1, ..., M}, i \in {1, ..., n}, j \in {0, ..., l}$：英语和法语句子的长度分别为$l$和$m$时，$a_i = j$（$f_i$与$e_j$对齐）的概率</li>
+</ul>
+<p>对于任意英语句子$e_1, ..., e_l$和长度$m$，定义法语句子$f_1, ..., f_m$和对齐变量$a_1, ..., a_m$的条件分布为</p>
+<p>$$p(f_1 ... f_m, a_1 ... a_m | e_1 ... e_l, m) = \prod_{i=1}^{m} q(a_i | i, l, m) t(f_i | e_{a_i})$$</p>
+<hr>
+<p>在这个模型中我们使用了一些独立性假设。令$L$为表示英语句子长度的随机变量，$E_1, ..., E_l$是表示英语句子中的词的随机变量；$M$是表示法语句子长度的随机变量，$F_1, ..., F_m$和$A_1, ..., A_m$是表示法语句子中的词和对齐的随机变量，则我们的目标是建立一个这样的模型：</p>
+<p>$$P(F_1=f_1 ... F_m=f_m, A_1=a_1 ... A_m=a_m | E_1=e_1 ... E_l=e_l, L=l, M=m)$$<br>
+可以通过链式法则把上式分解成两项的乘积：</p>
+<ul>
+<li>$P(A_1=a_1 ... A_m=a_m | E_1=e_1 ... E_l=e_l, L=l, M=m)$</li>
+<li>$P(F_1=f_1 ... F_m=f_m | A_1=a_1 ... A_m=a_m, E_1=e_1 ... E_l=e_l, L=l, M=m)$</li>
+</ul>
+<p>对于第一项，作如下独立性假设：</p>
+<p>$$P(A_1=a_1 ... A_m=a_m | E_1=e_1 ... E_l=e_l, L=l, M=m) = \prod_{i=1}^{m} P(A_i=a_i | L=l, M=m)$$</p>
+<p>即对齐变量$A_i$只与源句和译句的长度有关，和具体的词无关。（显然这只是一种假设）</p>
+<p>对于第二项，作如下独立性假设：</p>
+<p>$$P(F_1=f_1 ... F_m=f_m | A_1=a_1 ... A_m=a_m, E_1=e_1 ... E_l=e_l, L=l, M=m) = \prod_{i=1}^{m} P(F_i=f_i | E_{a_i} = e_{a_i})$$</p>
+<p>即法语词$F_i$只与和它对齐的英语词$E_{a_i}$有关，和其他词均无关。（显然这只是一种假设）</p>
+<h3>IBM-M2模型的用途</h3>
+<ol>
+<li>翻译：$\arg\max_{e} p(e) p(f|e)$</li>
+<li>语言（词法）模型：$t(f | e)$</li>
+<li>对齐模型：$a_i = \arg\max_{j\in{0, ..., l}} (q(j | i, l, m) \times t(f_i | e_j))$</li>
+</ol>
+<p>其中对齐模型是比较重要的一种用途。</p>
+<h3>估计IBM-M2模型的参数</h3>
+<h4>数据观测充分的情况</h4>
+<p>在这种情况下，我们假设训练数据是这样的：$(f^{(k)}, e^{(k)}, a^{(k)})$。（一般来说，$a^{(k)}$是观察不到的）</p>
+<p>这样就可以利用极大似然对参数进行估计：</p>
+<ul>
+<li>$c(e, f)$：训练数据中英语词$e$与法语词$f$对齐的次数</li>
+<li>$c(e)$：训练数据中英语词$e$与任意法语词对齐的总次数</li>
+<li>$c(j | i, l, m)$：长度为$l$的法语句子中第$i$个词与长度为$m$的英语句子中第$j$个词对齐的次数</li>
+<li>$c(i, l, m)$：训练数据中法语句子长度为$l$，英语句子长度为$m$的总数</li>
+</ul>
+<p>$$t_{ML} (f | e) = \frac{c(e, f)}{c(e)}$$</p>
+<p>$$q_{ML} (j | i, l, m) = \frac{c(j | i, l, m)}{c(i, l, m)}$$</p>
+<p><img src="algorithm-1.png" alt="算法伪代码"></p>
+<h4>数据观测不充分的情况</h4>
+<p>在这种情况下，我们假设训练数据是这样的：$(f^{(k)}, e^{(k)})$。我们采用EM算法对参数进行估计：</p>
+<ul>
+<li>首先为各$t_{ML} (f | e)$和$q_{ML} (j | i, l, m)$参数估计一个初始值（比如随机取值）</li>
+<li>按照当前参数取值统计$c(e, f)$、$c(e)$、$c(j | i, l, m)$和$c(i, l, m)$的值</li>
+<li>更新各$t_{ML} (f | e)$和$q_{ML} (j | i, l, m)$参数，迭代直到收敛</li>
+</ul>
+<p>其中最主要的区别是把原来的</p>
+<p>$$\delta(k, i, j) = 1 , \text{if} , a_i^{(k)} = j, 0 , \text{otherwise}$$（只有确实对齐时才取1，其他时候取0）</p>
+<p>换成了</p>
+<p>$$\delta(k, i, j) = \frac{q(j | i, l_k, m_k) t(f_i^{(k)} | e_j^{(k)})}{\sum_{j=0}^{l_k} q(j | i, l_k, m_k) t(f_i^{(k)} | e_j^{(k)})}$$（在当前参数下$a_i=j$的概率）</p>
+<p>可以证明EM算法是收敛的，但是可能会收敛到局部极小值。所以可以用Model 1对参数进行初始化。详细的内容略。</p>
+<p><img src="algorithm-2.png" alt="算法伪代码"></p>
+<h2>fast align</h2>
+<p>这一模型采用了IBM-M2模型的基本思路，但是减少了其中的参数个数。按论文中的表示法，这个模型是这样定义的：</p>
+<ul>
+<li>令$n$表示源句长度，$m$表示译句长度，定义两个新的参数$p_0$和$\lambda$</li>
+<li>令$h(i, j, m, n) = -|\frac{i}{m} - \frac{j}{n}|$</li>
+<li>令$\delta(a_i = j | i, m, n)$表示源句和译句长度分别为$m$和$n$时，$a_i = j$的概率（相当于之前的$q(j | i, l, m)$）</li>
+<li>令$\theta(e_i | f_{a_i})$表示从英语词$e_i$生成法语词$f_{a_i}$的概率（相当于之前的$t(f | e)$）</li>
+</ul>
+
+$$\delta(a_i = j | i, m, n) =
+\begin{cases}
+p_0 & j = 0 \\
+(1 - p_0) \times \frac{e^{\lambda h(i, j, m, n)}}{Z_{\lambda}(i, m, n)} & 0 < j \leq n \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+<p>其中$Z_{\lambda}(i, m, n) = \sum_{j'=1}^{n} \exp{\lambda h(i, j', m, n)}$</p>
+<p>这相当于是把原来每组$(i, j, m, n)$都对应一个参数的情况修正成了只通过已知函数$h$和$p_0$、$\lambda$两个参数来确定对齐。其中$p_0$表示的是无对齐的概率</p>
+<h3>根据参数计算给定句对的最大似然概率和对齐</h3>
+<p>给定句对$(f, e)$和参数，则：</p>
+<ul>
+<li>译句中第$i$个词为$e_i$，且$e_i$和$f_{a_i}$对齐的概率为：$p(e_i, a_i | f, m, n) = \delta(a_i | i, m, n) \times \theta(e_i | f_{a_i})$</li>
+<li>译句中第$i$个词为$e_i$的概率为：$p(e_i | f, m, n) = \sum_{j=0}^{n} p(e_i, a_i=j | f, m, n)$</li>
+<li>因此：$p(e | f) = \prod_{i=1}^{m} p(e_i, a_i=j | f, m, n) = \prod_{i=1}^{m} \sum_{j=0}^{n} \delta(a_i | i, m, n) \times \theta(e_i | f_{a_i})$</li>
+</ul>
+<p>通过一些优化手段，我们可以使$\delta(a_i | i, m, n)$的计算复杂度是$O(1)$的。</p>
+<hr>
+<p>显然$\delta(a_i | i, m, n)$的计算瓶颈在于$Z_{\lambda}(i, m, n)$；$Z_{\lambda}(i, m, n)$显然可以在$O(n)$时间复杂度内进行计算，但事实上可以是$O(1)$的。考虑到$h(i, j, m, n) = -|\frac{i}{m} - \frac{j}{n}|$，事实上$Z_{\lambda}(i, m, n)$是两个等比数列的和：</p>
+<ul>
+<li>令$j_{\uparrow} = \lfloor \frac{i \times n}{m} \rfloor$，$j_{\downarrow} = j_{\uparrow} + 1$</li>
+<li>则$Z_{\lambda}(i, m, n) = \sum_{j'=1}^{j_{\uparrow}} \exp{\lambda h(i, j', m, n)} + \sum_{j' = j_{\downarrow}}^{n} \exp{\lambda h(i, j', m, n)}$</li>
+<li>其中$\sum_{j'=1}^{j_{\uparrow}} \exp{\lambda h(i, j', m, n)} = e^{\lambda j_{\uparrow}} + e^{\lambda (j_{\uparrow} - 1/n)} + e^{\lambda (j_{\uparrow} - 2/n)} + ...$</li>
+<li>$\sum_{j' = j_{\downarrow}}^{n} \exp{\lambda h(i, j', m, n)} = e^{\lambda j_{\downarrow}} + e^{\lambda (j_{\downarrow} - 1/n)} + e^{\lambda (j_{\downarrow} - 2/n)} + ...$</li>
+</ul>
+<p>因此可以在$O(1)$时间内计算$Z_{\lambda}(i, m, n)$。</p>
+<h3>根据训练数据计算参数</h3>
+<p>这一模型也可以通过EM算法来进行训练。$\theta(e_i | f_{a_i})$的更新方法和之前类似，并使用了（一些我看不懂的数学）进行优化；$\lambda$参数则需要用梯度方法来进行更新（另一些我没看懂的数学）。事实上，$\delta(j | i, m, n)$的导数也具有类似的规律性，因此也可以用相同的方法来计算梯度，复杂度比较低。</p>
+<h2>评价</h2>
+<p>这个模型能够用无监督且非常快速的方式计算出源句和译句之间的对齐，是一种非常有趣且已经被广泛使用的方法。不过由于模型和方法本身的限制，这个模型的对齐质量仍然不是很高。不过，在NMT方法中我们仍然可以利用这一方法生成的对齐的质量来对训练语料进行初步的预处理。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Natural-Language-Processing/"><i class="fas fa-hashtag fa-fw"></i>Natural Language Processing</a>
+        
+          <a href="/tags/Reading-Report/"><i class="fas fa-hashtag fa-fw"></i>Reading Report</a>
+        
+          <a href="/tags/Machine-Translation/"><i class="fas fa-hashtag fa-fw"></i>Machine Translation</a>
+        
+          <a href="/tags/Paper/"><i class="fas fa-hashtag fa-fw"></i>Paper</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/findings-of-the-wmt-2018-shared-task-on-quality-estimation/">
+              
+                  论文：Findings of the WMT 2018 Shared Task on Quality Estimation
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-29
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>论文地址：<a href="https://fredblain.org/papers/pdf/specia_et_al_findings_of_the_wmt_2018_shared_task_on_quality_estimation.pdf" target="_blank" rel="noopener">Findings of the WMT 2018 Shared Task on Quality Estimation</a></p>
+<p>这篇文章报告了WMT18 Quality Estimation任务的结果。</p>
+<h2>各系统及提交者</h2>
+<p>本次参与评测的一共有10个系统（其中UAlacant和RTM因为迟交没有计入正式排名）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">系统名称</th>
+<th style="text-align:center">提交者</th>
+<th style="text-align:center">具体提交</th>
+<th style="text-align:center">参与任务</th>
+<th style="text-align:center">Task1</th>
+<th style="text-align:center">Task2</th>
+<th style="text-align:center">Task3</th>
+<th style="text-align:center">Task4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">CMU-LTI</td>
+<td style="text-align:center">CMU</td>
+<td style="text-align:center">1. CMU-LTI</td>
+<td style="text-align:center">T2</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">次于QEBrain，和SHEF-PT表现相当</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">JU-USAAR</td>
+<td style="text-align:center">Jadavpur University &amp; University of Saarland</td>
+<td style="text-align:center">1. Bag-of-Words<br>2. Doc2Vec</td>
+<td style="text-align:center">T2</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">低于baseline</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">MQE</td>
+<td style="text-align:center">Vicomtech</td>
+<td style="text-align:center">1. sMQE<br>2. uMQE</td>
+<td style="text-align:center">T1</td>
+<td style="text-align:center">和baseline持平</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">QEbrain</td>
+<td style="text-align:center">阿里</td>
+<td style="text-align:center">1. QEBrain DoubleBi w/ BPE+word-tok<br>2. QEBrain DoubleBi w/ BPE+word-tok (ensemble)</td>
+<td style="text-align:center">T1, T2</td>
+<td style="text-align:center">QEBrain和UNQE并列第一，远高于其他系统</td>
+<td style="text-align:center">第一名，且gap error detection子任务表现非常好</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">RTM</td>
+<td style="text-align:center">Biçici</td>
+<td style="text-align:center">1. RTM<br>2. RTM_MIX1<br>3. RTM_MIX5<br>4. RTM_MIX6<br>5. RTM_MIX7</td>
+<td style="text-align:center">T1-T4</td>
+<td style="text-align:center">在NMT数据集上接近UNQE和QEBrain的结果</td>
+<td style="text-align:center">低于baseline</td>
+<td style="text-align:center">低于baseline</td>
+<td style="text-align:center">远不如baseline</td>
+</tr>
+<tr>
+<td style="text-align:center">SHEF</td>
+<td style="text-align:center">University of Sheffield</td>
+<td style="text-align:center">1. SHEF-PT<br>2. SHEF-bRNN<br>3. SHEF-ATT-SUM<br>4. SHEF-PT-indomain<br>5. SHEF-mtl-bRNN<br>6. SHEF-mtl-PT-indomain</td>
+<td style="text-align:center">T1-T4</td>
+<td style="text-align:center">大致处于排名中间位置</td>
+<td style="text-align:center">第二名（因为很多系统没有参与Task2）</td>
+<td style="text-align:center">与baseline相当</td>
+<td style="text-align:center">略高于baseline</td>
+</tr>
+<tr>
+<td style="text-align:center">TSKQE</td>
+<td style="text-align:center">汉堡大学</td>
+<td style="text-align:center">1. TSKQE1<br>2. TSKQE2<br></td>
+<td style="text-align:center">T1</td>
+<td style="text-align:center">第三名（低于QEBrain和UNQE）</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">UAlacant</td>
+<td style="text-align:center">University of Alacant</td>
+<td style="text-align:center">1. UAlacant</td>
+<td style="text-align:center">T1, T2</td>
+<td style="text-align:center">和baseline相当</td>
+<td style="text-align:center">低于baseline</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">UNQE</td>
+<td style="text-align:center">江西师范大学</td>
+<td style="text-align:center">UNQE</td>
+<td style="text-align:center">T1</td>
+<td style="text-align:center">和QEBrain并列第一，远高于其他系统</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">UTaru</td>
+<td style="text-align:center">University of Taru</td>
+<td style="text-align:center">1. UTartu/QuEst+Attention<br>2. UTartu/QuEst+Att+CrEmb3</td>
+<td style="text-align:center">T1, T2</td>
+<td style="text-align:center">略高于baseline</td>
+<td style="text-align:center">低于baseline</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<p>可以看出，这次比赛中，QEBrain和UNQE系统的效果是最好的，其次是CMU-LTI、TSKQE和SHEF。</p>
+<h3>QEBrain（T1，T2，阿里）</h3>
+<p>QEBrain系统的参赛者已经把论文贴到Arxiv上了（<a href="https://arxiv.org/pdf/1807.09433.pdf" target="_blank" rel="noopener">“Bilingual Expert” Can Find Translation Errors</a>），之后我会再去仔细读……不过简单来说好像是这样的：</p>
+<ul>
+<li>feature extraction (target language) model（作为特征提取器）
+<ul>
+<li>multi-head self-attention</li>
+<li>源语言的transformer encoder</li>
+<li>目标语言的bi-transformer encoder</li>
+</ul>
+</li>
+<li>预训练过的双向transformer（作为预测器）
+<ul>
+<li>输入上述特征提取器得到的特征和baseline系统提供的特征</li>
+</ul>
+</li>
+</ul>
+<p>并且进行了ensemble。</p>
+<h3>UNQE（T1，江西师范大学）</h3>
+<p>他们把论文投到IEICE了（<a href="https://www.jstage.jst.go.jp/article/transinf/E101.D/9/E101.D_2018EDL8019/_article/-char/en" target="_blank" rel="noopener">A Unified Neural Network for Quality Estimation of Machine Estimation</a>），之后我会再去仔细读……不过简单来说好像是这样的：</p>
+<ul>
+<li>bi-RNN encoder-decoder + attention：从翻译输出中提取quality vector</li>
+<li>RNN：通过quality vector预测翻译输出的HTER值</li>
+</ul>
+<p>模型进行了预训练；输出结果进行了模型平均。</p>
+<h3>CMU-LTI（T2，CMU）</h3>
+<p>他们也把论文贴到arXiv了（<a href="https://arxiv.org/pdf/1809.00129.pdf" target="_blank" rel="noopener">Contextual Encoding for Translation Quality Estimation</a>）。模型分为三个主要部分：</p>
+<ul>
+<li>embedding layer：表示词和POS tag</li>
+<li>1d convolution layer：将每个词和它的local context结合起来</li>
+<li>stack of feed-forward and RNN: 将每个词和它的global context结合起来；同时输入一些句法feature</li>
+</ul>
+<h3>TSKQE（T1，汉堡大学）</h3>
+<p>我确实没找到他们今年的论文（只找到了去年的，<a href="http://www.statmt.org/wmt17/pdf/WMT62.pdf" target="_blank" rel="noopener">UHH Submission to the WMT17 Quality Estimation Shared Task</a>）；他们的做法好像是对源句应用sequence kernel、tree kernel，对译句应用candidate translation和back-translation，预测HTER得分。（我并没有看懂这些，好像是一种非深度学习的approach）</p>
+<h3>SHEF（T1-T4，University of Sheffield）</h3>
+<p>唯一在四个任务上都有正式提交的系统。我仍然没有找到他们今年的论文，但我找到了他们的一个类似的<a href="https://sheffieldnlp.github.io/deepQuest/introduction.html" target="_blank" rel="noopener">开源项目</a>。今年他们提交了两个不同架构的系统：</p>
+<ul>
+<li>SHEF-PT：由Predictor和Estimator组成
+<ul>
+<li>Predictor：经过一定修改的encoder-decoder RNN模型</li>
+<li>Estimator：bi-RNN，基于Predictor的输出进行预测</li>
+<li>可以进行multi-task learning</li>
+</ul>
+</li>
+<li>SHEF-bRNN：
+<ul>
+<li>用两个bi-RNN（GRU）学习(source, translation)对，输出word-level的预测</li>
+<li>用attention机制对bi-RNN的输出（word-level的预测）进行加权平均，得到sentence-level的预测</li>
+</ul>
+</li>
+</ul>
+<p>对于phrase-level的预测，他们使用的是标准的基于attention的MT架构，将word-level的预测加权平均得到结果；对于预测source tag的任务，是把两边的输出反过来；对于document-level的任务，同时使用了PT和bRNN两种架构。</p>
+<hr>
+<p>剩余的分数不太高的系统就不仔细看了。感觉NN方法占据了绝对优势。</p>
+<h2>Task1（句级QE）结果及讨论</h2>
+<p>这一任务的目标是对翻译输出的质量进行打分或排名。训练数据的label包括HTER、post-editing时间和post-editing中键盘敲击统计。</p>
+<p>评价方法主要是皮尔森相关系数r（打分）和斯皮尔曼等级相关系数（排名）。</p>
+<p>baseline是<a href="https://github.com/ghpaetzold/questplusplus" target="_blank" rel="noopener">QUEST++</a>：提取feature，用SVR+RBF kernel进行回归训练。</p>
+<p><img src="task1-en-ge-result.png" alt="En-De数据集测试结果"></p>
+<p><img src="task1-ge-en-result.png" alt="De-En数据集测试结果"></p>
+<p><img src="task1-en-lv-result.png" alt="En-Lv数据集测试结果"></p>
+<p><img src="task1-en-cz-result.png" alt="En-Cs数据集测试结果"></p>
+<p>在该任务上表现最好的系统显然是QEBrain和UNQE，且它们的表现都远好于第三名；其中SHEF-PT是去年在该任务上表现最好的。这说明了Transformer技术应用在QE任务上之后大大提高了QE的表现。</p>
+<p>SMT和NMT数据集的生成方法相同（分别用SMT和NMT系统对一个初始数据集进行翻译，进行post-edit，再移除其中过多的HTER=0的句对），但由于NMT的翻译效果远优于SMT，导致NMT数据集比较小，这也使得我们无法直接对SMT和NMT数据集上的结果进行比较；同时，NMT数据集上的平均HTER分数也更低，这些可能是导致En-De数据集上各系统普遍在NMT数据上表现较差的原因。但是在En-Lv数据集上，这一趋势完全是相反的，NMT数据上系统的表现较好。不过系统在不同数据集上的排名是类似的，说明QE系统一般具有鲁棒性。</p>
+<p>另一个事实是，没有系统使用了post-editing时间和post-editing中键盘敲击统计这两种label。</p>
+<h2>Task2（词级QE）结果及讨论</h2>
+<p>这个任务相当于有三个子任务，分别对三种不同的token进行标记，并分别进行测试：</p>
+<ul>
+<li>译句中的普通token：根据post-edited版本进行标注，应被替换和删除的标记为BAD，其余标为OK</li>
+<li>译句中的gap token：在译句中每个token之后和句首插入gap token（也就是说，如果原来有N个token，插入之后会变成2*N+1个token），如果gap token对应位置相比post-edited版本发生漏词，则该gap token标记为BAD；否则标为OK</li>
+<li>源句中的token：使用fastalign工具将源句和post-edited版本的译句进行对齐；对于源句中的每个token，如果和它对齐的post-edited版本的译句中的token在译句中被删除或替换，则该token标记为BAD；否则标为OK</li>
+</ul>
+<p>评价方式：对上述每种token的OK和BAD类别分别计算F1分数并相乘，以F1-mult作为最终评分标准。</p>
+<p>baseline：提取feature后，作为sequence prediction问题，用CRF算法进行训练。</p>
+<p><img src="task2-en-ge-result.png" alt="En-De数据集测试结果"></p>
+<p><img src="task2-ge-en-result.png" alt="De-En数据集测试结果"></p>
+<p><img src="task2-en-cz-result.png" alt="En-Cs数据集测试结果"></p>
+<p><img src="task2-en-lv-result.png" alt="En-Lv数据集测试结果"></p>
+<p>由于在各个数据集上进行提交的系统都不太一样，所以很难进行完整的比较。</p>
+<p>参与En-De和De-En任务的系统最多；和往年一样，Task1的结果和Task2的结果相关性很强，所以QEBrain在task2也获胜了。由于UNQE等系统没有参与Task2，表现次好的系统是SHEF-PT，落后得稍微少一点。</p>
+<p>对于En-De数据集，很显然各个系统在NMT数据集上的表现远差于SMT数据集；而En-Lv数据集中，系统在SMT数据集上表现更好，这和Task1也相同。</p>
+<p>只有很少几个系统提交了gap检测和导致错误的源词的新任务；这些系统的表现都比较一般，但结果和在主任务上的表现是相关的。QEBrain系统在gap检测上的表现非常之好（没有在其他任务上提交）。并且从分数可以看出，预测源句中导致错误的token比预测译句中的错误token更难；这可能是因为“源句中导致错误的token”有更多的可能性。</p>
+<p>En-Lv NMT数据集上，所有系统都只能达到baseline的效果；En-Cs数据集上所有系统的表现都差不多。这可能是因为预处理数据资源不够。</p>
+<h2>Task3（短语级QE）结果及讨论</h2>
+<p>短语有四类标注：</p>
+<ul>
+<li>OK：正确的短语</li>
+<li>BAD：包含错误的短语</li>
+<li>BAD_word_order：短语在句中位于错误的位置</li>
+<li>BAD_omission：短语前后缺词</li>
+</ul>
+<p>这一任务分成两个子任务：</p>
+<ul>
+<li>Task3a：和Task2一样，在译句中每个token之后和句首插入gap token；然后用SMT decoder将译句分成短语，对短语进行标注：最后将标注结果标到具体的词上，相当于这也是一个word-level的任务</li>
+<li>Task3b：直接对短语进行标注，每个短语前后各有一个gap token，gap可能被标注为OK或BAD_omission。</li>
+</ul>
+<p>评价方式：</p>
+<ul>
+<li>Task3a：和Task 2相同，都是OK和BAD类别下的F1-mult</li>
+<li>Task3b：短语级别的F1-mult</li>
+</ul>
+<p>这一任务只有De-En数据集，数据是手动标注的（而非post-edit后再自动生成的）。</p>
+<p>baseline：提取feature后，作为sequence labelling问题，用CRF算法进行训练。</p>
+<p><img src="task3-ge-en-result.png" alt="De-En数据集测试结果"></p>
+<p>和Task2的De-En结果相比，BAD类别的F1分数显著降低了。这一现象可能是因为数据生成的方式导致的，phrase label粒度更粗一些。</p>
+<p>事实上，只有SHEF-PT和SHEF-bRNN系统参与了这一任务；它们在Task3a上的表现和baseline差不多，在Task3b上还不如baseline。作者据此认为短语级别的预测仍然是很有挑战的任务，但我觉得样本量太少了，也不是很有代表性。不过这可能说明我们需要更好的神经网络结构。</p>
+<h2>Task4（文档级QE）结果及讨论</h2>
+<p>这一任务的要求是对整个文档的翻译质量进行打分。文档中在accuracy、fluency和style三个方面出错的词被标出，并根据严重程度分为minor、major和critical三类；文档的真实得分由人类打出。</p>
+<p>评价方式是预测得分和真实得分的皮尔森相关系数r。</p>
+<p>baseline：<a href="https://github.com/ghpaetzold/questplusplus" target="_blank" rel="noopener">QUEST++</a></p>
+<p><img src="task4-en-fr-result.png" alt="En-Fr数据集测试结果"></p>
+<p>显然，baseline的得分已经很高了；只有SHEf-PT-indomain的分数稍高于baseline。这说明Task4是一项很难的任务；同时很难评价系统在这一任务上的表现。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Natural-Language-Processing/"><i class="fas fa-hashtag fa-fw"></i>Natural Language Processing</a>
+        
+          <a href="/tags/Reading-Report/"><i class="fas fa-hashtag fa-fw"></i>Reading Report</a>
+        
+          <a href="/tags/Machine-Translation/"><i class="fas fa-hashtag fa-fw"></i>Machine Translation</a>
+        
+          <a href="/tags/Paper/"><i class="fas fa-hashtag fa-fw"></i>Paper</a>
+        
+          <a href="/tags/Quality-Estimation/"><i class="fas fa-hashtag fa-fw"></i>Quality Estimation</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-932-beautiful-array/">
+              
+                  Leetcode 932. Beautiful Array（数学）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/beautiful-array/description/" target="_blank" rel="noopener">https://leetcode.com/problems/beautiful-array/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/3</p>
+<p>代码效率：</p>
+<ul>
+<li>直接递归版本：8ms</li>
+<li>带cache递归版本：12ms</li>
+</ul>
+<h2>题意</h2>
+<p>对于正整数<code>N</code>，称1到<code>N</code>的全排列<code>A</code>为beautiful当且仅当对于任意<code>i &lt; j</code>，不存在满足<code>i &lt; k &lt; j</code>且<code>A[k] * 2 = A[i] + A[j]</code>的<code>k</code>。给定<code>N</code>，请输出任意beautiful的<code>A</code>。</p>
+<h2>分析</h2>
+<p>一道很有趣的题。（这次比赛最难的题就是medium了啊）最开始我并没有什么思路。于是我暴力了一下：</p>
+<p><code>N=4</code>时的beautiful排列共有10个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1 3 2 4</span><br><span class="line">1 3 4 2</span><br><span class="line">2 1 4 3</span><br><span class="line">2 4 1 3</span><br><span class="line">2 4 3 1</span><br><span class="line">3 1 2 4</span><br><span class="line">3 1 4 2</span><br><span class="line">3 4 1 2</span><br><span class="line">4 2 1 3</span><br><span class="line">4 2 3 1</span><br></pre></td></tr></table></figure>
+<p><code>N=5</code>时共有20个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1 5 3 2 4</span><br><span class="line">1 5 3 4 2</span><br><span class="line">2 1 4 5 3</span><br><span class="line">2 4 1 5 3</span><br><span class="line">2 4 3 1 5</span><br><span class="line">2 4 3 5 1</span><br><span class="line">2 4 5 1 3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><code>N=6</code>时共有48个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 5 3 2 6 4</span><br><span class="line">1 5 3 4 2 6</span><br><span class="line">1 5 3 4 6 2</span><br><span class="line">1 5 3 6 2 4</span><br><span class="line">1 5 6 3 2 4</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><code>N=7</code>时共有104个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1 5 3 2 7 6 4</span><br><span class="line">1 5 3 7 2 6 4</span><br><span class="line">1 5 3 7 4 2 6</span><br><span class="line">1 5 3 7 4 6 2</span><br><span class="line">1 5 3 7 6 2 4</span><br><span class="line">1 5 7 3 2 6 4</span><br><span class="line">1 5 7 3 4 2 6</span><br><span class="line">1 5 7 3 4 6 2</span><br><span class="line">1 5 7 3 6 2 4</span><br><span class="line">1 5 7 6 3 2 4</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>我猜beautiful排列的数量肯定是随<code>N</code>递增的，但和<code>N!</code>比起来大概是稀疏的，所以随机生成一个排列然后再判断它是否具有所需的性质多半不太可取。然后通过观察，我发现很多beautiful排列都是把奇数排在前面，偶数排在后面的！于是就写了一个交上去了。我心想，这样做的道理是，不需要处理偶数和奇数中间的<code>k</code>；两个奇数相加除2如果生成偶数，则偶数肯定不在这些奇数里面……</p>
+<p>于是显然就WA了，没有注意到两个奇数相加除2也可能会生成奇数这一点。</p>
+<p>但这就使得我注意到了一种可能存在的递归结构：以<code>N=7</code>为例，先把所有数分成奇数<code>1 3 5 7</code>和偶数<code>2 4 6</code>，然后把<code>1 3 5 7</code>转换成<code>1 2 3 4</code>，<code>2 4 6</code>转换成<code>1 2 3</code>，分别递归执行，得到<code>1 3 2 4</code>和<code>1 3 2</code>之后，再转换回<code>1 5 3 7</code>和<code>2 6 4</code>，把它们拼起来，就可以得到最终结果<code>1 5 3 7 2 6 4</code>。关于这一点的更正式的证明是，beautiful数组（经过转换之后不一定是排列了）满足以下性质<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>：</p>
+<ul>
+<li>若<code>A</code>是beautiful数组，则<code>A + x</code>（对数组的每个元素加<code>x</code>）仍是beautiful数组</li>
+<li>若<code>A</code>是beautiful数组，则<code>A * x</code>（对数组的每个元素乘<code>x</code>）仍是beautiful数组</li>
+<li>若<code>A</code>是beautiful数组，则删除<code>A</code>中的一些元素，<code>A</code>仍是beautiful数组</li>
+</ul>
+<p>以及lee215的题解<sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1]</a></sup>质量过于好了，真的，十分推荐阅读，除此之外，还有<a href="https://leetcode.com/problems/beautiful-array/discuss/186680/Python-1-line-solutions" target="_blank" rel="noopener">one-liner版本</a>（仿佛看到了StefanPochmann……）</p>
+<h2>代码</h2>
+<h3>直接递归</h3>
+<p>应该把这个函数直接写到<code>beautifulArray</code>函数里去的，而且算法也不是DFS……</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dfs(<span class="keyword">int</span> N) &#123;</span><br><span class="line">        <span class="keyword">if</span> (N == <span class="number">1</span>) <span class="keyword">return</span> &#123;<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="comment">// 奇数：(x + 1) / 2</span></span><br><span class="line">        <span class="comment">// 偶数：x / 2</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left = dfs((N + <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right = dfs(N / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sum;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: left)</span><br><span class="line">            sum.push_back(x * <span class="number">2</span> - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: right)</span><br><span class="line">            sum.push_back(x * <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; beautifulArray(<span class="keyword">int</span> N) &#123;</span><br><span class="line">        <span class="keyword">return</span> dfs(N);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>带cache的递归</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; cache;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; backtrack(<span class="keyword">int</span> N) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cache.find(N) != cache.end()) <span class="keyword">return</span> cache[N];</span><br><span class="line">        <span class="comment">// 奇数：(x + 1) / 2</span></span><br><span class="line">        <span class="comment">// 偶数：x / 2</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left = dfs((N + <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right = dfs(N / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sum;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: left)</span><br><span class="line">            sum.push_back(x * <span class="number">2</span> - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: right)</span><br><span class="line">            sum.push_back(x * <span class="number">2</span>);</span><br><span class="line">        cache[N] = sum;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; beautifulArray(<span class="keyword">int</span> N) &#123;</span><br><span class="line">        cache[<span class="number">1</span>] = &#123;<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">return</span> backtrack(N);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/beautiful-array/discuss/186679/C++JavaPython-Odd-+-Even-Pattern-O%28N%29" target="_blank" rel="noopener">lee215's Solution for Leetcode 932: [C++/Java/Python] Odd + Even Pattern, O(N)</a> <a href="#fnref1" class="footnote-backref">↩</a> <a href="#fnref1:1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Math/"><i class="fas fa-hashtag fa-fw"></i>alg:Math</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-931-minimum-falling-path-sum/">
+              
+                  Leetcode 931. Minimum Falling Path Sum（DP）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/minimum-falling-path-sum/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimum-falling-path-sum/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：8ms</p>
+<h2>题意</h2>
+<p>给定一个二维数组<code>A</code>，问经过<code>A</code>的falling path（每一层和上一层所处位置的横坐标绝对值最多相差1）经过的值的和的最小值是多少。</p>
+<h2>分析</h2>
+<p>直接DP之。一个细节是，其实可以不新开一个数组，直接在<code>A</code>上DP就行<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>……（当然我知道用滚动数组优化也可以）</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minFallingPathSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = A.size(), M = A[<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">int</span> f[N][M];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++)</span><br><span class="line">            f[<span class="number">0</span>][i] = A[<span class="number">0</span>][i];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">0</span>) f[i][j] = A[i][j] + min(f[i<span class="number">-1</span>][j], f[i<span class="number">-1</span>][j+<span class="number">1</span>]);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == M - <span class="number">1</span>) f[i][j] = A[i][j] + min(f[i<span class="number">-1</span>][j], f[i<span class="number">-1</span>][j<span class="number">-1</span>]);</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    f[i][j] = min(f[i<span class="number">-1</span>][j<span class="number">-1</span>], f[i<span class="number">-1</span>][j+<span class="number">1</span>]);</span><br><span class="line">                    f[i][j] = min(f[i<span class="number">-1</span>][j], f[i][j]);</span><br><span class="line">                    f[i][j] += A[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = f[N<span class="number">-1</span>][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++)</span><br><span class="line">            ans = min(ans, f[N<span class="number">-1</span>][i]);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/minimum-falling-path-sum/solution/" target="_blank" rel="noopener">Official Solution for Leetcode 931. Minimum Falling Path Sum</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Dynamic-Programming/"><i class="fas fa-hashtag fa-fw"></i>alg:Dynamic Programming</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-930-binary-subarrays-with-sum/">
+              
+                  Leetcode 930. Binary Subarrays With Sum（数组）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/binary-subarrays-with-sum/description/" target="_blank" rel="noopener">https://leetcode.com/problems/binary-subarrays-with-sum/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：4/4</p>
+<p>代码效率：</p>
+<ul>
+<li>场上乱写的：108ms</li>
+<li>连续0：20ms</li>
+<li>前缀和：32ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定一个只包含0和1的数组A，问A中有多少个和为<code>S</code>的非空子序列？</p>
+<h2>分析</h2>
+<p>Leetcode最近放题解的速度明显变慢了。这道题并不是很好实现（如果没有想到前缀和的方法的话），所以场上WA了一次。</p>
+<hr>
+<h3>连续0</h3>
+<p>这种方法是我在现场想到的：对于一个和为S的非空子序列，它的两侧可能有连续的0，也可能没有。我们可以从两侧都是1的合法的子序列出发，生成对应的所有两侧可能多出来一些0的子序列的数量。这种方法的一个缺点是需要特判<code>S = 0</code>的情形。</p>
+<p>我看到的一种比较巧妙的方法是，记录所有1之间的间隔里的0的数量，然后就可以直接枚举和为S的子序列了。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>例如：对于序列<code>1 0 0 1 0 1</code>，记录数组会变成<code>zeros = [0, 2, 1, 0]</code>；当<code>S = 2</code>时，可以直接通过<code>(zeros[0] + 1) * (zeros[2] + 1)</code>和<code>(zeros[1] + 1) * (zeros[3] + 1)</code>计算出所有合法子序列的数量。</p>
+<h3>前缀和</h3>
+<p>直接用一个map存储前缀和，然后在里面查找对应的值的数量。看起来是十分容易想到的做法，不过我并没有想到。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<h2>代码</h2>
+<p>（场上乱写的就不放了）</p>
+<h3>连续0</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubarraysWithSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; zeros;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A) &#123;</span><br><span class="line">            <span class="keyword">if</span> (x == <span class="number">1</span>) &#123;</span><br><span class="line">                zeros.push_back(cnt);</span><br><span class="line">                cnt = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        zeros.push_back(cnt);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (S == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x: zeros)</span><br><span class="line">                ans += x * (x + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + S &lt; zeros.size(); i++)</span><br><span class="line">            ans += (zeros[i] + <span class="number">1</span>) * (zeros[i + S] + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>前缀和</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubarraysWithSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; prefixSum;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        prefixSum[<span class="number">0</span>]++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A) &#123;</span><br><span class="line">            sum += x;</span><br><span class="line">            ans += prefixSum[sum - S];</span><br><span class="line">            prefixSum[sum]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/binary-subarrays-with-sum/discuss/186693/Java-O%28N%29-Time-O%28N%29-Space-counting-contiguous-zeros" target="_blank" rel="noopener">Leetcode 930 Solution by Evilnearby - Java O(N) Time O(N) Space, counting contiguous zeros</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://leetcode.com/problems/binary-subarrays-with-sum/discuss/186683/C++JavaPython-Straight-Forward" target="_blank" rel="noopener">Leetcode 930 Solution by lee215 - [C++/Java/Python] Straight Forward</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-258-add-digits/">
+              
+                  Leetcode 258. Add Digits（数学）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/add-digits/description/" target="_blank" rel="noopener">https://leetcode.com/problems/add-digits/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>暴力法：99.13%</li>
+<li>公式法：99.13%</li>
+</ul>
+<h2>题意</h2>
+<p>不断对某个数的所有数位求和，直到只剩下一位为止。求最后剩下的一位。</p>
+<h2>分析</h2>
+<p>显然可以直接暴力模拟。不过事实上有更好的方法。求得的结果的学名叫<a href="https://en.wikipedia.org/wiki/Digital_root#Congruence_formula" target="_blank" rel="noopener">数根（digital root）</a>。在十进制下：</p>
+<p>$$dr(n) = 1 + ((n-1) \bmod 9)$$</p>
+<p>然后直接代公式就可以了。（至于公式的证明，我觉得可以尝试一下，但现在还是算了吧）</p>
+<h2>代码</h2>
+<h3>暴力法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">addDigits</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt; <span class="number">10</span>) <span class="keyword">return</span> num;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            x += num % <span class="number">10</span>;</span><br><span class="line">            num /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> addDigits(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>公式法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">addDigits</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + (num - <span class="number">1</span>) % <span class="number">9</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Math/"><i class="fas fa-hashtag fa-fw"></i>alg:Math</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-929-unique-email-addresses-and-weekly-contest-108/">
+              
+                  Leetcode 929. Unique Email Addresses（字符串），及周赛（108）总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/unique-email-addresses/description/" target="_blank" rel="noopener">https://leetcode.com/problems/unique-email-addresses/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：36ms</p>
+<h2>题意</h2>
+<p>给定一系列email地址，求满足以下要求的不重复地址数量：</p>
+<ul>
+<li>将email地址分成local name和domain name，形如：local-name@domain-name</li>
+<li>数据保证每个地址中有且仅有一个<code>@</code>字符</li>
+<li>local name中的<code>.</code>字符应被忽略</li>
+<li>local name中的<code>+</code>字符及其后所有字符应被忽略</li>
+</ul>
+<h2>分析</h2>
+<p>我这次比赛的最终排名是62 / 3652。但事实上我把前4题都做出来的时候，live排名是三百多名，这听起来就很奇怪了。总之，这次比赛的确比较简单……以及这次比赛第一名是<a href="https://leetcode.com/cai_lw" target="_blank" rel="noopener">clw</a>。</p>
+<hr>
+<p>至于这道题……随便用字符串搞一下就可以了，然后去个重，我就不仔细思考了。</p>
+<h2>代码</h2>
+<p>搞了个像状态机一样的东西逐字符处理；不过我觉得还是使用find和split更好。事实上我在场上又忘了字符串处理函数具体怎么用了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numUniqueEmails</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; emails)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; uniqueEmails;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> email: emails) &#123;</span><br><span class="line">            <span class="built_in">string</span> local;</span><br><span class="line">            <span class="built_in">string</span> domain;</span><br><span class="line">            <span class="keyword">int</span> status = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 0: not found + / @;</span></span><br><span class="line">            <span class="comment">// 1: found +;</span></span><br><span class="line">            <span class="comment">// 2: found @</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> x: email) &#123;</span><br><span class="line">                <span class="keyword">if</span> (x == <span class="string">'+'</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (status == <span class="number">0</span>)</span><br><span class="line">                        status = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (status == <span class="number">2</span>)</span><br><span class="line">                        domain += x;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (x == <span class="string">'.'</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (status == <span class="number">0</span> || status == <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">if</span> (status == <span class="number">2</span>) domain += x;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (x == <span class="string">'@'</span>)</span><br><span class="line">                    status = <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (status == <span class="number">0</span>) local += x;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (status == <span class="number">2</span>) domain += x;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// cout &lt;&lt; local + '@' + domain &lt;&lt; endl;</span></span><br><span class="line">            uniqueEmails.insert(local + <span class="string">'@'</span> + domain);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueEmails.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-String/"><i class="fas fa-hashtag fa-fw"></i>alg:String</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-928-minimize-malware-spread-ii/">
+              
+                  Leetcode 928. Minimize Malware Spread II（图）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-22
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/minimize-malware-spread-ii/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimize-malware-spread-ii/description/</a></p>
+<p>标记难度：Hard</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>暴力DFS：104ms</li>
+<li>优化过的DFS：108ms</li>
+<li>优化过的并查集：懒得写了</li>
+</ul>
+<h2>题意</h2>
+<p>有一个无向图，图中有些结点被感染了，感染会通过图的边传播。现在可以移除一个初始被感染的结点（是移除，而不是让它不被感染），问移除哪一个结点可以使最终被感染的总结点数最小？如果有多个结点，输出编号最小的一个。</p>
+<h2>分析</h2>
+<p>呃，这道题的题意正好和我<a href="/post/leetcode-924-minimize-malware-spread">上次</a>看错的是一样的……于是我当然直接用了最暴力的方法，手动模拟每个初始感染结点被删除之后的感染状况。当然我觉得这种方法看起来还不差，因为DFS的复杂度是<code>O(N)</code>，DFS<code>N</code>次的复杂度就是<code>O(N^2)</code>；不过显然我这样想的时候没有考虑到题目里给出的图是邻接矩阵表示（而非邻接表），所以实际复杂度应该是<code>O(N^3)</code>。不过反正<code>N &lt;= 300</code>，N^2和N^3也差不多。（……）</p>
+<h3>优化过的DFS</h3>
+<p>首先将所有初始感染结点从图里移除；然后对于每个初始感染结点，通过DFS找到它能够感染的结点集合；然后对于每个普通结点，找出它会被多少个结点感染。如果它只能被某一个结点感染，移除该结点就可以使得该普通结点不会被感染。然后找到其中的最大值即可。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>我的一个疑惑是，为何是把所有初始感染结点都移除，而不是把所有的结点都留在图里，然后找到某一个结点能感染的结点集合？这两点的区别显然是，把其他的结点留在图里之后，某一个结点能感染的结点集合就会变大，甚至包含一些移除了别的结点之后不能被感染的结点，这大约是不合适的。</p>
+<p>另一个问题是，考虑到邻接矩阵的问题，这个方法的时间复杂度是不是仍然是<code>O(N^3)</code>……事实证明运行时间差不多。</p>
+<h3>优化过的并查集</h3>
+<p>这个方法的思路和上一个差不多，不过是把DFS换成并查集，然后判断每个分量和多少个初始感染结点相邻。（就是写得更明白一点了。）我感觉这个方法是<code>O(N^2)</code>的（因为相比DFS节省了很多无用的计算），不过我现在不是很想写了。<sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1]</a></sup></p>
+<h2>代码</h2>
+<h3>暴力DFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="keyword">int</span> &amp;cnt, <span class="keyword">const</span> <span class="keyword">int</span>&amp; removed, <span class="keyword">bool</span> visited[])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; graph[cur].size(); y++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (graph[cur][y] &amp;&amp; !visited[y] &amp;&amp; y != removed) &#123;</span><br><span class="line">                visited[y] = <span class="literal">true</span>;</span><br><span class="line">                cnt++;</span><br><span class="line">                dfs(y, graph, cnt, removed, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMalwareSpread</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; initial)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// completely remove</span></span><br><span class="line">        sort(initial.begin(), initial.end());</span><br><span class="line">        <span class="keyword">int</span> n = graph.size();</span><br><span class="line">        <span class="keyword">int</span> ans = n + <span class="number">1</span>, index = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">bool</span> visited[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial) &#123;</span><br><span class="line">            <span class="built_in">memset</span>(visited, <span class="literal">false</span>, <span class="keyword">sizeof</span>(visited));</span><br><span class="line">            <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> y: initial) &#123;</span><br><span class="line">                <span class="keyword">if</span> (x != y &amp;&amp; !visited[y]) &#123;</span><br><span class="line">                    visited[y] = <span class="literal">true</span>;</span><br><span class="line">                    cnt++;</span><br><span class="line">                    dfs(y, graph, cnt, x, visited);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cnt &lt; ans) &#123;</span><br><span class="line">                index = x;</span><br><span class="line">                ans = cnt;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>优化过的DFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">const</span> <span class="keyword">int</span>&amp; x, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="keyword">bool</span> isRemoved[], <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; affect[])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (graph[cur][i] &amp;&amp; !isRemoved[i] &amp;&amp; affect[x].find(i) == affect[x].end()) &#123;</span><br><span class="line">                affect[x].insert(i);</span><br><span class="line">                dfs(i, x, graph, isRemoved, affect);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMalwareSpread</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; initial)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = graph.size();</span><br><span class="line">        <span class="keyword">bool</span> isRemoved[n];</span><br><span class="line">        <span class="built_in">memset</span>(isRemoved, <span class="number">0</span>, <span class="keyword">sizeof</span>(isRemoved));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial)</span><br><span class="line">            isRemoved[x] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 分别DFS</span></span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; affect[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial) &#123;</span><br><span class="line">            isRemoved[x] = <span class="literal">false</span>;</span><br><span class="line">            affect[x].insert(x);</span><br><span class="line">            dfs(x, x, graph, isRemoved, affect);</span><br><span class="line">            isRemoved[x] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 每个结点会被哪些结点感染</span></span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; affectedBy[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x: affect[i])</span><br><span class="line">                affectedBy[x].insert(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 只被一个结点感染的结点</span></span><br><span class="line">        <span class="keyword">int</span> singleCnt[n];</span><br><span class="line">        <span class="built_in">memset</span>(singleCnt, <span class="number">0</span>, <span class="keyword">sizeof</span>(singleCnt));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!isRemoved[i] &amp;&amp; affectedBy[i].size() == <span class="number">1</span>)</span><br><span class="line">                singleCnt[*affectedBy[i].begin()]++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 取最大值</span></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">-1</span>, maximum = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (isRemoved[i] &amp;&amp; singleCnt[i] &gt; maximum) &#123;</span><br><span class="line">                index = i;</span><br><span class="line">                maximum = singleCnt[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/minimize-malware-spread-ii/solution/" target="_blank" rel="noopener">Leetcode Official Solution for 928. Minimize Malware Spread II</a> <a href="#fnref1" class="footnote-backref">↩</a> <a href="#fnref1:1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Graph/"><i class="fas fa-hashtag fa-fw"></i>alg:Graph</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Union-find-Forest/"><i class="fas fa-hashtag fa-fw"></i>alg:Union-find Forest</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/archives/2018/page/5/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  6 / 29
+              </p>
+              
+                  <a class="next" rel="next" href="/archives/2018/page/7/">
+                      <section class="post next">
+                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                      </section>
+                  </a>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+  
+
+
+
+
+
+<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+
+
+
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

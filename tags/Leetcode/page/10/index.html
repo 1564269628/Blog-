@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Tag: Leetcode | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+    <script>
+        window.subData= { title:'标签 : Leetcode'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-937-reorder-log-files-and-weekly-contest-110/">
+              
+                  Leetcode 937. Reorder Log Files（排序），及周赛（110）总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-11
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/reorder-log-files/description/" target="_blank" rel="noopener">https://leetcode.com/problems/reorder-log-files/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/2</p>
+<p>代码效率：12ms</p>
+<h2>题意</h2>
+<p>给定一堆log和排序方法，返回排序之后的结果。</p>
+<h2>分析</h2>
+<p>这次比赛的排名是528 / 3720。第一题错了一次，然后第四题没有想出正解。这次比赛比较迷的一点是，它推迟了，改成了10:30开始，然后我的电脑中间还没网了，不得不重启一次……</p>
+<hr>
+<p>这道题的考点可以用“Custom Sort”来概括，也许考察语言特性和细节比算法本身要多。然后因为搞错了identifier具体的排序方法还WA了一次。没别的了。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Log</span> &#123;</span></span><br><span class="line">        <span class="built_in">string</span> s;</span><br><span class="line">        <span class="built_in">string</span> identifier;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; words;</span><br><span class="line">        <span class="built_in">string</span> word;</span><br><span class="line">        <span class="keyword">bool</span> isLetter;</span><br><span class="line">        <span class="keyword">int</span> index;</span><br><span class="line">        </span><br><span class="line">        Log() &#123;&#125;</span><br><span class="line">        </span><br><span class="line">        Log(<span class="built_in">string</span> s, <span class="keyword">int</span> i) &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;s = s;</span><br><span class="line">            <span class="keyword">this</span>-&gt;index = i;</span><br><span class="line">            <span class="function"><span class="built_in">stringstream</span> <span class="title">lineStream</span><span class="params">(s)</span></span>;</span><br><span class="line">            </span><br><span class="line">            lineStream &gt;&gt; identifier;</span><br><span class="line">            </span><br><span class="line">            <span class="built_in">string</span> token;</span><br><span class="line">            isLetter = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">while</span> (lineStream &gt;&gt; token)</span><br><span class="line">            &#123;</span><br><span class="line">                words.push_back(token);</span><br><span class="line">                word += token;</span><br><span class="line">                <span class="keyword">if</span> (isNumeric(token))</span><br><span class="line">                    isLetter = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">isNumeric</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> ch: s)</span><br><span class="line">                <span class="keyword">if</span> (ch &lt; <span class="string">'0'</span> || ch &gt; <span class="string">'9'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Log&amp; l1, <span class="keyword">const</span> Log&amp; l2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (l1.isLetter != l2.isLetter) &#123;</span><br><span class="line">                <span class="keyword">if</span> (l1.isLetter) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (l1.isLetter &amp;&amp; l2.isLetter) &#123;</span><br><span class="line">                <span class="keyword">int</span> i = <span class="number">0</span>, n = min(l1.words.size(), l2.words.size());</span><br><span class="line">                <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">                    <span class="keyword">if</span> (l1.words[i] != l2.words[i])</span><br><span class="line">                        <span class="keyword">return</span> l1.words[i] &lt; l2.words[i];</span><br><span class="line">                <span class="keyword">if</span> (l1.words.size() != l2.words.size())</span><br><span class="line">                    <span class="keyword">return</span> l1.words.size() &lt; l2.words.size();</span><br><span class="line">                <span class="keyword">return</span> l1.identifier &lt; l2.identifier;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> l1.index &lt; l2.index;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; reorderLogFiles(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; logs) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;Log&gt; Logs;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; logs.size(); i++) &#123;</span><br><span class="line">            Logs.emplace_back(logs[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(Logs.begin(), Logs.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (Log <span class="built_in">log</span>: Logs)</span><br><span class="line">            ans.push_back(<span class="built_in">log</span>.s);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Sort/"><i class="fas fa-hashtag fa-fw"></i>alg:Sort</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-936-stamping-the-sequence/">
+              
+                  Leetcode 936. Stamping The Sequence（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/stamping-the-sequence/description/" target="_blank" rel="noopener">https://leetcode.com/problems/stamping-the-sequence/description/</a></p>
+<p>标记难度：Hard</p>
+<p>提交次数：1/1</p>
+<p>代码效率：36ms</p>
+<h2>题意</h2>
+<p>有一个stamp序列，可以通过不断使它覆盖一个序列的某一部分构造新的序列。问某个序列能否以这种方式构造。</p>
+<h2>分析</h2>
+<p>比赛的时候我觉得这道题应该用Trie之类的方法来做。没想到正解是贪心……？</p>
+<hr>
+<p>题目里限定的是，最多可以进行<code>10 * target.length</code>次stamp，但是事实上每个位置最多只需要进行一次stamp（如果stamp两次，则后来的stamp会彻底覆盖前一次），因此最多需要的stamp次数是<code>source.length - target.length</code>。</p>
+<p>一种方法是贪心：每次尝试unstamp掉一块序列，直到整个序列被unstamp完为止。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>不过我不知道怎么证明贪心的正确性……</p>
+<p>另一种方法来自lee215，因为他现在转移到简书写中文题解了，所以我就不再在这里赘述了，不过的确是一种很好的做法。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkStamp</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">const</span> <span class="built_in">string</span>&amp; stamp, <span class="keyword">const</span> <span class="built_in">string</span>&amp; target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stamp.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (index + i &gt; target.size()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (stamp[i] != target[index + i] &amp;&amp; target[index + i] != <span class="string">'?'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkIsOk</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> ch: target)</span><br><span class="line">            <span class="keyword">if</span> (ch != <span class="string">'?'</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; movesToStamp(<span class="built_in">string</span> stamp, <span class="built_in">string</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ops;</span><br><span class="line">        <span class="keyword">int</span> N = target.size(), M = stamp.size();</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> stamped[N - M + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">memset</span>(stamped, <span class="number">0</span>, <span class="keyword">sizeof</span>(stamped));</span><br><span class="line">        <span class="keyword">bool</span> found, ok;</span><br><span class="line">        <span class="keyword">while</span> (cnt &lt;= N - M) &#123;</span><br><span class="line">            found = <span class="literal">false</span>, ok = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N - M; i++)</span><br><span class="line">                <span class="keyword">if</span> (!stamped[i] &amp;&amp; checkStamp(i, stamp, target)) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M; j++) target[i + j] = <span class="string">'?'</span>;</span><br><span class="line">                    stamped[i] = <span class="literal">true</span>;</span><br><span class="line">                    ops.push_back(i);</span><br><span class="line">                    cnt++;</span><br><span class="line">                    found = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (checkIsOk(target)) &#123;</span><br><span class="line">                        ok = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span> (ok) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (!found) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ok) &#123;</span><br><span class="line">            reverse(ops.begin(), ops.end());</span><br><span class="line">            <span class="keyword">return</span> ops;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/stamping-the-sequence/discuss/189314/Python-Reverse-+-Greedy-O%28N2M%29-%28w-Explanation%29" target="_blank" rel="noopener">Leetcode 936 Solution by zym3008 - [Python] Reverse + Greedy O(N^2M)  (w/ Explanation)</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://www.jianshu.com/p/cb4cbd11511b" target="_blank" rel="noopener">Leetcode 936 Stamping The Sequence - 题解</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-String/"><i class="fas fa-hashtag fa-fw"></i>alg:String</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-934-shortest-bridge/">
+              
+                  Leetcode 934. Shortest Bridge（BFS）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/number-of-recent-calls/description/" target="_blank" rel="noopener">https://leetcode.com/problems/number-of-recent-calls/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：3/6</p>
+<p>代码效率：</p>
+<ul>
+<li>treeSet+Dijstra：140ms</li>
+<li>优先队列+Dijstra：120ms</li>
+<li>BFS：24ms</li>
+</ul>
+<h2>题意</h2>
+<p>在一个四连通图上有两个互不连通的子图，求这两个子图之间的最短距离。</p>
+<h2>分析</h2>
+<p>刚看到这道题的时候我很晕，不知道该怎么做。遂上网谷歌一下……找到了正确的做法之后，我却把<code>set</code>给写挂了。事实证明，<code>std::set</code>中判断相等的方式是<code>!(a &lt; b) &amp;&amp; !(b &lt; a)</code>而非<code>!(a == b)</code>。这一点是值得注意的。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<hr>
+<p>单就一般的图来说，这道题也不算很难：把子图A的所有结点都作为Dijstra算法的起始结点，然后在子图B的所有结点中取距离最短的。如果没有负权边，则直接在找到第一个子图B结点时结束算法即可。</p>
+<p>然后这道题并不是一般的图，而是四连通的方格图，所以BFS就可以了。BFS的常数果然还是小啊……</p>
+<h2>代码</h2>
+<p>用Dijstra的代码太过智障所以就不贴了……</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> N;</span><br><span class="line">    <span class="keyword">int</span> color[<span class="number">105</span>][<span class="number">105</span>];</span><br><span class="line">    <span class="keyword">int</span> dist[<span class="number">105</span>][<span class="number">105</span>];</span><br><span class="line">    <span class="keyword">int</span> mx[<span class="number">4</span>] = &#123;<span class="number">-1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> my[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> curx, <span class="keyword">int</span> cury, <span class="keyword">int</span> c, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = curx + mx[i];</span><br><span class="line">            <span class="keyword">int</span> y = cury + my[i];</span><br><span class="line">            <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt;= N || y &lt; <span class="number">0</span> || y &gt;= N || A[x][y] != <span class="number">1</span> || color[x][y] != <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            color[x][y] = c;</span><br><span class="line">            dfs(x, y, c, A);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">shortestBridge</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        N = A.size();</span><br><span class="line">        <span class="built_in">memset</span>(color, <span class="number">-1</span>, <span class="keyword">sizeof</span>(color));</span><br><span class="line">        <span class="keyword">int</span> colorCnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (A[i][j] == <span class="number">1</span> &amp;&amp; color[i][j] == <span class="number">-1</span>) &#123;</span><br><span class="line">                    color[i][j] = colorCnt;</span><br><span class="line">                    dfs(i, j, colorCnt, A);</span><br><span class="line">                    colorCnt++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">queue</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (color[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    dist[i][j] = <span class="number">0</span>;</span><br><span class="line">                    q.push(make_pair(i, j));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    dist[i][j] = <span class="number">1e9</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = q.front().first, y = q.front().second;</span><br><span class="line">            q.pop();</span><br><span class="line">            <span class="keyword">if</span> (color[x][y] == <span class="number">1</span>) <span class="keyword">return</span> dist[x][y] - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">int</span> nx = x + mx[i], ny = y + my[i];</span><br><span class="line">                <span class="keyword">if</span> (nx &lt; <span class="number">0</span> || nx &gt;= N || ny &lt; <span class="number">0</span> || ny &gt;= N || dist[nx][ny] &lt;= dist[x][y] +<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                dist[nx][ny] = dist[x][y] + <span class="number">1</span>;</span><br><span class="line">                q.push(make_pair(nx, ny));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://stackoverflow.com/questions/1114856/stdset-with-user-defined-type-how-to-ensure-no-duplicates" target="_blank" rel="noopener">stackoverflow - std::set with user defined type, how to ensure no duplicates</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Breadth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Breadth-first Search</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-935-knight-dialer/">
+              
+                  Leetcode 935. Knight Dialer（DP）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/knight-dialer/description/" target="_blank" rel="noopener">https://leetcode.com/problems/knight-dialer/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>递推：16ms</li>
+<li>矩阵乘法：8ms</li>
+</ul>
+<h2>题意</h2>
+<p>在如下的电话键盘的数字键上按照“马走日”的方式走N-1步，问最多能生成多少个不同的长度为N的数字。</p>
+<p><img src="https://assets.leetcode.com/uploads/2018/10/30/keypad.png" alt="键盘"></p>
+<h2>分析</h2>
+<p>这道题还是很简单的，就直接递推就可以了。令<code>f[i][j]</code>表示以数字<code>i</code>结尾的走了<code>j</code>步的数的总数（也就是长度为<code>j+1</code>的数）；然后从图中可以得出从哪些数字可以走到<code>i</code>，于是就可以递推了。</p>
+<h3>矩阵乘法</h3>
+<p>一个事实是，其实可以把每一步的推导过程写成矩阵乘法。由于</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">f[<span class="number">0</span>][i] = (f[<span class="number">4</span>][i<span class="number">-1</span>] + f[<span class="number">6</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">f[<span class="number">1</span>][i] = (f[<span class="number">6</span>][i<span class="number">-1</span>] + f[<span class="number">8</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">f[<span class="number">2</span>][i] = (f[<span class="number">7</span>][i<span class="number">-1</span>] + f[<span class="number">9</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">f[<span class="number">3</span>][i] = (f[<span class="number">4</span>][i<span class="number">-1</span>] + f[<span class="number">8</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">f[<span class="number">4</span>][i] = (f[<span class="number">0</span>][i<span class="number">-1</span>] + f[<span class="number">3</span>][i<span class="number">-1</span>] + f[<span class="number">9</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">f[<span class="number">5</span>][i] = <span class="number">0</span>;</span><br><span class="line">f[<span class="number">6</span>][i] = (f[<span class="number">0</span>][i<span class="number">-1</span>] + f[<span class="number">1</span>][i<span class="number">-1</span>] + f[<span class="number">7</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">f[<span class="number">7</span>][i] = (f[<span class="number">2</span>][i<span class="number">-1</span>] + f[<span class="number">6</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">f[<span class="number">8</span>][i] = (f[<span class="number">1</span>][i<span class="number">-1</span>] + f[<span class="number">3</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">f[<span class="number">9</span>][i] = (f[<span class="number">2</span>][i<span class="number">-1</span>] + f[<span class="number">4</span>][i<span class="number">-1</span>]) % MOD;</span><br></pre></td></tr></table></figure>
+<p>因此</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">f[0][i] = [0 0 0 0 1 0 1 0 0 0] * f[0][i-1]</span><br><span class="line">f[1][i] = [0 0 0 0 0 0 1 0 1 0] * f[1][i-1]</span><br><span class="line">f[2][i] = [0 0 0 0 0 0 0 1 0 1] * f[2][i-1]</span><br><span class="line">f[3][i] = [0 0 0 0 1 0 0 0 1 0] * f[3][i-1]</span><br><span class="line">f[4][i] = [1 0 0 1 0 0 0 0 0 1] * f[4][i-1]</span><br><span class="line">f[5][i] = [0 0 0 0 0 0 0 0 0 0] * f[5][i-1]</span><br><span class="line">f[6][i] = [1 1 0 0 0 0 0 1 0 0] * f[6][i-1]</span><br><span class="line">f[7][i] = [0 0 1 0 0 0 1 0 0 0] * f[7][i-1]</span><br><span class="line">f[8][i] = [0 1 0 1 0 0 0 0 0 0] * f[8][i-1]</span><br><span class="line">f[9][i] = [0 0 1 0 1 0 0 0 0 0] * f[9][i-1]</span><br></pre></td></tr></table></figure>
+<p>然后就可以利用矩阵快速幂的方法优化成<code>O(log(N))</code>了。真是非常优秀的想法……<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<hr>
+<p>以及为什么Leetcode里python可以用numpy啊，这不科学，我希望C++增加Eigen库……</p>
+<h2>代码</h2>
+<h3>递推</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> f[<span class="number">10</span>][<span class="number">5005</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">knightDialer</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">memset</span>(f, <span class="number">-1</span>, <span class="keyword">sizeof</span>(f));</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> MOD = <span class="number">1000000007</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) f[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++) &#123;</span><br><span class="line">            f[<span class="number">0</span>][i] = (f[<span class="number">4</span>][i<span class="number">-1</span>] + f[<span class="number">6</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">            f[<span class="number">1</span>][i] = (f[<span class="number">6</span>][i<span class="number">-1</span>] + f[<span class="number">8</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">            f[<span class="number">2</span>][i] = (f[<span class="number">7</span>][i<span class="number">-1</span>] + f[<span class="number">9</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">            f[<span class="number">3</span>][i] = (f[<span class="number">4</span>][i<span class="number">-1</span>] + f[<span class="number">8</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">            f[<span class="number">4</span>][i] = (f[<span class="number">0</span>][i<span class="number">-1</span>] + f[<span class="number">3</span>][i<span class="number">-1</span>] + f[<span class="number">9</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">            f[<span class="number">5</span>][i] = <span class="number">0</span>;</span><br><span class="line">            f[<span class="number">6</span>][i] = (f[<span class="number">0</span>][i<span class="number">-1</span>] + f[<span class="number">1</span>][i<span class="number">-1</span>] + f[<span class="number">7</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">            f[<span class="number">7</span>][i] = (f[<span class="number">2</span>][i<span class="number">-1</span>] + f[<span class="number">6</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">            f[<span class="number">8</span>][i] = (f[<span class="number">1</span>][i<span class="number">-1</span>] + f[<span class="number">3</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">            f[<span class="number">9</span>][i] = (f[<span class="number">2</span>][i<span class="number">-1</span>] + f[<span class="number">4</span>][i<span class="number">-1</span>]) % MOD;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">            ans = (ans + f[i][N<span class="number">-1</span>]) % MOD;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>矩阵乘法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> n, m;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> mat[<span class="number">20</span>][<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line">        Matrix(<span class="keyword">int</span> _n, <span class="keyword">int</span> _m) &#123;</span><br><span class="line">            n = _n;</span><br><span class="line">            m = _m;</span><br><span class="line">            <span class="built_in">memset</span>(mat, <span class="number">0</span>, <span class="keyword">sizeof</span>(mat));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">friend</span> Matrix <span class="keyword">operator</span> * (<span class="keyword">const</span> Matrix&amp; a, <span class="keyword">const</span> Matrix&amp; b) &#123;</span><br><span class="line">            <span class="keyword">int</span> n = a.n, m = b.m;</span><br><span class="line">            <span class="function">Matrix <span class="title">c</span><span class="params">(n, m)</span></span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; a.m; j++)</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; m; k++) &#123;</span><br><span class="line">                        c.mat[i][k] = (c.mat[i][k] + a.mat[i][j] * b.mat[j][k]) % MOD;</span><br><span class="line">                    &#125;</span><br><span class="line">            <span class="keyword">return</span> c;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)</span><br><span class="line">                    sum = (sum + mat[i][j]) % MOD;</span><br><span class="line">            <span class="keyword">return</span> sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD = <span class="number">1000000007</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">knightDialer</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="function">Matrix <span class="title">f</span><span class="params">(<span class="number">10</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">            f.mat[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="function">Matrix <span class="title">A</span><span class="params">(<span class="number">10</span>, <span class="number">10</span>)</span></span>;</span><br><span class="line">        A.mat[<span class="number">0</span>][<span class="number">4</span>] = A.mat[<span class="number">0</span>][<span class="number">6</span>] = <span class="number">1</span>;</span><br><span class="line">        A.mat[<span class="number">1</span>][<span class="number">6</span>] = A.mat[<span class="number">1</span>][<span class="number">8</span>] = <span class="number">1</span>;</span><br><span class="line">        A.mat[<span class="number">2</span>][<span class="number">7</span>] = A.mat[<span class="number">2</span>][<span class="number">9</span>] = <span class="number">1</span>;</span><br><span class="line">        A.mat[<span class="number">3</span>][<span class="number">4</span>] = A.mat[<span class="number">3</span>][<span class="number">8</span>] = <span class="number">1</span>;</span><br><span class="line">        A.mat[<span class="number">4</span>][<span class="number">0</span>] = A.mat[<span class="number">4</span>][<span class="number">3</span>] = A.mat[<span class="number">4</span>][<span class="number">9</span>] = <span class="number">1</span>;</span><br><span class="line">        A.mat[<span class="number">6</span>][<span class="number">0</span>] = A.mat[<span class="number">6</span>][<span class="number">1</span>] = A.mat[<span class="number">6</span>][<span class="number">7</span>] = <span class="number">1</span>;</span><br><span class="line">        A.mat[<span class="number">7</span>][<span class="number">2</span>] = A.mat[<span class="number">7</span>][<span class="number">6</span>] = <span class="number">1</span>;</span><br><span class="line">        A.mat[<span class="number">8</span>][<span class="number">1</span>] = A.mat[<span class="number">8</span>][<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">        A.mat[<span class="number">9</span>][<span class="number">2</span>] = A.mat[<span class="number">9</span>][<span class="number">4</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function">Matrix <span class="title">I</span><span class="params">(<span class="number">10</span>, <span class="number">10</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">            I.mat[i][i] = <span class="number">1</span>;</span><br><span class="line">        Matrix pow2 = A, <span class="built_in">pow</span> = I;</span><br><span class="line">        N--;</span><br><span class="line">        <span class="keyword">while</span> (N &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (N % <span class="number">2</span> != <span class="number">0</span>)</span><br><span class="line">                <span class="built_in">pow</span> = <span class="built_in">pow</span> * pow2;</span><br><span class="line">            pow2 = pow2 * pow2;</span><br><span class="line">            N &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        f = <span class="built_in">pow</span> * f;</span><br><span class="line">        <span class="keyword">return</span> f.sum();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/knight-dialer/discuss/189252/O%28logN%29" target="_blank" rel="noopener">lee215's Solution for Leetcode 915 - Knight Dialer</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Dynamic-Programming/"><i class="fas fa-hashtag fa-fw"></i>alg:Dynamic Programming</a>
+        
+          <a href="/tags/alg-Math/"><i class="fas fa-hashtag fa-fw"></i>alg:Math</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-933-number-of-recent-calls-and-weekly-contest-109/">
+              
+                  Leetcode 933. Number of Recent Calls（队列），及周赛（109）总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/number-of-recent-calls/description/" target="_blank" rel="noopener">https://leetcode.com/problems/number-of-recent-calls/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：148ms</p>
+<h2>题意</h2>
+<p>给定一系列严格递增的ping时间戳，问每个时间戳3000毫秒前共有几次ping。</p>
+<h2>分析</h2>
+<p>今天比赛的时候发生了一点incident。实验室没开门，于是我坐在外面的桌子上又冷又没电地打比赛，然后第三题的Dijstra居然还写错了调不出来，最后紧张地在没电和比赛结束之前换成了用<code>priority_queue</code>的做法……（事实证明不加堆优化还是会超时的）然后当然没时间做第四题了。我一眼望去以为第四题要用后缀树之类的做法，结果好像比我想象的要简单。</p>
+<p>最后排名是466 / 2948。今天北京下雨了。</p>
+<hr>
+<p>直接用队列维护一个时间窗口就可以了。（不知道为什么我比赛的时候用的是deque）</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RecentCounter</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; pings;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    RecentCounter() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ping</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!pings.empty() &amp;&amp; pings.front() &lt; t - <span class="number">3000</span>)</span><br><span class="line">            pings.pop_front();</span><br><span class="line">        pings.push_back(t);</span><br><span class="line">        <span class="keyword">return</span> pings.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Queue/"><i class="fas fa-hashtag fa-fw"></i>alg:Queue</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-932-beautiful-array/">
+              
+                  Leetcode 932. Beautiful Array（数学）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/beautiful-array/description/" target="_blank" rel="noopener">https://leetcode.com/problems/beautiful-array/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/3</p>
+<p>代码效率：</p>
+<ul>
+<li>直接递归版本：8ms</li>
+<li>带cache递归版本：12ms</li>
+</ul>
+<h2>题意</h2>
+<p>对于正整数<code>N</code>，称1到<code>N</code>的全排列<code>A</code>为beautiful当且仅当对于任意<code>i &lt; j</code>，不存在满足<code>i &lt; k &lt; j</code>且<code>A[k] * 2 = A[i] + A[j]</code>的<code>k</code>。给定<code>N</code>，请输出任意beautiful的<code>A</code>。</p>
+<h2>分析</h2>
+<p>一道很有趣的题。（这次比赛最难的题就是medium了啊）最开始我并没有什么思路。于是我暴力了一下：</p>
+<p><code>N=4</code>时的beautiful排列共有10个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1 3 2 4</span><br><span class="line">1 3 4 2</span><br><span class="line">2 1 4 3</span><br><span class="line">2 4 1 3</span><br><span class="line">2 4 3 1</span><br><span class="line">3 1 2 4</span><br><span class="line">3 1 4 2</span><br><span class="line">3 4 1 2</span><br><span class="line">4 2 1 3</span><br><span class="line">4 2 3 1</span><br></pre></td></tr></table></figure>
+<p><code>N=5</code>时共有20个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1 5 3 2 4</span><br><span class="line">1 5 3 4 2</span><br><span class="line">2 1 4 5 3</span><br><span class="line">2 4 1 5 3</span><br><span class="line">2 4 3 1 5</span><br><span class="line">2 4 3 5 1</span><br><span class="line">2 4 5 1 3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><code>N=6</code>时共有48个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 5 3 2 6 4</span><br><span class="line">1 5 3 4 2 6</span><br><span class="line">1 5 3 4 6 2</span><br><span class="line">1 5 3 6 2 4</span><br><span class="line">1 5 6 3 2 4</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><code>N=7</code>时共有104个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1 5 3 2 7 6 4</span><br><span class="line">1 5 3 7 2 6 4</span><br><span class="line">1 5 3 7 4 2 6</span><br><span class="line">1 5 3 7 4 6 2</span><br><span class="line">1 5 3 7 6 2 4</span><br><span class="line">1 5 7 3 2 6 4</span><br><span class="line">1 5 7 3 4 2 6</span><br><span class="line">1 5 7 3 4 6 2</span><br><span class="line">1 5 7 3 6 2 4</span><br><span class="line">1 5 7 6 3 2 4</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>我猜beautiful排列的数量肯定是随<code>N</code>递增的，但和<code>N!</code>比起来大概是稀疏的，所以随机生成一个排列然后再判断它是否具有所需的性质多半不太可取。然后通过观察，我发现很多beautiful排列都是把奇数排在前面，偶数排在后面的！于是就写了一个交上去了。我心想，这样做的道理是，不需要处理偶数和奇数中间的<code>k</code>；两个奇数相加除2如果生成偶数，则偶数肯定不在这些奇数里面……</p>
+<p>于是显然就WA了，没有注意到两个奇数相加除2也可能会生成奇数这一点。</p>
+<p>但这就使得我注意到了一种可能存在的递归结构：以<code>N=7</code>为例，先把所有数分成奇数<code>1 3 5 7</code>和偶数<code>2 4 6</code>，然后把<code>1 3 5 7</code>转换成<code>1 2 3 4</code>，<code>2 4 6</code>转换成<code>1 2 3</code>，分别递归执行，得到<code>1 3 2 4</code>和<code>1 3 2</code>之后，再转换回<code>1 5 3 7</code>和<code>2 6 4</code>，把它们拼起来，就可以得到最终结果<code>1 5 3 7 2 6 4</code>。关于这一点的更正式的证明是，beautiful数组（经过转换之后不一定是排列了）满足以下性质<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>：</p>
+<ul>
+<li>若<code>A</code>是beautiful数组，则<code>A + x</code>（对数组的每个元素加<code>x</code>）仍是beautiful数组</li>
+<li>若<code>A</code>是beautiful数组，则<code>A * x</code>（对数组的每个元素乘<code>x</code>）仍是beautiful数组</li>
+<li>若<code>A</code>是beautiful数组，则删除<code>A</code>中的一些元素，<code>A</code>仍是beautiful数组</li>
+</ul>
+<p>以及lee215的题解<sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1]</a></sup>质量过于好了，真的，十分推荐阅读，除此之外，还有<a href="https://leetcode.com/problems/beautiful-array/discuss/186680/Python-1-line-solutions" target="_blank" rel="noopener">one-liner版本</a>（仿佛看到了StefanPochmann……）</p>
+<h2>代码</h2>
+<h3>直接递归</h3>
+<p>应该把这个函数直接写到<code>beautifulArray</code>函数里去的，而且算法也不是DFS……</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dfs(<span class="keyword">int</span> N) &#123;</span><br><span class="line">        <span class="keyword">if</span> (N == <span class="number">1</span>) <span class="keyword">return</span> &#123;<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="comment">// 奇数：(x + 1) / 2</span></span><br><span class="line">        <span class="comment">// 偶数：x / 2</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left = dfs((N + <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right = dfs(N / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sum;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: left)</span><br><span class="line">            sum.push_back(x * <span class="number">2</span> - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: right)</span><br><span class="line">            sum.push_back(x * <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; beautifulArray(<span class="keyword">int</span> N) &#123;</span><br><span class="line">        <span class="keyword">return</span> dfs(N);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>带cache的递归</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; cache;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; backtrack(<span class="keyword">int</span> N) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cache.find(N) != cache.end()) <span class="keyword">return</span> cache[N];</span><br><span class="line">        <span class="comment">// 奇数：(x + 1) / 2</span></span><br><span class="line">        <span class="comment">// 偶数：x / 2</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left = dfs((N + <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right = dfs(N / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sum;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: left)</span><br><span class="line">            sum.push_back(x * <span class="number">2</span> - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: right)</span><br><span class="line">            sum.push_back(x * <span class="number">2</span>);</span><br><span class="line">        cache[N] = sum;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; beautifulArray(<span class="keyword">int</span> N) &#123;</span><br><span class="line">        cache[<span class="number">1</span>] = &#123;<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">return</span> backtrack(N);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/beautiful-array/discuss/186679/C++JavaPython-Odd-+-Even-Pattern-O%28N%29" target="_blank" rel="noopener">lee215's Solution for Leetcode 932: [C++/Java/Python] Odd + Even Pattern, O(N)</a> <a href="#fnref1" class="footnote-backref">↩</a> <a href="#fnref1:1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Math/"><i class="fas fa-hashtag fa-fw"></i>alg:Math</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-931-minimum-falling-path-sum/">
+              
+                  Leetcode 931. Minimum Falling Path Sum（DP）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/minimum-falling-path-sum/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimum-falling-path-sum/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：8ms</p>
+<h2>题意</h2>
+<p>给定一个二维数组<code>A</code>，问经过<code>A</code>的falling path（每一层和上一层所处位置的横坐标绝对值最多相差1）经过的值的和的最小值是多少。</p>
+<h2>分析</h2>
+<p>直接DP之。一个细节是，其实可以不新开一个数组，直接在<code>A</code>上DP就行<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>……（当然我知道用滚动数组优化也可以）</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minFallingPathSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = A.size(), M = A[<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">int</span> f[N][M];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++)</span><br><span class="line">            f[<span class="number">0</span>][i] = A[<span class="number">0</span>][i];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">0</span>) f[i][j] = A[i][j] + min(f[i<span class="number">-1</span>][j], f[i<span class="number">-1</span>][j+<span class="number">1</span>]);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == M - <span class="number">1</span>) f[i][j] = A[i][j] + min(f[i<span class="number">-1</span>][j], f[i<span class="number">-1</span>][j<span class="number">-1</span>]);</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    f[i][j] = min(f[i<span class="number">-1</span>][j<span class="number">-1</span>], f[i<span class="number">-1</span>][j+<span class="number">1</span>]);</span><br><span class="line">                    f[i][j] = min(f[i<span class="number">-1</span>][j], f[i][j]);</span><br><span class="line">                    f[i][j] += A[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = f[N<span class="number">-1</span>][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++)</span><br><span class="line">            ans = min(ans, f[N<span class="number">-1</span>][i]);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/minimum-falling-path-sum/solution/" target="_blank" rel="noopener">Official Solution for Leetcode 931. Minimum Falling Path Sum</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Dynamic-Programming/"><i class="fas fa-hashtag fa-fw"></i>alg:Dynamic Programming</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-930-binary-subarrays-with-sum/">
+              
+                  Leetcode 930. Binary Subarrays With Sum（数组）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/binary-subarrays-with-sum/description/" target="_blank" rel="noopener">https://leetcode.com/problems/binary-subarrays-with-sum/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：4/4</p>
+<p>代码效率：</p>
+<ul>
+<li>场上乱写的：108ms</li>
+<li>连续0：20ms</li>
+<li>前缀和：32ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定一个只包含0和1的数组A，问A中有多少个和为<code>S</code>的非空子序列？</p>
+<h2>分析</h2>
+<p>Leetcode最近放题解的速度明显变慢了。这道题并不是很好实现（如果没有想到前缀和的方法的话），所以场上WA了一次。</p>
+<hr>
+<h3>连续0</h3>
+<p>这种方法是我在现场想到的：对于一个和为S的非空子序列，它的两侧可能有连续的0，也可能没有。我们可以从两侧都是1的合法的子序列出发，生成对应的所有两侧可能多出来一些0的子序列的数量。这种方法的一个缺点是需要特判<code>S = 0</code>的情形。</p>
+<p>我看到的一种比较巧妙的方法是，记录所有1之间的间隔里的0的数量，然后就可以直接枚举和为S的子序列了。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>例如：对于序列<code>1 0 0 1 0 1</code>，记录数组会变成<code>zeros = [0, 2, 1, 0]</code>；当<code>S = 2</code>时，可以直接通过<code>(zeros[0] + 1) * (zeros[2] + 1)</code>和<code>(zeros[1] + 1) * (zeros[3] + 1)</code>计算出所有合法子序列的数量。</p>
+<h3>前缀和</h3>
+<p>直接用一个map存储前缀和，然后在里面查找对应的值的数量。看起来是十分容易想到的做法，不过我并没有想到。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<h2>代码</h2>
+<p>（场上乱写的就不放了）</p>
+<h3>连续0</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubarraysWithSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; zeros;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A) &#123;</span><br><span class="line">            <span class="keyword">if</span> (x == <span class="number">1</span>) &#123;</span><br><span class="line">                zeros.push_back(cnt);</span><br><span class="line">                cnt = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        zeros.push_back(cnt);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (S == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x: zeros)</span><br><span class="line">                ans += x * (x + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + S &lt; zeros.size(); i++)</span><br><span class="line">            ans += (zeros[i] + <span class="number">1</span>) * (zeros[i + S] + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>前缀和</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubarraysWithSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; prefixSum;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        prefixSum[<span class="number">0</span>]++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A) &#123;</span><br><span class="line">            sum += x;</span><br><span class="line">            ans += prefixSum[sum - S];</span><br><span class="line">            prefixSum[sum]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/binary-subarrays-with-sum/discuss/186693/Java-O%28N%29-Time-O%28N%29-Space-counting-contiguous-zeros" target="_blank" rel="noopener">Leetcode 930 Solution by Evilnearby - Java O(N) Time O(N) Space, counting contiguous zeros</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://leetcode.com/problems/binary-subarrays-with-sum/discuss/186683/C++JavaPython-Straight-Forward" target="_blank" rel="noopener">Leetcode 930 Solution by lee215 - [C++/Java/Python] Straight Forward</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw"></i>alg:Array</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-258-add-digits/">
+              
+                  Leetcode 258. Add Digits（数学）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/add-digits/description/" target="_blank" rel="noopener">https://leetcode.com/problems/add-digits/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>暴力法：99.13%</li>
+<li>公式法：99.13%</li>
+</ul>
+<h2>题意</h2>
+<p>不断对某个数的所有数位求和，直到只剩下一位为止。求最后剩下的一位。</p>
+<h2>分析</h2>
+<p>显然可以直接暴力模拟。不过事实上有更好的方法。求得的结果的学名叫<a href="https://en.wikipedia.org/wiki/Digital_root#Congruence_formula" target="_blank" rel="noopener">数根（digital root）</a>。在十进制下：</p>
+<p>$$dr(n) = 1 + ((n-1) \bmod 9)$$</p>
+<p>然后直接代公式就可以了。（至于公式的证明，我觉得可以尝试一下，但现在还是算了吧）</p>
+<h2>代码</h2>
+<h3>暴力法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">addDigits</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt; <span class="number">10</span>) <span class="keyword">return</span> num;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            x += num % <span class="number">10</span>;</span><br><span class="line">            num /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> addDigits(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>公式法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">addDigits</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + (num - <span class="number">1</span>) % <span class="number">9</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Math/"><i class="fas fa-hashtag fa-fw"></i>alg:Math</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-929-unique-email-addresses-and-weekly-contest-108/">
+              
+                  Leetcode 929. Unique Email Addresses（字符串），及周赛（108）总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-28
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/unique-email-addresses/description/" target="_blank" rel="noopener">https://leetcode.com/problems/unique-email-addresses/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：36ms</p>
+<h2>题意</h2>
+<p>给定一系列email地址，求满足以下要求的不重复地址数量：</p>
+<ul>
+<li>将email地址分成local name和domain name，形如：local-name@domain-name</li>
+<li>数据保证每个地址中有且仅有一个<code>@</code>字符</li>
+<li>local name中的<code>.</code>字符应被忽略</li>
+<li>local name中的<code>+</code>字符及其后所有字符应被忽略</li>
+</ul>
+<h2>分析</h2>
+<p>我这次比赛的最终排名是62 / 3652。但事实上我把前4题都做出来的时候，live排名是三百多名，这听起来就很奇怪了。总之，这次比赛的确比较简单……以及这次比赛第一名是<a href="https://leetcode.com/cai_lw" target="_blank" rel="noopener">clw</a>。</p>
+<hr>
+<p>至于这道题……随便用字符串搞一下就可以了，然后去个重，我就不仔细思考了。</p>
+<h2>代码</h2>
+<p>搞了个像状态机一样的东西逐字符处理；不过我觉得还是使用find和split更好。事实上我在场上又忘了字符串处理函数具体怎么用了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numUniqueEmails</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; emails)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; uniqueEmails;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> email: emails) &#123;</span><br><span class="line">            <span class="built_in">string</span> local;</span><br><span class="line">            <span class="built_in">string</span> domain;</span><br><span class="line">            <span class="keyword">int</span> status = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 0: not found + / @;</span></span><br><span class="line">            <span class="comment">// 1: found +;</span></span><br><span class="line">            <span class="comment">// 2: found @</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> x: email) &#123;</span><br><span class="line">                <span class="keyword">if</span> (x == <span class="string">'+'</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (status == <span class="number">0</span>)</span><br><span class="line">                        status = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (status == <span class="number">2</span>)</span><br><span class="line">                        domain += x;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (x == <span class="string">'.'</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (status == <span class="number">0</span> || status == <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">if</span> (status == <span class="number">2</span>) domain += x;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (x == <span class="string">'@'</span>)</span><br><span class="line">                    status = <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (status == <span class="number">0</span>) local += x;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (status == <span class="number">2</span>) domain += x;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// cout &lt;&lt; local + '@' + domain &lt;&lt; endl;</span></span><br><span class="line">            uniqueEmails.insert(local + <span class="string">'@'</span> + domain);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueEmails.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-String/"><i class="fas fa-hashtag fa-fw"></i>alg:String</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/tags/Leetcode/page/9/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  10 / 21
+              </p>
+              
+                  <a class="next" rel="next" href="/tags/Leetcode/page/11/">
+                      <section class="post next">
+                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                      </section>
+                  </a>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+  
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

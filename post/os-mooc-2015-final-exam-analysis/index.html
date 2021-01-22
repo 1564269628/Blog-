@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>《操作系统》2015年期末考试分析 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">《操作系统》2015年期末考试分析</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-05-23
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>试题来自<a href=""></a>。这个卷子实在过于长了，不仅莫名有一个完整的缓冲区问题的实现，还有一堆ucore代码需要阅读和填空。</p>
+<h2>一（10分）</h2>
+<p>在用<code>do_execve</code>启动一个用户态进程时，ucore需要完成很多准备工作，这些工作有的在内核态完成，有的在用户态完成。请判断下列事项是否是ucore在正常完成<code>do_execve</code>中所需要的，如果是，指出它完成于内核态还是用户态（通过修改<code>trapframe</code>，在<code>iret</code>时改变寄存器的过程被认为是在内核态完成）。</p>
+<ol>
+<li>初始化进程所使用的栈</li>
+<li>在栈上准备argc和argv的内容</li>
+<li>将argc和argv作为用户main函数的参数放到栈上</li>
+<li>设置EIP为用户main函数的地址</li>
+<li>设置系统调用的返回值</li>
+</ol>
+<hr>
+<ol>
+<li>需要；内核态</li>
+<li>需要；内核态</li>
+<li><del>需要；内核态</del>不需要；用户态</li>
+<li><del>需要；内核态</del>不需要；用户态</li>
+<li>不需要</li>
+</ol>
+<p>这个题出的很没有意义啊，系统调用返回之后几乎就要立即跳转到用户进程指令的第一条了。</p>
+<p>以下内容摘自ucore docs Lab5：</p>
+<blockquote>
+<p>最终通过<code>do_execve</code>函数来完成用户进程的创建工作。此函数的主要工作流程如下：</p>
+</blockquote>
+<ul>
+<li>首先为加载新的执行码做好用户态内存空间清空准备。如果mm不为NULL，则设置页表为内核空间页表，且进一步判断mm的引用计数减1后是否为0，如果为0，则表明没有进程再需要此进程所占用的内存空间，为此将根据mm中的记录，释放进程所占用户空间内存和进程页表本身所占空间。最后把当前进程的mm内存管理指针为空。由于此处的initproc是内核线程，所以mm为NULL，整个处理都不会做。</li>
+<li>接下来的一步是加载应用程序执行码到当前进程的新创建的用户态虚拟空间中。这里涉及到读ELF格式的文件，申请内存空间，建立用户态虚存空间，加载应用程序执行码等。load_icode函数完成了整个复杂的工作。<br>
+……<br>
+load_icode函数的工作：</li>
+</ul>
+<ol>
+<li>初始化mm</li>
+<li>分配和设置页目录表</li>
+<li>解析ELF文件，建立vma，初始化进程的用户态虚拟地址空间</li>
+<li>分配物理内存空间，建立页表映射关系，拷贝程序内容</li>
+<li>设置用户栈</li>
+<li>将页目录表基地址加载到CR3寄存器中</li>
+<li>重设进程中断帧，准备切换到用户态<br>
+至此，用户进程的用户环境已经搭建完毕。此时initproc将按产生系统调用的函数调用路径原路返回，执行中断返回指令“iret”（位于trapentry.S的最后一句） 后，将切换到用户进程hello的第一条语句位置_start处（位于user/libs/initcode.S的第三句） 开始执行。</li>
+</ol>
+<p>2018.5.25 UPD：<br>
+tsz同学指出，事实上这道题和第六大题的代码内容直接相关。从中可以看出，<code>user/libs/initcode.S</code>做的就是在用户态为<code>main</code>函数设置参数的工作。所以3和4的答案应该修改一下。事实证明，想当然是不好的。</p>
+<h2>二 VSFS（18分）</h2>
+<p>这道题和<a href="/post/os-mooc-final-exam-analysis">MOOC期末考试题</a>中的第20题一模一样，所以略。</p>
+<h2>三 进程状态变化（16分）</h2>
+<p>在ucore中<code>enum proc_state</code>的定义包含以下四个值：</p>
+<ul>
+<li><code>PROC_UNINIT</code></li>
+<li><code>PROC_SLEEPING</code></li>
+<li><code>PROC_RUNNABLE</code></li>
+<li><code>PROC_ZOMBIE</code><br>
+请解释每一种状态的含义，以及各状态之间可能的迁移。</li>
+</ul>
+<hr>
+<ul>
+<li><code>PROC_UNINIT</code>：刚申请完进程控制块，进程还未被初始化</li>
+<li><code>PROC_SLEEPING</code>：进程处于等待状态</li>
+<li><code>PROC_RUNNABLE</code>：进程处于就绪或运行状态</li>
+<li><code>PROC_ZOMBIE</code>：僵尸状态，进程已经退出，等待父进程进一步回收资源</li>
+</ul>
+<p>以下内容（进程的正常生命周期）摘自ucore docs Lab6：</p>
+<blockquote>
+<p>进程的正常生命周期如下：</p>
+</blockquote>
+<ul>
+<li>进程首先在cpu初始化或者<code>sys_fork</code>的时候被创建，当为该进程分配了一个进程控制块之后，该进程进入<code>uninit</code>态(在<code>proc.c</code>中<code>alloc_proc</code>)。</li>
+<li>当进程完全完成初始化之后，该进程转为<code>runnable</code>态。</li>
+<li>当到达调度点时，由调度器<code>sched_class</code>根据运行队列<code>rq</code>的内容来判断一个进程是否应该被运行，即把处于<code>runnable</code>态的进程转换成<code>running</code>状态，从而占用CPU执行。</li>
+<li><code>running</code>态的进程通过<code>wait</code>等系统调用被阻塞，进入<code>sleeping</code>态。</li>
+<li><code>sleeping</code>态的进程被<code>wakeup</code>变成<code>runnable</code>态的进程。</li>
+<li><code>running</code>态的进程主动<code>exit</code>变成<code>zombie</code>态，然后由其父进程完成对其资源的最后释放，子进程的进程控制块成为<code>unused</code>。</li>
+<li>所有从<code>runnable</code>态变成其他状态的进程都要出运行队列，反之，被放入某个运行队列中。</li>
+</ul>
+<p>以下内容摘自<a href="https://chyyuu.gitbooks.io/simple_os_book/content/zh/chapter-4/process_status_change.html" target="_blank" rel="noopener">进程运行状态转变过程</a>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">process state changing:</span><br><span class="line"></span><br><span class="line">  alloc_proc                                 RUNNING</span><br><span class="line">      +                                   +--&lt;----&lt;--+</span><br><span class="line">      +                                   + proc_run +</span><br><span class="line">      V                                   +--&gt;----&gt;--+</span><br><span class="line">PROC_UNINIT -- proc_init/wakeup_proc --&gt; PROC_RUNNABLE -- try_free_pages/do_wait/do_sleep --&gt; PROC_SLEEPING --</span><br><span class="line">                                           A      +                                                           +</span><br><span class="line">                                           |      +--- do_exit --&gt; PROC_ZOMBIE                                +</span><br><span class="line">                                           +                                                                  +</span><br><span class="line">                                           -----------------------wakeup_proc----------------------------------</span><br></pre></td></tr></table></figure>
+<h2>四 Stride调度算法（15分）</h2>
+<p>假设在lab6测试stride scheduling的过程中，采用如下默认配置：BigStride为0x7FFFFFFF，CPU时间片为50ms，测试过程包含五个进程，其初始<del>stride</del>pass均为1，优先级分别为1、2、3、4、5，测试时间为10s。下面给出了五种修改上述配置的方式，试讨论：对于每一种改动，测试结果相比改动之前是否会发生明显的变化？如果是，结果会变得更接近于理想情况，还是远离理想情况？</p>
+<ol>
+<li>BigStride改为120</li>
+<li>CPU时间片改为5ms</li>
+<li>五个进程的初始pass改为100</li>
+<li>五个进程的优先级设为2、4、6、8、10</li>
+<li>测试时间延长到20s</li>
+</ol>
+<hr>
+<p>在测试时间10s的情况下，时间片总个数为200。</p>
+<ol>
+<li>如果将BigStride改为120，则stride最大为120，不会溢出，而且120能够整除1、2、3、4、5，更能够保证进程的pass按优先级推进，因此会更接近于理想情况</li>
+<li>时间片总个数变成2000，因为进程stride有偏差，因此会远离理想情况</li>
+<li>因为100这个值相比各个进程的stride太小了，所以应该不会有明显变化</li>
+<li>不会有明显变化</li>
+<li>同2，更远离理想情况</li>
+</ol>
+<p>这个题目中不同学长的答案大相径庭，所以我选了一种我觉得合理的。事实上，Stride调度算法的论文中讨论了一下误差问题：在stride和优先级精确地成反比的情况下，各个线程之间按比例分配到的时间片数量的误差不超过1，也就是说，总误差是O(nc)（nc是线程数量）。所以大概stride计算不准确造成的影响是比较大的。</p>
+<h2>五 生产者-消费者问题（10分）</h2>
+<p>生产者-消费者问题是指，一组生产者进程和一组消费者进程共享一个初始为空、大小为3（不如说是BUFFER_SIZE）的缓冲区，只有缓冲区没满时，生产者才能把消息放入到缓冲区，否则必须等待；只有缓冲区不空时，消费者才能从中取出消息，否则必须等待。由于缓冲区是临界资源，它只允许一个生产者放入消息，或者一个生产者放入消息，或者一个消费者从中取出消息。</p>
+<p>下面是生产者-消费者问题的一个实现和测试结果。请回答下面问题：</p>
+<ol>
+<li>请用伪码给出信号量的PV操作实现。</li>
+<li>这个实现正确吗？如果不正确，给出你的正确实现。</li>
+<li>这两个测试用例能发现该实现中的可能错误吗？如果不能，请给出你的尽可能完整的测试用例。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br></pre></td><td class="code"><pre><span class="line">==== producer-consumer.cpp ====</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;semaphore.h&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;new&gt; // ::operator new[]</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define BUFFER_SIZE 3</span><br><span class="line">#define SLEEP_SPAN 5</span><br><span class="line">#define WORK_SPAN 4</span><br><span class="line"></span><br><span class="line">#define PRODUCER 0</span><br><span class="line">#define CONSUMER 1</span><br><span class="line"></span><br><span class="line">int iflag = 0;</span><br><span class="line">int oflag = 0;</span><br><span class="line">sem_t empty, full, mutex;</span><br><span class="line">int empty_count, full_count;</span><br><span class="line">int data_num = 0;</span><br><span class="line">int num = 0;</span><br><span class="line"></span><br><span class="line">int buffer[BUFFER_SIZE] = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">int p_task_done = -1;</span><br><span class="line">int c_task_done = -1;</span><br><span class="line"></span><br><span class="line">struct arg_struct &#123;</span><br><span class="line">    arg_struct(int _id, int _start, int _work, string _indent): id(_id), start(_start), work(_work), indent(_indent) &#123;&#125;</span><br><span class="line">    arg_struct(int _id): id(_id), start(0), work(0), indent(string(&quot;&quot;)) &#123;&#125;</span><br><span class="line">    int id;</span><br><span class="line">    int start;</span><br><span class="line">    int work;</span><br><span class="line">    string indent;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void* producer(void* argv)&#123;</span><br><span class="line">    arg_struct arg = *(arg_struct*)argv;</span><br><span class="line">    int id = arg.id;</span><br><span class="line">    const char* indent = arg.indent.c_str();</span><br><span class="line"></span><br><span class="line">    sleep(arg.start);</span><br><span class="line"></span><br><span class="line">    printf(&quot;%sSTART\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    sem_wait(&amp;mutex);  /* 顺序错了 */</span><br><span class="line">    printf(&quot;%saMUTEX\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    sem_wait(&amp;empty);  /* 顺序错了 */</span><br><span class="line">    printf(&quot;%saEMPTY\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    printf(&quot;%sENTER\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    int time = rand() % SLEEP_SPAN;</span><br><span class="line">    sleep(arg.work);</span><br><span class="line"></span><br><span class="line">    p_task_done++;</span><br><span class="line">    printf(&quot;%sProd %d\n&quot;, indent, p_task_done);</span><br><span class="line"></span><br><span class="line">    buffer[iflag] = p_task_done;</span><br><span class="line"></span><br><span class="line">    if (empty_count == 0) printf(&quot;Error: Produce while no empty\n&quot;);</span><br><span class="line">    iflag = (iflag + 1) % BUFFER_SIZE;</span><br><span class="line">    empty_count--;</span><br><span class="line">    full_count++;</span><br><span class="line"></span><br><span class="line">    printf(&quot;%sEXIT\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    sem_post(&amp;mutex);</span><br><span class="line">    printf(&quot;%srMUTEX\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    sem_post(&amp;full);</span><br><span class="line">    printf(&quot;%srFULL\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void* consumer(void* argv)&#123;</span><br><span class="line">    arg_struct arg = *(arg_struct*)argv;</span><br><span class="line">    int id = arg.id;</span><br><span class="line">    const char* indent = arg.indent.c_str();</span><br><span class="line"></span><br><span class="line">    sleep(arg.start);</span><br><span class="line"></span><br><span class="line">    printf(&quot;%sSTART\n&quot;, indent);</span><br><span class="line">    sem_wait(&amp;full);</span><br><span class="line">    printf(&quot;%saFULL\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    sem_wait(&amp;mutex);</span><br><span class="line">    printf(&quot;%saMUTEX\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    printf(&quot;%sENTER\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    sleep(arg.work);</span><br><span class="line"></span><br><span class="line">    ++c_task_done;</span><br><span class="line">    if (full_count == 0) printf(&quot;Error: Consume while no full\n&quot;);</span><br><span class="line"></span><br><span class="line">    int tmp = buffer[oflag];</span><br><span class="line">    printf(&quot;%sCons %d\n&quot;, indent, tmp);</span><br><span class="line"></span><br><span class="line">    oflag = (oflag + 1) % BUFFER_SIZE;</span><br><span class="line">    if (c_task_done != tmp) printf(&quot;Error: Consume data wrong\n&quot;);</span><br><span class="line">    if (c_task_done &gt; p_task_done) printf(&quot;Error: Over-consume!\n&quot;);</span><br><span class="line"></span><br><span class="line">    full_count--;</span><br><span class="line">    empty_count++;</span><br><span class="line"></span><br><span class="line">    printf(&quot;%sEXIT\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    sem_post(&amp;mutex);</span><br><span class="line">    printf(&quot;%srMUTEX\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    sem_post(&amp;empty);</span><br><span class="line">    printf(&quot;%srEMPTY\n&quot;, indent);</span><br><span class="line"></span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#define N 3</span><br><span class="line">void testcase_producer_consumer(int ThreadNumber, int inst[2 * N][3]) &#123;</span><br><span class="line">    pthread_t * p_consumer = new pthread_t[ThreadNumber];</span><br><span class="line">    pthread_t * p_producer = new pthread_t[ThreadNumber];</span><br><span class="line"></span><br><span class="line">    int c_count = 0, p_count = 0;</span><br><span class="line"></span><br><span class="line">    printf(&quot;testcase_producer_consumer:\n&quot;);</span><br><span class="line">    /* For managed creation of &apos;ThreadNumber&apos; threads */</span><br><span class="line">    int st_time = 0;</span><br><span class="line">    /* Print the first line */</span><br><span class="line">    int tmp_c = 0, tmp_p = 0;</span><br><span class="line">    for (int i = 0; i &lt; ThreadNumber; i++) &#123;</span><br><span class="line">        if (inst[i][0] == PRODUCER) &#123;</span><br><span class="line">            printf(&quot;P%d\t&quot;, tmp_p++);</span><br><span class="line">        &#125; else if (inst[i][0] == CONSUMER) &#123;</span><br><span class="line">            printf(&quot;C%d\t&quot;, tmp_c++);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">    /* Create Producers and Consumers according to $inst*/</span><br><span class="line">    int rc;</span><br><span class="line">    string indent(&quot;&quot;);</span><br><span class="line">    for (int i = 0; i &lt; ThreadNumber; i++) &#123;</span><br><span class="line">        if (inst[i][0] == PRODUCER)  &#123;</span><br><span class="line">            rc = pthread_create(p_producer + p_count, NULL, producer, new arg_struct(p_count, inst[i][1],</span><br><span class="line">            inst[i][2], indent));</span><br><span class="line">            if (rc) printf(&quot;ERROR\n&quot;);</span><br><span class="line">            p_count++;</span><br><span class="line">        &#125; else if (inst[i][0] == CONSUMER)&#123;</span><br><span class="line">            rc = pthread_create(p_consumer + c_count, NULL, consumer, new arg_struct(c_count, inst[i][1],             inst[i][2], indent));</span><br><span class="line">            if (rc) printf(&quot;ERROR\n&quot;);</span><br><span class="line">            c_count++;</span><br><span class="line">        &#125;</span><br><span class="line">        indent += &apos;\t&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* wait until every thread finishes*/</span><br><span class="line">    for (int i = 0; i &lt; p_count; i++) &#123;</span><br><span class="line">        pthread_join(p_producer[i], NULL);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; c_count; i++) &#123;</span><br><span class="line">        pthread_join(p_consumer[i], NULL);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    delete[] p_producer;</span><br><span class="line">    delete[] p_consumer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char** argv) &#123;</span><br><span class="line">    srand((unsigned)time(NULL));</span><br><span class="line"></span><br><span class="line">    memset(buffer, 0, sizeof(int) * BUFFER_SIZE);</span><br><span class="line"></span><br><span class="line">    sem_init(&amp;mutex, 0, 1);</span><br><span class="line">    sem_init(&amp;empty, 0, BUFFER_SIZE);</span><br><span class="line">    sem_init(&amp;full, 0, 0);</span><br><span class="line"></span><br><span class="line">    empty_count = BUFFER_SIZE;</span><br><span class="line">    full_count = 0;</span><br><span class="line"></span><br><span class="line">    /* For managed creation of 2 * N threads */</span><br><span class="line">    int ThreadNumber = 2 * N ;</span><br><span class="line">    int st_time = 0;</span><br><span class="line">    int inst[2 * N][3] = &#123;</span><br><span class="line">        /* &#123; Consumer or Producer to be create?,</span><br><span class="line">        When does it start to work after being created?, st_stime += N means it starts N seconcds later than the previous P/C</span><br><span class="line">        How long does it work after it enters critical zone? &#125; */</span><br><span class="line">        &#123;CONSUMER, st_time += 0, 2&#125;,</span><br><span class="line">        &#123;CONSUMER, st_time += 1, 2&#125;,</span><br><span class="line">        &#123;CONSUMER, st_time += 2, 2&#125;,</span><br><span class="line">        &#123;PRODUCER, st_time += 3, 2&#125;,</span><br><span class="line">        &#123;PRODUCER, st_time += 4, 2&#125;,</span><br><span class="line">        &#123;PRODUCER, st_time += 5, 2&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    testcase_producer_consumer(ThreadNumber, inst);</span><br><span class="line">    st_time = 0;</span><br><span class="line"></span><br><span class="line">    int inst2[2 * N][3] = &#123;</span><br><span class="line">        &#123;PRODUCER, st_time += 0, 2&#125;,</span><br><span class="line">        &#123;PRODUCER, st_time += 1, 2&#125;,</span><br><span class="line">        &#123;CONSUMER, st_time += 2, 2&#125;,</span><br><span class="line">        &#123;CONSUMER, st_time += 3, 2&#125;,</span><br><span class="line">        &#123;PRODUCER, st_time += 4, 2&#125;,</span><br><span class="line">        &#123;CONSUMER, st_time += 5, 2&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    testcase_producer_consumer(ThreadNumber, inst2);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试用例的执行输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">xyong@ubuntu-xyong:~/work$ gcc producer-consumer.cpp -lpthread -lstdc++</span><br><span class="line">xyong@ubuntu-xyong:~/work$ ./a.out</span><br><span class="line">testcase_producer_consumer:</span><br><span class="line">C0    C1    C2    P0    P1    P2</span><br><span class="line">START</span><br><span class="line">      START</span><br><span class="line">            START</span><br><span class="line">                  START</span><br><span class="line">                  aMUTEX</span><br><span class="line">                  aEMPTY</span><br><span class="line">                  ENTER</span><br><span class="line">                  Prod 0</span><br><span class="line">                  EXIT</span><br><span class="line">                  rMUTEX</span><br><span class="line">                  rFULL</span><br><span class="line">aFULL</span><br><span class="line">aMUTEX</span><br><span class="line">ENTER</span><br><span class="line">                        START</span><br><span class="line">Cons 0</span><br><span class="line">EXIT</span><br><span class="line">                        aMUTEX</span><br><span class="line">                        aEMPTY</span><br><span class="line">                        ENTER</span><br><span class="line">rMUTEX</span><br><span class="line">rEMPTY</span><br><span class="line">                        Prod 1</span><br><span class="line">                        EXIT</span><br><span class="line">                        rMUTEX</span><br><span class="line">                        rFULL</span><br><span class="line">      aFULL</span><br><span class="line">      aMUTEX</span><br><span class="line">      ENTER</span><br><span class="line">      Cons 1</span><br><span class="line">      EXIT</span><br><span class="line">      rMUTEX</span><br><span class="line">      rEMPTY</span><br><span class="line">                        START</span><br><span class="line">                        aMUTEX</span><br><span class="line">                        aEMPTY</span><br><span class="line">                        ENTER</span><br><span class="line">                        Prod 2</span><br><span class="line">                        EXIT</span><br><span class="line">                        rMUTEX</span><br><span class="line">                        rFULL</span><br><span class="line">            aFULL</span><br><span class="line">            aMUTEX</span><br><span class="line">            ENTER</span><br><span class="line">            Cons 2</span><br><span class="line">            EXIT</span><br><span class="line">            rMUTEX</span><br><span class="line">            rEMPTY</span><br><span class="line"></span><br><span class="line">testcase_producer_consumer:</span><br><span class="line">P0    P1    C0    C1    P2    C2</span><br><span class="line">START</span><br><span class="line">aMUTEX</span><br><span class="line">aEMPTY</span><br><span class="line">ENTER</span><br><span class="line">      START</span><br><span class="line">Prod 3</span><br><span class="line">EXIT</span><br><span class="line">rMUTEX</span><br><span class="line">rFULL</span><br><span class="line">      aMUTEX</span><br><span class="line">      aEMPTY</span><br><span class="line">      ENTER</span><br><span class="line">            START</span><br><span class="line">            aFULL</span><br><span class="line">      Prod 4</span><br><span class="line">      EXIT</span><br><span class="line">      rMUTEX</span><br><span class="line">      rFULL</span><br><span class="line">            aMUTEX</span><br><span class="line">            ENTER</span><br><span class="line">                  START</span><br><span class="line">                  aFULL</span><br><span class="line">            Cons 3</span><br><span class="line">            EXIT</span><br><span class="line">            rMUTEX</span><br><span class="line">            rEMPTY</span><br><span class="line">                  aMUTEX</span><br><span class="line">                  ENTER</span><br><span class="line">                  Cons 4</span><br><span class="line">                  EXIT</span><br><span class="line">                  rMUTEX</span><br><span class="line">                  rEMPTY</span><br><span class="line">                        START</span><br><span class="line">                        aMUTEX</span><br><span class="line">                        aEMPTY</span><br><span class="line">                        ENTER</span><br><span class="line">                        Prod 5</span><br><span class="line">                        EXIT</span><br><span class="line">                        rMUTEX</span><br><span class="line">                        rFULL</span><br><span class="line">                              START</span><br><span class="line">                              aFULL</span><br><span class="line">                              aMUTEX</span><br><span class="line">                              ENTER</span><br><span class="line">                              Cons 5</span><br><span class="line">                              EXIT</span><br><span class="line">                              rMUTEX</span><br><span class="line">                              rEMPTY</span><br><span class="line">xyong@ubuntu-xyong:~/work$</span><br></pre></td></tr></table></figure>
+<hr>
+<p>这道题真是又臭又长……</p>
+<p>信号量PV操作的伪代码：这个是十分简单了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">P() &#123;</span><br><span class="line">    sem--;</span><br><span class="line">    if (sem &lt; 0) &#123;</span><br><span class="line">        Add this thread t to q;</span><br><span class="line">        block(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">V() &#123;</span><br><span class="line">    sem++;</span><br><span class="line">    if (sem &lt;= 0) &#123;</span><br><span class="line">        Remove a thread t from q;</span><br><span class="line">        wakeup(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个实现是否正确？答案是不正确。producer线程的实现中获取<code>mutex</code>和<code>empty</code>信号量的顺序反了。总的来说，把这两个换一下就好了。</p>
+<p>题目中给出的两个测试样例是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">int inst[2 * N][3] = &#123;</span><br><span class="line">    /* &#123; Consumer or Producer to be create?,</span><br><span class="line">    When does it start to work after being created?, st_stime += N means it starts N seconcds later than the previous P/C</span><br><span class="line">    How long does it work after it enters critical zone? &#125; */</span><br><span class="line">    &#123;CONSUMER, st_time += 0, 2&#125;,</span><br><span class="line">    &#123;CONSUMER, st_time += 1, 2&#125;,</span><br><span class="line">    &#123;CONSUMER, st_time += 2, 2&#125;,</span><br><span class="line">    &#123;PRODUCER, st_time += 3, 2&#125;,</span><br><span class="line">    &#123;PRODUCER, st_time += 4, 2&#125;,</span><br><span class="line">    &#123;PRODUCER, st_time += 5, 2&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int inst2[2 * N][3] = &#123;</span><br><span class="line">    &#123;PRODUCER, st_time += 0, 2&#125;,</span><br><span class="line">    &#123;PRODUCER, st_time += 1, 2&#125;,</span><br><span class="line">    &#123;CONSUMER, st_time += 2, 2&#125;,</span><br><span class="line">    &#123;CONSUMER, st_time += 3, 2&#125;,</span><br><span class="line">    &#123;PRODUCER, st_time += 4, 2&#125;,</span><br><span class="line">    &#123;CONSUMER, st_time += 5, 2&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我给出的测试样例是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int inst2[2 * N][3] = &#123;</span><br><span class="line">    &#123;PRODUCER, st_time += 0, 2&#125;,</span><br><span class="line">    &#123;PRODUCER, st_time += 1, 2&#125;,</span><br><span class="line">    &#123;PRODUCER, st_time += 2, 2&#125;,</span><br><span class="line">    &#123;PRODUCER, st_time += 3, 2&#125;,</span><br><span class="line">    &#123;CONSUMER, st_time += 4, 2&#125;,</span><br><span class="line">    &#123;CONSUMER, st_time += 5, 2&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>题目中并没有要求Producer和Consumer的数量必须为3个。从理论上来说，只要Producer比Consumer大的个数在3个（也就是缓冲区的大小）以内，都能正常结束。但是在错误实现中会发生这样的问题：P1-P3生产完之后，P4获得<code>mutex</code>后开始在<code>empty</code>信号量上等待。但是，由于它占据了<code>mutex</code>，因此C1和C2无法进入临界区进行消费，于是也不会对<code>empty</code>信号量执行V操作，发生死锁。</p>
+<h2>六 ucore用户进程（16分）</h2>
+<p>下面是关于ucore中用户程序的生命历程的代码。请完成下面填空和代码补全。</p>
+<h3>（1）</h3>
+<p>在<code>sh</code>的命令行上输入<code>args 1</code>启动用户程序<code>args</code>，则<code>sh</code>会调用（<strong>1</strong>）创建新进程并调用（<strong>2</strong>）将<code>args</code>加载到该进程的地址空间中。（回答系统调用名称即可）</p>
+<ol>
+<li><code>SYS_fork</code></li>
+<li><code>SYS_exec</code></li>
+</ol>
+<hr>
+<p>这一题使我觉得我应该复习一下ucore里的各种系统调用、实现方法及其作用。</p>
+<h3>（2）</h3>
+<p>将<code>args</code>从硬盘加载主要由<code>load_icode</code>完成，请补全以下代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br></pre></td><td class="code"><pre><span class="line">// load_icode - called by sys_exec--&gt;do_execve</span><br><span class="line"></span><br><span class="line">static int</span><br><span class="line">load_icode(int fd, int argc, char **kargv) &#123;</span><br><span class="line">    /* LAB8:EXERCISE2 YOUR CODE HINT:how to load the file with handler fd in to process&apos;s memory? how to setup argc/argv?</span><br><span class="line">    * MACROs or Functions:</span><br><span class="line">    * mm_create - create a mm</span><br><span class="line">    * setup_pgdir - setup pgdir in mm</span><br><span class="line">    * load_icode_read - read raw data content of program file</span><br><span class="line">    * mm_map - build new vma</span><br><span class="line">    * pgdir_alloc_page - allocate new memory for TEXT/DATA/BSS/stack parts</span><br><span class="line">    * lcr3 - update Page Directory Addr Register -- CR3</span><br><span class="line">    */</span><br><span class="line">    /* (1) create a new mm for current process</span><br><span class="line">    * (2) create a new PDT, and mm-&gt;pgdir= kernel virtual addr of PDT</span><br><span class="line">    * (3) copy TEXT/DATA/BSS parts in binary to memory space of process</span><br><span class="line">    * (3.1) read raw data content in file and resolve elfhdr</span><br><span class="line">    * (3.2) read raw data content in file and resolve proghdr based on info in elfhdr</span><br><span class="line">    * (3.3) call mm_map to build vma related to TEXT/DATA</span><br><span class="line">    * (3.4) callpgdir_alloc_page to allocate page for TEXT/DATA, read contents in file</span><br><span class="line">    * and copy them into the new allocated pages</span><br><span class="line">    * (3.5) callpgdir_alloc_page to allocate pages for BSS, memset zero in these pages</span><br><span class="line">    * (4) call mm_map to setup user stack, and put parameters into user stack</span><br><span class="line">    * (5) setup current process&apos;s mm, cr3, reset pgidr (using lcr3 MARCO)</span><br><span class="line">    * (6) setup uargc and uargv in user stacks</span><br><span class="line">    * (7) setup trapframe for user environment</span><br><span class="line">    * (8) if up steps failed, you should cleanup the env.</span><br><span class="line">    */</span><br><span class="line">    assert(argc &gt;= 0 &amp;&amp; argc &lt;= EXEC_MAX_ARG_NUM);</span><br><span class="line"></span><br><span class="line">    if (current-&gt;mm != NULL) &#123;</span><br><span class="line">        panic(&quot;load_icode: current-&gt;mm must be empty.\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int ret = -E_NO_MEM;</span><br><span class="line">    struct mm_struct *mm;</span><br><span class="line">    if ((mm = mm_create()) == NULL) &#123;</span><br><span class="line">        goto bad_mm;</span><br><span class="line">    &#125;</span><br><span class="line">    if (setup_pgdir(mm) != 0) &#123;</span><br><span class="line">        goto bad_pgdir_cleanup_mm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    struct Page *page;</span><br><span class="line"></span><br><span class="line">    struct elfhdr __elf, *elf = &amp;__elf;</span><br><span class="line">    /* 2a */</span><br><span class="line">    if ((ret = load_icode_read(fd, elf, _(2a)_, 0)) != 0) &#123;</span><br><span class="line">        goto bad_elf_cleanup_pgdir;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (elf-&gt;e_magic != ELF_MAGIC) &#123;</span><br><span class="line">        ret = -E_INVAL_ELF;</span><br><span class="line">        goto bad_elf_cleanup_pgdir;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    struct proghdr __ph, *ph = &amp;__ph;</span><br><span class="line">    uint32_t vm_flags, perm, phnum;</span><br><span class="line">    for (phnum = 0; phnum &lt; elf-&gt;e_phnum; phnum ++) &#123;</span><br><span class="line">        off_t phoff = elf-&gt;e_phoff + sizeof(struct proghdr) * phnum;</span><br><span class="line">        if ((ret = load_icode_read(fd, ph, sizeof(struct proghdr), phoff)) != 0) &#123;</span><br><span class="line">            goto bad_cleanup_mmap;</span><br><span class="line">        &#125;</span><br><span class="line">        if (ph-&gt;p_type != ELF_PT_LOAD) &#123;</span><br><span class="line">            /* 2b */</span><br><span class="line">            _(2b)_</span><br><span class="line">        &#125;</span><br><span class="line">        if (ph-&gt;p_filesz &gt; ph-&gt;p_memsz) &#123;</span><br><span class="line">            ret = -E_INVAL_ELF;</span><br><span class="line">            goto bad_cleanup_mmap;</span><br><span class="line">        &#125;</span><br><span class="line">        if (ph-&gt;p_filesz == 0) &#123;</span><br><span class="line">            continue ;</span><br><span class="line">        &#125;</span><br><span class="line">        vm_flags = 0, perm = PTE_U;</span><br><span class="line">        if (ph-&gt;p_flags &amp; ELF_PF_X) vm_flags |= VM_EXEC;</span><br><span class="line">        if (ph-&gt;p_flags &amp; ELF_PF_W) vm_flags |= VM_WRITE;</span><br><span class="line">        if (ph-&gt;p_flags &amp; ELF_PF_R) vm_flags |= VM_READ;</span><br><span class="line">        if (vm_flags &amp; VM_WRITE) perm |= PTE_W;</span><br><span class="line">        if ((ret = mm_map(mm, ph-&gt;p_va, ph-&gt;p_memsz, vm_flags, NULL)) != 0) &#123;</span><br><span class="line">            goto bad_cleanup_mmap;</span><br><span class="line">        &#125;</span><br><span class="line">        off_t offset = ph-&gt;p_offset;</span><br><span class="line">        size_t off, size;</span><br><span class="line">        uintptr_t start = ph-&gt;p_va, end, la = ROUNDDOWN(start, PGSIZE);</span><br><span class="line"></span><br><span class="line">        ret = -E_NO_MEM;</span><br><span class="line"></span><br><span class="line">        end = ph-&gt;p_va + ph-&gt;p_filesz;</span><br><span class="line">        while (start &lt; end) &#123;</span><br><span class="line">            if ((page = pgdir_alloc_page(mm-&gt;pgdir, la, perm)) == NULL) &#123;</span><br><span class="line">                ret = -E_NO_MEM;</span><br><span class="line">                goto bad_cleanup_mmap;</span><br><span class="line">            &#125;</span><br><span class="line">            off = start - la, size = PGSIZE - off, la += PGSIZE;</span><br><span class="line">            if (end &lt; la) &#123;</span><br><span class="line">                size -= la - end;</span><br><span class="line">            &#125;</span><br><span class="line">            if ((ret = load_icode_read(fd, page2kva(page) + off, size, offset)) != 0) &#123;</span><br><span class="line">                goto bad_cleanup_mmap;</span><br><span class="line">            &#125;</span><br><span class="line">            start += size, offset += size;</span><br><span class="line">        &#125;</span><br><span class="line">        end = ph-&gt;p_va + ph-&gt;p_memsz;</span><br><span class="line"></span><br><span class="line">        if (start &lt; la) &#123;</span><br><span class="line">            /* ph-&gt;p_memsz == ph-&gt;p_filesz */</span><br><span class="line">            if (start == end) &#123;</span><br><span class="line">                continue ;</span><br><span class="line">            &#125;</span><br><span class="line">            off = start + PGSIZE - la, size = PGSIZE - off;</span><br><span class="line">            if (end &lt; la) &#123;</span><br><span class="line">                size -= la - end;</span><br><span class="line">            &#125;</span><br><span class="line">            memset(page2kva(page) + off, 0, size);</span><br><span class="line">            start += size;</span><br><span class="line">            assert((end &lt; la &amp;&amp; start == end) || (end &gt;= la &amp;&amp; start == la));</span><br><span class="line">        &#125;</span><br><span class="line">        while (start &lt; end) &#123;</span><br><span class="line">            if ((page = pgdir_alloc_page(mm-&gt;pgdir, la, perm)) == NULL) &#123;</span><br><span class="line">                ret = -E_NO_MEM;</span><br><span class="line">                goto bad_cleanup_mmap;</span><br><span class="line">            &#125;</span><br><span class="line">            off = start - la, size = PGSIZE - off, la += PGSIZE;</span><br><span class="line">            if (end &lt; la) &#123;</span><br><span class="line">                size -= la - end;</span><br><span class="line">            &#125;</span><br><span class="line">            memset(page2kva(page) + off, 0, size);</span><br><span class="line">            start += size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    sysfile_close(fd);</span><br><span class="line"></span><br><span class="line">    vm_flags = VM_READ | VM_WRITE | VM_STACK;</span><br><span class="line">    /* 2c */</span><br><span class="line">    if ((ret = mm_map(mm, _(2c)_, USTACKSIZE, vm_flags, NULL)) != 0) &#123;</span><br><span class="line">        goto bad_cleanup_mmap;</span><br><span class="line">    &#125;</span><br><span class="line">    assert(pgdir_alloc_page(mm-&gt;pgdir, USTACKTOP-PGSIZE , PTE_USER) != NULL);</span><br><span class="line">    assert(pgdir_alloc_page(mm-&gt;pgdir, USTACKTOP-2*PGSIZE , PTE_USER) != NULL);</span><br><span class="line">    assert(pgdir_alloc_page(mm-&gt;pgdir, USTACKTOP-3*PGSIZE , PTE_USER) != NULL);</span><br><span class="line">    assert(pgdir_alloc_page(mm-&gt;pgdir, USTACKTOP-4*PGSIZE , PTE_USER) != NULL);</span><br><span class="line"></span><br><span class="line">    mm_count_inc(mm);</span><br><span class="line">    current-&gt;mm = mm;</span><br><span class="line">    current-&gt;cr3 = PADDR(mm-&gt;pgdir);</span><br><span class="line">    lcr3(PADDR(mm-&gt;pgdir));</span><br><span class="line"></span><br><span class="line">    //setup argc, argv</span><br><span class="line">    uint32_t argv_size=0, i;</span><br><span class="line">    for (i = 0; i &lt; argc; i ++) &#123;</span><br><span class="line">        argv_size += strnlen(kargv[i],EXEC_MAX_ARG_LEN + 1)+1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    uintptr_t stacktop = USTACKTOP - (argv_size/sizeof(long)+1)*sizeof(long);</span><br><span class="line">    char** uargv=(char **)(stacktop - argc * sizeof(char *));</span><br><span class="line"></span><br><span class="line">    argv_size = 0;</span><br><span class="line">    for (i = 0; i &lt; argc; i ++) &#123;</span><br><span class="line">        uargv[i] = strcpy((char *)(stacktop + argv_size ), kargv[i]);</span><br><span class="line">        /* 2d */</span><br><span class="line">        _(2d)_</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    stacktop = (uintptr_t)uargv - sizeof(int);</span><br><span class="line">    /* 2e */</span><br><span class="line">    *(int *)stacktop = _(2e)_;</span><br><span class="line"></span><br><span class="line">    struct trapframe *tf = current-&gt;tf;</span><br><span class="line">    memset(tf, 0, sizeof(struct trapframe));</span><br><span class="line">    tf-&gt;tf_cs = USER_CS;</span><br><span class="line">    tf-&gt;tf_ds = tf-&gt;tf_es = tf-&gt;tf_ss = USER_DS;</span><br><span class="line">    tf-&gt;tf_esp = stacktop;</span><br><span class="line">    tf-&gt;tf_eip = elf-&gt;e_entry;</span><br><span class="line">    tf-&gt;tf_eflags = FL_IF;</span><br><span class="line">    ret = 0;</span><br><span class="line">out:</span><br><span class="line">    return ret;</span><br><span class="line">bad_cleanup_mmap:</span><br><span class="line">    exit_mmap(mm);</span><br><span class="line">bad_elf_cleanup_pgdir:</span><br><span class="line">    put_pgdir(mm);</span><br><span class="line">bad_pgdir_cleanup_mm:</span><br><span class="line">    mm_destroy(mm);</span><br><span class="line">bad_mm:</span><br><span class="line">    goto out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>sizeof(struct elfhdr)</code>（读一个<code>elfhdr</code>大小的文件数据）</li>
+<li><code>goto bad_cleanup_mmap;</code>（这个很简单：已经设置了<code>pgdir</code>和<code>mm</code>了，因此如果失败需要清理；而且周围都是跳转到这里）</li>
+<li><code>USTACKTOP - USTACKSIZE</code>（这段大概是映射用户栈空间，不过我并不是很明白）</li>
+<li><code>argv_size += strnlen(kargv[i], EXEC_MAX_ARG_LEN + 1) + 1;</code>（得到当前的参数的长度）</li>
+<li><code>argc</code>（把argc放到栈顶；之所以是栈顶，是因为gcc是从右向左压栈的）</li>
+</ol>
+<hr>
+<p>这种默写代码的题目实在是无聊死了。</p>
+<h3>（3）</h3>
+<p>完成加载后会从内核态回到用户态，请补全此时的用户栈图示。（假定为写入部分全部初始化为0，注意使用小尾端）</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xb0000000</td>
+<td>-</td>
+</tr>
+<tr>
+<td>0xaffffffc</td>
+<td>00 31 00 00</td>
+</tr>
+<tr>
+<td>0xaffffff8</td>
+<td>61 72 67 73 // 'args'</td>
+</tr>
+<tr>
+<td>0xaffffff4</td>
+<td>(3a)</td>
+</tr>
+<tr>
+<td>0xaffffff0</td>
+<td>(3b)</td>
+</tr>
+<tr>
+<td>0xafffffec</td>
+<td>(3c)</td>
+</tr>
+<tr>
+<td>0xafffffe8</td>
+<td>(3d)</td>
+</tr>
+</tbody>
+</table>
+<p>此时并不会直接进入main函数，而是执行以下代码，请简述其作用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">//////// user/libs/initcode.S //////////</span><br><span class="line">.text</span><br><span class="line">.globl _start</span><br><span class="line">_start:</span><br><span class="line">    movl $0x0, %ebp</span><br><span class="line"></span><br><span class="line">    movl (%esp), %ebx</span><br><span class="line">    lea 0x4(%esp), %ecx</span><br><span class="line"></span><br><span class="line">    subl $0x20, %esp</span><br><span class="line"></span><br><span class="line">    pushl %ecx</span><br><span class="line">    pushl %ebx</span><br><span class="line"></span><br><span class="line">    call umain</span><br><span class="line">1: jmp 1b</span><br><span class="line"></span><br><span class="line">////////// user/libs/umain.c ////////////</span><br><span class="line">#include &lt;ulib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;file.h&gt;</span><br><span class="line">#include &lt;stat.h&gt;</span><br><span class="line">int main(int argc, char *argv[]);</span><br><span class="line">static int</span><br><span class="line">initfd(int fd2, const char *path, uint32_t open_flags) &#123;</span><br><span class="line">    int fd1, ret;</span><br><span class="line">    if ((fd1 = open(path, open_flags)) &lt; 0) &#123;</span><br><span class="line">        return fd1;</span><br><span class="line">    &#125;</span><br><span class="line">    if (fd1 != fd2) &#123;</span><br><span class="line">        close(fd2);</span><br><span class="line">        ret = dup2(fd1, fd2);</span><br><span class="line">        close(fd1);</span><br><span class="line">    &#125;</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void</span><br><span class="line">umain(int argc, char *argv[]) &#123;</span><br><span class="line">    int fd;</span><br><span class="line">    if ((fd = initfd(0, &quot;stdin:&quot;, O_RDONLY)) &lt; 0) &#123;</span><br><span class="line">        warn(&quot;open &lt;stdin&gt; failed: %e.\n&quot;, fd);</span><br><span class="line">    &#125;</span><br><span class="line">    if ((fd = initfd(1, &quot;stdout:&quot;, O_WRONLY)) &lt; 0) &#123;</span><br><span class="line">        warn(&quot;open &lt;stdout&gt; failed: %e.\n&quot;, fd);</span><br><span class="line">    &#125;</span><br><span class="line">    int ret = main(argc, argv);</span><br><span class="line">    exit(ret);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<!--
+恕我直言，我一开始不知道这道题在说什么。大概调用用户程序`args`的时候会有两个参数：`int argc`和`char** argv`，其中`argc = 2`，`argv = ['args', '1']`。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//setup argc, argv</span><br><span class="line">uint32_t argv_size=0, i;</span><br><span class="line">for (i = 0; i &lt; argc; i ++) &#123;</span><br><span class="line">    argv_size += strnlen(kargv[i],EXEC_MAX_ARG_LEN + 1)+1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述内容执行完之后，得到<code>argv_size = 6</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uintptr_t stacktop = USTACKTOP - (argv_size/sizeof(long)+1)*sizeof(long);</span><br><span class="line">char** uargv=(char **)(stacktop - argc * sizeof(char *));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">argv_size = 0;</span><br><span class="line">for (i = 0; i &lt; argc; i ++) &#123;</span><br><span class="line">	uargv[i] = strcpy((char *)(stacktop + argv_size ), kargv[i]);</span><br><span class="line">	argv_size += strnlen(kargv[i],EXEC_MAX_ARG_LEN + 1)+1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stacktop = (uintptr_t)uargv - sizeof(int);</span><br><span class="line">*(int *)stacktop = argc;</span><br></pre></td></tr></table></figure>
+<p>然后学长答案是这样：</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xb0000000</td>
+<td>-</td>
+</tr>
+<tr>
+<td>0xaffffffc</td>
+<td>00 31 00 00</td>
+</tr>
+<tr>
+<td>0xaffffff8</td>
+<td>61 72 67 73 // 'args'</td>
+</tr>
+<tr>
+<td>0xaffffff4</td>
+<td>fd ff ff ff</td>
+</tr>
+<tr>
+<td>0xaffffff0</td>
+<td>f8 ff ff ff</td>
+</tr>
+<tr>
+<td>0xafffffec</td>
+<td>02 00 00 00</td>
+</tr>
+<tr>
+<td>0xafffffe8</td>
+<td>00 00 00 00</td>
+</tr>
+</tbody>
+</table>
+<p>恕我直言，我也看不懂。<br>
+--&gt;</p>
+<p>2018.5.25 UPD：（感谢tsz和xzh同学关于此题的讨论）</p>
+<p>不妨把填充栈帧的代码段拿出来细看一下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//setup argc, argv</span><br><span class="line">uint32_t argv_size=0, i;</span><br><span class="line">for (i = 0; i &lt; argc; i ++) &#123;</span><br><span class="line">    argv_size += strnlen(kargv[i],EXEC_MAX_ARG_LEN + 1)+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在栈中预留函数参数的位置</span><br><span class="line">uintptr_t stacktop = USTACKTOP - (argv_size/sizeof(long)+1)*sizeof(long);</span><br><span class="line">// 在栈中预留函数参数指针的位置</span><br><span class="line">char** uargv=(char **)(stacktop - argc * sizeof(char *));</span><br><span class="line"></span><br><span class="line">argv_size = 0;</span><br><span class="line">for (i = 0; i &lt; argc; i ++) &#123;</span><br><span class="line">    // 从低地址到高地址填各参数指针，顺便把参数内容拷进去</span><br><span class="line">    uargv[i] = strcpy((char *)(stacktop + argv_size ), kargv[i]);</span><br><span class="line">    // argv_size += 长度</span><br><span class="line">    argv_size += strnlen(kargv[i], EXEC_MAX_ARG_LEN + 1) + 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 把argc放入栈中</span><br><span class="line">stacktop = (uintptr_t)uargv - sizeof(int);</span><br><span class="line">*(int *)stacktop = argv;</span><br></pre></td></tr></table></figure>
+<p>事实上，这段代码的目的，就是从栈底到栈顶，依次存参数内容（所有参数拼起来）、各参数的指针（<code>char **argv</code>）和argc存进去。实际上，被调用的进程<code>args</code>有两个实际参数：进程名<code>&quot;argc&quot;</code>和参数<code>&quot;1&quot;</code>（注意这两者都是字符串）。于是结果变成了这样：</p>
+<ul>
+<li>参数<code>&quot;1\0&quot;</code>存在<code>0xaffffffd</code>开始的2个字节中</li>
+<li>参数<code>&quot;args\0&quot;</code>存在<code>0xaffffff8</code>开始的5个字节中</li>
+<li>参数<code>&quot;1\0&quot;</code>所在的地址<code>0xaffffffd</code>存在<code>0xaffffff4</code>开始的4个字节中（注意大小端）</li>
+<li>参数<code>&quot;args\0&quot;</code>所在的地址<code>0xaffffff8</code>存在<code>0xaffffff0</code>开始的4个字节中（注意大小端）</li>
+<li><code>argc</code>存放在<code>0xafffffec</code>开始的4个字节中（注意大小端）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>内容</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xb0000000</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>0xaffffffc</code></td>
+<td><code>00 31 00 00</code></td>
+<td>字符串&quot;1&quot;（和&quot;args&quot;的<code>\0</code>）</td>
+</tr>
+<tr>
+<td><code>0xaffffff8</code></td>
+<td><code>61 72 67 73</code></td>
+<td>字符串&quot;args&quot;</td>
+</tr>
+<tr>
+<td><code>0xaffffff4</code></td>
+<td><code>fd ff ff af</code></td>
+<td>&quot;1&quot;的地址</td>
+</tr>
+<tr>
+<td><code>0xaffffff0</code></td>
+<td><code>f8 ff ff af</code></td>
+<td>&quot;args&quot;的地址</td>
+</tr>
+<tr>
+<td><code>0xafffffec</code></td>
+<td><code>02 00 00 00</code></td>
+<td><code>argv = 2</code></td>
+</tr>
+<tr>
+<td><code>0xafffffe8</code></td>
+<td><code>00 00 00 00</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>后面代码的作用据说是为umain函数压入argc和argv，调整esp，打开stdin/stdout，然后调用main。总之，打开stdin/stdout这个部分我好像看懂了；压入argc和argv的本质就是利用gcc调用了函数。</p>
+<h3>（4）</h3>
+<p>虽然main函数以<code>return 0;</code>结束，但此后程序仍在用户态，经过（<strong>4a</strong>）进入内核态，参考<code>do_exit</code>代码，其主要完成了页表和文件描述符的释放、设置进程状态和返回值、唤醒等待中的父进程、（<strong>4b</strong>）。（<code>while</code>循环部分）</p>
+<p><code>do_exit</code>中该进程占用的内存并未完全释放，例如（<strong>4c</strong>），它们将在（<strong>4d</strong>）中被释放。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">int</span><br><span class="line">do_exit(int error_code) &#123;</span><br><span class="line">	if (current == idleproc) &#123;</span><br><span class="line">    	panic(&quot;idleproc exit.\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	if (current == initproc) &#123;</span><br><span class="line">		panic(&quot;initproc exit.\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	struct mm_struct *mm = current-&gt;mm;</span><br><span class="line">	if (mm != NULL) &#123;</span><br><span class="line">		lcr3(boot_cr3);</span><br><span class="line">		if (mm_count_dec(mm) == 0) &#123;</span><br><span class="line">			exit_mmap(mm);</span><br><span class="line">			put_pgdir(mm);</span><br><span class="line">			mm_destroy(mm);</span><br><span class="line">		&#125;</span><br><span class="line">		current-&gt;mm = NULL;</span><br><span class="line">	&#125;</span><br><span class="line">	put_fs(current); //for LAB8</span><br><span class="line">	current-&gt;state = PROC_ZOMBIE;</span><br><span class="line">	current-&gt;exit_code = error_code;</span><br><span class="line"></span><br><span class="line">	bool intr_flag;</span><br><span class="line">	struct proc_struct *proc;</span><br><span class="line">	local_intr_save(intr_flag);</span><br><span class="line">	&#123;</span><br><span class="line">		proc = current-&gt;parent;</span><br><span class="line">		if (proc-&gt;wait_state == WT_CHILD) &#123;</span><br><span class="line">			wakeup_proc(proc);</span><br><span class="line">		&#125;</span><br><span class="line">		while (current-&gt;cptr != NULL) &#123;</span><br><span class="line">			proc = current-&gt;cptr;</span><br><span class="line">			current-&gt;cptr = proc-&gt;optr;</span><br><span class="line"></span><br><span class="line">			proc-&gt;yptr = NULL;</span><br><span class="line">			if ((proc-&gt;optr = initproc-&gt;cptr) != NULL) &#123;</span><br><span class="line">				initproc-&gt;cptr-&gt;yptr = proc;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			proc-&gt;parent = initproc;</span><br><span class="line">			initproc-&gt;cptr = proc;</span><br><span class="line">				if (proc-&gt;state == PROC_ZOMBIE) &#123;</span><br><span class="line">					if (initproc-&gt;wait_state == WT_CHILD) &#123;</span><br><span class="line">						wakeup_proc(initproc);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	local_intr_restore(intr_flag);</span><br><span class="line"></span><br><span class="line">	schedule();</span><br><span class="line">	panic(&quot;do_exit will not return!! %d.\n&quot;, current-&gt;pid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ol>
+<li><code>exit</code>系统调用</li>
+<li>把子进程逐个放入initproc的子进程中，如果发现子进程已经为僵尸状态且initproc进入WT_CHILD状态，则唤醒initproc回收子进程</li>
+<li>进程控制块</li>
+<li>父进程的<code>do_wait</code>（或者说被唤醒的执行了wait或wait_pid的父进程）</li>
+</ol>
+<p>这道题反而比较简单了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">parent:           proc-&gt;parent  (proc is children)</span><br><span class="line">children:         proc-&gt;cptr    (proc is parent)</span><br><span class="line">older sibling:    proc-&gt;optr    (proc is younger sibling)</span><br><span class="line">younger sibling:  proc-&gt;yptr    (proc is older sibling)</span><br></pre></td></tr></table></figure>
+<h2>七 磁盘调度（15分）</h2>
+<p>一磁盘逆时针旋转，磁盘有3个磁道和一个磁头，每个磁道有12个扇区。最外侧磁道0包含扇区0~11，中间侧磁道1包含扇区12~23，最内侧磁道包含扇区24~35。如下图所示，可以看到磁头初始位置在外侧磁道的扇区6的中间位置，扇区10与扇区6在一个磁道上。</p>
+<p><img src="simple-disk.png" alt="磁盘示意图"></p>
+<p>完成一次磁盘扇区的访问请求时间包括：</p>
+<ul>
+<li>寻道时间（seek time）</li>
+<li>旋转时间（rotational time）</li>
+<li>传输时间（transfer time）</li>
+</ul>
+<p>如，ucore发出访问请求序列为['10']，即只有一次对扇区10的访问请求，则磁盘花费的访问请求时间如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">REQUESTS [&apos;10&apos;]</span><br><span class="line">Block:  10  Seek:0   Rotate:105   Transfer:30    Total:135</span><br><span class="line">TOTALS  10  Seek:0   Rotate:105   Transfer:30    Total:135</span><br></pre></td></tr></table></figure>
+<p>表示寻道时间是0个时间单位，旋转时间是105个时间单位，总共的磁盘访问请求的时间是135。注意，相邻磁头移动一个磁道的时间是40个时间单位；从扇区6到扇区9，旋转了90度；而为了进行传输，需要从扇区9~10的中间位置开始，从扇区10~11的中间位置结束。所以需要再旋转15度，即旋转了105度，而每旋转1度花费1个时间单位，所以旋转花费了105个实践单位。</p>
+<ol>
+<li>若采用FIFO磁盘调度策略，访问请求序列为['10', '12', '24', '1']，请按执行先后顺序列出完成每个磁盘请求的寻道时间（seek time），旋转时间（rotational time），传输时间（transfer time）。</li>
+<li>若采用SSFT磁盘调度策略，访问请求序列为['10', '12', '24', '1']，请按执行先后顺序列出完成每个磁盘请求的寻道时间（seek time），旋转时间（rotational time），传输时间（transfer time）。</li>
+</ol>
+<hr>
+<!--
+FIFO策略：
+* 10
+  * 磁道不变
+  * 旋转：105
+  * 传输：30
+* 12
+  * 寻道：40
+  * 旋转：60
+  * 传输：30
+* 24
+  * 寻道：40
+  * 旋转：360
+  * 传输：30
+* 1
+  * 寻道：80
+  * 旋转：30
+  * 传输：30
+
+以及恕我无法理解学长答案。他给出的计算结果是：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">REQUESTS [&apos;10&apos;]</span><br><span class="line">Block:  10  Seek:0   Rotate:105   Transfer:30    Total:135</span><br><span class="line">Block:  12  Seek:40  Rotate:350   Transfer:30    Total:420</span><br><span class="line">Block:  24  Seek:40  Rotate:290   Transfer:30    Total:360</span><br><span class="line">Block:   1  Seek:80  Rotate:280   Transfer:30    Total:390</span><br></pre></td></tr></table></figure>
+<p>SSFT策略：</p>
+<ul>
+<li>10
+<ul>
+<li>磁道不变</li>
+<li>旋转：105</li>
+<li>传输：30</li>
+</ul>
+</li>
+<li>1
+<ul>
+<li>磁道不变</li>
+<li>旋转：90</li>
+<li>传输：30</li>
+</ul>
+</li>
+<li>12
+<ul>
+<li>寻道：40</li>
+<li>旋转：330</li>
+<li>传输：30</li>
+</ul>
+</li>
+<li>24
+<ul>
+<li>寻道：40</li>
+<li>旋转：360</li>
+<li>传输：30</li>
+</ul>
+</li>
+</ul>
+<p>经过查证，我发现这个题目用的似乎是OSTEP中的模拟程序（<a href="https://github.com/chyyuu/ucore_os_lab/blob/master/related_info/lab8">https://github.com/chyyuu/ucore_os_lab/blob/master/related_info/lab8</a>）。但是我认为程序说明自相矛盾，无法理解。<br>
+--&gt;</p>
+<p>2018.5.25 UPD：（感谢zp、wj等人关于这道题的讨论）</p>
+<p>这个题目用的似乎是OSTEP中的模拟程序（<a href="https://github.com/chyyuu/ucore_os_lab/blob/master/related_info/lab8">https://github.com/chyyuu/ucore_os_lab/blob/master/related_info/lab8</a>）。事实上，需要注意的一点是：磁盘在旋转过程中可以进行寻道。</p>
+<p>FIFO策略：</p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>旋转时间</th>
+<th>寻道时间</th>
+<th>传输时间</th>
+<th>总时间</th>
+<th>图示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>105</td>
+<td>0</td>
+<td>30</td>
+<td>135</td>
+<td><img src="disk-fifo-1.png" alt=""></td>
+</tr>
+<tr>
+<td>12</td>
+<td>30</td>
+<td>40</td>
+<td>30</td>
+<td>70</td>
+<td>-</td>
+</tr>
+<tr>
+<td>24</td>
+<td>330</td>
+<td>40</td>
+<td>30</td>
+<td>320</td>
+<td>-</td>
+</tr>
+<tr>
+<td>1</td>
+<td>30</td>
+<td>80</td>
+<td>30</td>
+<td>110</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>SSFT策略：</p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>旋转时间</th>
+<th>寻道时间</th>
+<th>传输时间</th>
+<th>总时间</th>
+<th>图示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>105</td>
+<td>0</td>
+<td>30</td>
+<td>135</td>
+<td>-</td>
+</tr>
+<tr>
+<td>1</td>
+<td>60</td>
+<td>0</td>
+<td>30</td>
+<td>90</td>
+<td>-</td>
+</tr>
+<tr>
+<td>12</td>
+<td>300</td>
+<td>40</td>
+<td>30</td>
+<td>330</td>
+<td>-</td>
+</tr>
+<tr>
+<td>24</td>
+<td>330</td>
+<td>40</td>
+<td>30</td>
+<td>360</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>这个答案仍然和学长给出的不尽相同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">REQUESTS [&apos;10&apos;]</span><br><span class="line">Block:  10  Seek:0   Rotate:105   Transfer:30    Total:135</span><br><span class="line">Block:  12  Seek:40  Rotate:350   Transfer:30    Total:420</span><br><span class="line">Block:  24  Seek:40  Rotate:290   Transfer:30    Total:360</span><br><span class="line">Block:   1  Seek:80  Rotate:280   Transfer:30    Total:390</span><br></pre></td></tr></table></figure>
+<p>可能之后有时间的时候还需要进行分析吧。</p>
+-->
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-05-23T01:36:22+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2018-05-23
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;OS</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/os-ucore-lab-4-report/" rel="prev" title="《操作系统》ucore实验四“内核线程管理”报告">
+                                  
+                                      《操作系统》ucore实验四“内核线程管理”报告
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a> <a class="tag" href="/tags/ucore/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>ucore</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/os-mooc-2017-final-exam-analysis/" rel="prev" title="《操作系统》2017年期末考试分析">
+                                    
+                                        《操作系统》2017年期末考试分析
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '《操作系统》2015年期末考试分析',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">一（10分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">二 VSFS（18分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">三 进程状态变化（16分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">四 Stride调度算法（15分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">五 生产者-消费者问题（10分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">六 ucore用户进程（16分）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">（1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">（2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">（3）</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>《操作系统》第23讲：“I/O子系统”总结 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">《操作系统》第23讲：“I/O子系统”总结</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-05-24
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h2>课程内容概述</h2>
+<ul>
+<li>常见设备I/O接口</li>
+<li>进程的I/O方法</li>
+<li>CPU与设备之间的I/O方法
+<ul>
+<li>连接方法</li>
+<li>传输方法</li>
+<li>通知方法</li>
+</ul>
+</li>
+<li>I/O请求生存周期</li>
+<li>一类具体的I/O设备：磁盘
+<ul>
+<li>磁盘的工作机制和传输时间</li>
+<li>磁盘调度算法</li>
+<li>磁盘缓存</li>
+</ul>
+</li>
+</ul>
+<h3>常见设备I/O接口</h3>
+<p>常见的接口分为三类。</p>
+<table>
+<thead>
+<tr>
+<th>设备接口类型</th>
+<th>例子</th>
+<th>访问特征</th>
+<th>I/O命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符设备</td>
+<td>键盘、鼠标、串口</td>
+<td>以字节为单位顺序访问</td>
+<td>文件访问接口</td>
+</tr>
+<tr>
+<td>块设备</td>
+<td>磁盘驱动器、磁带驱动器、光驱</td>
+<td>均匀的数据块访问</td>
+<td>文件系统接口、内存映射</td>
+</tr>
+<tr>
+<td>网络设备</td>
+<td>以太网、无线、蓝牙</td>
+<td>格式化报文交换</td>
+<td>网络报文、网络协议</td>
+</tr>
+</tbody>
+</table>
+<h3>进程的I/O方法</h3>
+<p>从进程的角度来看，I/O方法分为三种类型。</p>
+<table>
+<thead>
+<tr>
+<th>I/O类型</th>
+<th>特点</th>
+<th>读写方法</th>
+<th>图示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>阻塞I/O</td>
+<td>Wait</td>
+<td>读写时，进程将进入等待状态，直到设备完成数据处理</td>
+<td><img src="block-io.png" alt=""></td>
+</tr>
+<tr>
+<td>非阻塞I/O</td>
+<td>Don't Wait</td>
+<td>读写时立即从read或write系统调用返回，返回值为成功传输字节数；可能不成功</td>
+<td><img src="unblock-io.png" alt=""></td>
+</tr>
+<tr>
+<td>异步I/O</td>
+<td>Tell Me Later</td>
+<td>读写数据时，使用指针标记好用户缓冲区，立即返回；稍后内核将填充缓冲区/处理数据并通知用户</td>
+<td><img src="async-io.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<h3>CPU与设备之间的I/O方法</h3>
+<p><img src="kernel-io-structure.png" alt="内核I/O结构"></p>
+<p>内核通过I/O子系统控制各种硬件。</p>
+<h4>连接方法</h4>
+<p>一般来说，北桥芯片连接的是高速I/O设备，如内存和显卡；南桥芯片连接的是普通I/O设备，如磁盘和网络。</p>
+<p>设备上的设备控制器是CPU和I/O设备间的接口，它向CPU提供特殊指令和寄存器，也就是CPU用来控制I/O设备的I/O地址，分为两种：</p>
+<ul>
+<li>I/O指令：通过I/O端口号访问设备寄存器</li>
+<li>内存映射I/O：设备的寄存器/存储空间被映射到内存物理地址空间中，通过内存load/store指令完成I/O操作</li>
+</ul>
+<h4>传输方法</h4>
+<p>CPU与设备控制器之间的数据传输分为两种方式：</p>
+<ul>
+<li>程序控制I/O（PIO，Programmed I/O）
+<ul>
+<li>通过CPU的in/out或者load/store传输所有数据（内存映射）
+<ul>
+<li>特点：</li>
+<li>硬件简单，编程容易</li>
+<li>消耗的CPU时间和数据量成正比</li>
+</ul>
+</li>
+<li>适用于简单的、小型的设备I/O</li>
+</ul>
+</li>
+<li>直接内存访问（DMA）
+<ul>
+<li>设备控制器可直接访问系统总线</li>
+<li>控制器直接与内存互相传输数据</li>
+<li>特点：
+<ul>
+<li>设备传输数据不影响CPU</li>
+<li>需要CPU参与设置（这是必然的）</li>
+<li>适用于高吞吐量I/O</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5>通过DMA读取磁盘数据的例子</h5>
+<p><img src="dma-read-disk-data.png" alt=""></p>
+<p>具体步骤如下：</p>
+<ol>
+<li>设备驱动收到读取磁盘数据到内存地址X的请求</li>
+<li>设备驱动控制磁盘控制器从磁盘读取数据</li>
+<li>磁盘控制器初始化DMA传送</li>
+<li>磁盘控制器传送数据到DMA控制器</li>
+<li>DMA控制器传送C字节数据到内存地址X</li>
+<li>DMA控制器完成数据传送后，产生中断请求，通知CPU传送完成</li>
+</ol>
+<h4>通知方法</h4>
+<p>设备通知CPU（I/O操作完成时间、I/O操作是否发生错误、设备状态等）主要分为两种方式：</p>
+<ul>
+<li>CPU主动轮询</li>
+<li>设备中断</li>
+</ul>
+<h5>轮询</h5>
+<p>处理流程：</p>
+<ul>
+<li>I/O设备在特定的状态寄存器中放置状态和错误信息</li>
+<li>操作系统定期检测状态寄存器</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>简单</li>
+<li>I/O操作频繁或不可预测时，开销大和延时长</li>
+</ul>
+<h5>设备中断</h5>
+<p>处理流程：</p>
+<ul>
+<li>CPU在I/O之前设置任务参数</li>
+<li>CPU在发出I/O请求后，继续执行其他任务</li>
+<li>I/O设备处理I/O请求</li>
+<li>I/O设备处理完成时，触发CPU中断请求</li>
+<li>CPU接收中断，分发到相应中断处理例程</li>
+</ul>
+<p><img src="device-interrupt-io.png" alt="设备中断I/O处理流程图示"></p>
+<p>特点：</p>
+<ul>
+<li>处理不可预测事件效果好（CPU在每两条指令中间处理一次中断请求）</li>
+<li>开销相对较高</li>
+</ul>
+<h3>I/O请求生存周期</h3>
+<p><img src="io-request-life-cycle.png" alt="I/O请求生存周期"></p>
+<p>显然，这是异步I/O请求。</p>
+<h3>一类具体的I/O设备：磁盘</h3>
+<h4>磁盘的工作机制和传输时间</h4>
+<p><img src="disk-structure.png" alt="磁盘的组成"></p>
+<p>磁盘的主要组成部分包括：</p>
+<ul>
+<li>磁盘轴</li>
+<li>若干个盘片（围绕磁盘轴旋转）
+<ul>
+<li>磁道</li>
+<li>扇区</li>
+</ul>
+</li>
+<li>磁头（上面有读写头）</li>
+</ul>
+<p>在读取或写入时，磁头必须被定位在期望的磁道，并从所期望的柱面和扇区开始读写。在这一过程中，花时间最长的是磁头的移动。我们称<strong>寻道时间</strong>为定位到期望的磁道所花费的时间，<strong>旋转延迟</strong>为从0扇区开始处到达目的地花费的时间。一般来说，<strong>平均旋转延迟时间</strong> 是磁盘旋转一周时间的一半。</p>
+<p>磁盘I/O传输一般分为以下5个步骤：</p>
+<ol>
+<li>等待设备可用</li>
+<li>等待通道（PIO或DMA通道）可用</li>
+<li>寻道</li>
+<li>旋转延迟</li>
+<li>数据传输</li>
+</ol>
+<p>后四个步骤被称为“设备忙”状态，所占用的时间一般认为是传输时间，公式为</p>
+<p>$$T_a = T_s+ \frac{1}{2r} + \frac{b}{rN}$$</p>
+<p>公式各个部分的含义：</p>
+<ul>
+<li>$T_a$：传输时间</li>
+<li>$T_s$：寻道时间（和磁头移动距离有关，花费的时间最多）</li>
+<li>$\frac{1}{2r}$：旋转延迟（$\frac{1}{r}$=旋转一周的时间）</li>
+<li>$\frac{b}{rN}$：传输时间
+<ul>
+<li>$b$：传输的比特数</li>
+<li>$N$：磁道上的比特数</li>
+<li>$r$：磁盘转速</li>
+</ul>
+</li>
+</ul>
+<p>显然，最需要优化的是寻道时间。磁盘调度算法解决的就是这一问题。</p>
+<h4>磁盘调度算法</h4>
+<p>磁盘调度算法的目的：通过优化磁盘访问请求顺序来提高磁盘访问性能</p>
+<p>进行磁盘调度的原因：</p>
+<ul>
+<li>寻道时间是磁盘访问最耗时的部分</li>
+<li>同时会有多个在同一磁盘上的I/O请求（所以可以调整顺序）</li>
+<li>随机处理磁盘访问请求的性能表现很差</li>
+</ul>
+<p>下列算法中使用的例子：</p>
+<ul>
+<li>磁盘访问序列：<code>98, 183, 37, 122, 14, 124, 65, 67</code></li>
+<li>初始磁头位置：<code>53</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>算法名称</th>
+<th>做法</th>
+<th>特征</th>
+<th>例子</th>
+<th>移动距离</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>先进先出（FIFO）算法</td>
+<td>按顺序处理请求</td>
+<td>能够保证公平；性能较差</td>
+<td><code>53-&gt;98-&gt;183-&gt;37-&gt;122-&gt;14-&gt;124-&gt;65-&gt;67</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td>最短服务时间优先（SSTF）算法</td>
+<td>选择从磁臂当前位置需要移动最少的I/O请求</td>
+<td>很不公平</td>
+<td><code>53-&gt;65-&gt;67-&gt;14-&gt;98-&gt;122-&gt;124-&gt;183</code></td>
+<td>236</td>
+</tr>
+<tr>
+<td>扫描（SCAN）算法</td>
+<td>磁臂在一个方向上移动，访问所有未完成的请求，直到磁臂到达该方向上最后的<strong>磁道</strong>；然后调换方向</td>
+<td>判断简单；不公平，偏好中间位置磁道</td>
+<td><code>53-&gt;37-&gt;14-&gt;0-&gt;65-&gt;67-&gt;98-&gt;122-&gt;124-&gt;183-&gt;199</code></td>
+<td>236</td>
+</tr>
+<tr>
+<td>循环扫描（C-SCAN）算法</td>
+<td>对SCAN算法的改进：限制仅在一个方向上扫描；当最后一个磁道也被访问过了后，磁臂返回到磁盘的另外一端再次进行</td>
+<td>比SCAN算法更公平</td>
+<td><code>53-&gt;37-&gt;14-&gt;0-&gt;199-&gt;183-&gt;124-&gt;122-&gt;98-&gt;67-&gt;65</code></td>
+<td>386</td>
+</tr>
+<tr>
+<td>C-LOOK算法</td>
+<td>对C-SCAN算法的改进：不走到磁盘的头，而是只走到最远的请求</td>
+<td>同样能保证公平性</td>
+<td><code>53-&gt;37-&gt;14-&gt;183-&gt;124-&gt;122-&gt;98-&gt;67-&gt;65</code></td>
+<td>326</td>
+</tr>
+<tr>
+<td>N步扫描（N-step-SCAN）算法</td>
+<td>将磁盘请求队列分成长度为N的子队列，按FIFO算法依次处理所有子队列；再用扫描算法处理每个队列</td>
+<td>防止磁头粘着现象</td>
+<td><code>53-&gt;37-&gt;183-&gt;98-&gt;14-&gt;124-&gt;122-&gt;67-&gt;65</code></td>
+<td>500</td>
+</tr>
+<tr>
+<td>双队列扫描（FSCAN）算法</td>
+<td>将磁盘请求队列分成两个子队列，交替使用扫描算法处理每一个队列；处理一个队列时，所有新生成的磁盘I/O请求都被放入另一队列中</td>
+<td>比N步扫描更简单</td>
+<td><code>53-&gt;37-&gt;183-&gt;122-&gt;98-&gt;67-&gt;65-&gt;14-&gt;124</code></td>
+<td>441</td>
+</tr>
+</tbody>
+</table>
+<p>一些细节：</p>
+<ul>
+<li>认为SCAN、C-SCAN、C-LOOK和N步扫描算法都是先向低编号移动</li>
+<li>N步扫描算法的N为3，使用的是C-LOOK扫描方法</li>
+<li>FSCAN算法中假设后四个请求位于下一个队列，使用的也是C-LOOK扫描算法</li>
+<li>课件上没有指出C-SCAN算法返回时到底是返回到另外一端还是“另外一端最靠边的请求”。鉴于有C-LOOK的改进，我就认为C-SCAN傻得直接走到另一端了。类似地，我也认为C-LOOK算法反转时只会走到另一端最远的请求，而不是另一端。</li>
+</ul>
+<h4>磁盘缓存</h4>
+<p><strong>缓存</strong>是数据传输双方访问速度差异较大时，引入的速度匹配中间层。<strong>磁盘缓存</strong> 是磁盘扇区在内存中的缓冲区。磁盘缓存的调度算法很类似虚拟存储调度算法（不过倒了过来，虚拟存储是把内存缓存到磁盘，磁盘缓存是把磁盘缓存到内存==）。</p>
+<h5>单缓存与双缓存</h5>
+<p>根据缓冲区个数分类：</p>
+<ul>
+<li>单缓存（Single Buffer Cache）：I/O设备写入时，CPU不能进行读操作（类似生产者-消费者问题）</li>
+<li>双缓存（Double Buffer Cache）：有两个缓冲区，可以同时分别读写；结束之后可以交换</li>
+</ul>
+<h5>访问频率置换（Frequency-based Replacement）算法</h5>
+<p>问题：在一段密集磁盘访问后，LFU算法的引用计数变化无法反映当前的引用情况</p>
+<p>算法思路：</p>
+<ul>
+<li>考虑磁盘访问的密集特征，对密集引用不计数</li>
+<li>在短周期中使用LRU算法，而在长周期中使用LFU算法</li>
+</ul>
+<p><img src="fbr-stack.png" alt="访问频率置换算法的特殊栈"></p>
+<p>算法具体步骤：</p>
+<ul>
+<li>把LRU算法中的特殊栈分成3部分，并为每个缓存块增加一个引用计数
+<ul>
+<li>新区域（New Section）：栈顶</li>
+<li>中间区域（Middle Section）</li>
+<li>旧区域（Old Section）：栈底</li>
+</ul>
+</li>
+<li>每次访问时：
+<ul>
+<li>栈中被访问的缓存块移到栈顶（这个是LRU的原始要求）；如果该块原来在新区域，引用计数不变（这个是符合LRU的）；否则引用计数+1
+<ul>
+<li>在新区域中引用计数不变的目的是避免密集访问对引用计数产生不利影响</li>
+<li>在中间区域和旧区域中引用计数+1是为了使用LFU算法</li>
+</ul>
+</li>
+<li>未缓存数据块读入后放在栈顶，引用计数为1</li>
+<li>在旧区域中引用计数最小的缓存块被置换（这是LFU的要求；但并不会在整个栈里找计数最小的）
+<ul>
+<li>中间区域的定义是为了避免新读入的缓存块在第一次离开新区域时马上被置换，有一个过渡期</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>例子：懒得想了，不写了</p>
+<h2>练习</h2>
+<p>来自<a href="https://github.com/chyyuu/os_course_exercises/blob/2018spring/all/10-1-quiz.md" target="_blank" rel="noopener">lec23 IO设备 在线练习</a>和<a href="https://github.com/chyyuu/os_course_exercises/blob/2018spring/all/10-1-spoc-discussion.md" target="_blank" rel="noopener">IO设备(lec 23) spoc 思考题</a>。</p>
+<h3>选择填空题</h3>
+<p><strong>字符设备包括（）</strong></p>
+<ul>
+<li><strong>键盘</strong></li>
+<li><strong>鼠标</strong></li>
+<li><strong>并口</strong></li>
+<li><strong>串口</strong></li>
+</ul>
+<p>都是。因为它们的访问特征都是以字节为单位顺序访问。</p>
+<hr>
+<p><strong>块设备包括（）</strong></p>
+<ul>
+<li><strong>硬盘</strong></li>
+<li><strong>软盘</strong></li>
+<li><strong>光盘</strong></li>
+<li><strong>U盘</strong></li>
+</ul>
+<p>都是。因为它们的访问特征都是均匀的数据块访问。</p>
+<hr>
+<p><strong>网络设备包括（）</strong></p>
+<ul>
+<li><strong>以太网卡</strong></li>
+<li><strong>wifi网卡</strong></li>
+<li><strong>蓝牙设备</strong></li>
+<li>网盘设备</li>
+</ul>
+<p>网络设备的访问特征是格式化报文交换。而网盘在模拟实现上应该算块设备。</p>
+<hr>
+<p><strong>关于CPU与设备的通信方式包括（）</strong></p>
+<ul>
+<li><strong>轮询</strong></li>
+<li><strong>设备中断</strong></li>
+<li><strong>DMA</strong></li>
+<li>PIPE</li>
+</ul>
+<p>PIPE是用于进程间通信的。虽然DMA听起来是直接把数据写入到内存，不过还是需要CPU参与设置的。</p>
+<hr>
+<p><strong>关于IO数据传输的阐述正确的是（）</strong></p>
+<ul>
+<li><strong>程序控制I/O(PIO, Programmed I/O)通过CPU的in/out或者load/store传输所有数据</strong></li>
+<li><strong>DMA设备控制器可直接访问系统总线并直接与内存互相传输数据</strong></li>
+<li>DMA机制适合字符设备</li>
+<li>PIO机制适合块设备</li>
+</ul>
+<p>DMA机制适合块设备，PIO机制适合简单，低速的字符设备等。最后两个选项反了。</p>
+<hr>
+<p><strong>常用移臂调度算法包括（）</strong></p>
+<ul>
+<li><strong>先来先服务（FIFO）算法</strong></li>
+<li><strong>最短寻道时间优先（SSTF）算法</strong></li>
+<li><strong>电梯调度（SCAN）算法</strong></li>
+<li><strong>单向扫描（C-SCAN）算法</strong></li>
+</ul>
+<p>都对。除此之外还有CLOOK和N-step-SCAN算法。</p>
+<hr>
+<p><strong>在设备管理子系统中，引入缓冲区的目的主要有()</strong></p>
+<ul>
+<li><strong>缓和CPU与I/O设备间速度不匹配的矛盾</strong></li>
+<li><strong>减少对CPU的中断频率，放宽对CPU中断响应时间的限制</strong></li>
+<li><strong>解决基本数据单元大小（即数据粒度）不匹配的问题</strong></li>
+<li><strong>提高CPU和I/O设备之间的并行性</strong></li>
+</ul>
+<p>都对。</p>
+<h3>简答题</h3>
+<p><strong>字符设备的特点是什么？</strong></p>
+<p>以字节为单位顺序访问。</p>
+<hr>
+<p><strong>块设备的特点是什么？</strong></p>
+<p>以均匀的数据块为单位随机访问。</p>
+<hr>
+<p><strong>网络设备的特点是什么？</strong></p>
+<p>以格式化报文为单位的复杂交互访问。</p>
+<hr>
+<p><strong>阻塞I/O、非阻塞I/O和异步I/O这三种I/O方式有什么区别？</strong></p>
+<ul>
+<li>阻塞I/O：数据读写操作后，进程将进入等待状态，直到完成操作时返回；</li>
+<li>非阻塞I/O：数据读写操作后，进程将立即返回；</li>
+<li>异步I/O：数据读写操作后，进程将立即返回；内核在完成操作时通知进程；</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li>进程发出操作命令后，进程是否等待；</li>
+<li>操作结果反馈方式</li>
+</ul>
+<hr>
+<p><strong>请描述I/O请求到完成的整个执行过程。</strong></p>
+<p>CPU通过总线与设备相连；CPU通过主动的I/O端口和映射内存读写操作与设备进行信息交互；设备通过中断请求来响应CPU的操作；在CPU的控制下，DMA可直接在设备接口与内存间的数据传输。</p>
+<ol>
+<li>进程通过系统调用发送对设备的抽象操作命令</li>
+<li>内核把抽象的设备操作命令转换成具体的设备I/O端口和映射内存读写序列，并在设备驱动中实施读写操作</li>
+<li>当这个读写序列较长时，CPU会控制DMA进行内存与设备接口的直接数据传送</li>
+<li>设备在收到控制序列后，执行操作动作，并在完成时向CPU发出中断请求</li>
+<li>CPU通过中断服务例程响应设备的中断请求，并进行后续处理，直到系统调用返回，从而完成整个I/O操作过程。</li>
+</ol>
+<hr>
+<p><strong>IO数据传输有哪几种？</strong></p>
+<ul>
+<li>程序控制I/O：
+<ul>
+<li>CPU通过显式的IO指令，如x86的in, out等传输数据</li>
+<li>memory读写方式，即把device的寄存器，内存等映射到物理内存中</li>
+</ul>
+</li>
+<li>直接内存访问（DMA）：在CPU的控制下，DMA控制器直接在内存与设备接口间传输数据</li>
+</ul>
+<hr>
+<p><strong>轮询方式的特点是什么？</strong></p>
+<ul>
+<li>简单</li>
+<li>I/O操作频繁或不可预测时，开销大和延时长</li>
+</ul>
+<hr>
+<p><strong>中断方式的特点是什么？</strong></p>
+<ul>
+<li>处理不可预测事件效果好</li>
+<li>开销相对较高</li>
+</ul>
+<hr>
+<p><strong>DMA方式的特点是什么？</strong></p>
+<ul>
+<li>直接在内存与设备接口间进行数据传输</li>
+<li>适合高速和简单的数据传输</li>
+<li>CPU的开销小</li>
+</ul>
+<hr>
+<p><strong>请简要阐述磁盘的工作过程。</strong></p>
+<ul>
+<li>磁头移动到期望的磁道</li>
+<li>盘片旋转定位到期望的柱面和扇区</li>
+<li>开始读写</li>
+</ul>
+<hr>
+<p><strong>请描述磁盘I/O操作时间组成。</strong></p>
+<p>磁盘I/O操作一般分成五个步骤：</p>
+<ul>
+<li>等待设备可用</li>
+<li>等待通道（PIO或DMA通道）可用</li>
+<li>寻道</li>
+<li>旋转延迟</li>
+<li>数据传输</li>
+</ul>
+<p>其中后四个步骤被称为“设备忙”状态，一般认为是传输时间，公式为：</p>
+<p>$$T_a = T_s+ \frac{1}{2r} + \frac{b}{rN}$$</p>
+<hr>
+<p><strong>请说明磁盘调度算法的评价指标。</strong></p>
+<ul>
+<li>总的I/O时间开销（显然）</li>
+<li>公平性</li>
+<li>平均等待时间（似乎这对磁盘调度不是很重要）</li>
+</ul>
+<hr>
+<p><strong>请描述FIFO、SSTF、SCAN、CSCAN、LOOK、C-LOOK、N-step-SCAN和FSCAN等磁盘调度算法的工作原理。</strong></p>
+<p>磁盘调度算法就是优化磁盘数据块的访问顺序。</p>
+<ul>
+<li>先进先出（FIFO）算法：按请求顺序访问</li>
+<li>最短寻道时间优先（SSTF）算法：从当前位置找当前最近的访问数据块位置</li>
+<li>扫描（SCAN）算法：保持磁头移动方向到最远处，并顺序访问需要访问的数据块</li>
+<li>循环扫描（C-SCAN）算法：只在一个方向上移动时访问数据的SCAN算法</li>
+<li>LOOK算法：保持磁头移动方向到已有的最后一个请求，并顺序访问需要访问的数据块</li>
+<li>C-LOOK算法：只在一个方向上移动时访问数据的LOOK算法；</li>
+<li>N步扫描（N-step-SCAN）算法：
+<ol>
+<li>将磁盘请求队列分成长度为N的子队列</li>
+<li>按FIFO算法依次处理所有子队列</li>
+<li>按扫描算法处理每个队列</li>
+</ol>
+</li>
+<li>双队列扫描（FSCAN）算法：
+<ol>
+<li>把磁盘I/O请求分成两个队列，交替使用扫描算法处理一个队列</li>
+<li>新生成的磁盘I/O请求放入另一队列中</li>
+</ol>
+</li>
+</ul>
+<hr>
+<p><strong>磁盘缓存的作用是什么？</strong></p>
+<p>磁盘缓存是磁盘扇区在内存中的缓存区。作用是通过缓存访问，减少磁盘访问。</p>
+<hr>
+<p><strong>请描述单缓存(Single Buffer Cache)的工作原理。</strong></p>
+<p>只有一个缓存区，用户进程和I/O设备只能交替访问缓存区。</p>
+<hr>
+<p><strong>请描述双缓存(Double Buffer Cache)的工作原理。</strong></p>
+<p>设置两个缓存区，任何时刻用户进程和I/O设备可同时访问不同的缓存区。</p>
+<hr>
+<p><strong>请描述访问频率置换算法(Frequency-based Replacement)的基本原理。</strong></p>
+<p>思路：</p>
+<ul>
+<li>考虑磁盘访问的密集特征，对密集引用不计数</li>
+<li>短周期内采用LRU，长周期内采用LFU</li>
+</ul>
+<p>做法：</p>
+<ul>
+<li>把栈分成三个区域：新区域（栈顶）、中间区域、旧区域（栈底）</li>
+<li>新区域中数据块的引用，不计数</li>
+<li>中间区域和旧区域中数据块的引用，引用计数加</li>
+<li>淘汰只在旧区域中找引用计数最小的数据块</li>
+</ul>
+<h3>实践题</h3>
+<p><strong>请以键盘输入、到标准输出设备stdout的printf输出、串口输出、磁盘文件复制为例，描述ucore操作系统I/O从请求到完成的整个执行过程，并分析I/O过程的时间开销。</strong></p>
+<p>没做，现在还没做完lab8，感觉实在过于麻烦了。</p>
+<hr>
+<p><strong>完成磁盘访问与磁盘寻道算法的作业，然后实现CSCAN、LOOK、C-LOOK、FSCAN等磁盘调度算法中的一个。具体帮助和要求信息请看<a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-disks.pdf" target="_blank" rel="noopener">Chapter 37: Hard Disk Drives</a>、<a href="https://github.com/chyyuu/ucore_os_lab/blob/master/related_info/lab8/disksim-homework.md" target="_blank" rel="noopener">disksim指导信息</a>和<a href="https://github.com/chyyuu/ucore_os_lab/blob/master/related_info/lab8/disksim-homework.py" target="_blank" rel="noopener">disksim参考代码</a></strong></p>
+<p>看起来不难，但现在做起来意义不大，所以不做了。</p>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-05-24T01:14:40+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2018-05-24
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;OS</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/os-mooc-lecture-22-summary/" rel="prev" title="《操作系统》第22讲：“实验8-文件系统”总结">
+                                  
+                                      《操作系统》第22讲：“实验8-文件系统”总结
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/os-mooc-2014-final-exam-analysis/" rel="prev" title="《操作系统》2014年期末考试分析">
+                                    
+                                        《操作系统》2014年期末考试分析
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '《操作系统》第23讲：“I/O子系统”总结',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">课程内容概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">常见设备I/O接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">进程的I/O方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">CPU与设备之间的I/O方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">连接方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">传输方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">通过DMA读取磁盘数据的例子</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">通知方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">轮询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">设备中断</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">I/O请求生存周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">一类具体的I/O设备：磁盘</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">磁盘的工作机制和传输时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">磁盘调度算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">磁盘缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">单缓存与双缓存</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">访问频率置换（Frequency-based Replacement）算法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">练习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">选择填空题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">简答题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">实践题</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

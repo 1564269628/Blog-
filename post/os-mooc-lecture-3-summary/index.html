@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>《操作系统》第3讲：“启动、中断、异常和系统调用”总结 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">《操作系统》第3讲：“启动、中断、异常和系统调用”总结</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-12
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h2>课程内容概述</h2>
+<p>这节课的主要内容包括：</p>
+<ul>
+<li>系统启动过程
+<ul>
+<li>BIOS的原理</li>
+<li>BIOS的一些具体工作</li>
+<li>系统启动规范</li>
+</ul>
+</li>
+<li>中断，异常和系统调用
+<ul>
+<li>中断</li>
+<li>系统调用</li>
+</ul>
+</li>
+</ul>
+<h3>系统启动过程</h3>
+<h4>BIOS的基本功能</h4>
+<p>计算机刚刚启动时的内存布局如图：</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(4GB - 64KB) ~ 4GB</td>
+<td>实际BIOS ROM</td>
+</tr>
+<tr>
+<td>1MB ~ (4GB - 64KB)</td>
+<td>空闲空间</td>
+</tr>
+<tr>
+<td>640KB ~ 1MB</td>
+<td>视频内存，BIOS启动固件（映射）</td>
+</tr>
+<tr>
+<td>0 ~ 640KB</td>
+<td>空闲空间</td>
+</tr>
+</tbody>
+</table>
+<p>（这是一个非常简略的示意图，具体请见<a href="https://wiki.osdev.org/Memory_Map_(x86)" target="_blank" rel="noopener">Memory Map (x86)</a>）</p>
+<blockquote>
+<p>这一复杂的映射机制是为了保证向后兼容而设计的。在8086时代，内存只有1MB大小，此时，BIOS的代码固化在EPROM中，且EPROM被编址在1MB内存地址空间的最高64KB中。PC加电后，CS寄存器初始化为0xF000，IP寄存器初始化为0xFFF0，所以CPU要执行的第一条指令的地址为<code>CS:IP=0xF000:0XFFF0</code>（ Segment:Offset表示） =<code>0xFFFF0</code>（ Linear表示） 。这个地址位于被固化的EPROM中，该地址存储了一条指令，它是一个长跳转指令<code>JMP F000:E05B</code>。这样就开启了BIOS的执行过程。</p>
+</blockquote>
+<blockquote>
+<p>到了32位的80386 CPU时代，内存空间扩大到了4G，多了段机制和页机制。如果仍然把BIOS启动固件编址在0xF0000起始的64KB内存地址空间内，就会把整个物理内存地址空间隔离成不连续的两段，一段是0xF0000以前的地址，一段是1MB以后的地址，这很不协调。为此，intel采用了一个折中的方案：默认将执行BIOS ROM编址在32位内存地址空间的最高端，即位于4GB地址的最后一个64KB内。在PC系统开机复位时，CPU进入实模式，并将CS寄存器设置成0xF000，将它的shadow register的Base值初始化设置为0xFFFF0000，EIP寄存器初始化设置为0x0000FFF0。所以机器执行的第一条指令的物理地址是0xFFFFFFF0。80386的BIOS代码也要和以前8086的BIOS代码兼容，故地址0xFFFFFFF0处的指令还是一条长跳转指令<code>jmp F000:E05B</code>。注意，这个长跳转指令会更新CS寄存器和它的shadowregister，即执行<code>jmp F000:E05B</code>后，CS将被更新成<code>0xF000</code>。表面上看CS其实没有变化，但CS的shadow register被更新为另外一个值了，它的Base域被更新成<code>0x000F0000</code>，此时形成的物理地址为<code>Base+EIP=0x000FE05B</code>，这就是CPU执行的第二条指令的地址。此时这条指令的地址已经是1M以内了，且此地址不再位于BIOS ROM中，而是位于RAM空间中。由于Intel设计了一种映射机制，将内存高端的BIOS ROM映射到1MB以内的RAM空间里，并且可以使这一段被映射的RAM空间具有与ROM类似的只读属性。所以PC机启动时将开启这种映射机制，让4GB地址空间的最高一个64KB的内容等同于1MB地址空间的最高一个64K的内容，从而使得执行了长跳转指令后，其实是回到了早期的8086 CPU初始化控制流，保证了向下兼容。</p>
+</blockquote>
+<p>上述说明指出，在CPU启动之后，它处于实模式之下，执行的第一条指令是<code>jmp F000:E05B</code>，跳转到BIOS程序中。此时，<code>PC = 16*CS + IP</code>，系统地址空间只有20位（1MB）。</p>
+<p>• 20位地址空间：1MB</p>
+<p>这之后BIOS会进行以下工作：</p>
+<ul>
+<li>在实模式下提供基本输入输出方法
+<ul>
+<li>通过中断调用实现</li>
+<li>只能在实模式下使用，操作系统不能使用</li>
+</ul>
+</li>
+<li>运行自检程序</li>
+<li>用户选择引导设备（从什么介质启动）</li>
+<li>将bootloader从磁盘的引导扇区加载到内存中<code>0x7c00</code>开始的位置</li>
+<li>跳转到bootloader的位置：<code>CS:IP=0000:7c00</code><br>
+• 系统设置信息：<br>
+• 开机后自检程序<br>
+• 系统自启动程序等</li>
+</ul>
+<p>这之后，控制权就交给bootloader：</p>
+<ul>
+<li>切换到保护模式</li>
+<li>将操作系统的代码和数据从硬盘加载到内存中（因为BIOS无法处理硬盘的文件系统）</li>
+<li>跳转到操作系统的起始地址</li>
+</ul>
+<p>加载之后的内存布局如下表：</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(4GB - 64KB) ~ 4GB</td>
+<td>实际BIOS ROM</td>
+</tr>
+<tr>
+<td>? ~ (4GB - 64KB)</td>
+<td>空闲空间</td>
+</tr>
+<tr>
+<td>1MB ~ ?</td>
+<td>操作系统</td>
+</tr>
+<tr>
+<td>640KB ~ 1MB</td>
+<td>视频内存，BIOS启动固件（映射）</td>
+</tr>
+<tr>
+<td>? ~ 640KB</td>
+<td>空闲空间</td>
+</tr>
+<tr>
+<td>0x7c00 ~ ?</td>
+<td><strong>bootloader</strong></td>
+</tr>
+<tr>
+<td>0 ~ 0x7c00</td>
+<td>BIOS数据</td>
+</tr>
+</tbody>
+</table>
+<p>最后，bootloader把控制权转交给操作系统。</p>
+<h4>BIOS的一些具体工作</h4>
+<p>上面这些听起来都很不错，但是课程中还涉及了很多烦人的细节。姑且摘录如下：</p>
+<h5>BIOS本身的初始化内容</h5>
+<p>包括：</p>
+<ul>
+<li>硬件自检POST</li>
+<li>检测系统中内存和显卡等关键部件的存在和工作状态</li>
+<li>查找并执行显卡等接口卡BIOS，进行设备初始化</li>
+<li>执行系统BIOS，进行系统检测：检测和配置系统中安装的即插即用设备</li>
+<li>更新CMOS中的扩展系统配置数据ESCD</li>
+<li>按指定启动顺序从硬盘、软盘等设备启动</li>
+</ul>
+<h5>BIOS如何读取bootloader</h5>
+<p><a href="https://zh.wikipedia.org/wiki/%E4%B8%BB%E5%BC%95%E5%AF%BC%E8%AE%B0%E5%BD%95" target="_blank" rel="noopener">Wiki</a>上是这么说的：</p>
+<ul>
+<li>系统开机或者重启。
+<ul>
+<li>BIOS加电（台湾用语：开机）自检（Power On Self Test -- POST）。BIOS执行内存地址为FFFF:0000H处的跳转指令，跳转到固化在ROM中的自检程序处，对系统硬件（包括内存）进行检查。</li>
+<li>读取主引导记录（MBR）。当BIOS检查到硬件正常并与CMOS中的设置相符后，按照CMOS中对启动设备的设置顺序检测可用的启动设备。BIOS将相应启动设备的第一个扇区（也就是MBR扇区）读入内存地址为0000:7C00H处。</li>
+<li>检查0000:7DFEH-0000:7DFFH（MBR的结束标志位）是否等于55AAH，若不等于则转去尝试其他启动设备，如果没有启动设备满足要求则显示&quot;NO ROM BASIC&quot;然后死机。</li>
+<li>当检测到有启动设备满足要求后，BIOS将控制权交给相应启动设备。启动设备的MBR将自己复制到0000:0600H处，然后继续执行。<br>
+根据MBR中的引导代码启动引导程序。</li>
+</ul>
+</li>
+<li>事实上，BIOS不仅检查0000:7DFEH-0000:7DFFH（MBR的结束标志位）是否等于55AAH，往往还对磁盘是否有写保护、主引导扇区中是否存在活动分区等进行检查。如果发现磁盘有写保护，则显示磁盘写保护出错信息；如果发现磁盘中不存在活动分区，则显示类似如下的信息“Remove disk or other media Press any key to restart”。</li>
+</ul>
+<p>我觉得这个wiki讲得十分清楚，所以就不摘录课件内容了。</p>
+<p>标准MBR的结构如下：</p>
+<table>
+<thead>
+<tr>
+<th>地址（十进制）</th>
+<th>描述</th>
+<th>长度（字节）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>代码区</td>
+<td>440（最大446）</td>
+</tr>
+<tr>
+<td>440</td>
+<td>选用磁盘标志</td>
+<td>4</td>
+</tr>
+<tr>
+<td>444</td>
+<td>一般为空值; 0x0000</td>
+<td>2</td>
+</tr>
+<tr>
+<td>446</td>
+<td>标准MBR分区表规划（四个16 byte的主分区表入口）</td>
+<td>64</td>
+</tr>
+<tr>
+<td>510</td>
+<td>MBR有效标志：0x55AA</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h4>系统启动规范</h4>
+<p>课程中还讲到了BIOS-MBR、BIOS-GPT、PXE和UEFI等系统启动规范，其中UEFI似乎还更重要一点。这似乎是通用的现代BIOS标准。</p>
+<h3>中断、异常和系统调用</h3>
+<p>首先下个定义：</p>
+<ul>
+<li>系统调用（system call）：应用程序主动向操作系统发出的服务请求</li>
+<li>异常（exception）：非法指令或其他原因导致当前指令执行失败（如：内存出错）后的处理请求</li>
+<li>中断（hardware interrupt）：来自硬件设备的处理请求</li>
+</ul>
+<p>它们的相同之处是，采用的处理方式大致相同。无论是发生异常、中断，还是系统调用，都需要由硬件保存现场和中断号，转到内核态，进入中断向量表，查找对应的设备驱动程序地址（异常）、异常服务例程地址（异常），或找到系统调用表，并在其中查找对应的系统调用实现的起始地址。处理完毕之后，再进行现场的切换，回到用户态继续执行程序（如果可以继续的话）。</p>
+<p><img src="interrupt_exception_syscall.jpg" alt="中断、异常和系统调用处理流程"></p>
+<p>它们的区别如下表：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>源头</th>
+<th>响应方式</th>
+<th>处理机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中断</td>
+<td>外设</td>
+<td>异步</td>
+<td>持续，对用户应用程序是透明的</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>应用程序或内核意想不到的行为</td>
+<td>同步</td>
+<td>杀死或重新执行意想不到的应用程序指令</td>
+</tr>
+<tr>
+<td>系统调用</td>
+<td>应用程序请求操作提供服务</td>
+<td>异步或同步</td>
+<td>等待和持续</td>
+</tr>
+</tbody>
+</table>
+<p>这三者的处理有时可以嵌套，有时不可以。Intel手册中把中断、异常和系统调用分为Benign、Contributry和Page Fault三类：<br>
+<img src="table-6-4-interrupt-and-exception-classes.png" alt="中断和异常分类"></p>
+<p>其中8号异常没有列在分类中，因为它是就是Double Fault的中断号。当嵌套中断/异常发生时，根据种类的不同，处理方式也有所不同：<br>
+<img src="table-6-5-conditions-for-generating-a-double-fault.png" alt="可能产生Double Fault的情况"></p>
+<p>从中可以了解很多有趣的事实。比如，硬件中断“Device Not Available”和系统调用都属于Benign类，因此它们可以和任何其他中断/异常进行嵌套；而Page Fault就不可嵌套（很有道理；如果连缺页服务例程自己都缺页了，那根本就没法解决）。</p>
+<p>（以上内容也参考了<a href="http://www.lenky.info/archives/2012/04/1479" target="_blank" rel="noopener">Double Fault &amp; Triple Fault</a>一文）</p>
+<p>相比于用户态的函数调用，中断和异常的开销是比较大的，因为它们需要进行：</p>
+<ul>
+<li>特权级的切换</li>
+<li>建立内核堆栈</li>
+<li>验证参数的合法性（防止对内核的恶意攻击）</li>
+<li>内核态需要映射到用户态的地址空间（因为需要访问用户程序的一些内容），因此需要更新页面映射权限</li>
+<li>内核态也拥有独立的地址空间，因此TLB会失效</li>
+</ul>
+<h4>中断的具体处理机制</h4>
+<p>中断处理的过程需要软件和硬件的配合（虽然系统调用和异常也是……）<br>
+硬件处理内容包括：</p>
+<ul>
+<li>在CPU初始化时设置中断使能标志</li>
+<li>依据内部或外部事件设置中断标志</li>
+<li>依据中断向量调用对应的中断服务例程<br>
+软件处理内容包括：</li>
+<li>现场保存（编译器）</li>
+<li>中断服务处理（服务例程）</li>
+<li>清除中断标记（服务例程）（系统调用只占用一个中断向量，另有系统调用表）</li>
+<li>现场恢复（编译器）</li>
+</ul>
+<h4>系统调用</h4>
+<h5>系统调用的特点</h5>
+<ul>
+<li>系统调用是操作系统服务的编程接口</li>
+<li>通常由高级语言编写（C或C++）</li>
+<li>程序访问系统调用通常是通过高层次的API接口（比如封装到标准C库—）而不是直接进行系统调用</li>
+<li>3种最常用的应用程序编程接口（API）：
+<ul>
+<li>Win32 API：Windows</li>
+<li>POSIX API：UNIX、LINUX、Mac OS X</li>
+<li>Java API：用于JAVA虚拟机（JVM），是对实际系统调用的进一步抽象</li>
+</ul>
+</li>
+</ul>
+<h5>系统调用的实现</h5>
+<ul>
+<li>每个系统调用对应一个系统调用号
+<ul>
+<li>系统调用接口根据系统调用号来维护表的索引</li>
+</ul>
+</li>
+<li>系统调用接口调用内核态中的系统调用功能实现，并返回系统调用的状态和结果</li>
+<li>用户不需要知道系统调用的实现
+<ul>
+<li>需要设置调用参数和获取返回结果</li>
+<li>操作系统接口的细节大部分都隐藏在应用编程接口后</li>
+</ul>
+</li>
+<li>通过运行程序支持的库来管理</li>
+</ul>
+<p>注意，系统调用时，<strong>堆栈需要切换</strong>（内核和用户程序使用的是不同的堆栈），<strong>特权级需要进行转换</strong>。</p>
+<h5>uCore中系统调用的具体实现</h5>
+<p>以<code>read(fd, buffer, length)</code>的实现为例：</p>
+<ol>
+<li>用<code>vectors.S</code>中的内容填充IDT表</li>
+<li>发生系统调用时，硬件访问IDT表后，跳转到中断服务例程，对中断进行具体处理</li>
+<li><code>kern/trap/trapentry.S:alltraps()</code>：中断服务例程</li>
+<li><code>kern/trap/trap.c:trap()</code>：针对中断类型进行具体处理
+<ol>
+<li><code>tf-&gt;trapno == T_SYSCALL</code>：中断类型为系统调用，调用具体的系统调用处理函数</li>
+</ol>
+</li>
+<li><code>kern/syscall/syscall.c:syscall()</code>：进行系统调用
+<ol>
+<li><code>tf-&gt;tf_regs.reg_eax == SYS_read</code>：读eax（系统调用编号），得到具体是哪个系统调用</li>
+</ol>
+</li>
+<li><code>kern/syscall/syscall.c:sys_read()</code>：处理<code>SYS_READ</code>系统调用，从<code>tf-&gt;sp</code>获取堆栈中的参数（<code>fd</code>, <code>buf</code>, <code>length</code>）</li>
+<li><code>kern/fs/sysfile.c:sysfile_read()</code>：<code>SYS_READ</code>系统调用的更具体实现，读取文件，直接操纵驱动程序</li>
+<li><code>kern/trap/trapentry.S:trapret()</code>：中断处理返回，将所需内容返回给用户态</li>
+</ol>
+<h2>习题</h2>
+<p>来自<a href="https://github.com/chyyuu/os_course_exercises/blob/2018spring/all/02-1-spoc-discussion.md" target="_blank" rel="noopener">lec 3 SPOC Discussion</a>。</p>
+<h3>简答题</h3>
+<p><strong>BIOS从磁盘读入的第一个扇区是是什么内容？为什么没有直接读入操作系统内核映像？</strong></p>
+<p>BIOS完成硬件初始化和自检后，会根据CMOS中设置的启动顺序启动相应的设备，这里假定按顺序系统要启动硬盘。但此时，文件系统并没有建立，BIOS也不知道硬盘里存放的是什么，所以BIOS是无法直接启动操作系统。另外一个硬盘可以有多个分区，每个分区都有可能包括一个不同的操作系统，BIOS也无从判断应该从哪个分区启动，所以对待硬盘，所有的BIOS都是读取硬盘的0磁头、0柱面、1扇区的内容，然后把控制权交给这里面的MBR (Main Boot Record）。</p>
+<p>我认为上述答案并不十分确切。比如，在uCore中，虽然BIOS没有建立文件系统，bootloader也没有建立文件系统啊。但是，加载操作系统是个很复杂的过程：就比如uCore，我们需要完成对ELF文件格式的解析和文件本身的读入。BIOS工作在实模式，本身访存范围只有1MB（能使用的数据只有0 ~ 0x7c00的范围），而且代码长度被限制在64KB。为了将OS读入到高地址的内存中，需要BIOS进行模式的切换。但是，如果BIOS进行了实模式到保护模式的切换，就不能实现向后兼容了。而且不同的OS的文件格式和处理方法也有差异，这会导致BIOS十分复杂。因此，让OS提供自己的启动程序是最好的选择。</p>
+<hr>
+<p><strong>比较UEFI和BIOS的区别。</strong></p>
+<p>统一可扩展固件接口 (Unified Extensible Firmware Interface, UEFI) 是一种个人电脑系统规格，用来定义操作系统与系统固件之间的软件界面，作为BIOS的替代方案。</p>
+<p>UEFI启动对比BIOS启动的优势有三点：</p>
+<ul>
+<li>安全性更强：UEFI启动需要一个独立的分区，它将系统启动文件和操作系统本身隔离，可以更好的保护系统的启动；</li>
+<li>启动配置更灵活：EFI启动和GRUB启动类似，在启动的时候可以调用EFIShell，在此可以加载指定硬件驱动，选择启动文件。比如默认启动失败，在EFIShell加载U盘上的启动文件继续启动系统；</li>
+<li>支持容量更大：传统的BIOS启动由于MBR的限制，默认是无法引导超过2TB以上的硬盘的。随着硬盘价格的不断走低，2TB以上的硬盘会逐渐普及，因此UEFI启动也是今后主流的启动方式。</li>
+</ul>
+<hr>
+<p><strong>分区引导扇区的结束标志是什么？</strong></p>
+<p><code>0X55AA</code>。当然，上面也说到了，BIOS除此之外还会检查别的内容。</p>
+<hr>
+<p><strong>在UEFI中的可信启动有什么作用？</strong></p>
+<p>通过启动前的数字签名检查来保证启动介质的安全性。</p>
+<hr>
+<p><strong>什么是中断、异常和系统调用？</strong></p>
+<ul>
+<li>中断：外部意外的响应；</li>
+<li>异常：指令执行意外的响应；</li>
+<li>系统调用：系统调用指令的响应。</li>
+</ul>
+<p>这个回答真是十分简洁明了。</p>
+<hr>
+<p><strong>中断、异常和系统调用的处理流程有什么异同？</strong></p>
+<ul>
+<li>相同点：都会进入异常服务例程，切换为内核态。</li>
+<li>不同点：
+<ul>
+<li>源头不同，中断源是外部设备，异常和系统调用源是应用程序；</li>
+<li>响应方式不同，中断是异步的，异常是同步的，系统调用异步和同步都可以。</li>
+<li>处理机制不同，中断对用户程序是透明的，异常会重新执行用户指令或杀死用户进程，系统调用一般是用户程序调用的</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>以ucore lab8的answer为例，uCore的系统调用有哪些？大致的功能分类有哪些？</strong></p>
+<p>打开<code>kern/syscall/syscall.c</code>，其中定义了如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">static int (*syscalls[])(uint32_t arg[]) = &#123;</span><br><span class="line">    [SYS_exit]              sys_exit,</span><br><span class="line">    [SYS_fork]              sys_fork,</span><br><span class="line">    [SYS_wait]              sys_wait,</span><br><span class="line">    [SYS_exec]              sys_exec,</span><br><span class="line">    [SYS_yield]             sys_yield,</span><br><span class="line">    [SYS_kill]              sys_kill,</span><br><span class="line">    [SYS_getpid]            sys_getpid,</span><br><span class="line">    [SYS_putc]              sys_putc,</span><br><span class="line">    [SYS_pgdir]             sys_pgdir,</span><br><span class="line">    [SYS_gettime]           sys_gettime,</span><br><span class="line">    [SYS_lab6_set_priority] sys_lab6_set_priority,</span><br><span class="line">    [SYS_sleep]             sys_sleep,</span><br><span class="line">    [SYS_open]              sys_open,</span><br><span class="line">    [SYS_close]             sys_close,</span><br><span class="line">    [SYS_read]              sys_read,</span><br><span class="line">    [SYS_write]             sys_write,</span><br><span class="line">    [SYS_seek]              sys_seek,</span><br><span class="line">    [SYS_fstat]             sys_fstat,</span><br><span class="line">    [SYS_fsync]             sys_fsync,</span><br><span class="line">    [SYS_getcwd]            sys_getcwd,</span><br><span class="line">    [SYS_getdirentry]       sys_getdirentry,</span><br><span class="line">    [SYS_dup]               sys_dup,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>大致可以分为如下4类：</p>
+<ul>
+<li>进程管理：包括 fork/exit/wait/exec/yield/kill/getpid/sleep</li>
+<li>文件操作：包括 open/close/read/write/seek/fstat/fsync/getcwd/getdirentry/dup</li>
+<li>内存管理：pgdir命令</li>
+<li>外设输出：putc命令</li>
+</ul>
+<hr>
+<p><strong>通过分析<a href="https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex0.md" target="_blank" rel="noopener">lab1_ex0</a>了解Linux应用的系统调用编写和含义。(仅实践，不用回答)</strong></p>
+<p>按说是应该做一下的，但现在没有时间了……</p>
+<hr>
+<p><strong>通过调试<a href="https://github.com/chyyuu/ucore_os_lab/blob/master/related_info/lab1/lab1-ex1.md" target="_blank" rel="noopener">lab1_ex1</a>了解Linux应用的系统调用执行过程。(仅实践，不用回答)</strong></p>
+<p>按说是应该做一下的，但现在没有时间了……+1</p>
+<hr>
+<p><strong>基于实验八的代码分析ucore的系统调用实现，说明指定系统调用的参数和返回值的传递方式和存放位置信息，以及内核中的系统调用功能实现函数。</strong></p>
+<p>在ucore中，执行系统调用前，需要将系统调用的参数储存在寄存器中。 eax表示系统调用类型，其余参数依次存在 edx, ecx, ebx, edi, esi 中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">int num = tf-&gt;tf_regs.reg_eax;</span><br><span class="line">...</span><br><span class="line">arg[0] = tf-&gt;tf_regs.reg_edx;</span><br><span class="line">arg[1] = tf-&gt;tf_regs.reg_ecx;</span><br><span class="line">arg[2] = tf-&gt;tf_regs.reg_ebx;</span><br><span class="line">arg[3] = tf-&gt;tf_regs.reg_edi;</span><br><span class="line">arg[4] = tf-&gt;tf_regs.reg_esi;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>说实话，我不知道这个题目在问什么。姑且把lab5 report中的说法粘贴过来：</p>
+<p><code>fork</code>/<code>wait</code>/<code>exit</code>系统调用的执行过程，以<code>fork</code>为例：</p>
+<ul>
+<li>应用态进程调用<code>user/libs/ulib.c:fork</code>函数</li>
+<li><code>user/libs/ulib.c:fork</code>调用<code>user/libs/syscall.c:sys_fork</code>函数</li>
+<li><code>user/libs/syscall.c:sys_fork</code>函数调用user/libs/<code>syscall.c:syscall</code>函数，保存好相应的中断号和参数，引发系统调用中断</li>
+<li><code>vectors.S:vector128</code>：系统调用对应的中断向量</li>
+<li><code>trapentry.S:__alltraps</code>：进入中断处理例程</li>
+<li><code>trap.c:trap</code></li>
+<li><code>trap.c:trap_dispatch</code>：进入系统中断的具体处理例程</li>
+<li><code>kern/syscall/syscall.c:syscall</code>：根据<code>%eax</code>寄存器中保存的值，进入<code>sys_fork</code>函数处理<code>SYS_fork</code>这一具体系统调用</li>
+<li><code>kern/syscall/syscall.c:sys_fork</code>：调用<code>do_fork</code>函数</li>
+<li><code>proc.c:do_fork</code></li>
+</ul>
+<hr>
+<p><strong>以ucore lab8的answer为例，分析ucore应用的系统调用编写和含义。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">syscall(int num, ...) &#123;</span><br><span class="line">    va_list ap;</span><br><span class="line">    va_start(ap, num);</span><br><span class="line">    uint32_t a[MAX_ARGS];</span><br><span class="line">    int i, ret;</span><br><span class="line">    for (i = 0; i &lt; MAX_ARGS; i ++) &#123;</span><br><span class="line">        a[i] = va_arg(ap, uint32_t);</span><br><span class="line">    &#125;</span><br><span class="line">    va_end(ap);</span><br><span class="line"></span><br><span class="line">    asm volatile (</span><br><span class="line">        &quot;int %1;&quot;</span><br><span class="line">        : &quot;=a&quot; (ret)</span><br><span class="line">        : &quot;i&quot; (T_SYSCALL),</span><br><span class="line">          &quot;a&quot; (num),</span><br><span class="line">          &quot;d&quot; (a[0]),</span><br><span class="line">          &quot;c&quot; (a[1]),</span><br><span class="line">          &quot;b&quot; (a[2]),</span><br><span class="line">          &quot;D&quot; (a[3]),</span><br><span class="line">          &quot;S&quot; (a[4])</span><br><span class="line">        : &quot;cc&quot;, &quot;memory&quot;);</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码是用户态的<code>syscall</code>函数，其中<code>num</code>参数为系统调用号，该函数将参数准备好后，通过<code>SYSCALL</code>汇编指令进行系统调用，进入内核态，返回值放在<code>eax</code>寄存器，传入参数通过<code>eax</code>~<code>esi</code>依次传递进去。在内核态中，首先进入<code>trap()</code>函数，然后调用 <code>trap_dispatch()</code>进入中断分发，当系统得知该中断为系统调用后，OS调用如下的<code>syscall</code>函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">void</span><br><span class="line">syscall(void) &#123;</span><br><span class="line">    struct trapframe *tf = current-&gt;tf;</span><br><span class="line">    uint32_t arg[5];</span><br><span class="line">    int num = tf-&gt;tf_regs.reg_eax;</span><br><span class="line">    if (num &gt;= 0 &amp;&amp; num &lt; NUM_SYSCALLS) &#123;</span><br><span class="line">        if (syscalls[num] != NULL) &#123;</span><br><span class="line">            arg[0] = tf-&gt;tf_regs.reg_edx;</span><br><span class="line">            arg[1] = tf-&gt;tf_regs.reg_ecx;</span><br><span class="line">            arg[2] = tf-&gt;tf_regs.reg_ebx;</span><br><span class="line">            arg[3] = tf-&gt;tf_regs.reg_edi;</span><br><span class="line">            arg[4] = tf-&gt;tf_regs.reg_esi;</span><br><span class="line">            tf-&gt;tf_regs.reg_eax = syscalls[num](arg);</span><br><span class="line">            return ;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    print_trapframe(tf);</span><br><span class="line">    panic(&quot;undefined syscall %d, pid = %d, name = %s.\n&quot;,</span><br><span class="line">            num, current-&gt;pid, current-&gt;name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数得到系统调用号<code>num = tf-&gt;tf_regs.reg_eax;</code>，通过计算快速跳转到相应的<code>sys_</code>开头的函数，最终在内核态中，完成系统调用所需要的功能。</p>
+<hr>
+<p><strong>以ucore lab8的answer为例，尝试修改并运行ucore OS kernel代码，使其具有类似Linux应用工具strace的功能，即能够显示出应用程序发出的系统调用，从而可以分析ucore应用的系统调用执行过程。</strong></p>
+<p>利用<code>trap.c</code>的<code>trap_in_kernel()</code>函数判断是否是用户态的系统调用，调用<code>syscall()</code>时传入此参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">case T_SYSCALL:</span><br><span class="line">    syscall(trap_in_kernel(tf));</span><br><span class="line">    break;</span><br></pre></td></tr></table></figure>
+<p>更改<code>syscall()</code>的函数原型为<code>void syscall(bool);</code>；</p>
+<p>之后在<code>syscall(bool)</code>中加入输出即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">int num = tf-&gt;tf_regs.reg_eax;</span><br><span class="line">if (num &gt;= 0 &amp;&amp; num &lt; NUM_SYSCALLS) &#123;</span><br><span class="line">    if (syscalls[num] != NULL) &#123;</span><br><span class="line">        arg[0] = tf-&gt;tf_regs.reg_edx;</span><br><span class="line">        arg[1] = tf-&gt;tf_regs.reg_ecx;</span><br><span class="line">        arg[2] = tf-&gt;tf_regs.reg_ebx;</span><br><span class="line">        arg[3] = tf-&gt;tf_regs.reg_edi;</span><br><span class="line">        arg[4] = tf-&gt;tf_regs.reg_esi;</span><br><span class="line"></span><br><span class="line">    if (!in_kernel) &#123;</span><br><span class="line">    	cprintf(&quot;SYSCALL: %d\n&quot;, num);</span><br><span class="line">    &#125;</span><br><span class="line">        tf-&gt;tf_regs.reg_eax = syscalls[num](arg);</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是qemu运行的输出结果片段，可以看出在用户程序输出前调用了<code>SYS_open</code>，输出<code>sh is running</code>的过程中调用了<code>SYS_write</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Iter 1, No.0 philosopher_sema is thinking</span><br><span class="line">kernel_execve: pid = 2, name = &quot;sh&quot;.</span><br><span class="line">SYSCALL: 100</span><br><span class="line">SYSCALL: 100</span><br><span class="line">SYSCALL: 103</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>系统调用与函数调用的区别是什么？</strong></p>
+<ul>
+<li>汇编指令的区别
+<ul>
+<li>系统调用：使用INT和IRET指令</li>
+<li>函数调用：使用CALL和RET指令</li>
+</ul>
+</li>
+<li>安全性的区别
+<ul>
+<li>系统调用有堆栈和特权级的转换过程，函数调用没有这样的过程，系统调用相对更为安全</li>
+</ul>
+</li>
+<li>性能的区别
+<ul>
+<li>时间角度：系统调用比函数调用要做更多和特权级切换的工作，所以需要更多的时间开销</li>
+<li>空间角度：在一些情况下，如果函数调用采用静态编译，往往需要大量的空间开销，此时系统调用更具有优势</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>通过分析int、iret、call和ret的指令准确功能和调用代码，比较函数调用与系统调用的堆栈操作有什么不同？</strong></p>
+<p>int指令压栈的内容请参考Interrupt and Exception Handling on the x86第10页。</p>
+<h3>实践练习</h3>
+<p>看不完了==</p>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-04-12T11:15:12+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2018-04-12
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;OS</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/os-mooc-lecture-4-summary/" rel="prev" title="《操作系统》第4讲：“实验1-系统软件启动过程”总结">
+                                  
+                                      《操作系统》第4讲：“实验1-系统软件启动过程”总结
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/os-mooc-lecture-2-summary/" rel="prev" title="《操作系统》第2讲：“实验0-操作系统实验环境准备”总结">
+                                    
+                                        《操作系统》第2讲：“实验0-操作系统实验环境准备”总结
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '《操作系统》第3讲：“启动、中断、异常和系统调用”总结',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">课程内容概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">系统启动过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">BIOS的基本功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">BIOS的一些具体工作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">BIOS本身的初始化内容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">BIOS如何读取bootloader</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">系统启动规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">中断、异常和系统调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">中断的具体处理机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">系统调用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">系统调用的特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">系统调用的实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">uCore中系统调用的具体实现</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">习题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">简答题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">实践练习</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

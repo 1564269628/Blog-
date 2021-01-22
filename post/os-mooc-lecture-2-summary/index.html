@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>《操作系统》第2讲：“实验0-操作系统实验环境准备”总结 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">《操作系统》第2讲：“实验0-操作系统实验环境准备”总结</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-08
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h2>课程内容概述</h2>
+<p>这节课的主要内容包括：</p>
+<ul>
+<li>对8个实验内容的更详细的介绍</li>
+<li>对X86-32硬件的介绍</li>
+<li>uCore的部分编程技巧和数据结构</li>
+<li>如何使用工具编写和调试实验</li>
+</ul>
+<h3>实验具体内容</h3>
+<p>我认为在此处把实验具体内容再列举一遍毫无意义。所以我给出了我自己对这些实验的意义的一个总结：</p>
+<ul>
+<li>0：实验环境准备
+<ul>
+<li>配置环境：安装适当的库、应用或直接下载虚拟机</li>
+<li>我认为此时应该尝试编译一下答案，避免出现QEMU no output的情况</li>
+<li>环境出问题时，不外乎就是<code>make clean</code>和重装两种解决方式</li>
+</ul>
+</li>
+<li>1：系统启动及中断
+<ul>
+<li>这个实验主要是了解操作系统加载到内存，开始运行和处理中断的过程</li>
+<li>大部分都是看和总结</li>
+<li>有少量编程，但与硬件相关性极强，很难独立做出来</li>
+</ul>
+</li>
+<li>2：物理内存管理
+<ul>
+<li>实现了一个管理空闲内存的算法，就是把一大块内存分页，然后按需求进行分配和释放</li>
+</ul>
+</li>
+<li>3：虚拟内存管理
+<ul>
+<li>实现了虚拟内存管理，也就是PDE-&gt;PTE-&gt;Page的映射</li>
+<li>实现了页替换算法，需要进行换入和换出</li>
+<li>代码开始变得非常复杂</li>
+</ul>
+</li>
+<li>4：内核线程管理
+<ul>
+<li>建立了一些新的内核线程</li>
+<li>除了每个线程新建了一个内核栈之外，其实没有怎么用到虚拟内存管理，因为内核线程共用OS本身的内存管理结构</li>
+<li>初步涉及了进程调度的概念</li>
+<li>进程的切换是难点，不同特权级之间进程的切换是超难点（虽然此时还不需要）</li>
+<li>细节很复杂</li>
+</ul>
+</li>
+<li>5：用户进程管理
+<ul>
+<li>建立了用户线程，终于用到了特权级切换和虚拟内存管理</li>
+<li>把用户进程的程序内容加载到虚拟空间中是一个难点；此时由于还没有文件系统，程序内容的位置是链接时生成的变量，在程序中直接使用</li>
+<li>系统调用的实现过程与特权级很相关</li>
+<li>程序的状态开始有了更多的意义；僵尸态、等待态、就绪态、执行态都出现了</li>
+<li>仍然只是初步涉及了进程调度的概念</li>
+<li>测试时有一些很坑爹的细节，比如需要修改lab1中的一些代码</li>
+</ul>
+</li>
+<li>6：CPU调度
+<ul>
+<li>终于开始写调度算法了</li>
+<li>过于水的一次lab，除了调度算法之外似乎什么都没有</li>
+</ul>
+</li>
+<li>7：同步与互斥
+<ul>
+<li>难度突然上升的一次lab</li>
+<li>需要先了解信号量和条件变量</li>
+<li>利用信号量实现一个没有什么用处的哲学家就餐问题</li>
+<li>利用信号量实现条件变量</li>
+<li>利用管程机制再把完全没有什么用处的哲学家就餐问题实现一遍</li>
+<li>总之这是一次注重理解的lab</li>
+</ul>
+</li>
+<li>8：文件系统
+<ul>
+<li>代码量和难度再次直线上升！</li>
+<li>首先理解uCore中文件系统的实现方法（细节十分多！特别多！巨多！代码巨多！）</li>
+<li>然后尝试填写文件系统中某个层次的读文件的代码（反正我写不出来）</li>
+<li>修正用户进程加载程序内容的方法，改为从文件系统加载</li>
+<li>代码全都写不出来！！</li>
+</ul>
+</li>
+</ul>
+<h3>X86-32硬件简单介绍</h3>
+<p>这个时候就应该参见之前认真写的那篇文章了（<a href="/post/intel-80x86-architecture-overview">Intel80X86架构概述</a>）。这一讲中并未讲得太细，大致概括如下：</p>
+<ul>
+<li>运行模式
+<ul>
+<li>80386共有四种运行模式，我们只用到了其中两种</li>
+<li>实模式：加电后的默认模式，在bootloader中就会切换为保护模式</li>
+<li>保护模式：一般的模式</li>
+</ul>
+</li>
+<li>寻址方法（参见<a href="intel-80x86-architecture-mm-under-protected-mode">Intel80X86架构：保护模式下的内存管理</a>）
+<ul>
+<li>逻辑地址：由16位的段选择子和32位的偏移量组成，是应用程序直接使用的地址空间（大概就是程序运行时访问的地址吧）</li>
+<li>线性地址：由逻辑地址的偏移量+段基址得到，是虚存管理下每个运行的应用程序能访问的地址空间</li>
+<li>物理地址：处理器提交到总线上用于访问计算机系统中内存和外设的最终地址。如果未开启页机制，则物理地址=线性地址；否则通过页表和线性地址可得到物理地址</li>
+</ul>
+</li>
+<li>寄存器
+<ul>
+<li>通用寄存器
+<ul>
+<li>EAX：累加器</li>
+<li>EBX：基址寄存器</li>
+<li>ECX：计数器</li>
+<li>EDX：数据寄存器</li>
+<li>ESI：源地址指针寄存器</li>
+<li>EDI：目的地址指针寄存器</li>
+<li>EBP：基址指针寄存器</li>
+<li>ESP：堆栈指针寄存器</li>
+</ul>
+</li>
+<li>段寄存器
+<ul>
+<li>CS：代码段（Code Segment）</li>
+<li>DS：数据段（Data Segment）</li>
+<li>ES：附加数据段（Extra Segment）</li>
+<li>SS：堆栈段（Stack Segment）</li>
+<li>FS：附加段</li>
+<li>GS：附加段</li>
+</ul>
+</li>
+<li>指令寄存器EIP：指令的段内偏移地址</li>
+<li>标志寄存器EFLAGS：
+<ul>
+<li>TF：开启单步调试</li>
+<li>IF：开启硬件中断</li>
+<li>IOPL：I/O特权级，CPL&lt;=IOPL时才能进行I/O操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>uCore的部分编程技巧和数据结构</h3>
+<p>主要就讲了两个东西：函数指针和链表。</p>
+<h4>函数指针</h4>
+<p>大家都知道，uCore是用C写的。但是C也是可以写出面向对象代码的。就比如说<code>swap_manager</code>，我们只定义了一个<code>swap_manager</code>类型的结构体变量，它的成员变量全是函数指针。然后，我们可以定义各种各样的成员函数，比如<code>__fifo_swap_out_victim</code>，把函数的值赋给成员变量。需要进行换入换出的时候，就调用这个函数指针。正因为如此，把<code>__fifo_swap_out_victim</code>换成<code>__clock_swap_out_victim</code>之类也是可以的。</p>
+<h4>链表</h4>
+<p>uCore中有大量的东西都是用双向链表实现的，比如空闲内存块链表、内存中页面链表、状态队列……</p>
+<p>uCore的双向链表的定义是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct list_entry &#123;</span><br><span class="line">    struct list_entry *prev, *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对于每个数据结构，每有<strong>一种</strong>它需要连接到里面的链表（后期<code>struct Page</code>结构就有至少两个<code>list_entry</code>类型的成员变量，一个用来进行空闲页管理，一个用来辅助页替换算法），就在里面多加一个<code>list_entry</code>项，然后把这些<code>list_entry</code>连接起来。一般来说，每个有实际用途的双向链表的逻辑都是，有一个<strong>不是其他变量的成员变量的</strong><code>head</code>指针，每次可以从它开始访问，直到绕了一圈回来为止（因为是双向链表）。</p>
+<p>uCore提供了用于管理链表的宏，不需要自己手动管理，总的来说挺好用的：</p>
+<ul>
+<li><code>list_init</code>：初始化一个双向链表</li>
+<li><code>list_add</code>和<code>list_add_before</code>：在某链表项前或后插入一个新的项</li>
+<li><code>list_next</code>和<code>list_prev</code>：向前或后移动一个链表项</li>
+<li><code>list_del</code>：从链表中删除某个项</li>
+</ul>
+<p>另一个关键问题是如何通过链表项指针访问对应的结构体变量（从结构体变量访问成员链表项的方法是显然的）。uCore提供了<code>le2page</code>宏，可以通过计算结构体变量开头的地址访问这个变量。总的来说特别好用。</p>
+<h3>编写和调试工具</h3>
+<p>全部都用文本编辑器来写代码、看代码当然没有什么问题。用eclipse-CDT建立<code>Makefile</code>项目再看的话，在函数之间跳转比较方便。在eclipse中配置调试是可以的，不过我一般都直接用命令行调试了。</p>
+<p>至于从之前的实验中移植代码到后面的实验中这个问题……由于有的时候代码还需要修改，所以所有的代码我都是手动粘的。当然这也是因为我用不惯diff和meld工具。</p>
+<h2>习题</h2>
+<p>来自<a href="https://github.com/chyyuu/os_course_exercises/blob/2018spring/all/01-3-lab0-spoc-discussion.md" target="_blank" rel="noopener">lab0 SPOC思考题</a>和<a href="https://github.com/chyyuu/os_course_exercises/blob/2018spring/all/01-3-lab0-quiz.md" target="_blank" rel="noopener">lab0在线练习</a>。</p>
+<h3>选择填空题</h3>
+<hr>
+<p>清华大学目前的操作系统实验中采用的OS对象是()</p>
+<ul>
+<li>Linux</li>
+<li><strong>ucore</strong></li>
+<li>xv6</li>
+<li>Nachos</li>
+</ul>
+<p>是参考了xv6, OS161, Linux的教学操作系统ucore OS。</p>
+<hr>
+<p>在ucore lab的实验环境搭建中，使用的非开源软件是()</p>
+<ul>
+<li>eclipse CDT</li>
+<li><strong>Scitools Understand</strong></li>
+<li>gcc</li>
+<li>qemu</li>
+</ul>
+<p>Scitools Understand是非开源软件，主要可以用于分析代码，可免费试用一段时间。</p>
+<hr>
+<p>在ucore lab的实验环境搭建中，用来模拟一台PC机（即基于Intel 80386 CPU的计算机）的软件是()</p>
+<ul>
+<li>apt</li>
+<li>git</li>
+<li>meld</li>
+<li><strong>qemu</strong></li>
+</ul>
+<p>qemu是一个支持模拟多种CPU的模拟软件。apt是Unix系统的软件包管理器，git是版本管理工具，meld是文本比较工具。</p>
+<hr>
+<p>ucore lab实验中8个实验是否可以不按顺序完成？</p>
+<ul>
+<li>是</li>
+<li><strong>否</strong></li>
+</ul>
+<p>每个实验i依赖前面所有的实验(0～i-1)，即完成了lab i，才能完成lab i+1。</p>
+<hr>
+<p>ucore lab实验中在C语言中采用了面向对象的编程思想，包括函指针表和通用链表结构。是否正确？</p>
+<ul>
+<li><strong>是</strong></li>
+<li>否</li>
+</ul>
+<p>是的，这使得可编出更加灵活的操作系统功能模块和数据结构。当然，这也不是严格的面向对象，不过至少是模块化的，而且能用。</p>
+<hr>
+<p>x86-32 CPU（即80386）有多种运行模式，ucore lab中碰到和需要处理哪些模式？</p>
+<ul>
+<li><strong>实模式</strong></li>
+<li><strong>保护模式</strong></li>
+<li>SMM模式</li>
+<li>虚拟8086模式</li>
+</ul>
+<p>ucore需要碰到和处理16位的实模式和32位的保护模式。其中保护模式的重要性大得多。</p>
+<h3>简答题</h3>
+<p><strong>你理解的对于类似ucore这样需要进程/虚存/文件系统的操作系统，在硬件设计上至少需要有哪些直接的支持？至少应该提供哪些功能的特权指令？</strong></p>
+<p>进程的切换需要硬件支持时钟中断；虚存管理需要地址映射机制，从而需要MMU等硬件；对于文件系统，需要硬件有稳定的存储介质来保证操作系统的持久性。 对应的，应当提供中断使能，触发软中断等中断相关的，设置内存寻址模式，设置页表等内存管理相关的，执行I/O操作等文件系统相关的特权指令。</p>
+<p>对于现代操作系统（每个进程占一个时间片）时钟中断是非常需要的。存储介质当然也是非常必要的。当然，事实上，MMU没有也行，可以用用户态函数库来实现地址转换，但这样可能就保证不了安全性了。</p>
+<p>Intel手册第3卷2.8节“System Instruction Summary”中给出了一个系统指令列表。“系统指令完成的是系统级的功能，包括加载系统寄存器、管理Cache、管理中断和设置调试寄存器。其中的大部分指令都必须由操作系统或特权级为0的进程执行；另一部分可以由任何特权级的进程执行。”</p>
+<p><img src="intel-manual-table-2-3.png" alt="表2.8 系统指令列表"></p>
+<p>其中我们直接用到的不多。LGDT在建立段映射机制的时候用过，INVLPG在切换页表的时候大概用过，其他的就不知道了。</p>
+<hr>
+<p><strong>你理解的x86的实模式和保护模式有什么区别？物理地址、线性地址、逻辑地址的含义分别是什么？</strong></p>
+<p>保护模式和实模式的根本区别是进程内存是否受保护。（我的意见是，实模式既是一个历史包袱，又有一定的实际用途。在实模式下，BIOS自检和加载bootloader的程序可以尽可能简单，因为不需要建立复杂的段映射。但是段机制必须开启这一点也是历史包袱。总之，bootloader一开始就开了A20，设置了GDT然后长跳转切换到保护模式了。）实模式将整个物理内存看成分段的区域，程序代码和数据位于不同区域，系统程序和用户程序没有区别对待，而且每一个指针都是指向“实在”的物理地址。这样一来，用户程序的一个指针如果指向了系统程序区域或其他用户程序区域，并改变了值，那么对于这个被修改的系统程序或用户程序，其后果就很可能是灾难性的。为了克服这种低劣的内存管理方式，处理器厂商开发出保护模式。这样，物理内存地址不能直接被程序访问，程序内部的地址（虚拟地址）要由操作系统转化为物理地址去访问，程序对此一无所知。</p>
+<p>物理地址：是处理器提交到总线上用于访问计算机系统中的内存和外设的最终地址。<br>
+逻辑地址：在有地址变换功能的计算机中，访问指令给出的地址叫逻辑地址。（一般的定义是段选择子+段内偏移量是逻辑地址。大概）<br>
+线性地址：线性地址是逻辑地址到物理地址变换之间的中间层，是处理器通过段(Segment)机制控制下的形成的地址空间。<br>
+虚拟地址（不得不补上）：对这个名称的定义总是模糊不清。不过，在这门课中，似乎虚拟地址就是程序内存的地址，不知道我的理解是不是错了。</p>
+<hr>
+<p><strong>理解list_entry双向链表数据结构及其4个基本操作函数和ucore中一些基于它的代码实现（此题不用填写内容）</strong></p>
+<p>我感觉刚才已经说得很多了。uCore中没有多么复杂的数据结构，也就只有数组和链表了。<code>list_entry</code>的确可以当做一个对象来看待，它可以作为其他对象的一部分，并且进行自己独立的操作。</p>
+<hr>
+<p><strong>对于如下的代码段，请说明&quot;:&quot;后面的数字是什么含义。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/* Gate descriptors for interrupts and traps */</span><br><span class="line">struct gatedesc &#123;</span><br><span class="line">   unsigned gd_off_15_0 : 16;        // low 16 bits of offset in segment</span><br><span class="line">   unsigned gd_ss : 16;            // segment selector</span><br><span class="line">   unsigned gd_args : 5;            // # args, 0 for interrupt/trap gates</span><br><span class="line">   unsigned gd_rsv1 : 3;            // reserved(should be zero I guess)</span><br><span class="line">   unsigned gd_type : 4;            // type(STS_&#123;TG,IG32,TG32&#125;)</span><br><span class="line">   unsigned gd_s : 1;                // must be 0 (system)</span><br><span class="line">   unsigned gd_dpl : 2;            // descriptor(meaning new) privilege level</span><br><span class="line">   unsigned gd_p : 1;                // Present</span><br><span class="line">   unsigned gd_off_31_16 : 16;        // high bits of offset in segment</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>“:”后的数字表示每一个域在结构体中所占的位数，详细说明见<a href="http://en.cppreference.com/w/cpp/language/bit_field" target="_blank" rel="noopener">Bit field</a>。总的来说就是把struct的变量定义精确到了bit的程度。这个结构体是IDT中的门描述符，一个门描述符的大小为8字节。</p>
+<hr>
+<p>对于如下的代码段，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#define SETGATE(gate, istrap, sel, off, dpl) &#123;            \</span><br><span class="line">    (gate).gd_off_15_0 = (uint32_t)(off) &amp; 0xffff;        \</span><br><span class="line">    (gate).gd_ss = (sel);                                \</span><br><span class="line">    (gate).gd_args = 0;                                    \</span><br><span class="line">    (gate).gd_rsv1 = 0;                                    \</span><br><span class="line">    (gate).gd_type = (istrap) ? STS_TG32 : STS_IG32;    \</span><br><span class="line">    (gate).gd_s = 0;                                    \</span><br><span class="line">    (gate).gd_dpl = (dpl);                                \</span><br><span class="line">    (gate).gd_p = 1;                                    \</span><br><span class="line">    (gate).gd_off_31_16 = (uint32_t)(off) &gt;&gt; 16;        \</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果在其他代码段中有如下语句，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unsigned intr;</span><br><span class="line">intr=8;</span><br><span class="line">SETGATE(intr, 1,2,3,0);</span><br></pre></td></tr></table></figure>
+<p>请问执行上述指令后， intr的值是多少？</p>
+<p>在实验1中这个宏在填充IDT表中还是挺好用的。显然可以逐步计算出intr。事实上，这个填充过程应该是直接把intr的地址当成了一个<code>gatedesc</code>的地址，从代码中也可以看出来。之后事实上又把这个<code>gatedesc</code>cast成了unsigned类型，也就是输出了它的前半部分（因为unsigned的长度为4个字节）。</p>
+<ul>
+<li><code>gd_off_15_0 = 3 &amp; 0xffff = 0x0003</code></li>
+<li><code>gd_ss = sel = 0x0002</code></li>
+<li><code>gd_args = b00000</code></li>
+<li><code>gd_rsv1 = b000</code></li>
+<li><code>gd_type = STS_TG32 = 0xf</code></li>
+<li><code>gd_s = b0</code></li>
+<li><code>gd_dpl = b00</code></li>
+<li><code>gd_p = b1</code></li>
+<li><code>gd_off_31_16 = 0x0000</code></li>
+</ul>
+<p>可以得到这个内存中的<code>gatedesc</code>为：<code>0x0003000200f10000</code>。我也不知道为什么输出就变成了<code>0x20003</code>。这之中肯定有大小端的问题。</p>
+<p>参考答案中给出了一个可以直接输出的参考代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">typedef unsigned uint32_t;</span><br><span class="line"></span><br><span class="line">#define STS_IG32 0xE  // 32-bit Interrupt Gate</span><br><span class="line">#define STS_TG32 0xF  // 32-bit Trap Gate</span><br><span class="line"></span><br><span class="line">#define SETGATE(gate, istrap, sel, off, dpl)             \</span><br><span class="line">    &#123;                                                    \</span><br><span class="line">        (gate).gd_off_15_0 = (uint32_t)(off)&amp;0xffff;     \</span><br><span class="line">        (gate).gd_ss = (sel);                            \</span><br><span class="line">        (gate).gd_args = 0;                              \</span><br><span class="line">        (gate).gd_rsv1 = 0;                              \</span><br><span class="line">        (gate).gd_type = (istrap) ? STS_TG32 : STS_IG32; \</span><br><span class="line">        (gate).gd_s = 0;                                 \</span><br><span class="line">        (gate).gd_dpl = (dpl);                           \</span><br><span class="line">        (gate).gd_p = 1;                                 \</span><br><span class="line">        (gate).gd_off_31_16 = (uint32_t)(off) &gt;&gt; 16;     \</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">/* Gate descriptors for interrupts and traps */</span><br><span class="line">struct gatedesc &#123;</span><br><span class="line">    unsigned gd_off_15_0 : 16;   // low 16 bits of offset in segment</span><br><span class="line">    unsigned gd_ss : 16;         // segment selector</span><br><span class="line">    unsigned gd_args : 5;        // # args, 0 for interrupt/trap gates</span><br><span class="line">    unsigned gd_rsv1 : 3;        // reserved(should be zero I guess)</span><br><span class="line">    unsigned gd_type : 4;        // type(STS_&#123;TG,IG32,TG32&#125;)</span><br><span class="line">    unsigned gd_s : 1;           // must be 0 (system)</span><br><span class="line">    unsigned gd_dpl : 2;         // descriptor(meaning new) privilege level</span><br><span class="line">    unsigned gd_p : 1;           // Present</span><br><span class="line">    unsigned gd_off_31_16 : 16;  // high bits of offset in segment</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main(int argc, char const* argv[]) &#123;</span><br><span class="line">    unsigned intr = 8;</span><br><span class="line"></span><br><span class="line">    gatedesc gate = *(gatedesc*)&amp;intr;</span><br><span class="line">    SETGATE(gate, 1, 2, 3, 0);</span><br><span class="line"></span><br><span class="line">    intr = *(unsigned*)&amp;gate;</span><br><span class="line">    printf(&quot;0x%x\n&quot;, intr);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为0x20003，若将SETGATE(gate, 1, 2, 3, 0)改为SETGATE(gate, 0, 1, 2, 3)，则结果为0x10002。</p>
+<h3>实践练习</h3>
+<p><strong>请在ucore中找一段你认为难度适当的AT&amp;T格式X86汇编代码，尝试解释其含义。</strong></p>
+<p>那就找一下后期的用于切换上下文的switch.S。把当前寄存器保存在<code>struct context from</code>中，再从<code>struct context to</code>中恢复寄存器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">struct context &#123;</span><br><span class="line">    uint32_t eip;</span><br><span class="line">    uint32_t esp;</span><br><span class="line">    uint32_t ebx;</span><br><span class="line">    uint32_t ecx;</span><br><span class="line">    uint32_t edx;</span><br><span class="line">    uint32_t esi;</span><br><span class="line">    uint32_t edi;</span><br><span class="line">    uint32_t ebp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这段代码其实很简单。核心问题是栈如何被操纵。开始时，栈顶是返回地址，下面（<code>esp-4</code>）是<code>from</code>（因为参数是从右往左压栈的），再下面是<code>to</code>。系统先从栈中取出<code>from</code>，然后把该函数的返回地址弹出，保存到<code>from-&gt;eip</code>中。然后依次保存各个通用寄存器（段寄存器不需要保存，因为内核线程之间这些寄存器都一样）。因为<code>eax</code>中保存的总是返回值，所以可以不保存它，简化代码。之后就是从栈中再取出<code>to</code>，恢复通用寄存器，最后把<code>to-&gt;eip</code>入栈，保证返回之后能跳转到正确地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">.text</span><br><span class="line">.globl switch_to</span><br><span class="line">switch_to:                      # switch_to(from, to)</span><br><span class="line"></span><br><span class="line">    # save from&apos;s registers</span><br><span class="line">    movl 4(%esp), %eax          # eax points to from</span><br><span class="line">    popl 0(%eax)                # save eip !popl</span><br><span class="line">    movl %esp, 4(%eax)</span><br><span class="line">    movl %ebx, 8(%eax)</span><br><span class="line">    movl %ecx, 12(%eax)</span><br><span class="line">    movl %edx, 16(%eax)</span><br><span class="line">    movl %esi, 20(%eax)</span><br><span class="line">    movl %edi, 24(%eax)</span><br><span class="line">    movl %ebp, 28(%eax)</span><br><span class="line"></span><br><span class="line">    # restore to&apos;s registers</span><br><span class="line">    movl 4(%esp), %eax          # not 8(%esp): popped return address already</span><br><span class="line">                                # eax now points to to</span><br><span class="line">    movl 28(%eax), %ebp</span><br><span class="line">    movl 24(%eax), %edi</span><br><span class="line">    movl 20(%eax), %esi</span><br><span class="line">    movl 16(%eax), %edx</span><br><span class="line">    movl 12(%eax), %ecx</span><br><span class="line">    movl 8(%eax), %ebx</span><br><span class="line">    movl 4(%eax), %esp</span><br><span class="line"></span><br><span class="line">    pushl 0(%eax)               # push eip</span><br><span class="line"></span><br><span class="line">    ret</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>宏定义和引用在内核代码中很常用。请枚举ucore中宏定义的用途，并举例描述其含义。</strong></p>
+<p>参考答案给出了3点：</p>
+<ul>
+<li>利用宏进行复杂数据结构中的数据访问；</li>
+<li>利用宏进行数据类型转换；如 <code>to_struct</code></li>
+<li>常用功能的代码片段优化；如 <code>ROUNDDOWN</code>, <code>SetPageDirty</code></li>
+</ul>
+<p>我觉得很有道理。因为现在手边没有代码，所以就不粘贴了，反正不是重点。</p>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-04-08T11:01:37+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2018-04-08
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;OS</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/os-mooc-lecture-3-summary/" rel="prev" title="《操作系统》第3讲：“启动、中断、异常和系统调用”总结">
+                                  
+                                      《操作系统》第3讲：“启动、中断、异常和系统调用”总结
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/os-mooc-lecture-1-summary/" rel="prev" title="《操作系统》第1讲：“操作系统概述”总结">
+                                    
+                                        《操作系统》第1讲：“操作系统概述”总结
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '《操作系统》第2讲：“实验0-操作系统实验环境准备”总结',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">课程内容概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">实验具体内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">X86-32硬件简单介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">uCore的部分编程技巧和数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">函数指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">链表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">编写和调试工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">习题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">选择填空题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">简答题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">实践练习</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

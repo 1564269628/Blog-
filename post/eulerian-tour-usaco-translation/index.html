@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>翻译：欧拉路（USACO） | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">翻译：欧拉路（USACO）</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2019-02-09
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>这是几乎全部机翻的版本。几乎可以肯定的是，这个翻译需要改进。</p>
+<!-- Sample Problem: Riding The Fences -->
+<h2>例题：穿越栅栏</h2>
+<!-- Farmer John owns a large number of fences, which he must periodically check for integrity. Farmer John keeps track of his fences by maintaining a list of their intersection points, along with the fences which end at each point. Each fence has two end points, each at an intersection point, although the intersection point may be the end point of only a single fence. Of course, more than two fences might share an endpoint. -->
+<blockquote>
+<p>农夫约翰拥有大量围栏，他必须定期检查它们的完整性。农民约翰通过维护围栏的交叉点列表，以及在每个交叉点点结束的围栏来跟踪它们。每个围栏有两个端点，每个端点位于一个交叉点，交叉点可能只是单个围栏的终点。当然，两个以上的围栏也可能共享一个端点。</p>
+</blockquote>
+<!-- Given the fence layout, calculate if there is a way for Farmer John to ride his horse to all of his fences without riding along a fence more than once. Farmer John can start and end anywhere, but cannot cut across his fields (the only way he can travel between intersection points is along a fence). If there is a way, find one way. -->
+<blockquote>
+<p>给定围栏的布局，计算农夫约翰是否有办法骑马去他所有的围栏，且不需要不止一次地穿越围栏。约翰可以在任何地方开始和结束，但不能穿过他的田地（在交叉点之间穿行的唯一方法是沿着围栏）。如果有方法，找出一种方法。</p>
+</blockquote>
+<!-- The Abstraction -->
+<h2>问题的抽象</h2>
+<!-- Given: An undirected graph -->
+<blockquote>
+<p>给定：无向图</p>
+</blockquote>
+<!-- Find a path which uses every edge exactly once. This is called an Eulerian tour. If the path begins and ends at the same vertex, it is called a Eulerian circuit. -->
+<blockquote>
+<p>找到一条只使用每条边一次的路径。这样的路径称为欧拉路径。如果路径在同一顶点开始和结束，则称为欧拉回路。</p>
+</blockquote>
+<!-- The Algorithm -->
+<h2>算法</h2>
+<!-- Detecting whether a graph has an Eulerian tour or circuit is actually easy; two different rules apply. -->
+<blockquote>
+<p>检查图中是否有欧拉路径或回路实际上很容易; 使用下列两条规则。</p>
+</blockquote>
+<!-- A graph has an Eulerian circuit if and only if it is connected (once you throw out all nodes of degree 0) and every node has `even degree'. -->
+<!-- A graph has an Eulerian path if and only if it is connected and every node except two has even degree. -->
+<!-- In the second case, one of the two nodes which has odd degree must be the start node, while the other is the end node. -->
+<blockquote>
+<ul>
+<li>图中有欧拉回路，当且仅当它是连通图（在去掉度数为0的所有结点之后），且每个结点具有“偶数度”。</li>
+<li>图中有欧拉路径，当且仅当它是连通图，且除了两个结点之外的每个结点的度数均为偶数。</li>
+<li>在第二种情况下，具有奇数度的两个结点中的一个必须是起始结点，而另一个是结束结点。</li>
+</ul>
+</blockquote>
+<!-- The basic idea of the algorithm is to start at some node the graph and determine a circuit back to that same node. Now, as the circuit is added (in reverse order, as it turns out), the algorithm ensures that all the edges of all the nodes along that path have been used. If there is some node along that path which has an edge that has not been used, then the algorithm finds a circuit starting at that node which uses that edge and splices this new circuit into the current one. This continues until all the edges of every node in the original circuit have been used, which, since the graph is connected, implies that all the edges have been used, so the resulting circuit is Eulerian. -->
+<blockquote>
+<p>算法的基本思想是从图的某个结点开始，并确定回到同一结点的回路。现在，随着回路的添加（事实上是以逆序），算法确保从该路径上所有结点出发的所有边都已被使用。如果该路径上还存在一些具有未使用的边的结点，则算法找到从该结点开始的使用这条边的回路，并将该新回路拼接到当前回路中。这一直持续到原始回路中每个结点的所有边都被使用为止，由于图是连通的，这意味着已经使用了所有边，因此得到的回路是欧拉回路。</p>
+</blockquote>
+<!-- More formally, to determine a Eulerian circuit of a graph which has one, pick a starting node and recurse on it. At each recursive step: -->
+<blockquote>
+<p>更正式地说，要确定一个含有欧拉回路的图中的欧拉回路，选择一个起始结点并对其进行递归。在每个递归步骤中：</p>
+</blockquote>
+<!-- Pick a starting node and recurse on that node. At each step: -->
+<!-- If the node has no neighbors, then append the node to the circuit and return -->
+<!-- If the node has a neighbor, then make a list of the neighbors and process them (which includes deleting them from the list of nodes on which to work) until the node has no more neighbors -->
+<!-- To process a node, delete the edge between the current node and its neighbor, recurse on the neighbor, and postpend the current node to the circuit. -->
+<blockquote>
+<ul>
+<li>选择一个起始结点并对该结点进行递归。在每一步中：</li>
+<li>如果结点没有邻居，则将结点加入到回路中并返回</li>
+<li>如果结点具有邻居，则创建邻居列表并对其进行处理（包括从需要处理的结点列表中删除它们），直到该节点不再有邻居为止</li>
+<li>为了处理结点，删除当前结点与其邻居之间的边，递归邻居，然后将当前结点加入到电路中。</li>
+</ul>
+</blockquote>
+<!-- And here's the pseudocode: -->
+<blockquote>
+<p>这是伪代码：</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># circuit是一个全局数组</span></span><br><span class="line">find_euler_circuit</span><br><span class="line">    circuitpos = <span class="number">0</span></span><br><span class="line">    find_circuit(node <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># nextnode和visited是局部数组</span></span><br><span class="line"><span class="comment"># 将以逆序找到路径</span></span><br><span class="line">find_circuit(node i)</span><br><span class="line">    <span class="keyword">if</span> 结点i没有邻居 then</span><br><span class="line">      circuit(circuitpos) = 结点i</span><br><span class="line">      circuitpos = circuitpos + <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">while</span> (结点i有邻居)</span><br><span class="line">          随机选择结点i的邻居结点j</span><br><span class="line">          delete_edges (结点j, 结点i)</span><br><span class="line">          find_circuit (结点j)</span><br><span class="line">      circuit(circuitpos) = 结点i</span><br><span class="line">      circuitpos = circuitpos + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<!-- To find an Eulerian tour, simply find one of the nodes which has odd degree and call find_circuit with it. -->
+<blockquote>
+<p>为了找到欧拉路径，只需找到其中一个具有奇数度的结点，并对它调用<code>find_circuit</code>。</p>
+</blockquote>
+<!-- Both of these algorithms run in O(m + n) time, where m is the number of edges and n is the number of nodes, if you store the graph in adjacency list form. With larger graphs, there's a danger of overflowing the run-time stack, so you might have to use your own stack. -->
+<blockquote>
+<p>这两种算法的时间复杂度都是O(m + n)，其中m是边数，n是结点数，如果图是以邻接表形式存储的话。对于较大的图，存在运行时栈溢出的风险，因此你可能需要使用自己的栈。</p>
+</blockquote>
+<!-- Execution Example -->
+<h2>执行示例</h2>
+<!-- Consider the following graph:  -->
+<blockquote>
+<p>考虑下图：</p>
+</blockquote>
+<p><img src="euler1.gif" alt=""></p>
+<!-- Assume that selecting a random neighbor yields the lowest numbered neighbor, the execution goes as follows: -->
+<blockquote>
+<p>假设选择随机邻居时选择的是编号最小的邻居，算法执行过程如下：</p>
+</blockquote>
+<p><img src="euler2a.gif" alt=""></p>
+<!-- Stack: 
+Location: 1 
+Circuit: -->
+<blockquote>
+<p>栈：<br>
+当前位置：1<br>
+回路：</p>
+</blockquote>
+<p><img src="euler2b.gif" alt=""></p>
+<!-- Stack: 1 
+Location: 4 
+Circuit: -->
+<blockquote>
+<p>栈：1<br>
+当前位置：4<br>
+回路：</p>
+</blockquote>
+<p><img src="euler2c.gif" alt=""></p>
+<!-- Stack: 1 4 
+Location: 2 
+Circuit: -->
+<blockquote>
+<p>栈：1 4<br>
+当前位置：2<br>
+回路：</p>
+</blockquote>
+<p><img src="euler2d.gif" alt=""></p>
+<!-- Stack: 1 4 2 
+Location: 5 
+Circuit: -->
+<blockquote>
+<p>栈：1 4 2<br>
+当前位置：5<br>
+回路：</p>
+</blockquote>
+<p><img src="euler2e.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 
+Location: 1 
+Circuit: -->
+<blockquote>
+<p>栈：1 4 2 5<br>
+当前位置：1<br>
+回路：</p>
+</blockquote>
+<p><img src="euler2e.gif" alt=""></p>
+<!-- Stack: 1 4 2 
+Location: 5 
+Circuit: 1 -->
+<blockquote>
+<p>栈：1 4 2<br>
+当前位置：5<br>
+回路：1</p>
+</blockquote>
+<p><img src="euler2f.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 
+Location: 6 
+Circuit: 1 -->
+<blockquote>
+<p>栈：1 4 2 5<br>
+当前位置：6<br>
+回路：1</p>
+</blockquote>
+<p><img src="euler2g.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 
+Location: 2 
+Circuit: 1 -->
+<blockquote>
+<p>栈：1 4 2 5 6<br>
+当前位置：2<br>
+回路：1</p>
+</blockquote>
+<p><img src="euler2h.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 
+Location: 7 
+Circuit: 1 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2<br>
+当前位置：7<br>
+回路：1</p>
+</blockquote>
+<p><img src="euler2i.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 7 
+Location: 3 
+Circuit: 1 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2 7<br>
+当前位置：3<br>
+回路：1</p>
+</blockquote>
+<p><img src="euler2j.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 7 3 
+Location: 4 
+Circuit: 1 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2 7 3<br>
+当前位置：4<br>
+回路：1</p>
+</blockquote>
+<p><img src="euler2k.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 7 3 4 
+Location: 6 
+Circuit: 1 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2 7 3 4<br>
+当前位置：6<br>
+回路：1</p>
+</blockquote>
+<p><img src="euler2l.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 7 3 4 6 
+Location: 7 
+Circuit: 1 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2 7 3 4 6<br>
+当前位置：7<br>
+回路：1</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 7 3 4 6 7 
+Location: 5 
+Circuit: 1 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2 7 3 4 6 7<br>
+当前位置：5<br>
+回路：1</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 7 3 4 6 
+Location: 7 
+Circuit: 1 5 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2 7 3 4 6<br>
+当前位置：7<br>
+回路：1 5</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 7 3 4 
+Location: 6 
+Circuit: 1 5 7 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2 7 3 4<br>
+当前位置：6<br>
+回路：1 5 7</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 7 3 
+Location: 4 
+Circuit: 1 5 7 6 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2 7 3<br>
+当前位置：4<br>
+回路：1 5 7 6</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 7 
+Location: 3 
+Circuit: 1 5 7 6 4 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2 7<br>
+当前位置：3<br>
+回路：1 5 7 6 4</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 2 
+Location: 7 
+Circuit: 1 5 7 6 4 3 -->
+<blockquote>
+<p>栈：1 4 2 5 6 2<br>
+当前位置：7<br>
+回路：1 5 7 6 4 3</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 6 
+Location: 2 
+Circuit: 1 5 7 6 4 3 7 -->
+<blockquote>
+<p>栈：1 4 2 5 6<br>
+当前位置：2<br>
+回路：1 5 7 6 4 3 7</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 2 5 
+Location: 6 
+Circuit: 1 5 7 6 4 3 7 2 -->
+<blockquote>
+<p>栈：1 4 2 5<br>
+当前位置：6<br>
+回路：1 5 7 6 4 3 7 2</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 2 
+Location: 5 
+Circuit: 1 5 7 6 4 3 7 2 6 -->
+<blockquote>
+<p>栈：1 4 2<br>
+当前位置：5<br>
+回路：1 5 7 6 4 3 7 2 6</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 4 
+Location: 2 
+Circuit: 1 5 7 6 4 3 7 2 6 5 -->
+<blockquote>
+<p>栈：1 4<br>
+当前位置：2<br>
+回路：1 5 7 6 4 3 7 2 6 5</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 1 
+Location: 4 
+Circuit: 1 5 7 6 4 3 7 2 6 5 2 -->
+<blockquote>
+<p>栈：1<br>
+当前位置：4<br>
+回路：1 5 7 6 4 3 7 2 6 5 2</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 
+Location: 1 
+Circuit: 1 5 7 6 4 3 7 2 6 5 2 4 -->
+<blockquote>
+<p>栈：<br>
+当前位置：1<br>
+回路：1 5 7 6 4 3 7 2 6 5 2 4</p>
+</blockquote>
+<p><img src="euler2m.gif" alt=""></p>
+<!-- Stack: 
+Location: 
+Circuit: 1 5 7 6 4 3 7 2 6 5 2 4 1 -->
+<blockquote>
+<p>栈：<br>
+当前位置：<br>
+回路：1 5 7 6 4 3 7 2 6 5 2 4 1</p>
+</blockquote>
+<!-- Extensions -->
+<h2>扩展</h2>
+<!-- Multiple edges between nodes can be handled by the exact same algorithm. -->
+<blockquote>
+<p>重边可以通过完全相同的算法来处理。</p>
+</blockquote>
+<!-- Self-loops can be handled by the exact same algorithm as well, if self-loops are considered to add 2 (one in and one out) to the degree of a node. -->
+<blockquote>
+<p>如果认为自环会为结点度数增加2（一进一出），则自环也可以通过完全相同的算法来处理。</p>
+</blockquote>
+<!-- A directed graph has a Eulerian circuit if it is strongly connected (except for nodes with both in-degree and out-degree of 0) and the indegree of each node equals its outdegree. The algorithm is exactly the same, except that because of the way this code finds the cycle, you must traverse arcs in reverse order. -->
+<blockquote>
+<p>有向图仅当强连通且每个结点的入度等于出度时才有欧拉回路（除了入度和出度均为0的节点）。算法完全相同，只是由于此代码找到环路的方式，您必须以相反的顺序遍历边。</p>
+</blockquote>
+<!-- Finding a Eulerian path in a directed graph is harder. Consult Sedgewick if you are interested. -->
+<blockquote>
+<p>在有向图中找到欧拉路径更难。如果您有兴趣，请阅读Sedgewick的书。</p>
+</blockquote>
+<!-- Example problems -->
+<h2>例题</h2>
+<!-- Airplane Hopping -->
+<h3>飞机跳跃</h3>
+<!-- Given a collection of cities, along with the flights between those cities, determine if there is a sequence of flights such that you take every flight exactly once, and end up at the place you started. -->
+<blockquote>
+<p>给定一系列城市，以及这些城市之间的航班，确定是否存在一个航班序列，使得你顺序搭乘每个航班一次，最后回到开始的地方。</p>
+</blockquote>
+<!-- Analysis: This is equivalent to finding a Eulerian circuit in a directed graph. -->
+<blockquote>
+<p>分析：这相当于在有向图中找到欧拉回路。</p>
+</blockquote>
+<!-- Cows on Parade -->
+<h3>行进中的奶牛</h3>
+<!-- Farmer John has two types of cows: black Angus and white Jerseys. While marching 19 of their cows to market the other day, John's wife Farmeress Joanne, noticed that all 16 possibilities of four successive black and white cows (e.g., bbbb, bbbw, bbwb, bbww, ..., wwww) were present. Of course, some of the combinations overlapped others. -->
+<p>农夫约翰有两种类型的奶牛：黑色安格斯奶牛和白色泽西奶牛。前几天约翰的妻子琼安将19头奶牛赶到市场上时，注意到四只连续黑白奶牛的所有16种可能性（例如，bbbb，bbbw，bbwb，bbww，...，wwww）都存在。当然，有些组合与其他组合重叠。</p>
+<!-- Given N (2 <= N <= 15), find the minimum length sequence of cows such that every combination of N successive black and white cows occurs in that sequence. -->
+<blockquote>
+<p>给定N（2 &lt;= N &lt;= 15），找到最小的奶牛长度序列，使得N个连续的黑色和白色奶牛的每个组合都出现在该序列中。</p>
+</blockquote>
+<!-- Analysis: The vertices of the graph are the possibilities of N-1 cows. Being at a node corresponds to the last N-1 cows matching the node in color. That is, for N = 4, if the last 3 cows were wbw, then you are at the wbw node. Each node has out-degree of 2, corresponding to adding a black or white cow to the end of the sequence. In addition, each node has in-degree of 2, corresponding to whether the cow just before the last N-1 cows is black or white. -->
+<blockquote>
+<p>分析：图的顶点是N-1头奶牛的可能颜色。位于一个结点处表示最后N-1头奶牛与该结点的颜色匹配。也就是说，对于N = 4，如果最后3头奶牛颜色是wbw，那么你就在wbw节点。每个节点的出度为2，对应于在序列末尾添加黑色或白色奶牛。另外，每个节点的入度为2，对应于最后N-1头奶牛之前的奶牛是黑色还是白色。</p>
+</blockquote>
+<p>嗯……为啥图的顶点是N-1头奶牛的可能颜色，而不是N头呢？</p>
+<!-- The graph is strongly connected, and the in-degree of each node equals its out-degree, so the graph has a Eulerian circuit. -->
+<blockquote>
+<p>图是强连通的，并且每个结点的入度等于出度，因此图中有欧拉回路。</p>
+</blockquote>
+<!-- The sequence corresponding to the Eulerian circuit is the sequence of N-1 cows of the first node in the circuit, followed by cows corresponding to the color of the edge. -->
+<blockquote>
+<p>和欧拉回路相对应的序列是回路中第一个结点对应的N-1头母牛的序列，之后再加上每条边对应的颜色。</p>
+</blockquote>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-02-09T20:54:04+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2019-02-09
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Translation/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Translation</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/USACO/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;USACO</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/leetcode-989-add-to-array-form-of-integer/" rel="prev" title="Leetcode 989. Add to Array-Form of Integer">
+                                  
+                                      Leetcode 989. Add to Array-Form of Integer
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Leetcode</a> <a class="tag" href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Leetcode Contest</a> <a class="tag" href="/tags/alg-Array/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>alg:Array</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/leetcode-988-smallest String Starting From Leaf（树）/" rel="prev" title="Leetcode 988. Smallest String Starting From Leaf（树）">
+                                    
+                                        Leetcode 988. Smallest String Starting From Leaf（树）
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Leetcode</a> <a class="tag" href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Leetcode Contest</a> <a class="tag" href="/tags/alg-Tree/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>alg:Tree</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '翻译：欧拉路（USACO）',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">例题：穿越栅栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">问题的抽象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">执行示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">飞机跳跃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">行进中的奶牛</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

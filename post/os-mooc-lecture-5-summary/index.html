@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>《操作系统》第5讲：“物理内存管理：连续内存分配”总结 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">《操作系统》第5讲：“物理内存管理：连续内存分配”总结</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-12
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h2>课程内容概述</h2>
+<p>本节课的内容比较简单。</p>
+<ul>
+<li>计算机体系结构和内存层次</li>
+<li>地址空间和地址生成</li>
+<li>连续内存分配
+<ul>
+<li>三种不同的分类策略</li>
+<li>碎片整理</li>
+<li>伙伴系统</li>
+</ul>
+</li>
+<li>uCore中的连续内存管理实现框架</li>
+</ul>
+<h3>计算机体系结构和内存层次</h3>
+<p>讲了一些比较抽象的东西。<br>
+计算机体系结构由CPU、内存、I/O设备、总线组成。<br>
+CPU中包括：</p>
+<ul>
+<li>ALU、控制逻辑</li>
+<li>寄存器</li>
+<li>高速缓存：加快读写速度</li>
+<li>存储管理单元（MMU）<br>
+内存的特点：</li>
+<li>最小访问单位是字节（8bit）</li>
+<li>一次可以读/写4字节（32位），有地址对齐问题</li>
+</ul>
+<p>内存可以分为如下层次：</p>
+<ul>
+<li>CPU中：
+<ul>
+<li>L1缓存</li>
+<li>L2缓存</li>
+<li>这些缓存都是由硬件（MMU）来控制的，软件看不到</li>
+</ul>
+</li>
+<li>高速缓存未命中：（这之下由操作系统软件来控制）
+<ul>
+<li>内存</li>
+</ul>
+</li>
+<li>缺页：</li>
+<li>外存（虚拟内存）</li>
+</ul>
+<h4>操作系统的内存管理</h4>
+<p>OS内存管理的特点：</p>
+<ul>
+<li>每个字节有自己的物理地址</li>
+<li>分为内存和外存</li>
+<li>每个进程有自己用的内存片，它们自己的地址之间是可以重叠的。</li>
+<li>MMU：将逻辑（虚拟）地址空间转换为物理地址空间</li>
+</ul>
+<p>OS内存管理的目标：</p>
+<ul>
+<li>抽象：逻辑地址空间</li>
+<li>保护：独立地址空间</li>
+<li>共享：访问相同内存（虽然和保护有一定的矛盾）</li>
+<li>虚拟化：更大的地址空间</li>
+</ul>
+<p>操作系统采用的内存管理方式：</p>
+<ul>
+<li>重定位（relocation）：段地址+偏移</li>
+<li>分段（segmentation）：程序的逻辑结构不需要连成一片，而是分成代码、数据、堆栈3块，每一块的空间就减少了；但每段的内容是连续的</li>
+<li>分页（paging）：把内存分成最基本的单位</li>
+<li>虚拟存储（virtual memory）：目前多数系统（如Linux）采用的是按需页式虚拟存储</li>
+</ul>
+<p>内存管理方式的实现是高度依赖硬件的：</p>
+<ul>
+<li>与计算机存储架构紧密耦合</li>
+<li>MMU（内存管理单元）：处理CPU存储访问请求的硬件</li>
+</ul>
+<p>（当然，我很好奇为什么重定位也算是一种内存管理方式。）</p>
+<blockquote>
+<p>静态地址重定位：即在程序装入内存的过程中完成，是指在程序开始运行前，程序中的各个地址有关的项均已完成重定位，地址变换通常是在装入时一次完成的，以后不再改变，故成为静态重定位。<br>
+优点：无需硬件支持<br>
+缺点：1）程序重定位之后就不能在内存中搬动了；2）要求程序的存储空间是连续的，不能把程序放在若干个不连续的区域中。<br>
+动态地址重定位：不是在程序执行之前而是在程序执行过程中进行地址重定位。更确切的说，是在每次访问内存单元前才进行地址变换。动态重定位可使装配模块不加任何修改而装入内存，但是它需要硬件一定位寄存器的支持。<br>
+优点：1）目标模块装入内存时无需任何修改，因而装入之后再搬迁也不会影响其正确执行，这对于存储器紧缩、解决碎片问题是极其有利的；2）一个程序由若干个相对独立的目标模块组成时，每个目标模块各装入一个存储区域，这些存储区域可以不是顺序相邻的，只要各个模块有自己对应的定位寄存器就行。<br>
+缺点：需要硬件支持。<br>
+摘自<a href="https://blog.csdn.net/spaceyqy/article/details/39393877" target="_blank" rel="noopener">地址重定位：静态重定位和动态重定位</a></p>
+</blockquote>
+<h3>地址空间和地址生成</h3>
+<p>一般来说，地址空间至少有3种：</p>
+<ul>
+<li>物理地址空间：硬件支持的地址空间
+<ul>
+<li>起始地址0</li>
+<li>到MAXsys</li>
+</ul>
+</li>
+<li>线性地址空间：CPU看到的地址
+<ul>
+<li>起始地址0</li>
+<li>大小取决于地址线的宽度</li>
+</ul>
+</li>
+<li>逻辑地址空间：在CPU中运行的进程看到的地址
+<ul>
+<li>起始地址0</li>
+<li>到MAXprog</li>
+<li>也就是用户程序可见的地址</li>
+</ul>
+</li>
+</ul>
+<p>逻辑地址的生成需要经过如下几个过程：</p>
+<ul>
+<li>高级语言程序：写出函数</li>
+<li>编译：对源代码进行编译，成为汇编源代码，此时仍然用符号来指代函数</li>
+<li>汇编：汇编成二进制代码，用具体地址来代替符号了，但是有一些函数还没有找到</li>
+<li>链接：加入函数库，找到库函数的地址</li>
+<li>重定位：程序加载时进行，视程序实际位置改变符号地址</li>
+</ul>
+<p>一般来说，生成地址有几个时机：</p>
+<ul>
+<li>编译时（优点：简单）
+<ul>
+<li>假设起始地址已知</li>
+<li>但如果起始地址改变，就必须重新编译</li>
+<li>功能手机一般会有这种情况</li>
+</ul>
+</li>
+<li>加载时
+<ul>
+<li>如果加载时起始位置未知，编译器需生成可重定位的代码（relocatable code）</li>
+<li>加载时，生成绝对地址</li>
+</ul>
+</li>
+<li>执行时（优点：灵活）
+<ul>
+<li>执行时代码可移动</li>
+<li>需地址转换（映射）硬件支持（一般是虚拟存储）</li>
+</ul>
+</li>
+</ul>
+<h3>连续内存分配</h3>
+<p>一般分配给一个进程的地址空间是连续的，因此需要进行有效的内存分配。需求是，给进程分配一块不小于指定大小的连续的物理内存区域。定义<strong>碎片</strong>是过小的不能被利用的空闲内存，分为2类：</p>
+<ul>
+<li>外部碎片：分配单元之间的未被使用内存</li>
+<li>内部碎片：分配单元内部的未被使用内存（一般是否有内碎片取决于分配单元大小是否要取整）</li>
+</ul>
+<p>我们在uCore中进行的是动态分区分配，需要满足以下要求：</p>
+<ul>
+<li>当程序被加载执行时，分配一个进程指定大小可变的分区（块）</li>
+<li>分区的地址是连续的</li>
+</ul>
+<p>一般来说，操作系统需要维护至少2个数据结构，里面存储的内容是：</p>
+<ul>
+<li>所有进程的已分配分区</li>
+<li>空闲分区（Empty-blocks）</li>
+</ul>
+<p>常见的几种连续内存分配策略包括：</p>
+<ul>
+<li>最先匹配（First-fit）</li>
+<li>最佳匹配（Best-fit）</li>
+<li>最差匹配（worst-fit）</li>
+</ul>
+<p>总的来说，这些匹配方法各有优劣，至于到底是什么优劣，与使用场景关系很大。</p>
+<h4>三种不同的分类策略</h4>
+<h5>最先匹配（First Fit Allocation）策略</h5>
+<p>思路：需要分配n个字节时，使用第一个可用的空间比n大的空闲块</p>
+<p>原理和实现：</p>
+<ul>
+<li>空闲分区列表按地址顺序排序</li>
+<li>分配时搜索第一个合适的分区</li>
+<li>释放分区时，检查是否可与邻近的空闲分区合并</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>简单</li>
+<li>在高地址空间有大块的空闲分区</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>容易产生外部碎片</li>
+<li>分配大块时较慢</li>
+</ul>
+<h4>最佳匹配（Best Fit Allocation）策略</h4>
+<p>思路：分配n字节内存时，查找并使用不小于n的最小空闲分区</p>
+<p>原理和实现：</p>
+<ul>
+<li>空闲分区列表按照大小排序</li>
+<li>分配时，查找一个合适的分区</li>
+<li>释放时，查找并合并邻近的空闲分区（如果找到）</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>大部分分配的尺寸较小时，效果很好
+<ul>
+<li>可避免大的空闲分区被拆分</li>
+<li>可减小外部碎片的大小</li>
+<li>相对简单</li>
+</ul>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>外部碎片较多</li>
+<li>释放分区较慢</li>
+<li>容易产生很多无用的小碎片</li>
+</ul>
+<h4>最差匹配（Worst Fit Allocation）策略</h4>
+<p>思路：分配n字节时，使用尺寸不小于n的最大空闲分区</p>
+<p>原理和实现：</p>
+<ul>
+<li>空闲分区列表按由大到小排序</li>
+<li>分配时，选最大的分区</li>
+<li>释放时，检查是否可与邻近的空闲分区合并，进行可能的合并，并调整空闲分区列表顺序</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>中等大小的分配较多时，效果最好</li>
+<li>避免出现太多的小碎片</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>释放分区较慢</li>
+<li>外部碎片较多</li>
+<li>容易破坏大的空闲分区，因此难以分配大的分区</li>
+</ul>
+<h4>碎片整理</h4>
+<p>上述方法都会产生外碎片。（但是不会产生内碎片，因为是按需分配的）如果碎片太多，就有可能出现，即使空余内存总数足够大，也无法分配出一块连续内存的情况。为此就需要进行碎片整理。碎片整理的定义是通过调整进程占用的分区位置来减少或避免分区碎片。一般有两种碎片整理的方法</p>
+<ul>
+<li>紧凑（compaction）通过移动分配给进程的内存分区，以合并外部碎片
+<ul>
+<li>进行碎片紧凑的条件：所有的应用程序可动态重定位</li>
+<li>需要在应用程序等待时进行移动</li>
+<li>需要考虑开销</li>
+</ul>
+</li>
+<li>分区对换（Swapping in/out）：通过抢占并回收处于等待状态进程的分区，以增大可用内存空间
+<ul>
+<li>这就让更多进程能够在内存里交替运行</li>
+<li>需要解决的问题：交换哪个（些）进程？</li>
+<li>swap分区在linux中是耳熟能详的，在早期很有用，但代价很大，因为外存的速度远远慢于内存</li>
+<li>有了虚拟页式存储之后，纯粹的分区对换的意义就不大了</li>
+</ul>
+</li>
+</ul>
+<h4>伙伴系统</h4>
+<p>伙伴系统（Buddy System）是一种连续存储分配的办法，它解决了分配位置和碎片的问题。</p>
+<p>假定整个可分配的分区大小为$2^u$，伙伴系统的分配和释放过程如下：</p>
+<ul>
+<li>分配过程：
+<ul>
+<li>需要的分区大小为$2^{u-1} &lt; s \le 2^u$时，把整个块分配给该进程</li>
+<li>若$s \le 2^{i-1} - 1$，则将大小为$2^i$的当前空闲分区划分成两个大小为$2^{i-1} - 1$的空闲分区</li>
+<li>重复划分过程，直到$2^{i-1} &lt; s \le 2^i$，并把一个空闲分区分配给该进程</li>
+</ul>
+</li>
+<li>释放过程：
+<ul>
+<li>将进程占用的块释放</li>
+<li>查看它能否与相邻的空闲块合并（注意边界条件）</li>
+<li>如果能合并，则不断合并到不能再合并为止</li>
+</ul>
+</li>
+</ul>
+<p>由分析可知，内碎片的大小最多是$2^{i-1} - 1$，没有外碎片。</p>
+<h5>伙伴系统的具体实现</h5>
+<p>数据结构：</p>
+<ul>
+<li>空闲块按大小和起始地址组织成二维数组（或者说一维数组+一维链表）</li>
+<li>第一维：大小；第二维：地址</li>
+<li>初始状态：只有一个大小为$2^u$的空闲块</li>
+</ul>
+<p>分配过程：</p>
+<ul>
+<li><strong>由小到大</strong> 在空闲块数组中找最小的可用空闲块（只要有合适的空闲块，就不切分大块，这是隐含的一个原则吧）</li>
+<li>如果块太大，则对可用空闲块进行二等分，直到得到合适大小的块</li>
+</ul>
+<p>释放过程：</p>
+<ul>
+<li>把释放的块放入空闲块数组</li>
+<li>合并满足合并条件的空闲块，合并条件是：
+<ul>
+<li>大小相同，均为$2^i$</li>
+<li>地址相邻</li>
+<li>相邻两块的低地址必须是2^(i+1)的倍数</li>
+</ul>
+</li>
+</ul>
+<h3>uCore中的连续内存管理实现框架</h3>
+<p>这部分就比较简略了。简单来说，uCore定义了一个<code>struct pmm_manager</code>的数据结构，其中保存了各种操作（如分配、释放等）对应的函数指针。因此，可以定义各种不同的管理方法函数，并把函数指针放到该结构体的实例中。这很面向对象了。下面的代码摘自<code>lab2/kern/mm/pmm.h</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// pmm_manager is a physical memory management class. A special pmm manager - XXX_pmm_manager</span><br><span class="line">// only needs to implement the methods in pmm_manager class, then XXX_pmm_manager can be used</span><br><span class="line">// by ucore to manage the total physical memory space.</span><br><span class="line">struct pmm_manager &#123;</span><br><span class="line">    const char *name;                                 // XXX_pmm_manager&apos;s name</span><br><span class="line">    void (*init)(void);                               // initialize internal description&amp;management data structure</span><br><span class="line">                                                      // (free block list, number of free block) of XXX_pmm_manager</span><br><span class="line">    void (*init_memmap)(struct Page *base, size_t n); // setup description&amp;management data structcure according to</span><br><span class="line">                                                      // the initial free physical memory space</span><br><span class="line">    struct Page *(*alloc_pages)(size_t n);            // allocate &gt;=n pages, depend on the allocation algorithm</span><br><span class="line">    void (*free_pages)(struct Page *base, size_t n);  // free &gt;=n pages with &quot;base&quot; addr of Page descriptor structures(memlayout.h)</span><br><span class="line">    size_t (*nr_free_pages)(void);                    // return the number of free pages</span><br><span class="line">    void (*check)(void);                              // check the correctness of XXX_pmm_manager</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后就可以定义一个<code>default_pmm_manager</code>用来对内存进行管理了（<code>lab2/kern/mm/default_pmm.c</code>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const struct pmm_manager default_pmm_manager = &#123;</span><br><span class="line">    .name = &quot;default_pmm_manager&quot;,</span><br><span class="line">    .init = default_init,</span><br><span class="line">    .init_memmap = default_init_memmap,</span><br><span class="line">    .alloc_pages = default_alloc_pages,</span><br><span class="line">    .free_pages = default_free_pages,</span><br><span class="line">    .nr_free_pages = default_nr_free_pages,</span><br><span class="line">    .check = default_check,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2>练习</h2>
+<h3>选择填空题</h3>
+<p><strong>操作系统中可采用的内存管理方式包括()</strong></p>
+<ul>
+<li><strong>重定位(relocation)</strong></li>
+<li><strong>分段(segmentation</strong></li>
+<li><strong>分页(paging)</strong></li>
+<li><strong>段页式（segmentation+paging）</strong></li>
+</ul>
+<p>都有。虽然我还是很难想象重定位是内存管理方式，这难道不是进程的管理方式么，虽然能够把进程在内存中搬移大概是上述几种分配策略的前提……</p>
+<hr>
+<p><strong>在启动页机制的情况下，在CPU运行的用户进程访问的地址空间是()</strong></p>
+<ul>
+<li>物理地址空间</li>
+<li><strong>逻辑地址空间</strong></li>
+<li>外设地址空间</li>
+<li>都不是</li>
+</ul>
+<p>用户进程访问的内存地址是虚拟地址。虚拟地址加上对应的段选择子构成逻辑地址。逻辑地址经过分段翻译成线性地址。线性地址经过分页翻译成物理地址。（但是，即使没有启动页机制，用户进程访问的地址空间也应该是逻辑地址空间吧）</p>
+<hr>
+<p><strong>连续内存分配的算法中，会产生外碎片的是()</strong></p>
+<ul>
+<li><strong>最先匹配算法</strong></li>
+<li><strong>最差匹配算法</strong></li>
+<li><strong>最佳匹配算法</strong></li>
+<li>都不会</li>
+</ul>
+<p>三种算法都会有外碎片，而没有内碎片。相比之下，分页不会有外碎片，只会有内碎片。伙伴系统是可能会产生外碎片的，当然也有内碎片。</p>
+<hr>
+<p><strong>在使能分页机制的情况下，更合适的外碎片整理方法是()</strong></p>
+<ul>
+<li>紧凑(compaction)</li>
+<li>分区对换(Swapping in/out)</li>
+<li><strong>都不是</strong></li>
+</ul>
+<p>分页方式不会有外碎片。虽然很对，但这道题完全毫无意义。</p>
+<hr>
+<p><strong>描述伙伴系统(Buddy System)特征正确的是()</strong></p>
+<ul>
+<li><strong>多个小空闲空间可合并为大的空闲空间</strong></li>
+<li><strong>会产生外碎片</strong></li>
+<li><strong>会产生内碎片</strong></li>
+<li>都不对</li>
+</ul>
+<p>小空闲空间在满足一定条件时可以合并。因为是一个不断二分的过程，所以外碎片是可能会产生的。因为是分配2的幂大小的内存，所以内碎片也是有的。</p>
+<h3>简答题</h3>
+<p><strong>操作系统中存储管理的目标是什么？</strong></p>
+<ul>
+<li>抽象</li>
+<li>保护</li>
+<li>共享</li>
+<li>虚拟化</li>
+</ul>
+<hr>
+<p><strong>描述编译、汇编、链接和加载的过程是什么？</strong></p>
+<ul>
+<li>编译：将程序源代码转换为汇编代码</li>
+<li>汇编：将汇编代码转为二进制的机器码</li>
+<li>链接：将多个二进制的机器码结合成一个可执行环境</li>
+<li>加载：将程序从外存中加载到内存中</li>
+</ul>
+<p>这几个过程并不是完全分开的，例如动态加载的库通常在加载过程中进行链接。 详细过程可参考：<a href="http://blog.csdn.net/ajianyingxiaoqinghan/article/details/70889362" target="_blank" rel="noopener">http://blog.csdn.net/ajianyingxiaoqinghan/article/details/70889362</a></p>
+<hr>
+<p><strong>什么是内碎片、外碎片？</strong></p>
+<p>内碎片是指分配给任务的内存大小比任务所要求的大小所多出来的内存。外碎片指分配给任务的内存之间无法利用的内存。当然，一块内存是否为外碎片取决于需要分配的内存的大小。</p>
+<hr>
+<p><strong>最先匹配会越用越慢吗？请说明理由（可来源于猜想或具体的实验）？</strong></p>
+<p>最先匹配总是先找低地址空间的内存，到后期低地址空间都是大量小的不连续的内存空间，每次都要扫描低地址空间后到达高地质空间才能得到可用的内存。所以大概是会越用越慢的。</p>
+<hr>
+<p><strong>最差匹配的外碎片会比最优适配算法少吗？请说明理由（可来源于猜想或具体的实验）</strong></p>
+<p>应该会的。因为每次都找到最大的内存块进行分割，因此分割剩下的内存块也很大，往往还可以再装下一个程序。</p>
+<hr>
+<p><strong>理解0:最优匹配，1:最差匹配，2:最先匹配，3:buddy systemm算法中分区释放后的合并处理过程？ (optional)</strong></p>
+<p>它们的处理方式都是查看边上是否也有空闲块，如果有，则合并空闲块，然后将空闲块管理数据插入链表中。如果能进行合并，都需要连续合并。当然，伙伴系统的合并过程需要判断是否满足条件。</p>
+<hr>
+<p><strong>对换和紧凑都是碎片整理技术，它们的主要区别是什么？为什么在早期的操作系统中采用对换技术？</strong></p>
+<p>区别是，紧凑是在内存中搬动进程占用的内存位置，以合并出大块的空闲块；对换是把内存中的进程搬到外存中，以空出更多的内存空闲块。采用对换的原因是，处理简单。不过代价也比较高，因为外存比较慢。</p>
+<hr>
+<p><strong>一个处于等待状态的进程被对换到外存（对换等待状态）后，等待事件出现了。操作系统需要如何响应？</strong></p>
+<p>将进程从硬盘中读取到内存中，在这个过程中，操作系统将该进程标为等待状态并且调度其他进程。</p>
+<p>这道题似乎大跃进到第11讲的等待进程模型了。总之，就是进程从等待挂起状态转换到就绪挂起状态，然后在优先级足够高的时候从硬盘读入到内存，进入就绪状态，然后运行。当然，这个做法在现代操作系统里已经凉了。</p>
+<p><img src="proc_state.jpg" alt="进程状态转换过程"></p>
+<hr>
+<p><strong>伙伴系统的空闲块如何组织？</strong></p>
+<p>按照内存的大小由一系列链表组织。类似于哈希表，将相同大小的内存区域首地址连接起来。（因为一般来说，内存要按首地址大小排列，链表的插入删除比较简单啊）</p>
+<hr>
+<p><strong>伙伴系统的内存分配流程？</strong></p>
+<p>当向内核请求分配$(2^{i-1}，2^i]$数目的页块时，按照$2^i$大小的块来请求处理。如果对应的块链表中没有空闲页块，则在更大的页块链表中找空闲块，并将大块进行切分，直到得到满足要求的块。如果切出了多余的块，伙伴系统会将这些块插入到对应的空闲页块链表中。</p>
+<hr>
+<p><strong>伙伴系统的内存回收流程？</strong></p>
+<p>当释放多页的块时，内核首先计算出该内存块的伙伴的地址。内核将满足以下条件的三个块称为伙伴：</p>
+<ol>
+<li>两个块具有相同的大小，记作b。</li>
+<li>它们的物理地址是连续的。</li>
+<li>第一块的第一个页的物理地址是$2 * (2^b)$的倍数。</li>
+</ol>
+<p>如果找到了该内存块的伙伴，确保该伙伴的所有页都是空闲的，以便进行合并。内存继续检查合并后页块的“伙伴”并检查是否可以合并，依次类推。</p>
+<p>（所以才叫伙伴系统，了解了）</p>
+<h3>实践题</h3>
+<p><strong>动态链接如何使用？尝试在Linux平台上使用LD_DEBUG查看一个C语言Hello world的启动流程。</strong></p>
+<p><a href="https://blog.csdn.net/stanjiang2010/article/details/7069808" target="_blank" rel="noopener">编译链接和加载</a></p>
+<p>LD_DEBUG 是Linux平台查看程序运行加载库的重要工具，其可以详细的列出程序执行时如何加载相应符号的。 通过LD_DEBUG =help查看如何使用, LD_DEBUG=all ./hello 完成题目</p>
+<p>显然这道题我没有做。</p>
+<hr>
+<p><strong>观察最先匹配、最佳匹配和最差匹配这几种动态分区分配算法的工作过程，并选择一个例子进行分析分析整个工作过程中的分配和释放操作对维护数据结构的影响和原因。</strong></p>
+<hr>
+<p><strong>请参考xv6（umalloc.c），ucore lab2代码，选择四种（0:最优匹配，1:最差匹配，2:最先匹配，3:buddy systemm）分配算法中的一种或多种，在Linux应用程序/库层面，用C、C++或python来实现malloc/free，给出你的设计思路，并给出可以在Linux上运行的malloc/free实现和测试用例。 可参考：<a href="https://github.com/shellphish/how2heap" target="_blank" rel="noopener">https://github.com/shellphish/how2heap</a></strong></p>
+<hr>
+<p><strong>阅读slab分配算法，尝试在应用程序中实现slab分配算法，给出设计方案和测试用例。 可参考： <a href="https://github.com/bbu/userland-slab-allocator" target="_blank" rel="noopener">https://github.com/bbu/userland-slab-allocator</a></strong></p>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-04-12T21:44:44+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2018-04-12
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;OS</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/os-mooc-lecture-6-summary/" rel="prev" title="《操作系统》第6讲：“物理内存管理：非连续内存分配”总结">
+                                  
+                                      《操作系统》第6讲：“物理内存管理：非连续内存分配”总结
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/os-mooc-lecture-4-summary/" rel="prev" title="《操作系统》第4讲：“实验1-系统软件启动过程”总结">
+                                    
+                                        《操作系统》第4讲：“实验1-系统软件启动过程”总结
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '《操作系统》第5讲：“物理内存管理：连续内存分配”总结',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">课程内容概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">计算机体系结构和内存层次</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">操作系统的内存管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">地址空间和地址生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">连续内存分配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">三种不同的分类策略</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">最先匹配（First Fit Allocation）策略</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">最佳匹配（Best Fit Allocation）策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">最差匹配（Worst Fit Allocation）策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">碎片整理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">伙伴系统</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">伙伴系统的具体实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">uCore中的连续内存管理实现框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">练习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">选择填空题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">简答题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">实践题</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

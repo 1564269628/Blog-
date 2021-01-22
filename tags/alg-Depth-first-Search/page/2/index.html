@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Tag: alg:Depth-first Search | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+    <script>
+        window.subData= { title:'标签 : alg:Depth-first Search'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/usaco-1-5-2-mother-s-milk/">
+              
+                  USACO 1.5.2: Mother's Milk（BFS）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-12-11
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2>题意</h2>
+<p>见<a href="https://www.luogu.org/problemnew/show/P1215" target="_blank" rel="noopener">P1215 [USACO1.4]母亲的牛奶 Mother's Milk</a>。</p>
+<p>有三个容量分别是A，B，C的桶，A，B，C是1到20的整数。初始状态下A和B都是空的，C是满的。可以从一个桶向另一个桶内倒牛奶，直到倒满或者倒空为止。问A为空时C中所有可能的牛奶体积。</p>
+<h2>分析</h2>
+<p>非常基础的搜索题。用DFS和BFS都可以。搜就是了……</p>
+<p>一种简化存储状态的方法是，只存两个桶内的牛奶数量，因为牛奶总数是不变的。（不过这个简化看起来没什么意思。）</p>
+<p>我看了看题解里所谓的动态规划方法，发现它做的事情与其说是“动态规划”，还不如说是类似于Bellman-Ford的不断松弛，发现一次松弛就继续更新……</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ID: zhanghu15</span></span><br><span class="line"><span class="comment">TASK: milk3</span></span><br><span class="line"><span class="comment">LANG: C++14</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> A, B, C;</span><br><span class="line"><span class="keyword">int</span> limit[<span class="number">3</span>];</span><br><span class="line"><span class="keyword">bool</span> states[<span class="number">21</span>][<span class="number">21</span>][<span class="number">21</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[<span class="number">21</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> s[<span class="number">3</span>])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s[<span class="number">0</span>] == <span class="number">0</span>) ans[s[<span class="number">2</span>]] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == j) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="comment">// pour from i to j</span></span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="number">0</span> || s[j] == limit[j]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> ns[<span class="number">3</span>];</span><br><span class="line">            <span class="keyword">if</span> (s[i] &lt;= limit[j] - s[j]) &#123;</span><br><span class="line">                ns[i] = <span class="number">0</span>;</span><br><span class="line">                ns[j] = s[j] + s[i];</span><br><span class="line">                ns[<span class="number">3</span>-i-j] = s[<span class="number">3</span>-i-j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                ns[i] = s[i] - (limit[j] - s[j]);</span><br><span class="line">                ns[j] = limit[j];</span><br><span class="line">                ns[<span class="number">3</span>-i-j] = s[<span class="number">3</span>-i-j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (states[ns[<span class="number">0</span>]][ns[<span class="number">1</span>]][ns[<span class="number">2</span>]]) <span class="keyword">continue</span>;</span><br><span class="line">            states[ns[<span class="number">0</span>]][ns[<span class="number">1</span>]][ns[<span class="number">2</span>]] = <span class="literal">true</span>;</span><br><span class="line">            dfs(ns);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">ofstream <span class="title">fout</span><span class="params">(<span class="string">"milk3.out"</span>)</span></span>;</span><br><span class="line">    <span class="function">ifstream <span class="title">fin</span><span class="params">(<span class="string">"milk3.in"</span>)</span></span>;</span><br><span class="line">    fin &gt;&gt; limit[<span class="number">0</span>] &gt;&gt; limit[<span class="number">1</span>] &gt;&gt; limit[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> s[<span class="number">3</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, limit[<span class="number">2</span>]&#125;;</span><br><span class="line">    dfs(s);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; limit[<span class="number">2</span>]; i++)</span><br><span class="line">        <span class="keyword">if</span> (ans[i])</span><br><span class="line">            fout &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    fout &lt;&lt; limit[<span class="number">2</span>] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/USACO/"><i class="fas fa-hashtag fa-fw"></i>USACO</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Breadth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Breadth-first Search</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-947-most-stones-removed-with-same-row-or-column/">
+              
+                  Leetcode 947. Most Stones Removed with Same Row or Column（DFS）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-25
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/description/" target="_blank" rel="noopener">https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：40ms</p>
+<h2>题意</h2>
+<p>给定一个2D平面和一些位于自然数坐标上的小石子（坐标不会重复）；如果某个石子和其他石子位于同一行同一列上，则可以把它移除；问最多能移走多少个小石子。</p>
+<h2>分析</h2>
+<p>比赛的时候我想了很久也没想出来……（然后就去吃饭了）。我的确想到了把在同一行同一列上的石子都连起来然后找连通子图数量这种做法，但我竟然觉得它有反例……（现在我已经知道我当初是怎么想错的了）</p>
+<hr>
+<p>第一个问题是怎么证明一个大的连通子图一定能reduce成一颗石子。我感觉这并不是一件显然的事情。</p>
+<p>（嗯，确实没有<strong>那么</strong>显然……）</p>
+<p>一种方法是，构造一颗这个子树的生成树。（从一个无向连通图能够生成一颗生成树这件事应该够显然的了）然后不断移除这棵树的叶子结点，直到最后只剩下根结点。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>当然，事实上不需要真的把这些都构造出来，只要知道就可以了。</p>
+<p>然后我感觉直接DFS就可以了……并查集当然也可以。</p>
+<h2>代码</h2>
+<p>懒得写并查集了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; stoneCoors;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; rows, cols;</span><br><span class="line">    <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; rowsVisited, colsVisited;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// cout &lt;&lt; x &lt;&lt;' ' &lt;&lt; r &lt;&lt; ' ' &lt;&lt; c &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">if</span> (rowsVisited.find(r) == rowsVisited.end()) &#123;</span><br><span class="line">            rowsVisited.insert(r);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> y: rows[r])</span><br><span class="line">                <span class="keyword">if</span> (y != x &amp;&amp; colsVisited.find(stoneCoors[y].second) == colsVisited.end())</span><br><span class="line">                    dfs(y, stoneCoors[y].first, stoneCoors[y].second); </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (colsVisited.find(c) == colsVisited.end()) &#123;</span><br><span class="line">            colsVisited.insert(c);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> y: cols[c])</span><br><span class="line">                <span class="keyword">if</span> (y != x &amp;&amp; rowsVisited.find(stoneCoors[y].first) == rowsVisited.end())</span><br><span class="line">                    dfs(y, stoneCoors[y].first, stoneCoors[y].second); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeStones</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; stones)</span> </span>&#123;</span><br><span class="line">        n = stones.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            stoneCoors.emplace_back(stones[i][<span class="number">0</span>], stones[i][<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(stoneCoors.begin(), stoneCoors.end());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            rows[stoneCoors[i].first].push_back(i);</span><br><span class="line">            cols[stoneCoors[i].second].push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (rowsVisited.find(stoneCoors[i].first) == rowsVisited.end() || </span><br><span class="line">               colsVisited.find(stoneCoors[i].second) == colsVisited.end()) &#123;</span><br><span class="line">                <span class="comment">// cout &lt;&lt; i &lt;&lt; endl;</span></span><br><span class="line">                ans++;</span><br><span class="line">                dfs(i, stoneCoors[i].first, stoneCoors[i].second);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> n - ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/articles/most-stones-removed-with-same-row-or-column/" target="_blank" rel="noopener">Leetcode Official Solution for 947. Most Stones Removed with Same Row or Column</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Union-find-Forest/"><i class="fas fa-hashtag fa-fw"></i>alg:Union-find Forest</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-936-stamping-the-sequence/">
+              
+                  Leetcode 936. Stamping The Sequence（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/stamping-the-sequence/description/" target="_blank" rel="noopener">https://leetcode.com/problems/stamping-the-sequence/description/</a></p>
+<p>标记难度：Hard</p>
+<p>提交次数：1/1</p>
+<p>代码效率：36ms</p>
+<h2>题意</h2>
+<p>有一个stamp序列，可以通过不断使它覆盖一个序列的某一部分构造新的序列。问某个序列能否以这种方式构造。</p>
+<h2>分析</h2>
+<p>比赛的时候我觉得这道题应该用Trie之类的方法来做。没想到正解是贪心……？</p>
+<hr>
+<p>题目里限定的是，最多可以进行<code>10 * target.length</code>次stamp，但是事实上每个位置最多只需要进行一次stamp（如果stamp两次，则后来的stamp会彻底覆盖前一次），因此最多需要的stamp次数是<code>source.length - target.length</code>。</p>
+<p>一种方法是贪心：每次尝试unstamp掉一块序列，直到整个序列被unstamp完为止。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>不过我不知道怎么证明贪心的正确性……</p>
+<p>另一种方法来自lee215，因为他现在转移到简书写中文题解了，所以我就不再在这里赘述了，不过的确是一种很好的做法。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkStamp</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">const</span> <span class="built_in">string</span>&amp; stamp, <span class="keyword">const</span> <span class="built_in">string</span>&amp; target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stamp.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (index + i &gt; target.size()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (stamp[i] != target[index + i] &amp;&amp; target[index + i] != <span class="string">'?'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkIsOk</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> ch: target)</span><br><span class="line">            <span class="keyword">if</span> (ch != <span class="string">'?'</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; movesToStamp(<span class="built_in">string</span> stamp, <span class="built_in">string</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ops;</span><br><span class="line">        <span class="keyword">int</span> N = target.size(), M = stamp.size();</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> stamped[N - M + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">memset</span>(stamped, <span class="number">0</span>, <span class="keyword">sizeof</span>(stamped));</span><br><span class="line">        <span class="keyword">bool</span> found, ok;</span><br><span class="line">        <span class="keyword">while</span> (cnt &lt;= N - M) &#123;</span><br><span class="line">            found = <span class="literal">false</span>, ok = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N - M; i++)</span><br><span class="line">                <span class="keyword">if</span> (!stamped[i] &amp;&amp; checkStamp(i, stamp, target)) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M; j++) target[i + j] = <span class="string">'?'</span>;</span><br><span class="line">                    stamped[i] = <span class="literal">true</span>;</span><br><span class="line">                    ops.push_back(i);</span><br><span class="line">                    cnt++;</span><br><span class="line">                    found = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (checkIsOk(target)) &#123;</span><br><span class="line">                        ok = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span> (ok) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (!found) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ok) &#123;</span><br><span class="line">            reverse(ops.begin(), ops.end());</span><br><span class="line">            <span class="keyword">return</span> ops;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/stamping-the-sequence/discuss/189314/Python-Reverse-+-Greedy-O%28N2M%29-%28w-Explanation%29" target="_blank" rel="noopener">Leetcode 936 Solution by zym3008 - [Python] Reverse + Greedy O(N^2M)  (w/ Explanation)</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://www.jianshu.com/p/cb4cbd11511b" target="_blank" rel="noopener">Leetcode 936 Stamping The Sequence - 题解</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-String/"><i class="fas fa-hashtag fa-fw"></i>alg:String</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-934-shortest-bridge/">
+              
+                  Leetcode 934. Shortest Bridge（BFS）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/number-of-recent-calls/description/" target="_blank" rel="noopener">https://leetcode.com/problems/number-of-recent-calls/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：3/6</p>
+<p>代码效率：</p>
+<ul>
+<li>treeSet+Dijstra：140ms</li>
+<li>优先队列+Dijstra：120ms</li>
+<li>BFS：24ms</li>
+</ul>
+<h2>题意</h2>
+<p>在一个四连通图上有两个互不连通的子图，求这两个子图之间的最短距离。</p>
+<h2>分析</h2>
+<p>刚看到这道题的时候我很晕，不知道该怎么做。遂上网谷歌一下……找到了正确的做法之后，我却把<code>set</code>给写挂了。事实证明，<code>std::set</code>中判断相等的方式是<code>!(a &lt; b) &amp;&amp; !(b &lt; a)</code>而非<code>!(a == b)</code>。这一点是值得注意的。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<hr>
+<p>单就一般的图来说，这道题也不算很难：把子图A的所有结点都作为Dijstra算法的起始结点，然后在子图B的所有结点中取距离最短的。如果没有负权边，则直接在找到第一个子图B结点时结束算法即可。</p>
+<p>然后这道题并不是一般的图，而是四连通的方格图，所以BFS就可以了。BFS的常数果然还是小啊……</p>
+<h2>代码</h2>
+<p>用Dijstra的代码太过智障所以就不贴了……</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> N;</span><br><span class="line">    <span class="keyword">int</span> color[<span class="number">105</span>][<span class="number">105</span>];</span><br><span class="line">    <span class="keyword">int</span> dist[<span class="number">105</span>][<span class="number">105</span>];</span><br><span class="line">    <span class="keyword">int</span> mx[<span class="number">4</span>] = &#123;<span class="number">-1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> my[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> curx, <span class="keyword">int</span> cury, <span class="keyword">int</span> c, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = curx + mx[i];</span><br><span class="line">            <span class="keyword">int</span> y = cury + my[i];</span><br><span class="line">            <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt;= N || y &lt; <span class="number">0</span> || y &gt;= N || A[x][y] != <span class="number">1</span> || color[x][y] != <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            color[x][y] = c;</span><br><span class="line">            dfs(x, y, c, A);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">shortestBridge</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        N = A.size();</span><br><span class="line">        <span class="built_in">memset</span>(color, <span class="number">-1</span>, <span class="keyword">sizeof</span>(color));</span><br><span class="line">        <span class="keyword">int</span> colorCnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (A[i][j] == <span class="number">1</span> &amp;&amp; color[i][j] == <span class="number">-1</span>) &#123;</span><br><span class="line">                    color[i][j] = colorCnt;</span><br><span class="line">                    dfs(i, j, colorCnt, A);</span><br><span class="line">                    colorCnt++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">queue</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (color[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    dist[i][j] = <span class="number">0</span>;</span><br><span class="line">                    q.push(make_pair(i, j));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    dist[i][j] = <span class="number">1e9</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = q.front().first, y = q.front().second;</span><br><span class="line">            q.pop();</span><br><span class="line">            <span class="keyword">if</span> (color[x][y] == <span class="number">1</span>) <span class="keyword">return</span> dist[x][y] - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">int</span> nx = x + mx[i], ny = y + my[i];</span><br><span class="line">                <span class="keyword">if</span> (nx &lt; <span class="number">0</span> || nx &gt;= N || ny &lt; <span class="number">0</span> || ny &gt;= N || dist[nx][ny] &lt;= dist[x][y] +<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                dist[nx][ny] = dist[x][y] + <span class="number">1</span>;</span><br><span class="line">                q.push(make_pair(nx, ny));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://stackoverflow.com/questions/1114856/stdset-with-user-defined-type-how-to-ensure-no-duplicates" target="_blank" rel="noopener">stackoverflow - std::set with user defined type, how to ensure no duplicates</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Breadth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Breadth-first Search</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-928-minimize-malware-spread-ii/">
+              
+                  Leetcode 928. Minimize Malware Spread II（图）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-22
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/minimize-malware-spread-ii/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimize-malware-spread-ii/description/</a></p>
+<p>标记难度：Hard</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>暴力DFS：104ms</li>
+<li>优化过的DFS：108ms</li>
+<li>优化过的并查集：懒得写了</li>
+</ul>
+<h2>题意</h2>
+<p>有一个无向图，图中有些结点被感染了，感染会通过图的边传播。现在可以移除一个初始被感染的结点（是移除，而不是让它不被感染），问移除哪一个结点可以使最终被感染的总结点数最小？如果有多个结点，输出编号最小的一个。</p>
+<h2>分析</h2>
+<p>呃，这道题的题意正好和我<a href="/post/leetcode-924-minimize-malware-spread">上次</a>看错的是一样的……于是我当然直接用了最暴力的方法，手动模拟每个初始感染结点被删除之后的感染状况。当然我觉得这种方法看起来还不差，因为DFS的复杂度是<code>O(N)</code>，DFS<code>N</code>次的复杂度就是<code>O(N^2)</code>；不过显然我这样想的时候没有考虑到题目里给出的图是邻接矩阵表示（而非邻接表），所以实际复杂度应该是<code>O(N^3)</code>。不过反正<code>N &lt;= 300</code>，N^2和N^3也差不多。（……）</p>
+<h3>优化过的DFS</h3>
+<p>首先将所有初始感染结点从图里移除；然后对于每个初始感染结点，通过DFS找到它能够感染的结点集合；然后对于每个普通结点，找出它会被多少个结点感染。如果它只能被某一个结点感染，移除该结点就可以使得该普通结点不会被感染。然后找到其中的最大值即可。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>我的一个疑惑是，为何是把所有初始感染结点都移除，而不是把所有的结点都留在图里，然后找到某一个结点能感染的结点集合？这两点的区别显然是，把其他的结点留在图里之后，某一个结点能感染的结点集合就会变大，甚至包含一些移除了别的结点之后不能被感染的结点，这大约是不合适的。</p>
+<p>另一个问题是，考虑到邻接矩阵的问题，这个方法的时间复杂度是不是仍然是<code>O(N^3)</code>……事实证明运行时间差不多。</p>
+<h3>优化过的并查集</h3>
+<p>这个方法的思路和上一个差不多，不过是把DFS换成并查集，然后判断每个分量和多少个初始感染结点相邻。（就是写得更明白一点了。）我感觉这个方法是<code>O(N^2)</code>的（因为相比DFS节省了很多无用的计算），不过我现在不是很想写了。<sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1]</a></sup></p>
+<h2>代码</h2>
+<h3>暴力DFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="keyword">int</span> &amp;cnt, <span class="keyword">const</span> <span class="keyword">int</span>&amp; removed, <span class="keyword">bool</span> visited[])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; graph[cur].size(); y++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (graph[cur][y] &amp;&amp; !visited[y] &amp;&amp; y != removed) &#123;</span><br><span class="line">                visited[y] = <span class="literal">true</span>;</span><br><span class="line">                cnt++;</span><br><span class="line">                dfs(y, graph, cnt, removed, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMalwareSpread</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; initial)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// completely remove</span></span><br><span class="line">        sort(initial.begin(), initial.end());</span><br><span class="line">        <span class="keyword">int</span> n = graph.size();</span><br><span class="line">        <span class="keyword">int</span> ans = n + <span class="number">1</span>, index = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">bool</span> visited[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial) &#123;</span><br><span class="line">            <span class="built_in">memset</span>(visited, <span class="literal">false</span>, <span class="keyword">sizeof</span>(visited));</span><br><span class="line">            <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> y: initial) &#123;</span><br><span class="line">                <span class="keyword">if</span> (x != y &amp;&amp; !visited[y]) &#123;</span><br><span class="line">                    visited[y] = <span class="literal">true</span>;</span><br><span class="line">                    cnt++;</span><br><span class="line">                    dfs(y, graph, cnt, x, visited);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cnt &lt; ans) &#123;</span><br><span class="line">                index = x;</span><br><span class="line">                ans = cnt;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>优化过的DFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">const</span> <span class="keyword">int</span>&amp; x, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="keyword">bool</span> isRemoved[], <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; affect[])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (graph[cur][i] &amp;&amp; !isRemoved[i] &amp;&amp; affect[x].find(i) == affect[x].end()) &#123;</span><br><span class="line">                affect[x].insert(i);</span><br><span class="line">                dfs(i, x, graph, isRemoved, affect);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMalwareSpread</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; initial)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = graph.size();</span><br><span class="line">        <span class="keyword">bool</span> isRemoved[n];</span><br><span class="line">        <span class="built_in">memset</span>(isRemoved, <span class="number">0</span>, <span class="keyword">sizeof</span>(isRemoved));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial)</span><br><span class="line">            isRemoved[x] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 分别DFS</span></span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; affect[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial) &#123;</span><br><span class="line">            isRemoved[x] = <span class="literal">false</span>;</span><br><span class="line">            affect[x].insert(x);</span><br><span class="line">            dfs(x, x, graph, isRemoved, affect);</span><br><span class="line">            isRemoved[x] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 每个结点会被哪些结点感染</span></span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; affectedBy[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x: affect[i])</span><br><span class="line">                affectedBy[x].insert(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 只被一个结点感染的结点</span></span><br><span class="line">        <span class="keyword">int</span> singleCnt[n];</span><br><span class="line">        <span class="built_in">memset</span>(singleCnt, <span class="number">0</span>, <span class="keyword">sizeof</span>(singleCnt));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!isRemoved[i] &amp;&amp; affectedBy[i].size() == <span class="number">1</span>)</span><br><span class="line">                singleCnt[*affectedBy[i].begin()]++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 取最大值</span></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">-1</span>, maximum = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (isRemoved[i] &amp;&amp; singleCnt[i] &gt; maximum) &#123;</span><br><span class="line">                index = i;</span><br><span class="line">                maximum = singleCnt[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/minimize-malware-spread-ii/solution/" target="_blank" rel="noopener">Leetcode Official Solution for 928. Minimize Malware Spread II</a> <a href="#fnref1" class="footnote-backref">↩</a> <a href="#fnref1:1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Graph/"><i class="fas fa-hashtag fa-fw"></i>alg:Graph</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Union-find-Forest/"><i class="fas fa-hashtag fa-fw"></i>alg:Union-find Forest</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-924-minimize-malware-spread/">
+              
+                  Leetcode 924. Minimize Malware Spread（图论）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-14
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/minimize-malware-spread/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimize-malware-spread/description/</a></p>
+<p>标记难度：Hard</p>
+<p>提交次数：3/7</p>
+<p>代码效率：</p>
+<ul>
+<li>暴力：256ms</li>
+<li>DFS：216ms</li>
+<li>并查集：108ms</li>
+</ul>
+<h2>题意</h2>
+<p>有一个无向图，图中有些结点被感染了，感染会通过图的边传播。现在可以移除一个初始被感染的结点，问移除哪一个结点可以使最终被感染的总结点数最小？如果有多个结点，输出编号最小的一个。</p>
+<h2>分析</h2>
+<p>我比赛的时候居然交了4次……</p>
+<ul>
+<li>第一次写了一个巨暴力的方法：每次移除一个初始感染结点，然后用DFS计算被感染结点总数。然后我还没写对。题目表明“使一个结点初始不被感染，它仍然有可能被传播到感染”，所以直接把结点从图里去掉是不可取的。而且很不幸的是，我还把<code>graph</code>当成邻接表了（事实上应该是邻接矩阵）。</li>
+<li>第二次我尝试调这个暴力，但是我对题意产生了一点误解：如果有多个合法结点，是输出在<code>vector&lt;int&gt; initial</code>中index最小的结点，还是输出编号最小的结点？事实证明应该是编号最小的结点，但我这一次改成了index最小，那自然是没有什么对的可能了。</li>
+<li>第三次我还在调这个暴力，但并没有发现核心问题。</li>
+<li>第四次我仍然在调这个暴力，此时发现了<code>graph</code>的问题，但还是对题目内容有着非常深刻的误解。（而且此时已经10:55了。）</li>
+</ul>
+<p>其实交第一次之前我是想到了正解的（无论是用DFS，还是并查集），但紧接着我就由于各种原因把题给看错了……这可真是太不可取了。</p>
+<hr>
+<p>上面说的暴力算法的复杂度应该是<code>O(M * N + M)</code>（<code>M = initial.length</code>，<code>N = graph.length</code>）。原来这样就能过了吗……不愧是<code>1 &lt;= graph.length &lt;= 300</code>。</p>
+<h3>DFS</h3>
+<p>这个思路很容易想到。用DFS对图中的连通分量（如果我没有搞错图论术语的话）进行染色，这样就可以知道每个结点对应的连通分量和连通分量的大小了；然后统计每个连通分量中所包含的初始感染结点的数量，如果该连通分量只包含一个初始感染结点，则移除该感染结点可以防止整个连通分量的结点受到感染；否则移除该结点不会改变受感染结点的总数。然后取最小值即可。</p>
+<p>DFS的时间复杂度是<code>O(N)</code>，统计结点数量的复杂度是<code>O(M)</code>，总复杂度为<code>O(N + M)</code>。</p>
+<h3>并查集</h3>
+<p>这个思路和DFS基本类似，只是换成用并查集来进行着色而已。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<h2>代码</h2>
+<h3>暴力</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="keyword">int</span>&amp; cnt, <span class="keyword">bool</span> visited[])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (graph[x][i] &amp;&amp; !visited[i]) &#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                visited[i] = <span class="literal">true</span>;</span><br><span class="line">                dfs(i, graph, cnt, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMalwareSpread</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; initial)</span> </span>&#123;</span><br><span class="line">        n = graph.size();</span><br><span class="line">        <span class="keyword">bool</span> visited[n];</span><br><span class="line">        <span class="keyword">int</span> minimum = n + <span class="number">1</span>, index = <span class="number">-1</span>;</span><br><span class="line">        sort(initial.begin(), initial.end());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initial.size(); i++) &#123;</span><br><span class="line">            <span class="built_in">memset</span>(visited, <span class="number">0</span>, <span class="keyword">sizeof</span>(visited));</span><br><span class="line">            <span class="comment">// remove i</span></span><br><span class="line">            <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; initial.size(); j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j != i &amp;&amp; !visited[initial[j]]) &#123;</span><br><span class="line">                    visited[initial[j]] = <span class="literal">true</span>;</span><br><span class="line">                    cnt++;</span><br><span class="line">                    dfs(initial[j], graph, cnt, visited);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//cout &lt;&lt; initial[i] &lt;&lt; ' ' &lt;&lt; cnt &lt;&lt; endl;</span></span><br><span class="line">            <span class="keyword">if</span> (cnt &lt; minimum) &#123;</span><br><span class="line">                minimum = cnt;</span><br><span class="line">                index = initial[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>DFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> c, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="keyword">int</span> color[], <span class="keyword">int</span> colorNum[])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; n; y++)</span><br><span class="line">            <span class="keyword">if</span> (graph[x][y] &amp;&amp; !color[y]) &#123;</span><br><span class="line">                color[y] = c;</span><br><span class="line">                colorNum[c]++;</span><br><span class="line">                dfs(y, c, graph, color, colorNum);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMalwareSpread</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; initial)</span> </span>&#123;</span><br><span class="line">        n = graph.size();</span><br><span class="line">        <span class="comment">// color the graph</span></span><br><span class="line">        <span class="keyword">int</span> color[n + <span class="number">1</span>], colorNum[n + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">memset</span>(color, <span class="number">0</span>, <span class="keyword">sizeof</span>(color));</span><br><span class="line">        <span class="keyword">int</span> c = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!color[i]) &#123;</span><br><span class="line">                color[i] = c;</span><br><span class="line">                colorNum[c] = <span class="number">1</span>;</span><br><span class="line">                dfs(i, c, graph, color, colorNum);</span><br><span class="line">                c++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// find colors of initials</span></span><br><span class="line">        <span class="comment">// 此处也可以不排序的，多加一些特判就行了……</span></span><br><span class="line">        sort(initial.begin(), initial.end());</span><br><span class="line">        <span class="keyword">int</span> initialsInColors[n + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">memset</span>(initialsInColors, <span class="number">0</span>, <span class="keyword">sizeof</span>(initialsInColors));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial) &#123;</span><br><span class="line">            initialsInColors[color[x]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> maxn = <span class="number">-1</span>, index = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial) &#123;</span><br><span class="line">            <span class="keyword">if</span> (initialsInColors[color[x]] &lt;= <span class="number">1</span> &amp;&amp; colorNum[color[x]] &gt; maxn) &#123;</span><br><span class="line">                maxn = colorNum[color[x]];</span><br><span class="line">                index = x;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (initialsInColors[color[x]] &gt; <span class="number">1</span> &amp;&amp; <span class="number">0</span> &gt; maxn) &#123;</span><br><span class="line">                maxn = <span class="number">0</span>;</span><br><span class="line">                index = x;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>并查集</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> fa[<span class="number">305</span>], cnt[<span class="number">305</span>];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            fa[i] = i;</span><br><span class="line">            cnt[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x == fa[x]) <span class="keyword">return</span> x;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            cnt[fa[x]] += cnt[x];</span><br><span class="line">            cnt[x] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> fa[x] = find(fa[x]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getcnt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cnt[find(x)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        x = find(x);</span><br><span class="line">        y = find(y);</span><br><span class="line">        <span class="keyword">if</span> (cnt[x] &gt;= cnt[y]) swap(x, y);</span><br><span class="line">        fa[x] = y;</span><br><span class="line">        find(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMalwareSpread</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; initial)</span> </span>&#123;</span><br><span class="line">        n = graph.size();</span><br><span class="line">        init();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">                <span class="keyword">if</span> (graph[i][j])</span><br><span class="line">                    merge(i, j);</span><br><span class="line">        <span class="keyword">int</span> facnt[n];</span><br><span class="line">        <span class="built_in">memset</span>(facnt, <span class="number">0</span>, <span class="keyword">sizeof</span>(facnt));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial)</span><br><span class="line">            facnt[find(x)]++;</span><br><span class="line">        <span class="keyword">int</span> maxn = <span class="number">-1</span>, index = n + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: initial) &#123;</span><br><span class="line">            <span class="keyword">if</span> (facnt[find(x)] &lt;= <span class="number">1</span> &amp;&amp; (getcnt(x) &gt; maxn || getcnt(x) == maxn &amp;&amp; x &lt; index)) &#123;</span><br><span class="line">                maxn = getcnt(x);</span><br><span class="line">                index = x;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">0</span> &gt; maxn || maxn == <span class="number">0</span> &amp;&amp; x &lt; index) &#123;</span><br><span class="line">                maxn = <span class="number">0</span>;</span><br><span class="line">                index = x;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/minimize-malware-spread/discuss/181129/Python-Union-Found" target="_blank" rel="noopener">lee215's Union Found Solution</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Graph/"><i class="fas fa-hashtag fa-fw"></i>alg:Graph</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Union-find-Forest/"><i class="fas fa-hashtag fa-fw"></i>alg:Union-find Forest</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-513-find-bottom-left-tree-value/">
+              
+                  Leetcode 513. Find Bottom Left Tree Value（BFS）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/find-bottom-left-tree-value/description/" target="_blank" rel="noopener">https://leetcode.com/problems/find-bottom-left-tree-value/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：98.56%</p>
+<h2>题意</h2>
+<p>给定一棵二叉树，找到最底层最靠左的结点的值。</p>
+<h2>分析</h2>
+<p>这道题看起来像是<a href="/post/leetcode-199-binary-tree-right-side-view">Leetcode 199</a>的反过来的超简化版，因为只需要最底层的最左边的结点。我是用BFS直接做的——逐层访问，记录每层最左侧的结点，最后找到最底层最左侧的结点——不过这个思路可以再简化一些：对于每一层都从右往左访问，这样我们就不需要记录每层最左侧的结点，只需要返回最后一个访问的结点就可以了。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findBottomLeftValue</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        TreeNode* bottomLeft = <span class="literal">nullptr</span>;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            TreeNode* left = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="comment">// 这个代码实际上复用了Leetcode 199的BFS代码</span></span><br><span class="line">            <span class="comment">// 同理，仍然可以不新开一个queue的</span></span><br><span class="line">            <span class="built_in">queue</span>&lt;TreeNode*&gt; q2;</span><br><span class="line">            <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">                TreeNode* x = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                <span class="keyword">if</span> (left == <span class="literal">nullptr</span>)</span><br><span class="line">                    left = x;</span><br><span class="line">                <span class="keyword">if</span> (x-&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">                    q2.push(x-&gt;left);</span><br><span class="line">                <span class="keyword">if</span> (x-&gt;right != <span class="literal">nullptr</span>)</span><br><span class="line">                    q2.push(x-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            q = q2;</span><br><span class="line">            bottomLeft = left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> bottomLeft-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/find-bottom-left-tree-value/discuss/98779/Right-to-Left-BFS-%28Python-+-Java%29" target="_blank" rel="noopener">Right-to-Left BFS (Python + Java)</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Tree</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Breadth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Breadth-first Search</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-199-binary-tree-right-side-view/">
+              
+                  Leetcode 199. Binary Tree Right Side View（BFS）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/binary-tree-right-side-view/description/" target="_blank" rel="noopener">https://leetcode.com/problems/binary-tree-right-side-view/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>BFS：100.00%</li>
+<li>DFS：100.00%</li>
+</ul>
+<h2>题意</h2>
+<p>给定一棵二叉树，求每一层最右侧的结点的值。</p>
+<h2>分析</h2>
+<p>显然，一种最直接的想法是用BFS对树进行分层遍历，然后就可以立刻得出每一层最右侧的结点的值了。</p>
+<p>另一种方法和<a href="/post/leetcode-102-binary-tree-level-order-traversal">Leetcode 102</a>的其中一种解题思路很像：使用DFS，然后按照深度把结点放到对应的层里面。但此处的问题是，每一层只需要放最右侧的结点。解决这一问题的方法是，访问子树时，先访问右子结点，再访问左子结点，这样每一层最先被访问到的结点都是最右侧的结点，我们只要在该层为空时才插入结点就可以了。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<h2>代码</h2>
+<h3>BFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rightSideView(TreeNode* root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rightSide;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> right = <span class="number">-1</span>;</span><br><span class="line">            <span class="comment">// 此处新开了一个队列作为记录，事实上没有必要</span></span><br><span class="line">            <span class="comment">// 只要记录本层结点的个数就可以了</span></span><br><span class="line">            <span class="built_in">queue</span>&lt;TreeNode*&gt; q2;</span><br><span class="line">            <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">                TreeNode* x = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                right = x-&gt;val;</span><br><span class="line">                <span class="keyword">if</span> (x-&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">                    q2.push(x-&gt;left);</span><br><span class="line">                <span class="keyword">if</span> (x-&gt;right != <span class="literal">nullptr</span>)</span><br><span class="line">                    q2.push(x-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            q = q2;</span><br><span class="line">            rightSide.push_back(right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rightSide;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>DFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root, <span class="keyword">int</span> depth, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; views)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// 事实上写的时候是自顶向下的，所以是逐渐push_back</span></span><br><span class="line">        <span class="keyword">if</span> (depth &gt;= views.size()) views.push_back(root-&gt;val);</span><br><span class="line">        dfs(root-&gt;right, depth+<span class="number">1</span>, views);</span><br><span class="line">        dfs(root-&gt;left, depth+<span class="number">1</span>, views);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rightSideView(TreeNode* root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; views;</span><br><span class="line">        dfs(root, <span class="number">0</span>, views);</span><br><span class="line">        <span class="keyword">return</span> views;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/binary-tree-right-side-view/discuss/56203/Simple-C++-solution-%28BTW:-I-like-clean-codes%29" target="_blank" rel="noopener">Simple C++ solution (BTW: I like clean codes)</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Tree</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Breadth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Breadth-first Search</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-111-minimum-depth-of-binary-tree/">
+              
+                  Leetcode 111. Minimum Depth of Binary Tree（BFS）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimum-depth-of-binary-tree/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：2/2</p>
+<p>代码效率：</p>
+<ul>
+<li>BFS：100.00%</li>
+<li>递推：100.00%</li>
+</ul>
+<h2>题意</h2>
+<p>找出二叉树中深度最小的结点的深度。</p>
+<h2>分析</h2>
+<p>显然用BFS可以做，DFS也可以。另一种可能的做法是递推，从子结点的最小深度推出当前子树的最小深度。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>事实上，我现在觉得，递推是把代码写得简短且不需要额外函数的一种好方法。</p>
+<h2>代码</h2>
+<h3>BFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;pair&lt;<span class="keyword">int</span>, TreeNode*&gt;&gt; q;</span><br><span class="line">        q.emplace(<span class="number">1</span>, root);</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            TreeNode* x = q.front().second;</span><br><span class="line">            <span class="keyword">int</span> depth = q.front().first;</span><br><span class="line">            q.pop();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (x-&gt;left == <span class="literal">nullptr</span> &amp;&amp; x-&gt;right == <span class="literal">nullptr</span>) <span class="keyword">return</span> depth;</span><br><span class="line">            <span class="keyword">if</span> (x-&gt;left != <span class="literal">nullptr</span>) q.emplace(depth+<span class="number">1</span>, x-&gt;left);  <span class="comment">// 居然写成了root……</span></span><br><span class="line">            <span class="keyword">if</span> (x-&gt;right != <span class="literal">nullptr</span>) q.emplace(depth+<span class="number">1</span>, x-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>递推</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> L = minDepth(root-&gt;left), R = minDepth(root-&gt;right);</span><br><span class="line">        <span class="comment">// 如果L,R&gt;0，说明两棵子树都不为空，最浅的叶结点可能在两棵子树中，所以取min</span></span><br><span class="line">        <span class="comment">// 如果L,R中至少有一个数为0，说明至少有一棵子树为空，最浅的叶结点只能在另一棵子树中，所以取max</span></span><br><span class="line">        <span class="comment">// 如果L==R==0，说明root就是叶结点，这种情况包含在上一种里</span></span><br><span class="line">        <span class="comment">// 因为是子树所以深度要+1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + ((L &gt; <span class="number">0</span> &amp;&amp; R &gt; <span class="number">0</span>) ? min(L, R) : max(L, R));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/discuss/36060/3-lines-in-Every-Language" target="_blank" rel="noopener">3 lines in Every Language</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Breadth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Breadth-first Search</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-107-binary-tree-level-order-traversal-ii/">
+              
+                  Leetcode 107. Binary Tree Level Order Traversal II（BFS）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/" target="_blank" rel="noopener">https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：3/3</p>
+<p>代码效率：</p>
+<ul>
+<li>递推：0.00%</li>
+<li>reverse：98.33%</li>
+<li>两次DFS：98.33%</li>
+</ul>
+<h2>题意</h2>
+<p>返回一棵二叉树<strong>自底向上</strong>的层次遍历。</p>
+<h2>分析</h2>
+<p>这次我用上了<a href="/post/leetcode-429-n-ary-tree-level-order-traversal">Leetcode 429</a>里面的那种递推法。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>令<code>leftLevels</code>表示当前结点左子树的自底向上层次遍历结果，<code>rightLevels</code>表示当前结点左子树的自底向上层次遍历结果。显然，左右两侧的深度不同，所以我们需要把它们“自顶向下”合并。以<code>leftLevels.size &gt; rightLevels</code>的情形为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">n1 = leftLevels.size, n2 = rightLevels.size</span><br><span class="line"></span><br><span class="line">leftLevels[0]                                 --&gt;  levels[0]</span><br><span class="line">leftLevels[1]                                 --&gt;  levels[1]</span><br><span class="line">        .                                              .</span><br><span class="line">        .                                              .</span><br><span class="line">        .                                              .</span><br><span class="line">leftLevels[n1-n2]     +    rightLevels[0]     --&gt;  levels[n1-n2]</span><br><span class="line">leftLevels[n1-n2+1]   +    rightLevels[1]     --&gt;  levels[n1-n2+1]</span><br><span class="line">        .                        .                     .</span><br><span class="line">        .                        .                     .</span><br><span class="line">        .                        .                     .</span><br><span class="line">leftLevels[n1-1]      +    rightLevels[n2-1]  --&gt;  levels[n1-1]</span><br></pre></td></tr></table></figure>
+<p>当然，我们都知道，最简单的一种方法就是做一次普通的层次遍历，然后把整个<code>vector</code>倒转过来。不过这种解法就很平凡了。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p>另一种不那么平凡的方法是，首先进行一次DFS，得到树的深度；然后再进行一次DFS，此时我们就可以得到结点在层次遍历中应有的位置，然后直接把结点插入对应的<code>vector</code>中即可。</p>
+<p>一个很有趣的问题是，如果<code>vector</code>能够以<code>O(1)</code>时间在头部插入的话，这个问题和正向层次遍历就是正好对偶的了。对于Java用户，他们的函数返回值是<code>List&lt;List&lt;int&gt;&gt;</code>，因此可以通过<code>LinkedList</code>达到一种比较好的效果。<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
+<h2>代码</h2>
+<h3>递推</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrderBottom(TreeNode* root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; leftLevels = levelOrderBottom(root-&gt;left);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; rightLevels = levelOrderBottom(root-&gt;right);</span><br><span class="line">        <span class="keyword">int</span> n1 = leftLevels.size(), n2 = rightLevels.size(), n = max(n1, n2);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levels(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">        <span class="comment">// i表示从数组末端开始的距离，也即对应的层相对root的深度</span></span><br><span class="line">        <span class="comment">// 这样表示是因为数组是末端对齐的</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (n1 - i &gt;= <span class="number">0</span>)</span><br><span class="line">                levels[n - i].insert(levels[n - i].end(), leftLevels[n1 - i].begin(), leftLevels[n1 - i].end());</span><br><span class="line">            <span class="keyword">if</span> (n2 - i &gt;= <span class="number">0</span>)</span><br><span class="line">                levels[n - i].insert(levels[n - i].end(), rightLevels[n2 - i].begin(), rightLevels[n2 - i].end());</span><br><span class="line">        &#125;</span><br><span class="line">        levels[n].push_back(root-&gt;val);</span><br><span class="line">        <span class="keyword">return</span> levels;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>reverse</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levels;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root, <span class="keyword">int</span> depth)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (levels.size() &lt;= depth) levels.push_back(&#123;&#125;);</span><br><span class="line">        levels[depth].push_back(root-&gt;val);</span><br><span class="line">        dfs(root-&gt;left, depth+<span class="number">1</span>);</span><br><span class="line">        dfs(root-&gt;right, depth+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrderBottom(TreeNode* root) &#123;</span><br><span class="line">        dfs(root, <span class="number">0</span>);</span><br><span class="line">        reverse(levels.begin(), levels.end());</span><br><span class="line">        <span class="keyword">return</span> levels;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>两次DFS</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> maxDepth;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getMaxDepth</span><span class="params">(TreeNode* root, <span class="keyword">int</span> depth)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">        maxDepth = max(maxDepth, depth);</span><br><span class="line">        getMaxDepth(root-&gt;left, depth+<span class="number">1</span>);</span><br><span class="line">        getMaxDepth(root-&gt;right, depth+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root, <span class="keyword">int</span> depth, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; levels)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">        levels[maxDepth - depth].push_back(root-&gt;val);</span><br><span class="line">        dfs(root-&gt;left, depth+<span class="number">1</span>, levels);</span><br><span class="line">        dfs(root-&gt;right, depth+<span class="number">1</span>, levels);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrderBottom(TreeNode* root) &#123;</span><br><span class="line">        maxDepth = <span class="number">-1</span>;</span><br><span class="line">        getMaxDepth(root, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levels(maxDepth+<span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">        dfs(root, <span class="number">0</span>, levels);</span><br><span class="line">        <span class="keyword">return</span> levels;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/n-ary-tree-level-order-traversal/discuss/157521/C++-Easy-to-understand-recursive-solution-based-on-DFS-%2844-ms-beats-98.67%29" target="_blank" rel="noopener">Easy to understand, recursive solution based on DFS (44 ms, beats 98.67%)</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://leetcode.com/problems/binary-tree-level-order-traversal-ii/discuss/35108/C++-4ms-solution!" target="_blank" rel="noopener">C++ 4ms solution!</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a href="https://leetcode.com/problems/binary-tree-level-order-traversal-ii/discuss/35045/Simple-Java-solution-with-LinkedList." target="_blank" rel="noopener">Simple Java solution with LinkedList.</a> <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Depth-first-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Depth-first Search</a>
+        
+          <a href="/tags/alg-Breadth-firth-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Breadth-firth Search</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/tags/alg-Depth-first-Search/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  2 / 3
+              </p>
+              
+                  <a class="next" rel="next" href="/tags/alg-Depth-first-Search/page/3/">
+                      <section class="post next">
+                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                      </section>
+                  </a>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

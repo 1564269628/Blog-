@@ -1,0 +1,2524 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/ostep-ch-28-summary-locks/">
+              
+                  OSTEP第28章总结：Locks
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-18
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本章主要介绍了锁的基础知识，以及各种锁的实现方法和评价标准：</p>
+<ul>
+<li>硬件支持
+<ul>
+<li>关中断</li>
+<li>TS指令实现自旋锁</li>
+<li>CS指令实现自旋锁</li>
+<li>LL/SC指令实现自旋锁</li>
+<li>FA指令实现无饥饿的自旋锁</li>
+</ul>
+</li>
+<li>硬件和OS支持
+<ul>
+<li>从自旋锁到yield</li>
+<li>使用队列和睡眠</li>
+<li>Linux中的实际例子</li>
+<li>两阶段锁</li>
+</ul>
+</li>
+</ul>
+<h2>锁的基本定义和用法</h2>
+<p>锁是一个变量。在任意时刻，该变量中都存储着锁的状态：</p>
+<ul>
+<li>可获得（或者说释放，开锁的，说明没有线程持有该锁）</li>
+<li>不可获得（未被释放，上锁的，说明有一个线程持有该锁，很可能处于关键区内）</li>
+</ul>
+<p>锁的使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lock_t mutex; // some globally-allocated lock &apos;mutex&apos;</span><br><span class="line">...</span><br><span class="line">lock(&amp;mutex);</span><br><span class="line">balance = balance + 1;  // 关键区</span><br><span class="line">unlock(&amp;mutex);</span><br></pre></td></tr></table></figure>
+<p><code>lock()</code>的语义：</p>
+<ul>
+<li>尝试获得锁</li>
+<li>如果该锁未被获得，则获得该锁，进入关键区，该线程成为锁的拥有者</li>
+<li>如果该锁已被获得，则在锁被释放之前始终阻塞，防止多个线程同时进入关键区<br>
+<code>unlock()</code>的语义：</li>
+<li>释放线程当前持有的锁</li>
+<li>如果还有其他线程在等待锁，则通知其中一个进程开始运行，获得锁，并进入关键区</li>
+</ul>
+<p>锁能够帮助程序员更多地获得对线程的控制权。</p>
+<h2>锁的评价标准</h2>
+<ol>
+<li>基本要求：提供互斥访问功能</li>
+<li>公平性：是否会出现线程饥饿的状况？</li>
+<li>性能：不同场景下的时间开销</li>
+<li>单线程获取并释放锁</li>
+<li>多线程请求同一个锁</li>
+<li>多CPU上的多线程请求同一个锁</li>
+</ol>
+<h2>锁的实现方法</h2>
+<p>本章中给出了一种单纯用现有非特权指令（加载和存储）实现锁的方法，但是失败了。当然，其实这样是可以成功的（Dekker和Peterson算法），也做过一些研究，但是这些算法对硬件也有一些假设，而且人们已经发现，在硬件中提供一些支持会方便很多。所以就不赘述了。</p>
+<h3>用硬件原语实现锁</h3>
+<h4>关中断</h4>
+<p>代码实现如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void lock() &#123;</span><br><span class="line">	DisableInterrupts();</span><br><span class="line">&#125;</span><br><span class="line">void unlock() &#123;</span><br><span class="line">	EnableInterrupts();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点：简单</p>
+<p>缺点：</p>
+<ul>
+<li>需要线程执行特权指令，可能被滥用，OS无法得到控制权</li>
+<li>不适用于多处理器系统</li>
+<li>关中断太久可能导致重要的中断请求被丢失</li>
+<li>效率低，因为现代CPU开关中断的速度比较慢</li>
+</ul>
+<p>目前这一方法主要用于OS本身的原子性操作，因为这样就不存在滥用问题。</p>
+<h4>使用TS（Test-And-Set）指令实现自旋锁</h4>
+<p>TS指令原子地完成以下操作：</p>
+<ul>
+<li>读出某个地址处的值</li>
+<li>将新的值写入该地址</li>
+<li>返回旧值</li>
+</ul>
+<p>用代码表示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int TestAndSet(int *old_ptr, int new) &#123;</span><br><span class="line">    int old = *old_ptr; // fetch old value at old_ptr</span><br><span class="line">    *old_ptr = new; // store &apos;new&apos; into old_ptr</span><br><span class="line">    return old; // return the old value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以利用TS指令实现自旋锁：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">typedef struct __lock_t &#123;</span><br><span class="line">    int flag;</span><br><span class="line">&#125; lock_t;</span><br><span class="line"></span><br><span class="line">void init(lock_t *lock) &#123;</span><br><span class="line">    // 0 indicates that lock is available, 1 that it is held</span><br><span class="line">    lock-&gt;flag = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void lock(lock_t *lock) &#123;</span><br><span class="line">    while (TestAndSet(&amp;lock-&gt;flag, 1) == 1)</span><br><span class="line">        ; // spin-wait (do nothing)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void unlock(lock_t *lock) &#123;</span><br><span class="line">    lock-&gt;flag = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>工作原理是：</p>
+<ul>
+<li><code>flag</code>变量表示锁是否被持有，0表示空闲</li>
+<li>在<code>lock()</code>函数中，不断使用TS指令测试锁是否空闲，空闲则获得锁并将<code>flag</code>置为1；不空闲则自旋等待</li>
+<li>在<code>unlock()</code>函数中，只需简单地将<code>flag</code>置为0</li>
+</ul>
+<h4>对自旋锁的评价</h4>
+<ol>
+<li>正确性：显然是正确的</li>
+<li>公平性：无法保证，可能会导致饥饿</li>
+<li>性能：</li>
+<li>单CPU系统：性能很差</li>
+<li>多CPU系统：还不错（如果线程的数量大致与CPU相等）</li>
+</ol>
+<h4>使用CS（Compare-And-Swap）指令实现自旋锁</h4>
+<p>CS指令原子地完成以下操作：</p>
+<ul>
+<li>读出某个地址处的值</li>
+<li>判断它是否与期望的值相等，如果相等，则更新该地址处的值为某给定的值</li>
+<li>返回该地址处原有的值</li>
+</ul>
+<p>用代码表示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int CompareAndSwap(int *ptr, int expected, int new) &#123;</span><br><span class="line">	int actual = *ptr;</span><br><span class="line">	if (actual == expected)</span><br><span class="line">		*ptr = new;</span><br><span class="line">	return actual;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与TS指令类似，可以利用CS指令实现自旋锁（其他函数与TS指令的实现相同）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void lock(lock_t *lock) &#123;</span><br><span class="line">	while (CompareAndSwap(&amp;lock-&gt;flag, 0, 1) == 1)</span><br><span class="line">		; // spin</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>工作原理也类似。</p>
+<h4>用LL（Load-Linked）和SC（Store-Conditional）指令实现自旋锁</h4>
+<p>这两个指令是MIPS架构下提供的。LL指令类似于普通的加载指令，把某个值从内存中加载到寄存器中；但它会标记这个地址，SC指令更新该地址处的值时，仅在上次LL过后该值还没有被修改过时才会成功。</p>
+<p>用代码描述如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int LoadLinked(int *ptr) &#123;</span><br><span class="line">    return *ptr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int StoreConditional(int *ptr, int value) &#123;</span><br><span class="line">    if (no one has updated *ptr since the LoadLinked to this address) &#123;</span><br><span class="line">        *ptr = value;</span><br><span class="line">        return 1; // success!</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return 0; // failed to update</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>锁的实现方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void lock(lock_t *lock) &#123;</span><br><span class="line">    while (1) &#123;</span><br><span class="line">        while (LoadLinked(&amp;lock-&gt;flag) == 1)</span><br><span class="line">            ; // spin until it&apos;s zero</span><br><span class="line">        if (StoreConditional(&amp;lock-&gt;flag, 1) == 1)</span><br><span class="line">            return; // if set-it-to-1 was a success: all done</span><br><span class="line">        // otherwise: try it all over again</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void unlock(lock_t *lock) &#123;</span><br><span class="line">    lock-&gt;flag = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果两个线程同时在请求这个锁，则先执行SC指令的线程可以获得锁，另一个线程执行SC指令时就会返回0，需要重新进入请求状态。</p>
+<h4>用FA（Fetch-And-Add）指令实现标签锁（ticket lock）</h4>
+<p>FA指令原子地完成以下任务：</p>
+<ul>
+<li>读出某个地址处的值</li>
+<li>将这个值+1</li>
+<li>重新写回该地址处</li>
+<li>返回原来的值</li>
+</ul>
+<p>用代码描述如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int FetchAndAdd(int *ptr) &#123;</span><br><span class="line">	int old = *ptr;</span><br><span class="line">	*ptr = old + 1;</span><br><span class="line">	return old;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用该指令可以实现一个思路稍有不同的锁：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">typedef struct __lock_t &#123;</span><br><span class="line">    int ticket;</span><br><span class="line">    int turn;</span><br><span class="line">&#125; lock_t;</span><br><span class="line"></span><br><span class="line">void lock_init(lock_t *lock) &#123;</span><br><span class="line">    lock-&gt;ticket = 0;</span><br><span class="line">    lock-&gt;turn = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void lock(lock_t *lock) &#123;</span><br><span class="line">    int myturn = FetchAndAdd(&amp;lock-&gt;ticket);</span><br><span class="line">    while (lock-&gt;turn != myturn)</span><br><span class="line">        ; // spin</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void unlock(lock_t *lock) &#123;</span><br><span class="line">    lock-&gt;turn = lock-&gt;turn + 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>ticket</code>变量表示曾经请求过锁的线程的个数，<code>turn</code>变量表示当前（应该）是第几个等待线程持有锁。<code>lock()</code>函数中，通过FA指令为本线程获得“排位”（<code>myturn</code>），并等待前面的线程执行完毕。<code>unlock()</code>函数中，只需简单地将<code>turn</code>变量+1（轮到下一个线程了）。</p>
+<p>这个实现方法的优点是，不存在饥饿问题，请求同一个锁的线程按请求顺序获得锁。（但是这样会不会有死锁问题？？）</p>
+<h3>用硬件原语和OS的支持实现锁</h3>
+<h4>直接把自旋改为<code>yield</code></h4>
+<p>代码实现如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void init() &#123;</span><br><span class="line">    flag = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void lock() &#123;</span><br><span class="line">    while (TestAndSet(&amp;flag, 1) == 1)</span><br><span class="line">        yield(); // give up the CPU</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void unlock() &#123;</span><br><span class="line">    flag = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>得不到锁的线程不再自旋，而是主动放弃控制权。虽然减少了自旋浪费的时间片，不过仍然耗费了一些切换上下文的时间。</p>
+<h4>利用队列和睡眠实现锁</h4>
+<p>现在改为由OS控制当前的锁被释放之后，哪一个线程能够获得锁。为此引入睡眠机制：</p>
+<ul>
+<li><code>park()</code>系统调用：将调用线程睡眠</li>
+<li><code>unpark(ThreadID)</code>系统调用：唤醒某个进程</li>
+</ul>
+<p>下面是一个使用队列、TS指令、<code>yield</code>、自旋和睡眠机制的代码实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">typedef struct __lock_t &#123;</span><br><span class="line">    int flag;</span><br><span class="line">    int guard;</span><br><span class="line">    queue_t *q;</span><br><span class="line">&#125; lock_t;</span><br><span class="line"></span><br><span class="line">void lock_init(lock_t *m) &#123;</span><br><span class="line">    m-&gt;flag = 0;</span><br><span class="line">    m-&gt;guard = 0;</span><br><span class="line">    queue_init(m-&gt;q);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void lock(lock_t *m) &#123;</span><br><span class="line">    while (TestAndSet(&amp;m-&gt;guard, 1) == 1)</span><br><span class="line">        ; //acquire guard lock by spinning</span><br><span class="line">    if (m-&gt;flag == 0) &#123;</span><br><span class="line">        m-&gt;flag = 1; // lock is acquired</span><br><span class="line">        m-&gt;guard = 0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        queue_add(m-&gt;q, gettid());</span><br><span class="line">        setpark();  // avoid wakeup/waiting race</span><br><span class="line">        m-&gt;guard = 0;</span><br><span class="line">        park();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void unlock(lock_t *m) &#123;</span><br><span class="line">    while (TestAndSet(&amp;m-&gt;guard, 1) == 1)</span><br><span class="line">        ; //acquire guard lock by spinning</span><br><span class="line">    if (queue_empty(m-&gt;q))</span><br><span class="line">        m-&gt;flag = 0; // let go of lock; no one wants it</span><br><span class="line">    else</span><br><span class="line">        unpark(queue_remove(m-&gt;q)); // hold lock (for next thread!)</span><br><span class="line">    m-&gt;guard = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该锁的内部嵌套了一个用TS指令实现的自旋锁，对应的变量是<code>guard</code>，保护的关键区是对锁的内部状态的修改和更新过程。</p>
+<ul>
+<li><code>lock()</code>函数：
+<ul>
+<li>首先尝试进入关键区</li>
+<li>如果能获得锁，则离开关键区</li>
+<li>如果不能获得锁，则把自己加入队列中，离开关键区，然后放弃CPU（注意，如果先放弃CPU，则guard永远不会变成0，别的进程就无法获得和释放锁了）</li>
+</ul>
+</li>
+<li><code>unlock()</code>函数：
+<ul>
+<li>首先尝试进入关键区</li>
+<li>如果等待队列为空，则直接放弃锁，并离开关键区</li>
+<li>否则从队列中唤醒一个线程（注意，此时<code>flag</code>并不会被置为0，因为被唤醒的线程此时回到了<code>park()</code>执行完毕的地方，它已经离开了关键区，因此也不应该尝试把<code>flag</code>设为1；因此，我们直接把锁交给下一个线程，重甲不进行释放）</li>
+</ul>
+</li>
+</ul>
+<p>另一个可能存在的问题是，如果没有<code>setpark()</code>一句，且请求锁的线程在<code>park()</code>之前被打断，那么如果此时锁被释放了，重新被唤醒的请求线程会继续执行<code>park()</code>，并永远沉睡下去。<code>setpark()</code>可以解决这个问题：在调用它之后，如果线程在调用<code>park()</code>之前被打断，且其他的线程对它调用了<code>unpark()</code>，那么该线程随后对<code>park()</code>的调用会立即返回。</p>
+<h4>一个实际的锁的实现</h4>
+<p>这个实现利用了Linux中的两个函数：</p>
+<ul>
+<li><code>futex_wait(address, expected)</code>：如果address处的值与expected相等，则睡眠，否则返回</li>
+<li><code>futex_wake(address)</code>：唤醒一个在该地址的队列中等待的线程</li>
+</ul>
+<p>这个实现中，一个整数（mutex）用于跟踪锁是否被持有（最高位）和等待该锁的线程数（其他所有位）。所以，如果mutex为负数，则锁被持有。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">void mutex_lock (int *mutex) &#123;</span><br><span class="line">	int v;</span><br><span class="line">	/* Bit 31 was clear, we got the mutex (this is the fastpath) */</span><br><span class="line">	if (atomic_bit_test_set (mutex, 31) == 0)</span><br><span class="line">		return;</span><br><span class="line">	atomic_increment (mutex);</span><br><span class="line">	while (1) &#123;</span><br><span class="line">		if (atomic_bit_test_set (mutex, 31) == 0) &#123;</span><br><span class="line">			atomic_decrement (mutex);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		/* We have to wait now. First make sure the futex value</span><br><span class="line">		we are monitoring is truly negative (i.e. locked). */</span><br><span class="line">		v = *mutex;</span><br><span class="line">		if (v &gt;= 0)</span><br><span class="line">			continue;</span><br><span class="line">		futex_wait (mutex, v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mutex_unlock (int *mutex) &#123;</span><br><span class="line">	/* Adding 0x80000000 to the counter results in 0 if and only if there are not other interested threads */</span><br><span class="line">	if (atomic_add_zero (mutex, 0x80000000))</span><br><span class="line">		return;</span><br><span class="line"></span><br><span class="line">	/* There are other threads waiting for this mutex,</span><br><span class="line">	wake one of them up. */</span><br><span class="line">	futex_wake (mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>mutex_lock</code>函数：
+<ul>
+<li>如果该锁空闲，则返回</li>
+<li>否则等待线程数+1，并开始循环</li>
+<li>在每次循环中，如果发现该锁空闲，则获得该锁（使用的是TS指令），等待线程数-1，并返回</li>
+<li>如果发现该锁不空闲，在等待之前重新进行一次检查，如果发现锁空闲则继续循环；否则开始睡眠</li>
+</ul>
+</li>
+<li><code>mutex_unlock</code>函数：
+<ul>
+<li>将最高位置0的同时检查是否有其他线程在等待，如果没有，则直接返回</li>
+<li>如果有，则唤醒一个等待中的线程</li>
+</ul>
+</li>
+</ul>
+<p>其中，在尝试睡眠的过程中，<code>futex_wait</code>函数的特性保证了“wakeup/waiting race”不会发生：首先读出<code>mutex</code>处的值，确保此时锁不空闲；即使此时被打断，<code>mutex</code>处的值被修改，<code>futex_wait</code>也会因为两个值不相等而返回，不会永远进入睡眠状态。</p>
+<h4>两阶段锁</h4>
+<p>这个锁的原理是混合了自旋锁和队列睡眠机制。好像没有什么好说的。</p>
+<h2>作业</h2>
+<p>没有做。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+          <a href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw"></i>OSTEP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/my-lute-be-as-thou-wert-when-thou-didst-grow-by-w-drummond/">
+              
+                  《英诗金库》I-38：My lute, be as thou wert when thou didst grow, by W. Drummond
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-18
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2>作品基本信息</h2>
+<p>作品名称：My lute, be as thou wert when thou didst grow<br>
+作者：William Drummond（威廉·德拉蒙德）<br>
+出版年代：1616<br>
+编注：无</p>
+<h2>作品原文</h2>
+<p>My lute, be as thou wert when thou didst grow<br>
+With thy green mother in some shady grove,<br>
+When immelodious winds but made thee move,<br>
+And birds their ramage<a href="#note1" id="note1ref"><sup>1</sup></a> did to thee bestow.</p>
+<p>Since that dear Voice which did thy sounds approve,<br>
+Which wont<a href="#note2" id="note2ref"><sup>2</sup></a> in such harmonious strains to flow,<br>
+Is reft from Earth to tune those spheres above,<br>
+What art thou but a harbinger of woe?</p>
+<p>Thy pleasing notes be pleasing notes no more,<br>
+But orphans' wailings to the fainting ear;<br>
+Each stroke a sigh<a href="#note3" id="note3ref"><sup>3</sup></a>, each sound draws forth a tear;<br>
+For which be silent as in woods before:</p>
+<p>Or if that any hand to tough thee deign,<br>
+Like widow'd turtle<a href="#note4" id="note4ref"><sup>4</sup></a> still<a href="#note5" id="note5ref"><sup>5</sup></a> her loss<a href="#note6" id="note6ref"><sup>6</sup></a> complain.</p>
+<h2>译文</h2>
+<h3>李霁野 译</h3>
+<p>我的琵琶，还去到矮丛下面，<br>
+同你绿色母亲在原来地方，<br>
+那时噪声的风使你摇晃，<br>
+鸟儿将狂野的歌落在你的身边。</p>
+<p>那亲爱的声音曾经将你的声调赞赏，<br>
+那声音一贯是和谐流利，<br>
+你除了传送哀愁，还能做什么呢，<br>
+现在它已经离开大地，到了天上？</p>
+<p>使人喜悦的音调已不再使人喜悦，<br>
+听力衰微的耳朵听来只是孤儿哀泣；<br>
+每一声响只使人流泪叹气；<br>
+因此象以前在林间一样保持沉默。</p>
+<p>假如有人要用手抚摸你，<br>
+象失偶的鸽子，永远悲叹她逝去。</p>
+<h2>我的感想</h2>
+<p>这首诗讲述了一个悲伤的故事。作者曾经弹着这把琉特琴和一位女性（不好说是否是恋人或家人朋友）一起谈天。如今，这位女性已经去世，这把琴也就不再能给人带来喜悦，而是传递着怀念和悲伤。因此他不愿再弹奏这把琴了。</p>
+<p>我最喜欢的是第一节的景物描写。虽然从诗中看来，这种从前的沉默在现在悲伤的境况下反而是较好的，但这一场景也充满着孤独与忧郁。或者说，这一忧郁是从现在场景回想的结果。尚未被制成琉特琴之前，周围的景象也是粗粝的，但树木是愚钝的，对此恐怕无所感受。变成了琴，它的音色变得优美，讲述着人的喜悦，可是这终究是有期限的，欢乐还是变成了哀愁。这隐喻了叙事者的感情和心理的变化过程。虽然希望回到不那么痛苦的过去，可是回不去了；以现在拥有的感情来看，过去的生活也不算美好，因为已经知道什么是快乐了。所以终究是回不去了。</p>
+<h2>参考文献</h2>
+<h2>脚注</h2>
+<p><a id="note1" href="#note1ref"><sup>1</sup></a><em>ramage</em>: 'the sond of birds,' from the French ramage, with th same meaning.<br>
+<a id="note2" href="#note2ref"><sup>2</sup></a><em>wont</em>, now used only as an adjective, was formerly the past tense of won, or wone, meaning to dwell, to be accustomed.<br>
+<a id="note3" href="#note3ref"><sup>3</sup></a><em>Each stroke a sigh</em>: 'each touch of the strings <draws forth=""> a sigh.'<br>
+<a id="note4" href="#note4ref"><sup>4</sup></a><em>turtle</em>: 'turtledove.'<br>
+<a id="note5" href="#note5ref"><sup>5</sup></a><em>still</em>: 'continually.'<br>
+<a id="note6" href="#note6ref"><sup>6</sup></a><em>her loss</em>: 'the loss of her,' i.e. the owner of the 'dear Voice.'</draws></p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/W-Drummond/"><i class="fas fa-hashtag fa-fw"></i>W.Drummond</a>
+        
+          <a href="/tags/GoldenTreasury/"><i class="fas fa-hashtag fa-fw"></i>GoldenTreasury</a>
+        
+          <a href="/tags/Sonnet/"><i class="fas fa-hashtag fa-fw"></i>Sonnet</a>
+        
+          <a href="/tags/李霁野/"><i class="fas fa-hashtag fa-fw"></i>李霁野</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/os-mooc-2018-midterm-summary/">
+              
+                  《操作系统》2018年期中考试总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-17
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>考试题来自<a href="http://os.cs.tsinghua.edu.cn/oscourse/OS2018spring/MidExam?action=AttachFile&amp;do=view&amp;target=20180412-%E6%9C%9F%E4%B8%AD%E8%80%83%E8%AF%95%E9%A2%98%E7%9B%AE-v8.pdf" target="_blank" rel="noopener">2018年春季学期操作系统课期中考试</a>。</p>
+<h2>对错题</h2>
+<ol>
+<li>进程执行系统调用，从用户态切换到内核态执行时，将切换页表和栈。（×）</li>
+</ol>
+<p>从用户态切换到内核态执行时并不切换页表。大概是因为直接使用了映射的内核空间。</p>
+<hr>
+<ol start="2">
+<li>进程切换的具体执行过程发生在内核态。（√）</li>
+</ol>
+<p>显然uCore中确实是这么实现的。而且进程切换需要特权指令（如写CR3寄存器），因此必须在内核态下进行。</p>
+<hr>
+<ol start="3">
+<li>OS不能让运行在OS内核空间的内核线程和用户线程之间进行进程切换。（×）</li>
+</ol>
+<p>事实上是可以的。Lab5中，就是在创建了用户进程之后，从内核线程切换到用户进程的。</p>
+<hr>
+<ol start="4">
+<li>OS在建立页表并使能页机制时，需要特权指令才能最终完成。（√）</li>
+</ol>
+<p>对于X86和MIPS架构，使能页机制的指令都是特权指令。</p>
+<hr>
+<ol start="5">
+<li>如果用户态进程一直执行死循环将导致OS内核一直无法控制CPU。（×）</li>
+</ol>
+<p>只要硬件提供了硬件中断的支持，OS就可以中断该用户态进程了。</p>
+<hr>
+<ol start="6">
+<li>二次机会（时钟）页面替换算法有Belady异常现象。（√）</li>
+</ol>
+<p>（从未听说过二次机会这个名字。）时钟算法和扩展的时钟算法都有Belady现象。反例来自<a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=214" target="_blank" rel="noopener">Piazza</a>。</p>
+<p>因如果所有页的访问位都为1时，clock算法将退化为FIFO，可以构造如下序列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a,b,c,d,a,b,e,a,b,c,d,e</span><br></pre></td></tr></table></figure>
+<p>当物理页帧为3时，缺页次数为9次，当物理页帧为4时，缺页次数为10次。</p>
+<hr>
+<ol start="7">
+<li>OS内核会直接杀死产生内存访问异常的用户进程。（×）</li>
+</ol>
+<p>显然，内存访问异常有多种情况，权限错误，地址不合法，或者是缺页。访问越界这种情况确实会导致OS杀死进程（SEGMENTATION FAULT==），但缺页异常下肯定不是杀死这个进程，而是将缺的页换入，重新执行产生缺页异常的指令。</p>
+<hr>
+<ol start="8">
+<li>由于栈的原因，在OS内核中不能执行系统调用（syscall）来获得OS内核的服务。（×）</li>
+</ol>
+<p>系统调用可以在同特权级下进行，此时不进行栈的切换。</p>
+<hr>
+<ol start="9">
+<li>对于子进程而言，<code>fork()</code>执行不成功后的返回值&lt;0。（√）</li>
+</ol>
+<p>我觉得这道题的脑回路很奇异。按照一般的想法，父进程执行<code>fork()</code>之后，如果成功，则创建子进程，父进程处<code>fork()</code>的返回值为子进程的PID，子进程处<code>fork()</code>的返回值为0。如果父进程执行<code>fork()</code>不成功，则返回负值，此时也就没有子进程了。所以这道题不知如何选。</p>
+<p>而老师解释说，这道题目说的是“fork出来的子进程再次进行fork的情况”。这就只不过是普通的<code>fork()</code>而已了。</p>
+<hr>
+<ol start="10">
+<li>如果不考虑执行性能，ucore on x86-32可实现LRU页替换算法。（√）</li>
+</ol>
+<p>因为<a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=1183" target="_blank" rel="noopener">有人真的实现了</a>，所以是对的。大致的思路是，强制每次页访问都触发一个页访问异常，利用这个页访问就可以知道究竟发生了什么样的访存操作，以及这些操作的先后次序。这样的方案能够得到准确的LRU信息。</p>
+<h2>填空题</h2>
+<p>小强同学认真上课听讲，参与讨论，并完成了从lab0~lab3的所有实验，在学习过程中，了解和学到了很多知识。下面是他的学习心得，请补充完整。</p>
+<h3>1</h3>
+<p>小强发现完成实验需要在Linux下操作很多命令行工具，于是他认真学习了lab0中的知识，了解到Linux中在命令行模式下可以通过执行命令（<strong>1.1</strong>）来显示当前目录的路径，如果我们编写的程序有语法错误，编译器（<strong>1.2</strong>）会报错，根据错误信息，我们可以修改我们的程序，可以通过硬件模拟器工具（<strong>1.3</strong>）来执行我们的ucore操作系统。</p>
+<hr>
+<ol>
+<li>pwd</li>
+<li>gcc</li>
+<li>qemu (system i386)</li>
+</ol>
+<p>这些都很简单，做了实验的人应该都会（虽然pwd其实很少用，因为prompt前面一般都会显示路径……）</p>
+<h3>2</h3>
+<p>在完成lab 1的过程中，通过分析硬件模拟器工具对CPU状态的输出信息，可了解到基于80386的计算机在加电后执行BIOS代码时处于（<strong>2.1</strong>）模式。而os lab 1中的bootloader通过建立（<strong>2.2</strong>）表可让计算机进入（<strong>2.3</strong>）模式，从而可以充分利用80386 CPU提供的保护能力和32位内存寻址空间。os lab 1中的ucore os为了能够对异常／中断等进行有效管理，需要建立（<strong>2.4</strong>）表，才能使能中断，让ucore os进行进一步的中断处理。在学习80386特权级时，对CPL、RPL和DPL需要满足如下两个公式确保系统安全：访问（<strong>2.5</strong>）时，CPL&lt;=DPL[门] &amp; CPL&gt;=DPL[段]；访问（<strong>2.6</strong>）时，MAX(CPL, RPL)&lt;=DPL。</p>
+<hr>
+<ol>
+<li>8086模式/实模式</li>
+<li>段表/GDT表/全局描述符表</li>
+<li>保护模式</li>
+<li>中断描述符表/IDT表</li>
+<li>中断门</li>
+<li>段</li>
+</ol>
+<h3>3</h3>
+<p>1.3在完成lab2的过程中，需要了解x86-32的内存大小与布局，页机制，页表结构等。硬件模拟器提供了128MB的内存，并设定页目录表的起始地址存放（<strong>3.1</strong>）寄存器中，页目录表和页表的地址按（<strong>3.2</strong>）字节对齐。在一个页目录表占用（<strong>3.3</strong>）个Byte，一个页表占用（<strong>3.4</strong>）个Byte。ucore<br>
+通过x86-32 CPU中的（<strong>3.5</strong>）寄存器可以获得发生页面访问错误时的线性地址。</p>
+<hr>
+<ol>
+<li>CR3</li>
+<li>4K</li>
+<li>4K</li>
+<li>4K</li>
+<li>CR2</li>
+</ol>
+<h3>4</h3>
+<p>在完成lab3的过程中，ucore操作系统在页机制基础上，并利用异常机制建立了虚存管理策略与机制。如果一个页（4KB/页）被置换到了硬盘某8个连续扇区（0.5KB/扇区），该页对应的页表项（PTE）的最低位——present（存在位）应该为（<strong>4.1</strong>），表示虚实地址映射关系不存在，而原来用来表示页帧号的高（<strong>4.2</strong>）位，恰好可以用来表示此页在硬盘上的起始扇区的位置（其从第几个扇区开始）。</p>
+<hr>
+<ol>
+<li>0</li>
+<li>20</li>
+</ol>
+<h3>5</h3>
+<p>在学习进程的概念中，了解到在支持多进程的操作系统（包括ucore)中，每个进程有两个堆栈，分别是（<strong>5.1</strong>）栈和（<strong>5.2</strong>）栈。操作系统通过建立（<strong>5.3</strong>）这个核心数据结构来支持对进程的管理。对于进程的三状态模型，是指进程在执行过程中会具有（<strong>5.4</strong>），（<strong>5.5</strong>），（<strong>5.6</strong>）三种状<br>
+态。在操作系统具有进程地址空间为单位的swap in/out虚存管理机制，可建立进程的五状态模型，将增加（<strong>5.7</strong>），（<strong>5.8</strong>）。</p>
+<hr>
+<ol>
+<li>内核</li>
+<li>用户</li>
+<li>PCB/进程控制块</li>
+<li>就绪态</li>
+<li>运行态</li>
+<li>等待态</li>
+<li>就绪挂起态</li>
+<li>就绪等待态</li>
+</ol>
+<h2>问答题</h2>
+<h3>fork</h3>
+<p>在Linux环境下，下列程序调用<code>magic</code>函数的次数是多少？如果一个程序死循环调用<code>fork()</code>系统调用，会出现什么情况？请说明原因。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">        fork();</span><br><span class="line">    magic();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><img src="fork_bomb.jpg" alt="调用过程图"></p>
+<p>如上图，最终会得到$2^10 = 1024$个进程，即进行<code>fork()</code>系统调用1024次。</p>
+<p>一个程序死循环调用<code>fork()</code>系统调用，则被称为“<code>fork()</code>炸弹”，因为进程会以指数级别增加。在实际的机器上尝试<code>fork()</code>炸弹的后果是：机器不会死机，但是无法创建新的程序了，因为进程控制块资源耗尽了。这不会导致失去对电脑控制权，仍然可以通过Ctrl+C终止程序。</p>
+<h3>用户线程</h3>
+<p>用户线程是指由一组用户线程管理库函数来完成线程的管理功能，包括线程的创建、终止、同步和调度等。假设处于仅通过用户线程管理库管理用户线程的操作系统环境，请回答下列问题：</p>
+<ol>
+<li>操作系统内核是否需要知道用户线程的存在？请说明理由。</li>
+<li>用户线程管理库实现的线程切换是否需要进入内核态，通过操作系统内核来完成？请说明理由。</li>
+<li>用户态线程管理库是否可以随时打断用户态线程，完成线程调度与切换？请阐述理由或方法。</li>
+</ol>
+<hr>
+<ol>
+<li>OS内核不需要知道用户库维护的线程的存在，如果它知道，也就没有用户线程的意义了，变成了内核线程。</li>
+<li>线程切换不需要进入内核态，因为线程的页表是共享的，其他现场信息不需要特权指令来保存，所以可以在用户态切换。</li>
+<li>能，因为OS可以通知线程管理库发生中断（发出软件中断）。也可以回答不能，因为在用户态不能实现中断。重点是自圆其说。</li>
+</ol>
+<h3>页表访问时间</h3>
+<p>在一个只有一级页表的请求页式存储管理系统中，假定页表内容如下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">页号</th>
+<th style="text-align:center">页框（Page Frame）号</th>
+<th style="text-align:center">有效位（存在位）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">123H</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">254H</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>页面大小为4KB，一次内存的访问时间是100ns，一次快表（TLB）的访问时间是10ns，处理一次缺页的平均时间为1e7ns（己经包含更新TLB和页表的时间），进程的驻留集大小固定为2，采用最近最少使用置换算法(LRU)和局部淘汰策略。假设：</p>
+<ul>
+<li>TLB初始为空；</li>
+<li>地址转换时先访问TLB，若TLB没有命中，再访问页表（忽略访问页表之后的TLB更新时间）；</li>
+<li>有效位为0表示页面不在内存，产生缺页中断，缺页中断处理后，返回到产生缺页中断的指令处重新执行。</li>
+</ul>
+<p>设有虚地址访问序列2362H，1565H，25A5H，请问：</p>
+<ol>
+<li>依次访问上述三个虚地址，各需要多少时间？给出计算过程？</li>
+<li>基于上述访问序列，虚地址1565H的物理地址是多少？请说明理由。</li>
+</ol>
+<hr>
+<p>首先访问2362H，页号为2H，偏移量为362H。查找TLB未命中（10ns），查找页表得到页框号为254H（100ns），更新TLB（略），计算出物理地址为254362H，访存（100ns），总时间为210ns。</p>
+<p>然后访问1565H，页号为1H，偏移量为565H。查找TLB未命中（10ns），查找页表发现缺页（100ns），根据LRU算法，将第0页换出，将第1页换入到页号为123H的物理页帧，更新TLB和页表（1e7ns），访存（100ns），总时间约为1e7ns。</p>
+<p>最后访问25A5H，页号为2H，偏移量为5A5H。查找TLB命中（10ns），计算出物理地址为2545A5H，访存（100ns），总时间为110ns。</p>
+<p>由于第1页现在位于页号为123H的物理页帧中，因此虚地址1565H的物理地址是123565H。</p>
+<h3>RISC-V页表</h3>
+<p>2017年图灵奖得主John L. Hennessy和David A. Patterson提出了RISC-V架构的32位小端序CPU设计，它有34位地址总线，使用32位页式存储管理。该计算机的页面大小为4KiB，一个页表大小为4KiB，其中每一个页表项(Page Table Entry，PTE)大小为4B，虚拟地址、物理地址和PTE的结构如下图所示。</p>
+<p><img src="page_table_structure.png" alt="虚拟地址、页表项和物理地址结构"></p>
+<p>如上图所示，一个虚拟地址由虚拟页号(Virtual Page Number，VPN)和页内偏移组成，物理地址由物理页号(Physical Page Number，PPN)和页内偏移组成，PTE由PPN和一些控制位组成，其中R/W/X三个域分别表示对应页的读/写/执行权限，它们的不同组合可以表示不同的属性，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>X</th>
+<th>W</th>
+<th>R</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>This PTE points to next level of page table.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>Read-only page.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>Read-write page.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Execute-only page.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Read-execute page.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Read-write-execute page.</td>
+</tr>
+</tbody>
+</table>
+<p>请回答下列问题：</p>
+<ol>
+<li>32-bit的RISC-V架构CPU使用34位物理地址而不是32位物理地址，这样做的好处是什么？</li>
+<li>设页目录基址为0x90000000，部分物理内存的内容如下图所示，试给出虚拟地址0x3A69A4D2和0x3A8EB00C所对应的物理地址和它们所在页的类型。请写出计算过程。</li>
+</ol>
+<p><img src="memory_content.png" alt="部分内存中的内容"></p>
+<hr>
+<p>第一题的答案是显然的：34位物理地址可以寻址16G的内存，这显然是好的。</p>
+<p>第二题就比较复杂了。首先计算出两个虚拟地址对应的各项。由于单个页表项的大小是4B，可以通过VPN[1]计算出页表项所在的地址为<code>0x90000000+4*VPN[1]</code>，并读出页表项（注意是<strong>小端</strong>存储）。</p>
+<table>
+<thead>
+<tr>
+<th>虚拟地址</th>
+<th>VPN[1]</th>
+<th>VPN[0]</th>
+<th>offset</th>
+<th>PTE地址</th>
+<th>PTE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x3A69A4D2</td>
+<td>0xE9</td>
+<td>0x29A</td>
+<td>0x4D2</td>
+<td>0x900003A4</td>
+<td>0x28000001</td>
+</tr>
+<tr>
+<td>0x3A8EB00C</td>
+<td>0xEA</td>
+<td>0xEB</td>
+<td>0x00C</td>
+<td>0x900003A8</td>
+<td>0x3EB0000F</td>
+</tr>
+</tbody>
+</table>
+<p>可以发现，0x28000001的XWR=000，因此它是一个一级页表项，指向的是一个二级页表，它的基地址是0xA0000000。二级页表项的地址<code>=0xA0000000+4*VPN[0]=0xA0000A68</code>，读出二级页表项为0x37AB6C09，它指向一个可执行的页，页的基地址为0xDEADB000。物理地址=页基地址+偏移量=0xDEADB000+0x4D2=0xDEADB4D2。</p>
+<p>而0x3EB0000F的XWR=111，也就是说，它指向一个可写可读可执行的页。不妨进行大胆的猜测：这个页的大小是4MB，虚拟地址中的<code>VPN[0]</code>和offset共同作为页内的偏移量；而页表项中的<code>PPN[1]</code>就是页基址的高12位。由此可得，页基址<code>=0xFAC00000</code>，物理地址=页基址+偏移量<code>=0xFAC00000+0xEB00C=0xFACEB00C</code>。</p>
+<p>关于RISC-V内存管理的更多内容可以参见<a href="https://en.wikipedia.org/wiki/RISC-V#Memory_access" target="_blank" rel="noopener">wiki</a>或RISC-V的文档，不过我一时是懒得去读了。</p>
+<h2>总结</h2>
+<p>我觉得今年的题目比去年的难度更大，特别是最后一题，如果没有仔细阅读过硬件内存管理部分，很难想象到一级页表项管理的页是特殊的，大小为4MB。其余的部分都比较基础了。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/love-s-farewell-by-d-drayton/">
+              
+                  《英诗金库》I-37：Love's Farewell, by D. Drayton
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-17
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2>作品基本信息</h2>
+<p>作品名称：Love's Farewell（爱的告别）<br>
+作者：Michael Drayton（迈克尔·德雷顿）<br>
+出版年代：1593<br>
+编注：迈克尔·德雷顿（Michael Drayton，1563—1631），英国诗人。这首十四行诗系他1593年出版的诗集《意念，牧人之歌》第六一首。</p>
+<h2>作品原文</h2>
+<p>Since there's no help, come let us kiss and part, —<br>
+Nay I have done, you get no more of me;<br>
+And I am glad, yea, glad with all my heart,<br>
+That thus so cleanly<a href="#note1" id="note1ref"><sup>1</sup></a> I myself can free;</p>
+<p>Shake hands for ever, cancel all our vows,<br>
+And when we meet at any time again,<br>
+Be it not seen in either of our brows<br>
+That we one jot of former love retain.</p>
+<p>Now at the last gasp of love's latest breath,<br>
+When, his pulse failing, passion speechless lies,<br>
+When faith is kneeling, by his bed of death,<br>
+And innocence is closing up his eyes,</p>
+<p>—Now if thou would'st, when all have given him over,<br>
+From death to life thou might'st him yet recover!</p>
+<h2>译文</h2>
+<h3>李霁野 译</h3>
+<p>既然没有办法了，让我们亲吻分离，<br>
+我为你做过的，你再也不能从我得去；<br>
+我欢喜，是呀，我满心欢喜，<br>
+我这样完全摆脱了自己。</p>
+<p>握手永别，取消我们所有的誓言，<br>
+而且无论何时再见，<br>
+不要显在我们各自的眉间<br>
+我们保存了我们前恋的一星一点。</p>
+<p>现在爱的临终呼吸发出最后喘息，<br>
+他的脉搏衰微，热情安卧无语，<br>
+信仰跪在他的死榻一隅，<br>
+无辜在将他的双眼合起，——</p>
+<p>假如你愿，在一切抛弃他的瞬间，<br>
+你仍然可以使他从死里生还！</p>
+<h2>我的感想</h2>
+<p>德雷顿<a href="#bib1" id="bib1ref"><sup>[1]</sup></a>这人还是很有名的（但请注意不要把他和约翰·德莱顿<a href="#bib2" id="bib2ref"><sup>[2]</sup></a>搞混了）。读了读他的生平：德雷顿是一位英国诗人，大致生活在伊丽莎白一世到詹姆斯一世的时代。诗歌生涯大致可以分为三个阶段，其中第一阶段和第三阶段比较多产，且更贴近伊丽莎白一世时期著作的风格。</p>
+<p>概述一下这首诗的内容。在第一节和第二节中，叙述者表明，他处于一段即将破裂的二人关系中，这段感情似乎完全无法维持下去了，他准备和平分手，并很高兴自己能摆脱这段关系，并获得自由，两人永远不会再相爱。可是在第三节中，叙述者的口吻改变了。他把自己的爱情比作一个垂死的人，表示，只要对方能够回心转意，自己的爱情仍会死灰复燃。诗就在这里结束了。他们最后复合了吗？</p>
+<p>这首诗中表现出的情感是十分复杂的，或者说可以有多种理解方式。这真是很有趣。我最初的理解方式是，叙述者一直都爱着他的对象，而他的对象不再爱他了。那些“I am glad”、“I myself can free”什么的，都是他无奈之下说出的气话。提议和平分手只是为了留下最后的体面。到第二节的时候，虽然他的话语是绝情的，但我觉得弦外之音是，他希望自己能够做到这样绝情，但是做不到。第三节的时候他就已经不再嘴硬，而是开始恳求了：请给我们的爱情一点希望吧！我曾经那么爱你，可是这份爱再也得不到回应了，它即将死去。可是，如果你仍愿意回应这份爱，我的爱情就会立刻燃起希望。在这种理解下，爱的“死”大概不是直接的消亡，而是彻底失去了希望。</p>
+<p>不过查资料的时候我又看到了另一种解释方法。在这种解释中，叙述者和他的爱人在爱情中是互相厌倦的，因此才会如此平和地在第一段中说出要和平分手这种话，分手时还要亲吻握手。但是，从第三段开始，叙述者又后悔了。他想起了自己曾在爱情中付出的热情、信仰和天真，不希望这段感情就此逝去。于是他在最后又诚恳地请求爱人，重新考虑一下，我们还能重新开始。<a href="#bib4" id="bib4ref"><sup>[4]</sup></a>不过我不太同意这种解释的地方在于，在第二段中叙述者提议的行为是相当绝情的，和这种感情状态不太匹配；除非他们都在游戏人生。</p>
+<p>下面来一段当代人比较喜欢的解释（我随便脑洞的）。叙述者仍然爱着他的爱人，但他的爱人已经厌倦了。他决定最后恳求一次，但不是卑躬屈漆地请求。如果对方不愿接受，那我们就和平分手，让我心中的爱逐渐逝去。但是，如果对方愿意的话，他还愿意继续爱下去。他只是把自己的心意摆在面前，请求对方接受罢了。（此处听起来实在像是某篇知乎问答中讲的令狐冲和任盈盈的爱情观了。翻了半天都没找到原答案，只好把引文粘在下面。当然这个诠释真的很……现代……了）</p>
+<blockquote>
+<p>令狐冲和任盈盈在感情上是真正的一类人。任盈盈可以为令狐冲孤身上少林，但当他在面临抉择的时候，要让她站到他面前去，她却是万万不愿意的。 同样的，令狐冲可以为小师妹不计生死相救，可以以身饲剑只为她欢喜，但要让他俯首乞怜，哀恳她回心转意，他却是死也做不出来的。他们的「争取」，是把心意敞敞亮亮的放在对方面前，不是跪着求对方接受它。 「两情相悦，贵乎自然」，强求无味，更惹伤心。他们只是在这一点上，比别人想的更明白通透罢了</p>
+</blockquote>
+<p>不过，无论上述哪种解释更好，我都挺喜欢第三节的描写的。换句话说，不就是在这段感情中，激情支配着我的心跳和话语，信念激励着我不断坚持，纯真让我的双眼不断发现你的美么。看来作者心目中完美的爱情是需要激情、信念和纯真的。这很有趣了。如果我也拥有一段由这些要素构成的爱情，那至少它曾经是很美好的。</p>
+<h2>参考文献</h2>
+<p><a id="bib1" href="#bib1ref"><sup>[1]</sup></a> Michael Drayton. <a href="https://en.wikipedia.org/wiki/Michael_Drayton" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Michael_Drayton</a><br>
+<a id="bib2" href="#bib2ref"><sup>[2]</sup></a> John Dryden. <a href="https://en.wikipedia.org/wiki/John_Dryden" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/John_Dryden</a><br>
+<a id="bib3" href="#bib3ref"><sup>[3]</sup></a> Michael Drayton Critical Essays. <a href="https://www.enotes.com/topics/michael-drayton/critical-essays" target="_blank" rel="noopener">https://www.enotes.com/topics/michael-drayton/critical-essays</a><br>
+<a id="bib4" href="#bib4ref"><sup>[4]</sup></a> give me the summary of poem &quot;Lover's Farewell&quot; by M. drayton. <a href="http://www.gradesaver.com/allen-ginsbergs-poetry/q-and-a/give-me-the-summary-of-poem-lovers-farewell-by-m-drayton-57457" target="_blank" rel="noopener">http://www.gradesaver.com/allen-ginsbergs-poetry/q-and-a/give-me-the-summary-of-poem-lovers-farewell-by-m-drayton-57457</a></p>
+<h2>脚注</h2>
+<p><a id="note1" href="#note1ref"><sup>1</sup></a><em>cleanly</em>: 'entirely.'（彻底地，完全地。）</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/GoldenTreasury/"><i class="fas fa-hashtag fa-fw"></i>GoldenTreasury</a>
+        
+          <a href="/tags/Sonnet/"><i class="fas fa-hashtag fa-fw"></i>Sonnet</a>
+        
+          <a href="/tags/李霁野/"><i class="fas fa-hashtag fa-fw"></i>李霁野</a>
+        
+          <a href="/tags/D-Drayton/"><i class="fas fa-hashtag fa-fw"></i>D.Drayton</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/ostep-ch-27-summary-interlude-thread-api/">
+              
+                  OSTEP第27章总结：Interlude: Thread API
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-16
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本章主要介绍了POSIX标准下的线程API，包括：</p>
+<ul>
+<li>创建线程</li>
+<li>等待线程结束</li>
+<li>创建和使用互斥锁</li>
+<li>创建和使用条件变量</li>
+</ul>
+<h2>创建线程</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int</span><br><span class="line">pthread_create( pthread_t * thread,</span><br><span class="line">		 const pthread_attr_t * attr,</span><br><span class="line">			   void * (*start_routine)(void*),</span><br><span class="line">               void * arg);</span><br></pre></td></tr></table></figure>
+<p>4个参数的含义如下：</p>
+<ul>
+<li><code>thread</code>：指向<code>struct pthread_t</code>类型的变量的指针，我们需要这一变量用来控制线程，因此需要把它的指针传递过去进行初始化</li>
+<li><code>attr</code>：指定线程的属性，如栈的大小和线程的调度优先级；属性是通过调用<code>pthread attr_init()</code>进行初始化的</li>
+<li><code>start_routine</code>：指定线程运行的函数，它只有一个<code>void*</code>类型的参数，返回值也是<code>void*</code>类型</li>
+<li><code>arg</code>：在进程执行的时候传递给函数的参数</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line"></span><br><span class="line">typedef struct __myarg_t &#123;</span><br><span class="line">    int a;</span><br><span class="line">    int b;</span><br><span class="line">&#125; myarg_t;</span><br><span class="line"></span><br><span class="line">void *mythread(void *arg) &#123;</span><br><span class="line">    myarg_t *m = (myarg_t *) arg;</span><br><span class="line">    printf(&quot;%d %d\n&quot;, m-&gt;a, m-&gt;b);</span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(int argc, char *argv[]) &#123;</span><br><span class="line">    pthread_t p;</span><br><span class="line">    int rc;</span><br><span class="line"></span><br><span class="line">    myarg_t args;</span><br><span class="line">    args.a = 10;</span><br><span class="line">    args.b = 20;</span><br><span class="line">    rc = pthread_create(&amp;p, NULL, mythread, &amp;args);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2>等待线程结束</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int pthread_join(pthread_t thread, void **value_ptr);</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li><code>thread</code>：等待哪一个线程结束；这个变量是通过调用<code>pthread_create()</code>来初始化的</li>
+<li><code>value_ptr</code>：指向将会得到的返回值的指针</li>
+</ul>
+<h3>使用示例</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;assert.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">typedef struct __myarg_t &#123;</span><br><span class="line">    int a;</span><br><span class="line">    int b;</span><br><span class="line">&#125; myarg_t;</span><br><span class="line"></span><br><span class="line">typedef struct __myret_t &#123;</span><br><span class="line">    int x;</span><br><span class="line">    int y;</span><br><span class="line">&#125; myret_t;</span><br><span class="line"></span><br><span class="line">void *mythread(void *arg) &#123;</span><br><span class="line">    myarg_t *m = (myarg_t *) arg;</span><br><span class="line">    printf(&quot;%d %d\n&quot;, m-&gt;a, m-&gt;b);</span><br><span class="line">    myret_t *r = Malloc(sizeof(myret_t));</span><br><span class="line">    r-&gt;x = 1;</span><br><span class="line">    r-&gt;y = 2;</span><br><span class="line">    return (void *) r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(int argc, char *argv[]) &#123;</span><br><span class="line">    pthread_t p;</span><br><span class="line">    myret_t *m;</span><br><span class="line"></span><br><span class="line">    myarg_t args = &#123;10, 20&#125;;</span><br><span class="line">    Pthread_create(&amp;p, NULL, mythread, &amp;args);</span><br><span class="line">    Pthread_join(p, (void **) &amp;m);</span><br><span class="line">    printf(&quot;returned %d %d\n&quot;, m-&gt;x, m-&gt;y);</span><br><span class="line">    free(m);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，创建了一个线程，传入了一些参数，在该线程返回之后，得到了它的返回值。当然，我们并不是总需要把参数和返回值包装成<code>struct</code>的。值得注意的是，不要返回指向在线程的调用栈上分配的内存的指针（而改为使用<code>malloc()</code>在堆上分配内存），因为在线程返回之后，它的栈就会被回收。</p>
+<p>当然，在这个例子中，调用<code>pthread_create()</code>之后立刻调用<code>pthread_join()</code>的做法是没有什么意义的，因为函数调用也可以达到相同的效果。</p>
+<p>并不是所有多线程程序都会用到<code>join</code>函数。有些多线程服务器可能会创建一些工作线程，然后让主线程不断接收请求并传递给其他线程。</p>
+<h2>互斥锁</h2>
+<p>最基本的一对上锁/解锁API是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int pthread_mutex_lock(pthread_mutex_t *mutex);</span><br><span class="line">int pthread_mutex_unlock(pthread_mutex_t *mutex);</span><br></pre></td></tr></table></figure>
+<p>较高级的API包括：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 在无法获得锁时返回错误</span><br><span class="line">int pthread_mutex_trylock(pthread_mutex_t *mutex);</span><br><span class="line">// 在试图获得锁而不成功一段时间后返回错误</span><br><span class="line">int pthread_mutex_timedlock(pthread_mutex_t *mutex,</span><br><span class="line">                            struct timespec *abs_timeout);</span><br></pre></td></tr></table></figure>
+<h3>使用示例</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">pthread_mutex_lock(&amp;lock);</span><br><span class="line">x = x + 1; // or whatever your critical section is</span><br><span class="line">pthread_mutex_unlock(&amp;lock);</span><br></pre></td></tr></table></figure>
+<p>上述代码的含义是：</p>
+<ul>
+<li>如果调用<code>pthread_mutex_lock()</code>时没有其他线程持有锁，则该线程可以获得锁并进入关键区</li>
+<li>如果有其他的线程正在持有锁，则试图获得锁的进程将会阻塞，直到其他进程将锁释放，该进程获得锁为止</li>
+</ul>
+<p>注意几点：</p>
+<ol>
+<li>只有拥有锁的线程才能调用<code>pthread_mutex_unlock()</code></li>
+<li>需要检查上锁和开锁时可能发生的错误，最简单的方法是assert返回值</li>
+<li>除了静态初始化方法（使用<code>PTHREAD_MUTEX_INITIALIZER</code>进行默认初始化）</li>
+</ol>
+<p>修改为动态初始化的示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_t lock;</span><br><span class="line">int rc = pthread_mutex_init(&amp;lock, NULL);</span><br><span class="line">assert(rc == 0); // always check success!</span><br><span class="line">pthread_mutex_lock(&amp;lock);</span><br><span class="line">x = x + 1; // or whatever your critical section is</span><br><span class="line">pthread_mutex_unlock(&amp;lock);</span><br><span class="line">pthread_mutex_destroy(&amp;lock);</span><br></pre></td></tr></table></figure>
+<h2>条件变量</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex);</span><br><span class="line">int pthread_cond_signal(pthread_cond_t *cond);</span><br></pre></td></tr></table></figure>
+<p>需要在线程之间传递信号的时候（比如某个线程等待另一个完成），条件变量是很重要的。条件变量需要一个与它相关的锁。调用上述函数的前提是持有该锁。</p>
+<p><code>pthread_cond_wait()</code>函数的功能是，将调用该函数的线程睡眠，直到其他线程发出信号为止。通常的用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">pthread_cond_t cond = PTHREAD_COND_INITIALIZER;</span><br><span class="line">Pthread_mutex_lock(&amp;lock);</span><br><span class="line">while (ready == 0)</span><br><span class="line">Pthread_cond_wait(&amp;cond, &amp;lock);</span><br><span class="line">Pthread_mutex_unlock(&amp;lock);</span><br></pre></td></tr></table></figure>
+<p>上述代码在初始化之后，对<code>ready</code>变量进行检查，如果不满足要求，则继续睡眠，等待再次被唤醒。</p>
+<p>在其他线程中唤醒该线程的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Pthread_mutex_lock(&amp;lock);</span><br><span class="line">ready = 1;</span><br><span class="line">Pthread_cond_signal(&amp;cond);</span><br><span class="line">Pthread_mutex_unlock(&amp;lock);</span><br></pre></td></tr></table></figure>
+<p>值得注意的是：</p>
+<ul>
+<li>在发出信号和修改全局变量<code>ready</code>时，为了防止竞争条件，我们总是确保已经获得了锁</li>
+<li><code>wait</code>函数的第二个参数是锁，但<code>signal</code>函数的参数没有锁。这是因为<code>wait</code>函数在使线程进入睡眠的同时也释放了锁（否则其他线程就不可能获得锁并唤醒该线程）；在被唤醒之前，wait函数会重新获得锁</li>
+<li>等待的线程会通过<code>while</code>循环检查条件是否满足，而不是<code>if</code>语句；这样做是最安全的，因为有些<code>pthread</code>的实现会使得条件未满足时线程仍被唤醒，因此唤醒只是一种提示</li>
+</ul>
+<p>作者指出，最好不要自己尝试造轮子来实现条件变量的功能。</p>
+<h2>线程API使用指南</h2>
+<ul>
+<li>简化操作：线程之间复杂的互动会导致bug。</li>
+<li>减少线程之间的互动</li>
+<li>记得初始化锁和条件变量</li>
+<li>检查返回值</li>
+<li>小心传参的方式，不要返回指向线程栈上的指针</li>
+<li>每个线程都拥有自己的栈，只有堆中的变量才是全局的</li>
+<li>一定要通过条件变量在线程之间传递信号</li>
+<li>多看手册</li>
+</ul>
+<h2>作业</h2>
+<p>仍然没做，这次的作业比较复杂，似乎要用到valgrind，还要配置一些环境。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+          <a href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw"></i>OSTEP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/ostep-ch-26-summary-concurrency-an-introduction/">
+              
+                  OSTEP第26章总结：Concurrency: An Introduction
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-16
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>本章对多线程程序面临的两个问题（竞争条件和等待）进行了初步介绍。包括以下关键词：</p>
+<ul>
+<li><strong>关键区</strong>（critical section）：访问共享资源（通常是变量或数据结构）的代码段。</li>
+<li><strong>竞争条件</strong>（race condition）：多个线程几乎同时访问关键区并尝试修改数据时会出现的状况，结果很难预测。</li>
+<li><strong>不确定</strong>（indeterminate）程序：包含竞争条件的程序，每次的运行结果是不确定的。</li>
+<li><strong>互斥访问</strong>（mutual exclusion）：保证一次最多有一个进程能进入关键区，防止竞争出现。</li>
+</ul>
+<h2>为何需要线程</h2>
+<p>首先比较一下线程与进程。</p>
+<p>相同点：</p>
+<ul>
+<li>PC：指令指针</li>
+<li>通用寄存器</li>
+<li>上下文切换：需要保存寄存器的状态</li>
+<li>需要TCB（线程控制块）保存线程的状态<br>
+不同点：</li>
+<li>不需要切换地址空间（页表）</li>
+<li>单线程进程通常只有一个栈（位于地址空间的底部，向低地址增长），而多线程进程的每个线程都需要一个栈</li>
+</ul>
+<p>需要线程的两个主要原因包括：</p>
+<ul>
+<li>并行性（parallelism）：对于多CPU计算机，如果将每个线程分配给不同的CPU，则可以提高程序效率</li>
+<li>防止慢速I/O导致程序阻塞：由于I/O是很慢的，当某个线程等待I/O结果而被阻塞时，其他线程就可以继续运行</li>
+</ul>
+<p>虽然上述应用场景也可以用进程来实现，但线程有着可以方便地共享数据这一优势。</p>
+<h2>多线程的问题</h2>
+<p>书中首先举了一个例子，用来说明，多线程程序中线程的执行顺序是不可控的，因此可能会出现各种各样的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &quot;mythreads.h&quot;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line"></span><br><span class="line">void *</span><br><span class="line">mythread(void *arg) &#123;</span><br><span class="line">    printf(&quot;%s\n&quot;, (char *) arg);</span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(int argc, char *argv[])</span><br><span class="line">&#123;                    </span><br><span class="line">    if (argc != 1) &#123;</span><br><span class="line">	fprintf(stderr, &quot;usage: main\n&quot;);</span><br><span class="line">	exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_t p1, p2;</span><br><span class="line">    printf(&quot;main: begin\n&quot;);</span><br><span class="line">    Pthread_create(&amp;p1, NULL, mythread, &quot;A&quot;);</span><br><span class="line">    Pthread_create(&amp;p2, NULL, mythread, &quot;B&quot;);</span><br><span class="line">    // join waits for the threads to finish</span><br><span class="line">    Pthread_join(p1, NULL);</span><br><span class="line">    Pthread_join(p2, NULL);</span><br><span class="line">    printf(&quot;main: end\n&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，主程序会创建两个线程，每个线程都会运行函数<code>mythread()</code>，但是参数不同。创建线程之后，它可能立刻开始运行或进入就绪态（取决于调度器）。当然，在多处理器系统上，也可能有多个线程同时运行。</p>
+<p>创建了两个线程（T1和T2）之后，主程序调用<code>pthread_join()</code>，等待线程运行结束。T1和T2都结束之后，主线程会重新开始运行，打印信息并退出。如上所述，执行过程涉及了三个线程：T1、T2和主线程。</p>
+<p>事实上线程的执行过程有各种不同的可能性，比如：</p>
+<ul>
+<li>主线程创建完两个线程之后，切换到T1，然后再切换到T2，最后回到主线程
+<ul>
+<li>先打印A，后打印B</li>
+</ul>
+</li>
+<li>主线程创建完T1之后，T1开始运行，结束之后，回到主线程，创建T2，T2开始运行，最后回到主线程
+<ul>
+<li>先打印A，后打印B</li>
+</ul>
+</li>
+<li>主线程创建完T1和T2之后，T2先开始运行，结束之后切换到T1，最后回到主线程
+<ul>
+<li>先打印B，后打印A</li>
+</ul>
+</li>
+</ul>
+<p>这种执行的不确定性就是万恶之源了。</p>
+<h3>共享资源导致的竞争条件</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &quot;mythreads.h&quot;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line"></span><br><span class="line">int max;</span><br><span class="line">volatile int counter = 0; // shared global variable</span><br><span class="line"></span><br><span class="line">void *</span><br><span class="line">mythread(void *arg)</span><br><span class="line">&#123;</span><br><span class="line">    char *letter = arg;</span><br><span class="line">    int i; // stack (private per thread)</span><br><span class="line">    printf(&quot;%s: begin [addr of i: %p]\n&quot;, letter, &amp;i);</span><br><span class="line">    for (i = 0; i &lt; max; i++) &#123;</span><br><span class="line">	counter = counter + 1; // shared: only one</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%s: done\n&quot;, letter);</span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(int argc, char *argv[])</span><br><span class="line">&#123;                    </span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">	fprintf(stderr, &quot;usage: main-first &lt;loopcount&gt;\n&quot;);</span><br><span class="line">	exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">    max = atoi(argv[1]);</span><br><span class="line"></span><br><span class="line">    pthread_t p1, p2;</span><br><span class="line">    printf(&quot;main: begin [counter = %d] [%x]\n&quot;, counter,</span><br><span class="line">	   (unsigned int) &amp;counter);</span><br><span class="line">    Pthread_create(&amp;p1, NULL, mythread, &quot;A&quot;);</span><br><span class="line">    Pthread_create(&amp;p2, NULL, mythread, &quot;B&quot;);</span><br><span class="line">    // join waits for the threads to finish</span><br><span class="line">    Pthread_join(p1, NULL);</span><br><span class="line">    Pthread_join(p2, NULL);</span><br><span class="line">    printf(&quot;main: done\n [counter: %d]\n [should: %d]\n&quot;,</span><br><span class="line">	   counter, max*2);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码的运行结果是变化的，有时候是正确的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; gcc -o main main.c -Wall -pthread</span><br><span class="line">prompt&gt; ./main</span><br><span class="line">main: begin (counter = 0)</span><br><span class="line">A: begin</span><br><span class="line">B: begin</span><br><span class="line">A: done</span><br><span class="line">B: done</span><br><span class="line">main: done with both (counter = 20000000)</span><br></pre></td></tr></table></figure>
+<p>有时候是错误的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; ./main</span><br><span class="line">main: begin (counter = 0)</span><br><span class="line">A: begin</span><br><span class="line">B: begin</span><br><span class="line">A: done</span><br><span class="line">B: done</span><br><span class="line">main: done with both (counter = 19345221)</span><br></pre></td></tr></table></figure>
+<p>而且运行结果还会不断变化。这种性质被称为<strong>不确定性</strong>（indeterminate）。出现这种情况的原因是，修改共享变量<code>counter</code>的指令不是原子的，因此可能在执行的任意阶段被调度器打断，此时运行结果就会取决于线程的调度顺序。这一状况被称为<strong>争用条件</strong>（race condition）。下图对此作了很好的说明：</p>
+<p><img src="race-condition.png" alt="争用条件的结果"></p>
+<p>由于多个线程执行这段代码时会导致争用条件发生，我们称这段代码为<strong>关键区</strong>（critical section）。关键区包含了一段访问共享变量（或者说共享资源）的代码，不能被多于一个进程并发执行。为了正确执行代码，我们此时需要的是<strong>互斥访问</strong>（mutual exclusion），也就是保证一个线程在关键区内执行时，其他线程都无法进入关键区。</p>
+<p>解决问题的方法之一是创造一种更强大的指令，它可以把我们需要完成的任务浓缩在一条指令内执行，这样就不会遭遇中断了。这种性质称为<strong>原子性</strong>（atomic）。这是一种美好的理想，但是对于一些很复杂却仍然需要保证原子性的操作，这种指令是不太可能实现的。</p>
+<p>因此，我们转而尝试通过几条关键指令，实现<strong>同步原语</strong>（synchronization primitives），进而实现原子性。通过这些同步原语和OS的帮助，我们就可以在多线程代码中安全地访问关键区了。</p>
+<p>接下来我们将解决这些问题：</p>
+<ul>
+<li>实现同步原语需要怎样的硬件支持？</li>
+<li>OS需要提供怎样的支持？</li>
+<li>如何正确高效地实现同步原语？</li>
+<li>程序如何使用这些程序原语以得到希望的结果？</li>
+</ul>
+<h3>进程的相互等待问题</h3>
+<p>多线程面临的另一类问题是，线程有时需要等待其他线程结束或I/O请求完成。为此，我们不仅会学习同步原语的使用，也会学习<strong>条件变量</strong>（condition variables）。</p>
+<h2>作业题</h2>
+<p>暂时没做。作业题程序可见于<a href="https://github.com/asnr/ostep/tree/master/concurrency/26_threads_intro" target="_blank" rel="noopener">https://github.com/asnr/ostep/tree/master/concurrency/26_threads_intro</a>。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+          <a href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw"></i>OSTEP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/ostep-ch-25-summary-a-dialogue-on-currency/">
+              
+                  OSTEP第25章总结：A Dialogue on Currency
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-16
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>这一章是<strong>并发</strong>部分的开头，是一篇只有两页的对话，对并发中可能出现的问题进行了简单的讨论，所以并没有太多可以总结的。<strong>教授</strong> 再一次拿出了桃子作为比喻的工具。</p>
+<p>不妨想象桌子上有很多桃子，很多人想要吃它们。他们的动作步骤是这样的：</p>
+<ul>
+<li>用眼神确认一个桃子</li>
+<li>尝试伸手抓住桃子</li>
+<li>吃<br>
+这一过程的问题是，两个人可能同时看到一个桃子，而后伸手的人就没有桃子了。</li>
+</ul>
+<p><strong>学生</strong> 给出的解决方案是，将人排成一队，按顺序拿桃子，但<strong>教授</strong>指出这样太慢了。</p>
+<p>在<strong>多线程应用</strong>中，每个线程就是吃桃子的人，而资源就是桃子。因为多线程资源访问冲突的问题，OS需要管理线程对资源的请求。</p>
+<p><strong>学生</strong> 提问，为何不仅仅在用户态下实现多线程。对此，<strong>教授</strong> 的回答是：</p>
+<ol>
+<li>OS必须通过提供锁（lock）和条件变量（condition variable）来支持多线程应用</li>
+<li>OS本身就是一个多线程的应用，需要控制自己对资源的访问</li>
+</ol>
+<p>很好，我很期待接下来的内容。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+          <a href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw"></i>OSTEP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/madrigal-by-w-shakespeare/">
+              
+                  《英诗金库》I-36：Madrigal, by W. Shakespeare
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-16
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2>作品基本信息</h2>
+<p>作品名称：Madrigal（情歌）<br>
+作者：William Shakespeare（威廉·莎士比亚）<br>
+出版年代：1604<br>
+编注：此诗选自《一报还一报》第四幕第一场，表达了玛丽安娜被她的未婚夫安哲鲁遗弃后的凄凉心情。标题《情歌》系原编者所加。</p>
+<h2>作品原文</h2>
+<p>Take, O, take those lips away<br>
+That so sweetly were forsworn,<br>
+And those eyes, the break of day,<br>
+Lights that do mislead the morn<a href="#note1" id="note1ref"><sup>1</sup></a>:<br>
+But my kisses bring again,<br>
+Bring again—<br>
+Seals of love, but seal'd in vain,<br>
+Seal'd in vain!</p>
+<h2>译文</h2>
+<h3>朱生豪 译</h3>
+<p>莫以负心唇，<br>
+婉转弄辞巧：<br>
+莫以薄幸眼，<br>
+颠倒迷昏晓；<br>
+定情密吻乞君还，<br>
+当日深盟今已寒！</p>
+<h2>我的感想</h2>
+<p>刚才把《一报还一报》（Measures for Measures）又浏览了一遍，感觉很有趣。目前实在懒得概括剧情，不妨参见《莎士比亚故事集》<a href="#bib1" id="bib1ref"><sup>[1]</sup></a>或者维基百科的介绍<a href="#bib2" id="bib2ref"><sup>[2]</sup></a>。剧情本身引发了我的很多思考，但是我觉得这些在这首诗中并非重点。我们还是暂且聚焦于玛丽安娜的遭遇好了，不然又要长篇累牍地搞起莎士比亚分析来了。</p>
+<p>（首先赞誉一下翻译，翻得真好。）这首诗（歌）的出场时间是第四幕第一场的开头，在玛丽安娜上场的时候由童儿唱出，可以说是人物主题曲一般定下调子的东西了。剧情中，随后就是乔装打扮的公爵和依莎贝拉上场，给她带来了莫大的希望。后来她再出场就是玛丽安娜向公爵恳求饶安哲鲁一命了。虽然可以想象，她的命运的确很悲惨（五年的痛苦折磨！），但是这一点在剧中并没有大肆渲染，只是在最后公爵声称要处决安哲鲁时会稍微想象到一点她刚刚获得莫大的希望却又马上要被剥夺的痛苦。</p>
+<p>这首诗确实写得很不错，不过并没有什么特异的地方，主题反倒是有点烂俗了。不过，我接下来还想谈谈玛丽安娜作为一个文学形象的事情。</p>
+<p>我之前比较熟知的是丁尼生的《Mariana》<a href="#bib3" id="bib3ref"><sup>[3]</sup></a>。事实上，我更熟知和喜欢的是《The Lady of Shalott》这首诗，不过有人指出，玛丽安娜是夏洛特在文学形象上的姊妹<sup>[citation needed]</sup>，所以我也大概了解了一下这首诗。当时读得并不深刻，但只要细读一番，就能体会到那种深刻的困于一地的痛苦。不过，当时我并没有想过，这个形象与莎士比亚剧本中的玛丽安娜到底是否符合。</p>
+<p>今天随便翻了翻原著的剧本，突然想到这么一件事：如果让我来写一篇关于玛丽安娜的同人的话，我很大概率会选择她与安哲鲁举行结婚仪式之后却听说安哲鲁立刻要被处决的部分来写，因为这部分的感情变化最为激烈，也最容易代入感情。但是丁尼生显然不是这么想的。他反而选择了她在房子里独居着，受着一成不变的煎熬的部分来写。而且他写得很好，这种痛苦令人感同身受。这就很有趣了。我想，这里面固然夹杂着私货，当然也说明了丁尼生在描写此类题材上的天才。</p>
+<p>想到了莱辛的《拉奥孔》中的理论，现在看来，它已经彻底地成为了时代的眼泪。诗中当然可以摹写静态的事物，画中也可以表现动态的痛苦。我大概需要多找些文学批评来看了，可是也没有时间。</p>
+<h2>参考文献</h2>
+<p><a id="bib1" href="#bib1ref"><sup>[1]</sup></a> 一报还一报. <a href="https://www.kanunu8.com/book4/8888/198950.html" target="_blank" rel="noopener">https://www.kanunu8.com/book4/8888/198950.html</a><br>
+<a id="bib2" href="#bib2ref"><sup>[2]</sup></a> Measure for Measure. <a href="https://en.wikipedia.org/wiki/Measure_for_Measure" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Measure_for_Measure</a><br>
+<a id="bib3" href="#bib3ref"><sup>[3]</sup></a> Mariana (poem). <a href="https://en.wikipedia.org/wiki/Mariana_(poem)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Mariana_(poem)</a></p>
+<h2>脚注</h2>
+<p><a id="note1" href="#note1ref"><sup>1</sup></a><em>Lights that do mislead the morn</em>: i.e. her eyes are so bright that the morn takes them for the Sun—a common conceit of the period.（他的眸子如此明亮，以至于黎明把它们错当成了太阳——这是当时常见的比喻。以及我觉得这里明显应该是“他”，大概原文又打错了。）</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/GoldenTreasury/"><i class="fas fa-hashtag fa-fw"></i>GoldenTreasury</a>
+        
+          <a href="/tags/W-Shakespeare/"><i class="fas fa-hashtag fa-fw"></i>W.Shakespeare</a>
+        
+          <a href="/tags/朱生豪/"><i class="fas fa-hashtag fa-fw"></i>朱生豪</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/care-charmer-sleep-by-s-daniel/">
+              
+                  《英诗金库》I-35：Care-charmer Sleep, by S. Daniel
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-15
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2>作品基本信息</h2>
+<p>作品名称：Care-charmer Sleep, son of the sable Night<br>
+作者：Samuel Daniel（塞缪尔·丹尼尔）<br>
+出版年代：1592<br>
+编注：塞缪尔·丹尼尔（Samuel Daniel，1562-1619），英国宫廷诗人。这首诗系他的十四行诗集《迪莉娅》第五一首。</p>
+<h2>作品原文</h2>
+<p>Care-charmer Sleep, son of the sable Night,<br>
+Brother to Death, in silent darkness born,<br>
+Relieve my languish, and restore the light;<br>
+With dark forgetting of my care return.</p>
+<p>And let the day be time enough<a href="#note1" id="note1ref"><sup>1</sup></a> to mourn<br>
+The shipwreck of my ill-adventured youth:<br>
+Let waking eyes suffice to wail their scorn<a href="#note2" id="note2ref"><sup>2</sup></a>,<br>
+Without the torment of the night's untruth.</p>
+<p>Cease, dreams, the images of day-desires,<br>
+To model forth the passions of the morrow;<a href="#note3" id="note3ref"><sup>3</sup></a><br>
+Never let rising Sun approve you liars<a href="#note4" id="note4ref"><sup>4</sup></a><br>
+To add more grief to aggravate my sorrow:</p>
+<p>Sill let me sleep, embracing clouds<a href="#note5" id="note5ref"><sup>5</sup></a> in vain,<br>
+And never wake to feel the day's disdain.</p>
+<h2>译文</h2>
+<h3>付勇林 译</h3>
+<p>驱愁的睡神呵，漆黑的夜神之子，<br>
+你，死神的胞弟，在幽暗中诞生，<br>
+祛除我的愁思吧，让光明复归故里；<a href="#note6" id="note6ref"><sup>6</sup></a><br>
+复归故里，与忧愁悄然辞行。</p>
+<p>悠悠白日已足以让我哀吟<br>
+人生沉浮，青春时荒谬的冒险：<br>
+睁着眼已够去泣诉世人的薄情，<br>
+就别让夜的虚伪来将我磨难。</p>
+<p>梦啊，你这白日欲望的幻像，<br>
+请别再把来日的痛苦产生，<br>
+别让东升的朝阳赞赏你说谎<br>
+使我旧伤未除又添上了新恨：</p>
+<p>还让我睡吧，徒劳地拥抱幻云，<br>
+别让我醒来去领受白日的欺凌。</p>
+<h2>我的感想</h2>
+<p>作为一名诗人，塞缪尔·丹尼尔的生活似乎很无趣。他生于一个受人尊敬的家庭，并成为了伊丽莎白一世和詹姆斯一世统治时期最成功的作家之一。这首诗来自诗集《迪莉娅》，主题倒是很平常：一个人在追求一个姑娘，并因为她的冷漠而悲伤。这是丹尼尔的第一本公开的著作，出版于1592年。整本书读起来不像是反映了诗人生活中的什么大事或痛苦，而仅仅是在跟随一种诗歌传统而已。<a href="#bib1" id="bib1ref"><sup>[1]</sup></a>事实上， 这本书被献给“To the right honourable the Ladie <em>Mary</em>, Countesse of Pembroke”，虽然我也不知道这位女士是谁。<a href="#bib2" id="bib2ref"><sup>[2]</sup></a></p>
+<p>我觉得这个评价对这首诗十分适当。<a href="http://www.cieliterature.com/care-charmer-sleep/" target="_blank" rel="noopener">这个链接</a>里有对这首诗的详细解释（详细到烦）。总之，主题就是，诗人很爱一个女人，但是这个人并不爱他，以至于他觉得十分悲惨，希望到梦里寻求安慰（而不是重复白天的痛苦），甚至想长睡不醒算了。睡神被人格化了，作者祈求他的安慰，但这位神的力量显然是很有限的（即使不带来更多的痛苦，快乐也是虚幻的），所以他悲伤得想死了，也许死神更能解决他的问题。</p>
+<p>“Samuel Daniel had an eminently contemplative genius which might have anticipated the sonnet as it is in Wordsworth, but which the fashion of the day confined to the not wholly suitable subject of Love. In the splendid Care-charmer Sleep … he continued, as will be seen, to put his subject under the influence of his prevailing faculty.”（塞缪尔·丹尼尔卓越的冥想天才可能使得他像华兹华斯一样对这首十四行诗有了过高的期望，但当时的风气将这种天才限制在了一个不完全合适的关于爱情的主题上。在这首出色的诗（Care-charmer Sleep）中，他继续将这一主题置于他流行的才能的影响下。） (George Saintsbury, History of Elizabethan Literature, 1887.)<a href="#bib3" id="bib3ref"><sup>[3]</sup></a>我觉得这个评价是比较合理的。这首诗的情感无疑是真实的，但主题却未必需要局限在爱情之下。不过如何看出这首诗是讲爱情的呢？其实，脱离背景之后，看不出来。而且诗的普世性变得更强了。这大概就是它是一首好诗的缘故吧。或者这里说的风气也包括把睡神当成一个神去祈祷这种文风。现代人就不会这么写作了。</p>
+<p>我挺喜欢“And let the day be time enough to mourn\The shipwreck of my ill-adventured youth”这句的，让我想起了Metallica的《The Unforgiven III》这首歌。整体氛围都很像。</p>
+<p>整首诗的氛围也让我想起了很多其他的歌，比如这首。</p>
+<blockquote>
+<p>I've seen the devil in a smile<br>
+I found salvation in a vile<br>
+My happing ending<br>
+Exists only in my dreams<br>
+- <em>My Suffering</em>, Dead by Sunrise</p>
+</blockquote>
+<p>还有这首。</p>
+<blockquote>
+<p>Is that a light at the end of the tunnel<br>
+That I see I see please let it be but don't<br>
+Wake me till the morning after<br>
+Wake me till the morning after<br>
+Wake me till the morning after<br>
+Oh I'm so tired there has got to be an end<br>
+to the pain I feel when I'm<br>
+awake and alive alive alive<br>
+alive and I'm dreaming<br>
+- <em>Morning After</em>, Dead By Sunrise</p>
+</blockquote>
+<p>所以，现代人仍然经常有这样的感情，只是不会再这样写出来了而已。</p>
+<h2>参考文献</h2>
+<p><a id="bib1" href="#bib1ref"><sup>[1]</sup></a> Care-charmer Sleep. <a href="http://www.cieliterature.com/care-charmer-sleep/" target="_blank" rel="noopener">http://www.cieliterature.com/care-charmer-sleep/</a><br>
+<a id="bib2" href="#bib2ref"><sup>[2]</sup></a> <a href="http://www.potw.org/archive/potw110.html" target="_blank" rel="noopener">http://www.potw.org/archive/potw110.html</a><br>
+<a id="bib3" href="#bib3ref"><sup>[3]</sup></a> Care-Charmer Sleep, Son of the Sable Night <a href="http://www.bartleby.com/331/582.html" target="_blank" rel="noopener">http://www.bartleby.com/331/582.html</a></p>
+<h2>脚注</h2>
+<p><a id="note1" href="#note1ref"><sup>1</sup></a><em>let the day be time enough</em>, etc.: i.e. let not my sleep be but a continuation of my waking sorrows with all the added exaggerations of dreamland.（请不要在我的梦乡中继续清醒时的不幸，又加上幻境的夸大其词。）<br>
+<a id="note2" href="#note2ref"><sup>2</sup></a><em>their scorn</em>: 'the scorn in which they see I am held.'（它们看到我如何被轻蔑。）<br>
+<a id="note3" href="#note3ref"><sup>3</sup></a>'And you dreams, which do but re-echo my waking thoughts, come not to anticipate the suffering that I shall encounter next day.'（你们这些梦啊，虽然你们只能重复我白天的想法，也请不要揣测我明天将遭遇的痛苦。）<br>
+<a id="note4" href="#note4ref"><sup>4</sup></a><em>Never let rising Sun approve you liars</em>: 'do not paint things worse than they will prove to be when the next day comes.'（不要把事情描绘得比明天将要发生的还要糟糕。）<br>
+<a id="note5" href="#note5ref"><sup>5</sup></a><em>embracing clouds</em>: 'dreaming in a world of pure fancy.'（在纯粹的幻想世界中的梦境。）<br>
+<a id="note6" href="#note6ref"><sup>6</sup></a>诗人感到清醒的世界太黑暗，故把睡眠称为“光明复归”。——编注者</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/GoldenTreasury/"><i class="fas fa-hashtag fa-fw"></i>GoldenTreasury</a>
+        
+          <a href="/tags/Sonnet/"><i class="fas fa-hashtag fa-fw"></i>Sonnet</a>
+        
+          <a href="/tags/付勇林/"><i class="fas fa-hashtag fa-fw"></i>付勇林</a>
+        
+          <a href="/tags/S-Daniel/"><i class="fas fa-hashtag fa-fw"></i>S.Daniel</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/os-mooc-lecture-6-summary/">
+              
+                  《操作系统》第6讲：“物理内存管理：非连续内存分配”总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-04-13
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2>课程内容概述</h2>
+<ul>
+<li>背景</li>
+<li>段机制</li>
+<li>页机制
+<ul>
+<li>普通页表</li>
+<li>快表</li>
+<li>多级页表</li>
+<li>页寄存器</li>
+<li>反置页表</li>
+</ul>
+</li>
+<li>段页式存储管理</li>
+</ul>
+<h3>背景</h3>
+<p>6.1 非连续内存分配的需求背景<br>
+必须分配连续的会带来很多麻烦<br>
+不连续？找到的几率更高，但会带来新问题。比如基本块有多大。<br>
+段式：分块大<br>
+页式：分块小</p>
+<p>设计目标<br>
+连续分配的缺点：<br>
+	• 物理内存必须连续<br>
+	• 存在外碎片和内碎片<br>
+	• 内存分配的动态修改困难<br>
+	• 内存利用率较低<br>
+非连续分配的设计目标：提高内存利用效率和管理灵活性<br>
+	• 允许一个程序使用非连续的物理地址空间<br>
+	• 允许共享代码与数据<br>
+	• 支持动态加载和动态链接</p>
+<p>实现<br>
+非连续分配需要解决的问题：<br>
+	• 如何实现虚拟地址和物理地址的转换：不同的逻辑地址可能位于不连续的物理区域中<br>
+		○ 软件实现（灵活，开销大）<br>
+		○ 硬件实现（够用，开销小）<br>
+	• 非连续分配的硬件辅助机制<br>
+		○ 如何选择非连续分配中的内存分块大小？内碎片、外碎片问题？<br>
+		○ 段式存储管理（segmentation）：块大<br>
+		○ 页式存储管理（paging）：块小</p>
+<h3>段机制</h3>
+<p>6.2 段式存储管理<br>
+段地址空间<br>
+进程的段地址空间由多个段组成：<br>
+	• 主代码段<br>
+	• 子模块代码段<br>
+	• 公用库代码段<br>
+	• 堆栈段（stack）<br>
+	• 堆数据（heap）<br>
+	• 初始化数据段<br>
+	• 符号表等</p>
+<p>段式存储管理的目的：更细粒度和灵活的分离域共享</p>
+<p>段式地址空间的不连续二维结构</p>
+<p>虽然在逻辑地址空间中，是按这一顺序排列的，但在物理地址空间中可以不是这样的。</p>
+<p>段访问机制<br>
+段的概念：<br>
+	• 段表示访问方式和存储数据等属性相同的一段地址空间<br>
+	• 对应一个连续的内存“块”<br>
+	• 若干个段组成进程逻辑地址空间<br>
+段访问：逻辑地址由二元组（s，addr）表示<br>
+	• s——段号<br>
+	• addr——段内偏移<br>
+	• 从单地址转换成“段基址+段内偏移”</p>
+<p>段访问的硬件实现</p>
+<pre><code>• 首先从逻辑地址中得到段号和偏移量
+• 在段表中查找段号，得到段基址和段长度
+• 由MMU来判断偏移量是否合法（偏移量是否大于段长度）
+• 得到物理地址，在物理内存中查找相应内容
+</code></pre>
+<h3>页机制</h3>
+<p>6.3 页式存储管理<br>
+页帧（帧、物理页面、Frame、Page Frame）（这是物理的）<br>
+	• 把物理地址空间划分为大小相同的基本分配单位<br>
+	• 2的n次方，如512,4096,8192，4k是常用大小<br>
+页面（页、逻辑页面、Page）（这是逻辑的）<br>
+	• 把逻辑地址空间也划分为相同大小的基本分配单位<br>
+	• 帧和页的大小必须是相同的<br>
+页面到页帧之间的转换：<br>
+	• 逻辑地址到物理地址的转换<br>
+	• 页表<br>
+	• MMU/TLB</p>
+<p>帧（Frame）<br>
+物理内存被划分成大小相等的帧<br>
+此时内存的物理地址可以表示成二元组（f，o），其中f是帧号，o是帧内的偏移量<br>
+物理地址的前F位可以换成帧号，后S位可以换成偏移量<br>
+	• F：帧号，F位，共有2^F个帧<br>
+	• o：帧内偏移，S位，每帧有2^S字节<br>
+	• 物理地址=f*2^S + o</p>
+<p>基于页帧的物理地址计算实例<br>
+假定：<br>
+	• 地址空间为16位<br>
+	• 页帧大小为9位（512字节）</p>
+<p>页（Page）<br>
+进程逻辑地址空间被划分为大小相等的页<br>
+	• 页内偏移=帧内偏移<br>
+	• 然而页号大小≠帧号大小，因为逻辑地址是连续的，但物理地址不一定是连续的<br>
+进程逻辑地址的表示：二元组（p，o）<br>
+	• p：页号（P位，2P个页）<br>
+	• o：页内偏移（S位，每页有2^S字节）</p>
+<p>页式存储中的地址映射<br>
+如何将页映射到帧？<br>
+	• 逻辑地址中的页号<br>
+	• 物理地址中的帧号是不连续的<br>
+	• 不是所有的页都有对应的帧</p>
+<p>这个表就是页表。</p>
+<p>页表</p>
+<p>页表保存了逻辑地址（页号）——物理地址（帧号）之间的映射关系。<br>
+	• CPU从逻辑地址中得到页号和偏移量<br>
+	• 在页表中以页号作为下标查找帧号<br>
+	• 用帧号和偏移量组成物理地址</p>
+<h4>普通页表</h4>
+<p>6.4 页表概述<br>
+页表结构<br>
+每个进程都有一个页表<br>
+	• 每个页面对应一个页表项<br>
+	• 随进程运行状态而动态变化（可以动态调整内存空间大小）<br>
+	• 页表基址寄存器：PTBR，Page Table Base Register</p>
+<p>页表项的组成：<br>
+	• 帧号：f<br>
+	• 页表项标志：<br>
+		○ 存在位（resident bit）：逻辑页面是否存在与之对应的物理帧<br>
+		○ 修改位（dirty bit）：对应的页面中的内容是否被修改了<br>
+		○ 引用位（clock/reference bit）：在过去一段时间内是否访问过页中的某一个存储单元</p>
+<p>页表地址转换实例<br>
+有了存在位之后，就会发现，有些逻辑页没有对应的物理帧</p>
+<p>页式存储管理机制的性能问题<br>
+内存访问性能问题：<br>
+	• 访问一个内存单元需要2次内存访问<br>
+	• 第一次访问：获取页表项<br>
+	• 第二次访问：获取数据<br>
+页表大小问题：<br>
+	• 页表可能非常大<br>
+	• 64位机器如果每页1024字节，那么一个页表的大小会是多少？（2^54个页面*8个多字节）<br>
+如何处理？<br>
+	• 缓存（Caching）<br>
+	• 间接（Indirection）访问：切段，多级页表</p>
+<h4>快表</h4>
+<p>6.5 快表和多级页表<br>
+快表（Translation Look-aside Buffer，TLB）<br>
+目标：缓存近期访问的页表项<br>
+	• TLB使用关联存储（associated ），具备快速访问性能<br>
+	• 关联存储器：有一组key，可以并行地查找所有表项，得到匹配项<br>
+	• 因为快表位于CPU中，所以它的速度快、成本高、功耗大<br>
+	• 如果TLB命中，物理页号可以很快被获取<br>
+	• 如果TLB未命中，对应的表项被更新到TLB中</p>
+<h4>多级页表</h4>
+<p>多级页表<br>
+	• 通过间接引用将页号分成k级<br>
+	• 建立页表“树”<br>
+	• 可以有效减少每级页表的长度，但是如果所有的页表项都存在，则多级页表并没有减少存储量<br>
+	• 不过大部分进程并不会用到所有的逻辑地址空间</p>
+<p>在x86架构中，CR3寄存器用于存储PTBR（页表基址）</p>
+<p>二级页表实例</p>
+<h4>页寄存器</h4>
+<p>6.6 反置页表<br>
+减少页表占用的空间的一种做法</p>
+<p>大地址空间问题<br>
+对于大地址空间（64-bits）系统，多级页表变得繁琐。<br>
+比如：5级页表<br>
+逻辑（虚拟）地址空间增长速度快于物理地址空间</p>
+<p>页寄存器和反置页面的思路：<br>
+	• 不让页表与逻辑地址空间的大小相对应<br>
+	• 让页表与物理地址空间的大小相对应</p>
+<p>页寄存器（Page Registers）<br>
+每个帧与一个页寄存器（Page Register）关联，寄存器内容包括：<br>
+	• 使用位（Residence bit）：此帧是否被进程占用<br>
+	• 占用页号（Occupier）：对应的页号p<br>
+	• 保护位（Protection bits）：约定这一页的访问方式，可读，可写……</p>
+<p>页寄存器示例<br>
+	• 物理内存大小：4096<em>4096=4K</em>4KB=16MB<br>
+	• 页面大小：4096bytes=4KB<br>
+	• 页帧数：4096=4K<br>
+	• 页寄存器使用的空间：8*4096=32Kbytes（假定每个页寄存器占8字节）<br>
+	• 页寄存器带来的额外开销：32K/16M=0.2%（大约）<br>
+	• 虚拟内存的大小：任意</p>
+<p>页寄存器方案的特征<br>
+优点：<br>
+	• 页表大小相对于物理内存而言很小<br>
+	• 页表大小与逻辑地址空间大小无关<br>
+缺点：<br>
+	• 页表信息对调后，需要根据帧号可找页号<br>
+	• 在页寄存器中搜索逻辑地址中的页号</p>
+<p>页寄存器中的地址转换<br>
+CPU生成的逻辑地址如何找对应的物理地址？<br>
+	• 对逻辑地址进行Hash映射，以减少搜索范围<br>
+	• 需要解决可能的冲突<br>
+用快表缓存页表项后的页寄存器搜索步骤<br>
+	• 对逻辑地址进行Hash变换<br>
+	• 在快表中查找对应页表项<br>
+	• 有冲突时遍历冲突项列表<br>
+	• 查找失败时，产生异常<br>
+快表的限制<br>
+	• 快表的容量限制<br>
+	• 快表的功耗限制（StrongARM上快表功耗占27%）</p>
+<h4>反置页表</h4>
+<p>反置页表<br>
+基于Hash映射值查找对应页表项中的帧号<br>
+	• 进程标识与页号的Hash值可能有冲突<br>
+	• 页表项中包括保护位、修改位、访问位和存在位等标识</p>
+<p>查找过程：<br>
+	• 从逻辑地址中得到页号<br>
+	• 根据页号和PID计算出Hash值<br>
+	• 在反置页表中查找对应的页表项，核对页号是否一致，从中找出相应的物理帧号</p>
+<p>反置页表的Hash冲突<br>
+例子：在页表项中加入next项，指出全部冲突项的列表</p>
+<h3>段页式存储管理</h3>
+<p>6.7 段页式存储管理<br>
+段页式存储管理的需求<br>
+段式存储在内存保护方面有优势，页式存储在内存利用和优化转移到后备存储方面有优势<br>
+段式存储和页式存储能否结合？</p>
+<p>段页式存储管理<br>
+在段式存储管理基础上，给每个段加一级页表<br>
+逻辑地址：段号+若干个页号+页内偏移<br>
+物理地址：帧号+页内偏移</p>
+<pre><code>• 从逻辑地址中得到段号s和页号p，以及偏移o
+• 通过段基址（STBR）和s得到对应的段表项
+• 访问段表项对应的页表，得到对应的帧号
+</code></pre>
+<p>段页式存储管理中的内存共享<br>
+通过指向相同的页表基址，实现进程间的段共享</p>
+<p>共享段指向同一个页表</p>
+<p>小结<br>
+段式、页式、段页式内存分配总结<br>
+共同点<br>
+	• 可以不连续<br>
+区别：<br>
+	• 块的大小<br>
+问题：<br>
+	• 加入页表或段表<br>
+	• 页表大小问题<br>
+		○ 快表<br>
+		○ 多级页表<br>
+		○ 反置页表<br>
+	• 实现细节</p>
+<h2>练习</h2>
+<h3>选择填空题</h3>
+<p><strong>描述段管理机制正确的是()</strong></p>
+<ul>
+<li><strong>段的大小可以不一致</strong></li>
+<li><strong>段可以有重叠</strong></li>
+<li><strong>段可以有特权级</strong></li>
+<li><strong>段与段之间是可以不连续的</strong></li>
+</ul>
+<p>都对。段的大小显然可以不一致（段描述符中给出的大小不同）。段之间可以重叠（没说不能重叠，而且完全扁平模型就是全都映射到全部物理内存。）段可以有特权级（段描述符中的DPL，访问段的最低特权级）。段之间当然也是可以不连续的。</p>
+<hr>
+<p><strong>描述页管理机制正确的是()</strong></p>
+<ul>
+<li><strong>页表在内存中</strong></li>
+<li><strong>页可以是只读的</strong></li>
+<li><strong>页可以有特权级</strong></li>
+<li>上述说法都不对</li>
+</ul>
+<p>前三个都对。当然有的地方不太准确。在80386系统中，一级页表一定在内存中，但二级页表不一定在内存中。PDE和PTE都可以规定访问权限，不过只有U/S（用户/OS权限）和R/W（只读/可读可写）位。</p>
+<hr>
+<p><strong>页表项标志位包括()</strong></p>
+<ul>
+<li><strong>存在位(resident bit)</strong></li>
+<li><strong>修改位(dirty bit)</strong></li>
+<li><strong>引用位(clock/reference bit)</strong></li>
+<li><strong>只读位(read only OR read/write bit)</strong></li>
+</ul>
+<p>都有。当然，还不止这些。</p>
+<p><img src="table4-6_32bit_pte_entry_format.png" alt="PTE的格式（标志位）列表"></p>
+<hr>
+<p><strong>可有效应对大地址空间可采用的页表手段是()</strong></p>
+<ul>
+<li><strong>多级页表</strong></li>
+<li><strong>反置页表</strong></li>
+<li>页寄存器方案</li>
+<li>单级页表</li>
+</ul>
+<p>前两个是对的。至于为什么页寄存器不行，老师在Piazza上给出了回复：</p>
+<ul>
+<li>页寄存器和反置页表很像，但它们的一个区别是进程ID在地址转换中的使用。没有进程ID（也就是说页寄存器方案）时，页表占用的空间仍然是与进程数相关的（也就是每个进程对应一组页寄存器？）。反置页表的大小只与物理内存大小，与并发进程数无关。</li>
+<li>采用页寄存器的硬件开销会很大。所以现在的通用CPU（包括64位的CPU）没有采用这种方式，大部分还是多级页表。由于有TLB作为缓存，效率还不错。</li>
+</ul>
+<h3>简答题</h3>
+<p><strong>为什么要设计非连续内存分配机制？</strong></p>
+<ul>
+<li>提高分配的灵活性</li>
+<li>提高内存的利用效率</li>
+<li>方便共享、充分利用内存空间
+<ul>
+<li>允许一个程序使用非连续的物理地址空间</li>
+<li>允许共享代码与数据</li>
+<li>支持动态加载和动态链接</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>非连续内存分配中内存分块大小有哪些可能的选择？大小与大小是否可变?</strong></p>
+<p>大块好管理，小块更灵活。段式存储下，大小是可变的，且块比较大。页式存储下，大小是固定的，且块比较小。</p>
+<hr>
+<p><strong>为什么在大块时要设计大小可变，而在小块时要设计成固定大小？小块时的固定大小可以提供多种选择吗？</strong></p>
+<p>固定大小好管理，多种大小比一种大小灵活。可变大小更灵活，通常可变大小也会通过对齐来减少管理难度。小块时如果大小可变，则提供的灵活性没有那么多。</p>
+<hr>
+<p><strong>什么是段、段基址和段内偏移？</strong></p>
+<p>段表示访问方式和存储数据的类型等属性相同的一段地址空间。段基址是段的起始地址（线性地址）。段内偏移是地址在段内的偏移量。</p>
+<hr>
+<p><strong>段式存储管理机制的地址转换流程是什么？为什么在段式存储管理中，各段的存储位置可以不连续？这种做法有什么好处和麻烦？</strong></p>
+<p>段式存储管理中，地址转换是段基址（段号）加段内偏移。</p>
+<p>段反映了程序的存储逻辑结构（数据段和代码段是分开的），程序不会从一个段的基址去访问另一个段，于是不同的段可以不连续。</p>
+<p>好处是可以不连续，方便内存管理；麻烦是地址转换稍微复杂了一些。</p>
+<hr>
+<p><strong>什么是页（page）、帧（frame）、页表（page table）、存储管理单元（MMU）、快表（TLB, Translation Lookaside Buffer）和高速缓存（cache）？</strong></p>
+<ul>
+<li>页帧（帧、物理页面、Frame、Page Frame）（这是物理的）
+<ul>
+<li>把物理地址空间划分为大小相同的基本分配单位</li>
+<li>大小一般为2的n次方，如512、4096、8192字节，4KB是常用大小</li>
+</ul>
+</li>
+<li>页面（页、逻辑页面、Page）（这是逻辑的）
+<ul>
+<li>把逻辑地址空间也划分为相同大小的基本分配单位</li>
+<li>帧和页的大小必须是相同的</li>
+</ul>
+</li>
+<li>页表：保存了逻辑地址（页号）——物理地址（帧号）之间的映射关系</li>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%8D%95%E5%85%83" target="_blank" rel="noopener">MMU</a>：一种负责处理中央处理器（CPU）的内存访问请求的计算机硬件。它的功能包括虚拟地址到物理地址的转换（即虚拟内存管理）、内存保护、中央处理器高速缓存的控制，在较为简单的计算机体系结构中，负责总线的仲裁以及存储体切换</li>
+<li><a href="https://zh.wikipedia.org/wiki/%E8%BD%89%E8%AD%AF%E5%BE%8C%E5%82%99%E7%B7%A9%E8%A1%9D%E5%8D%80" target="_blank" rel="noopener">TLB</a>：为CPU的一种缓存，由存储器管理单元用于改进虚拟地址到物理地址的转译速度</li>
+<li><a href="https://zh.wikipedia.org/wiki/%E7%BC%93%E5%AD%98" target="_blank" rel="noopener">Cache</a>：访问速度比一般随机存取内存（RAM）快的一种RAM，通常它不像系统主存那样使用DRAM技术，而使用昂贵但较快速的SRAM技术</li>
+</ul>
+<hr>
+<p><strong>页式存储管理机制的地址转换流程是什么？为什么在页式存储管理中，各页的存储位置可以不连续？这种做法有什么好处和麻烦？</strong></p>
+<p>页式存储管理中，地址转换流程是页号-&gt;物理页帧号加页内偏移。</p>
+<p>CPU使用连续的逻辑地址，存储访问时，逻辑地址先分成逻辑页号和页内偏移，然后通过页表定义的对应关系，把逻辑页面转换成物理页号，最后再把物理页号加页内偏移得到物理地址；于是不同的页可以不连续。</p>
+<p>好处是可以不连续，方便内存管理中的存储分配和回收；麻烦是地址转换比较复杂（页表项访问开销和页表存储开销），并且频繁进行（每次存储访问会变成两次或更多）。</p>
+<hr>
+<p><strong>每个页表项有些什么内容？有哪些标志位？它们起什么作用？</strong></p>
+<p><img src="fig4-4_pte_and_pde_structure.png" alt="PDE和PTE的格式"></p>
+<p><img src="table4-6_32bit_pte_entry_format.png" alt="PTE的格式（标志位）列表"></p>
+<hr>
+<p><strong>页表大小受哪些因素影响？</strong></p>
+<p>页大小、地址空间大小、进程数目、页表级数</p>
+<hr>
+<p><strong>快表（TLB）与高速缓存（cache）有什么不同？</strong></p>
+<p>TLB中缓存的是线性地址&lt;-&gt;物理地址的映射关系，由硬件管理，对软件是透明的。</p>
+<p>Cache中缓存的是具体的内存内容，也由硬件管理，对软件是透明的。</p>
+<hr>
+<p><strong>为什么快表中查找物理地址的速度非常快？它是如何实现的？为什么它的的容量很小？</strong></p>
+<p>因为它是在多个表项中同步查找有没有对应的线性地址项，所以很快。TLB的硬件是怎么实现的……大概瞎写吧。容量小是因为用电路换时间了（多路并行查找），成本和耗电量比较高。</p>
+<hr>
+<p><strong>什么是多级页表？多级页表中的地址转换流程是什么？多级页表有什么好处和麻烦？</strong></p>
+<p>就是套了很多层的页表。地址转换流程就是不断根据每一级的页号和页表基址查找下一级的页表基址（或者查到页表项）。</p>
+<p>好处是减小了页表占据的空间（因为程序一般不会用完自己的虚拟地址空间，所以大部分次级页表不需要生成）；麻烦是地址转换变得更加复杂和缓慢了。</p>
+<hr>
+<p><strong>页寄存器机制的地址转换流程是什么？</strong></p>
+<p>对CPU访问的逻辑地址进行hash，然后查相应页寄存器。</p>
+<p>用快表缓存页表项后的页寄存器搜索步骤</p>
+<ul>
+<li>对逻辑地址进行Hash变换</li>
+<li>在快表中查找对应页表项</li>
+<li>有冲突时遍历冲突项列表</li>
+<li>查找失败时，产生异常</li>
+</ul>
+<hr>
+<p><strong>反置页表机制的地址转换流程是什么？</strong></p>
+<p>逻辑地址和进程号共同进行hash，然后查相应页寄存器。</p>
+<p>查找过程：</p>
+<ul>
+<li>从逻辑地址中得到页号</li>
+<li>根据页号和PID计算出Hash值</li>
+<li>在反置页表中查找对应的页表项，核对页号是否一致，从中找出相应的物理帧号；处理hash冲突</li>
+</ul>
+<hr>
+<p><strong>反置页表项有些什么内容？</strong></p>
+<p>PID、逻辑页号、标志位（可能还应该有指向下一个hash相同的页表项的指针）</p>
+<hr>
+<p><strong>段页式存储管理机制的地址转换流程是什么？这种做法有什么好处和麻烦？</strong></p>
+<p>首先从逻辑地址翻译成线性地址（段机制），再从线性地址翻译成物理地址（页机制）。</p>
+<p>好处是……。。。</p>
+<p>麻烦是，地址访问过程甚至变得更加复杂和耗时了。</p>
+<hr>
+<p><strong>如何实现基于段式存储管理的内存共享？</strong></p>
+<p>……就把需要重用的内存映射到不同的段里……</p>
+<hr>
+<p><strong>如何实现基于页式存储管理的内存共享？</strong></p>
+<p>不同的页表项指向相同的物理页……</p>
+<hr>
+<p><strong>请简要分析64bit CPU体系结构下的分页机制是如何实现的</strong></p>
+<ul>
+<li>说明64bit CPU架构的分页机制的大致特点和页表执行过程</li>
+<li>正确描述了64bit CPU支持的物理内存大小限制（1分）</li>
+<li>正确描述了64bit CPU下的多级页表的级数和多级页表的结构或反置页表的结构（2分）</li>
+<li>除上述两点外，进一步描述了在多级页表或反置页表下的虚拟地址--&gt;物理地址的映射过程（3分）</li>
+</ul>
+<p>64位的寻址空间能够寻址16EB 的内存大小，对于目前的硬件来说太大了。在X64体系结构下，只实现了48位的虚拟地址。不同于x86体系结构，每级页表寻址长度变成9位，由于在x64体系结构中，普通页大小仍为4KB，然而数据却表示64位长，因此一个4KB页在x64体系结构下只能包含512项内容，所以为了保证页对齐和以页为单位的页表内容换入换出，在x64下每级页表寻址部分长度定位9位。</p>
+<p>为了正确翻译x64的线性地址，其页表也从x86的2级变成了4级。翻译过程可参考Intel手册或者以下链接 <a href="http://www.cnblogs.com/lanrenxinxin/p/4735027.html" target="_blank" rel="noopener">http://www.cnblogs.com/lanrenxinxin/p/4735027.html</a></p>
+<hr>
+<p><strong>某系统使用请求分页存储管理，若页在内存中，满足一个内存请求需要150ns (10^-9s)。若缺页率是10%，为使有效访问时间达到0.5us(10^-6s),求不在内存的页面的平均访问时间。请给出计算步骤。</strong></p>
+<p>500=0.9<em>150+0.1</em>x</p>
+<p>（2）(spoc) 有一台假想的计算机，页大小（page size）为32 Bytes，支持32KB的虚拟地址空间（virtual address space）,有4KB的物理内存空间（physical memory），采用二级页表，一个页目录项（page directory entry ，PDE）大小为1 Byte,一个页表项（page-table entries PTEs）大小为1 Byte，1个页目录表大小为32 Bytes，1个页表大小为32 Bytes。页目录基址寄存器（page directory base register，PDBR）保存了页目录表的物理地址（按页对齐）。</p>
+<p>PTE格式（8 bit） :</p>
+<p>VALID | PFN6 ... PFN0<br>
+PDE格式（8 bit） :</p>
+<p>VALID | PT6 ... PT0<br>
+其</p>
+<p>VALID==1表示，表示映射存在；VALID==0表示，表示映射不存在。<br>
+PFN6..0:页帧号<br>
+PT6..0:页表的物理基址&gt;&gt;5<br>
+在物理内存模拟数据文件中，给出了4KB物理内存空间的值，请回答下列虚地址是否有合法对应的物理内存，请给出对应的pde index, pde contents, pte index, pte contents。</p>
+<ol>
+<li>Virtual Address 6c74<br>
+Virtual Address 6b22</li>
+<li>Virtual Address 03df<br>
+Virtual Address 69dc</li>
+<li>Virtual Address 317a<br>
+Virtual Address 4546</li>
+<li>Virtual Address 2c03<br>
+Virtual Address 7fd7</li>
+<li>Virtual Address 390e<br>
+Virtual Address 748b<br>
+比如答案可以如下表示： (注意：下面的结果是错的，你需要关注的是如何表示)</li>
+</ol>
+<p>Virtual Address 7570:<br>
+--&gt; pde index:0x1d  pde contents:(valid 1, pfn 0x33)<br>
+--&gt; pte index:0xb  pte contents:(valid 0, pfn 0x7f)<br>
+--&gt; Fault (page table entry not valid)</p>
+<p>Virtual Address 21e1:<br>
+--&gt; pde index:0x8  pde contents:(valid 0, pfn 0x7f)<br>
+--&gt; Fault (page directory entry not valid)</p>
+<p>Virtual Address 7268:<br>
+--&gt; pde index:0x1c  pde contents:(valid 1, pfn 0x5e)<br>
+--&gt; pte index:0x13  pte contents:(valid 1, pfn 0x65)<br>
+--&gt; Translates to Physical Address 0xca8 --&gt; Value: 16<br>
+链接有上面链接的参考答案。请比较你的结果与参考答案是否一致。如果不一致，请说明原因。</p>
+<p>（3）请基于你对原理课二级页表的理解，并参考Lab2建页表的过程，设计一个应用程序（可基于python、ruby、C、C++、LISP、JavaScript等）可模拟实现(2)题中描述的抽象OS，可正确完成二级页表转换。</p>
+<p>链接有上面链接的参考答案。请比较你的结果与参考答案是否一致。如果不一致，提交你的实现，并说明区别。</p>
+<p>（4）假设你有一台支持反置页表的机器，请问你如何设计操作系统支持这种类型计算机？请给出设计方案。</p>
+<p>(5)X86的页面结构<br>
+扩展思考题<br>
+阅读64bit IBM Powerpc CPU架构是如何实现反置页表，给出分析报告。</p>
+<p>interactive　understand VM<br>
+Virtual Memory with 256 Bytes of RAM：这是一个只有256字节内存的一个极小计算机系统。按作者的[[<a href="https://github.com/RobertElderSoftware/recc#what-can-this-project-do%7C%E7%89%B9%E5%BE%81%E6%8F%8F%E8%BF%B0" target="_blank" rel="noopener">https://github.com/RobertElderSoftware/recc#what-can-this-project-do|特征描述</a>]]，它具备如下的功能。<br>
+CPU的实现代码不多于500行；<br>
+支持14条指令、进程切换、虚拟存储和中断；<br>
+用C实现了一个小的操作系统微内核可以在这个CPU上正常运行；<br>
+实现了一个ANSI C89编译器，可生成在该CPU上运行代码；<br>
+该编译器支持链接功能；<br>
+用C89, Python, Java, Javascript这4种语言实现了该CPU的模拟器；<br>
+支持交叉编译；<br>
+所有这些只依赖标准C库。 针对op-cpu的特征描述，请同学们通过代码阅读和执行对自己有兴趣的部分进行分析，给出你的分析结果和评价。</p>
+<h3>实践题</h3>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/OS/"><i class="fas fa-hashtag fa-fw"></i>OS</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/page/38/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  39 / 44
+              </p>
+              
+                  <a class="next" rel="next" href="/page/40/">
+                      <section class="post next">
+                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                      </section>
+                  </a>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+  
+
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>《操作系统》第18讲：“信号量与管程”总结 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">《操作系统》第18讲：“信号量与管程”总结</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-05-25
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h2>课程内容概述</h2>
+<ul>
+<li>信号量
+<ul>
+<li>信号量简介</li>
+<li>信号量使用
+<ul>
+<li>互斥访问</li>
+<li>条件同步</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>管程
+<ul>
+<li>条件变量</li>
+<li>管程的语义</li>
+</ul>
+</li>
+<li>经典问题
+<ul>
+<li>生产者-消费者问题
+<ul>
+<li>信号量实现</li>
+<li>管程实现</li>
+</ul>
+</li>
+<li>哲学家就餐问题</li>
+<li>读者-写者问题</li>
+</ul>
+</li>
+</ul>
+<h3>信号量（Semaphore）</h3>
+<p>信号量是操作系统提供的一种协调共享资源访问的方法。它和软件同步的区别是：</p>
+<ul>
+<li>软件同步是平等线程间的一种同步协商机制</li>
+<li>信号量是由操作系统进行管理的，它的地位高于进程（而非平等协商）</li>
+</ul>
+<p>信号量由Dijkstra在20世纪60年代提出，目前仍然在OS中被使用。</p>
+<h4>信号量简介</h4>
+<p>信号是一种抽象数据类型：</p>
+<ul>
+<li>由一个整型变量（<code>sem</code>）和两个原子操作组成</li>
+<li><code>sem</code>：要共享的资源的数目</li>
+<li><code>P()</code>操作（Prolaag，尝试减少，请求资源时进行）
+<ul>
+<li><code>sem-1</code></li>
+<li>若<code>sem&lt;0</code>，进入等待，否则继续运行</li>
+</ul>
+</li>
+<li><code>V()</code>操作（Verhoog，增加，释放资源时进行）
+<ul>
+<li><code>sem+1</code></li>
+<li>若<code>sem&lt;=0</code>，则唤醒一个等待进程</li>
+</ul>
+</li>
+</ul>
+<p>信号量的一些特点：</p>
+<ul>
+<li>信号量可以被认为是被保护的整数变量
+<ul>
+<li>初始化完成后，只能通过P()和V()操作修改</li>
+<li>由操作系统保证，PV操作是原子操作</li>
+<li>可以保证不受应用进程的干扰</li>
+</ul>
+</li>
+<li>P()操作可能阻塞，但V()操作不会阻塞</li>
+<li>通常假定信号量是“公平的”
+<ul>
+<li>线程不会被无限期阻塞在P()操作（实际系统中有一个最长时限的参数，超时之后错误返回）</li>
+<li>假定信号量等待按先进先出排队（但是在实际系统中公平有所偏差）</li>
+</ul>
+</li>
+</ul>
+<p>下面给出信号量在原理上的一个实现（之所以是原理上的实现，是因为实际实现时要考虑很多问题）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Semaphore &#123;</span><br><span class="line">    int sem;</span><br><span class="line">    WaitQueue q;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Semaphore::P() &#123;</span><br><span class="line">    sem--;</span><br><span class="line">    if (sem &lt; 0) &#123;</span><br><span class="line">        Add this thread t to q;</span><br><span class="line">        block(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Semaphore::V() &#123;</span><br><span class="line">    sem++;</span><br><span class="line">    if (sem &gt;= 0) &#123;</span><br><span class="line">        Remove a thread t from q;</span><br><span class="line">        wakeup(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4>信号量使用</h4>
+<p>信号量一般可分为两类：</p>
+<ul>
+<li>二进制信号量：资源数目为0或1</li>
+<li>资源信号量：资源数目为任何非负值</li>
+</ul>
+<p>下面讨论两个信号量的使用场景：</p>
+<ul>
+<li>互斥访问：临界区的互斥访问控制</li>
+<li>条件同步：线程间的事件等待</li>
+</ul>
+<h5>互斥访问</h5>
+<p>互斥访问的实现方法非常简单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 每类资源设置一个信号量，其初值为1</span><br><span class="line">mutex = new Semaphore(1);</span><br><span class="line">// 临界区的控制代码如下：</span><br><span class="line">mutex-&gt;P();</span><br><span class="line">Critical Section;</span><br><span class="line">mutex-&gt;V();</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，信号量的使用和锁相同。需要注意以下几点：</p>
+<ul>
+<li>必须成对使用P()操作和V()操作</li>
+<li>P()操作保证互斥访问临界资源</li>
+<li>V()操作在使用后释放临界资源</li>
+<li>PV操作不能次序颠倒、重复或遗漏</li>
+</ul>
+<h5>条件同步</h5>
+<p>举例：线程A执行完X模块之后，线程B才能执行Y模块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 设置一个初值为0的信号量</span><br><span class="line">condition = new Semaphore(0);</span><br><span class="line"></span><br><span class="line">// Thread A</span><br><span class="line">Module X &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">condition.V();</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">// Thread B</span><br><span class="line">...</span><br><span class="line">condition.P();</span><br><span class="line">Module Y &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3>管程（Monitor）</h3>
+<p>管程是一种用于多线程互斥访问共享资源的程序结构</p>
+<ul>
+<li>采用面向对象方法，简化了线程间的同步控制</li>
+<li>任一时刻最多只有一个线程执行管程代码</li>
+<li>正在管程中的线程可临时放弃管程的互斥访问，等待事件出现时恢复（这是最大的特点）</li>
+</ul>
+<p>管程的组成：</p>
+<ul>
+<li>一个锁：控制管程代码的互斥访问</li>
+<li>入口队列：每次只能有一个线程进入</li>
+<li>0或多个条件变量：管理共享数据的并发访问</li>
+</ul>
+<p>下面需要介绍一下条件变量了。</p>
+<h4>条件变量（Condition Variable）</h4>
+<p>条件变量是管程内的等待机制</p>
+<ul>
+<li>进入管程的线程因资源被占用而进入等待状态</li>
+<li>每个条件变量表示一种等待原因，对应一个等待队列</li>
+<li><code>Wait()</code>操作：
+<ul>
+<li>将自己阻塞在等待队列中</li>
+<li>唤醒一个等待者或释放管程的互斥访问（即允许另外一个线程进入管程）</li>
+</ul>
+</li>
+<li><code>Signal()</code>操作：
+<ul>
+<li>将等待队列中的一个线程唤醒</li>
+<li>如果等待队列为空，这就相当于是一个空操作</li>
+</ul>
+</li>
+</ul>
+<p>条件变量在原理上的实现和信号量有些类似：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Condition &#123;</span><br><span class="line">    int numWaiting = 0;</span><br><span class="line">    WaitQueue q;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Condition::Wait(Lock lock) &#123;</span><br><span class="line">    numWaiting++;</span><br><span class="line">    Add this thread t to q;</span><br><span class="line">    release(lock);</span><br><span class="line">    schedule(); // need mutex</span><br><span class="line">    acquire(lock);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Condition::Signal() &#123;</span><br><span class="line">    if (numWaiting &gt; 0) &#123;</span><br><span class="line">        Remove a thread t from q;</span><br><span class="line">        wakeup(t); // need mutex</span><br><span class="line">        numWaiting--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是有很多不同的地方，如：</p>
+<ul>
+<li>对管程的互斥锁的释放和获得</li>
+<li>signal和P语义的不同：PV操作必须是成对的，但signal/wait操作完全不需要保证这一点</li>
+<li>wait和V语义的不同：V操作后线程可能会继续执行，但wait操作后，线程必然进入等待队列并阻塞</li>
+<li>执行signal/wait时，都默认已经获得了互斥锁</li>
+</ul>
+<h4>管程的语义</h4>
+<p>事实上管程一共有三种语义：</p>
+<ul>
+<li>Mesa语义</li>
+<li>Hoare语义</li>
+<li>Hansen语义</li>
+</ul>
+<p>以下内容参考了<a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=894" target="_blank" rel="noopener">Piazza上的讨论</a>和<a href="https://www.andrew.cmu.edu/course/15-440-kesden/applications/ln/lecture6.html" target="_blank" rel="noopener">CMU的课件</a>。</p>
+<p>考虑如下情况：线程A在条件变量的等待队列中等待资源，此时线程B在该资源（或者说该条件变量）上执行signal操作。</p>
+<h5>Mesa语义</h5>
+<ul>
+<li>线程B执行signal之后，不会立刻退出管程，而是执行到lock.release()之后才进入就绪态</li>
+<li>线程A会被移动到入口等待队列中</li>
+<li>在wait后被唤醒的进程不一定会被立刻调度，因此需要用<code>while</code>来检查条件</li>
+<li>大部分实际实现的管程采用的是这一语义</li>
+</ul>
+<p><img src="monitor_mesa.jpg" alt="Mesa语义下管程的执行过程"></p>
+<h5>Hoare语义</h5>
+<ul>
+<li>线程B执行signal之后，迅速唤醒等待中的线程A，自己进入signal队列中（这个队列是此语义特有的）</li>
+<li>每次有线程退出时，先到signal队列中调度线程，如果signal队列空，才到入口等待队列调度线程</li>
+<li>实际实现中一般不采用，因为需要多一个队列，代价增大了</li>
+</ul>
+<p><img src="monitor_hoare.jpg" alt="Hoare语义下管程的执行过程"></p>
+<h5>Brinch Hanson语义</h5>
+<ul>
+<li>线程B退出的同时才执行signal操作</li>
+</ul>
+<p><img src="monitor_bh.jpg" alt="Brinch Hanson语义下管程的执行过程"></p>
+<h3>经典问题</h3>
+<h4>生产者-消费者问题</h4>
+<p>有界缓冲区的生产者-消费者问题描述：</p>
+<ul>
+<li>一个或多个生产者在生成数据后放在一个缓冲区里</li>
+<li>单个消费者从缓冲区取出数据处理</li>
+<li>任何时候只能有一个生产者或消费者可访问缓冲区</li>
+</ul>
+<h5>信号量实现</h5>
+<p>问题分析：</p>
+<ul>
+<li>任何时刻只能有一个线程操作缓冲区，这是临界区（互斥访问）</li>
+<li>缓冲区空时，消费者必须等待生产者（条件同步）</li>
+<li>缓冲区满时，生产者必须等待消费者（条件同步）</li>
+</ul>
+<p>用信号量描述每个约束：</p>
+<ul>
+<li>二进制信号量<code>mutex</code>：互斥</li>
+<li>资源信号量<code>fullBuffers</code>：缓冲区为满（信号量的值表示缓冲区中数据的个数）</li>
+<li>资源信号量<code>emptyBuffers</code>：缓冲区为空（信号量的值表示缓冲区中空位的个数）</li>
+<li>其中<code>fullBuffers+emptyBuffers=缓冲区大小</code></li>
+</ul>
+<p>（事实上，OSTEP中讨论了如果只使用一个资源信号量会导致死锁的问题，在此不再赘述了）</p>
+<p>下面给出（原理上的）代码实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class BoundedBuffer &#123;</span><br><span class="line">    mutex = new Semaphore(1);</span><br><span class="line">    fullBuffers = new Semaphore(0);</span><br><span class="line">    emptyBuffers = new Semaphore(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BoundedBuffer::Deposit(c) &#123;</span><br><span class="line">    emptyBuffers-&gt;P();</span><br><span class="line">    mutex-&gt;P();</span><br><span class="line">    Add c to the buffer;</span><br><span class="line">    mutex-&gt;V();</span><br><span class="line">    fullBuffers-&gt;V();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BoundedBuffer::Remove(c) &#123;</span><br><span class="line">    fullBuffers-&gt;P();</span><br><span class="line">    mutex-&gt;P();</span><br><span class="line">    Remove c from buffer;</span><br><span class="line">    mutex-&gt;V();</span><br><span class="line">    emptyBuffers-&gt;V();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意P操作之间不能颠倒顺序。V操作不会阻塞，就无所谓了。</p>
+<h5>管程实现</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class BoundedBuffer &#123;</span><br><span class="line">    Lock lock;</span><br><span class="line">    int count = 0;</span><br><span class="line">    Condition notFull, notEmpty;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BoundedBuffer::Deposit(c) &#123;</span><br><span class="line">    lock-&gt;Acquire();</span><br><span class="line">    while (count == n)</span><br><span class="line">        notFull.Wait(&amp;lock);</span><br><span class="line">    Add c to the buffer;</span><br><span class="line">    count++;</span><br><span class="line">    notEmpty.signal();</span><br><span class="line">    lock-&gt;Release();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BoundedBuffer::Remove(c) &#123;</span><br><span class="line">    lock-&gt;Acquire();</span><br><span class="line">    while (count == 0)</span><br><span class="line">        notEmpty.Wait(&amp;lock);</span><br><span class="line">    Remove c from buffer;</span><br><span class="line">    count--;</span><br><span class="line">    notFull.signal();</span><br><span class="line">    lock-&gt;Release();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5>信号量和管程实现的对比</h5>
+<p>（以下内容摘自<a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=845" target="_blank" rel="noopener">Piazza</a>，修正了一些typo）</p>
+<p><img src="sem-vs-monitor.png" alt="生产者-消费者问题的两种实现的对比"></p>
+<p>如图，信号量中存有<code>int</code>变量<code>sem</code>以及<code>WaitQueue</code>变量<code>q</code>，根据信号量的实现代码（左下角ppt），我们可以得出<code>sem</code>和<code>q</code>的含义：</p>
+<ul>
+<li><code>q</code>代表当前正在等待资源的线程组成的等待队列，若当前资源足够所有进程使用，<code>q</code>为空；</li>
+<li><code>sem</code>代表【到目前为止，若所有请求该资源的线程都能够获取该资源，那么资源还剩下多少（这里我们假设资源个数可以为负）】；</li>
+<li>对<code>sem</code>也可以有另一种理解：当<code>sem</code>非负时，<code>sem</code>代表剩余资源的个数；当<code>sem</code>为负数时，<code>sem</code>的绝对值代表等待队列<code>q</code>的长度。</li>
+</ul>
+<p>而当我们使用条件变量解决有限资源问题时，我们通常会在条件变量之外，管程之中加入整型变量<code>count</code>（右上角ppt），来帮助条件变量记录当前剩余多少资源（非负）。查看条件变量的实现代码（右下角ppt），我们可以得出条件变量中整型变量<code>numWaiting</code>以及<code>WaitQueue</code>变量<code>q</code>的含义：</p>
+<ul>
+<li><code>q</code>代表当前正在等待资源的线程组成的等待队列，若当前资源足够所有进程使用，<code>q</code>为空；</li>
+<li><code>numWaiting</code>代表等待队列<code>q</code>的长度（非负）。</li>
+</ul>
+<p>结合使用信号量以及条件变量解决有限资源问题的实例（左上及右上ppt），以及以上我们对信号量和条件变量的分析，我们可以得出以下结论：</p>
+<ul>
+<li>在任一状态，信号量中的<code>q</code>和条件变量中的<code>q</code>完全相同；</li>
+<li>当<code>sem</code>非负时，含义与管程中的<code>count</code>相同，此时<code>numWaiting</code>为0；</li>
+<li>当<code>sem</code>为负数时，<code>sem</code>的绝对值等于<code>numWaiting</code>，此时<code>count</code>为0。</li>
+</ul>
+<p>在生产者-消费者这个问题实例中：</p>
+<ul>
+<li>信号量<code>emptyBuffers</code>与条件变量<code>notFull</code>是匹配的，满足上面3个条件，此时<code>count</code>在代码中以<code>n - count</code>的形式出现；</li>
+<li>信号量<code>fullBuffers</code>与条件变量<code>notEmpty</code>是匹配的，满足上面3个条件，此时<code>count</code>在代码中以<code>count</code>的形式出现；</li>
+</ul>
+<p>综上所述，两种解决方法是完全等价的，至于为什么用管程实现更加安全方便，个人认为老师在视频中并没有解释得很清楚，和老师讨论后得出结论如下：</p>
+<ul>
+<li>用信号量的时候（左上角ppt），所有信号量都要自己维护，并配对好PV；</li>
+<li>用管程的时候，我们可以理解为<code>BoundedBuffer</code>继承了一个管程类，因此操作系统会给<code>BoundedBuffer</code>中每一个方法自动加上锁（即右上角ppt中的<code>lock-&gt;Acquire()</code>和<code>lock-&gt;Release()</code>函数并不用自己写，是系统加上的），因此更加安全可控，容易查错。</li>
+</ul>
+<p>但是个人认为使用条件变量也要根据条件配对好Wait和Signal函数，因此不比使用信号量更容易安全，这个问题见仁见智吧，但如果考试时候问到怎么回答大家懂的~</p>
+<p>更新：ucore lab7中实现信号量的<code>sem</code>值非负，这样看来ucore中信号量的<code>sem</code>值和条件变量中的<code>count</code>值应该是完全相等的。</p>
+<h4>哲学家就餐问题</h4>
+<p>问题描述：</p>
+<ul>
+<li>
+<p>5个哲学家围绕在一张圆桌周围</p>
+</li>
+<li>
+<p>桌子上有5根筷子（或者说叉子……随便啦）</p>
+</li>
+<li>
+<p>哲学家的动作包括思考和进餐</p>
+</li>
+<li>
+<p>进餐时一个哲学家需要自己两边的两根筷子</p>
+</li>
+<li>
+<p>如何保证哲学家们的动作有序进行，既不发生饥饿也不发生死锁？</p>
+</li>
+<li>
+<p>方案1：</p>
+<ul>
+<li>每个筷子用一个信号量表示，sem=1</li>
+<li>哲学家先拿第一根筷子，再拿第二根筷子，然后吃，最后放回两根筷子</li>
+<li>多数情况下这一算法可行；但极端情况下会出现死锁，比如所有哲学家同时拿左边的筷子</li>
+</ul>
+</li>
+<li>
+<p>方案2：</p>
+<ul>
+<li>除了每根筷子的信号量之外，再加上一个互斥信号量，同时只能有一个哲学家就餐</li>
+<li>能够保证顺序吃饭，但是浪费了资源和时间</li>
+</ul>
+</li>
+<li>
+<p>方案3：</p>
+<ul>
+<li>和方案1一样，使用5个信号量表示筷子</li>
+<li>哲学家根据编号不同，拿取筷子的顺序不同</li>
+<li>此时没有死锁，且允许两个人同时就餐</li>
+</ul>
+</li>
+</ul>
+<h5>信号量实现</h5>
+<p>这一实现和ucore lab中给出的使用信号量的实现不太一样，而是参考了OSTEP中的做法（更准确地说是Dijkstra本人的做法）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Initialization</span></span><br><span class="line">Semaphore forks[<span class="number">5</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">    forks[i] = <span class="keyword">new</span> Semaphore(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Helper functions</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">left</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123; <span class="keyword">return</span> p; &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">right</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123; <span class="keyword">return</span> (p + <span class="number">1</span>) % <span class="number">5</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Thread x</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Philosopher</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Switch between thinking and eating</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        think();</span><br><span class="line">        <span class="comment">// get forks</span></span><br><span class="line">        <span class="keyword">if</span> (p == <span class="number">4</span>) &#123;  <span class="comment">// break dependency</span></span><br><span class="line">            forks[right(x)].P();</span><br><span class="line">            forks[left(x)].P();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            forks[left(x)].P();</span><br><span class="line">            forks[right(x)].P();</span><br><span class="line">        &#125;</span><br><span class="line">        eat();</span><br><span class="line">        <span class="comment">// put forks</span></span><br><span class="line">        forks[left(x)].V();</span><br><span class="line">        forks[right(x)].V();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4>读者-写者问题</h4>
+<p>问题描述：对于一个共享数据，有两类使用者</p>
+<ul>
+<li>读者：只读取数据，不修改（可以同时读）</li>
+<li>写者：读取和修改数据（不可以同时写）</li>
+<li>读写是互斥的</li>
+</ul>
+<p>事实上，也需要考虑到，至少有两种可能的策略（而且还会有更多）：</p>
+<ul>
+<li>读者优先策略：
+<ul>
+<li>只要有读者正在读状态，后来的读者就能直接进入</li>
+<li>如果读者不断进入，则写者就处于饥饿</li>
+</ul>
+</li>
+<li>写者优先策略
+<ul>
+<li>只要有写者就绪，写者应尽快执行写操作（后来的读者需要阻塞）</li>
+<li>如果写者持续不断就绪，则读者就处于饥饿</li>
+</ul>
+</li>
+</ul>
+<h5>信号量实现</h5>
+<p>用信号量描述每个约束：</p>
+<ul>
+<li>信号量<code>WriteMutex</code>
+<ul>
+<li>控制读写操作的互斥</li>
+<li>初始化为1</li>
+</ul>
+</li>
+<li>读者计数<code>Rcount</code>
+<ul>
+<li>正在进行读操作的读者数目</li>
+<li>初始化为0</li>
+</ul>
+</li>
+<li>信号量<code>CountMutex</code>
+<ul>
+<li>保护对读者计数的互斥修改</li>
+<li>初始化为1</li>
+</ul>
+</li>
+</ul>
+<p>解决方案：</p>
+<ul>
+<li>读者的互斥锁只针对于第一个读者，之后不再判断</li>
+<li>因为Rcount也需要保护，所以外面也加上互斥锁</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Writer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    WriteMutex.P();</span><br><span class="line">    write;</span><br><span class="line">    WriteMutex.V();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Reader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    CountMutex.P();</span><br><span class="line">    <span class="keyword">if</span> (Rcount == <span class="number">0</span>)</span><br><span class="line">        WriteMutex.P();</span><br><span class="line">    Rcount++;</span><br><span class="line">    CountMutex.V();</span><br><span class="line"></span><br><span class="line">    read;</span><br><span class="line"></span><br><span class="line">    CountMutex.P();</span><br><span class="line">    Rcount--;</span><br><span class="line">    <span class="keyword">if</span> (Rcount == <span class="number">0</span>)</span><br><span class="line">        WriteMutex.V();</span><br><span class="line">    CountMutex.V();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这一实现中，只要有读者开始阅读，就必须等到全部读者都离开才能进行写操作。即使有写操作在等待，读者仍然先于写者，说明这是一种读者优先策略。</p>
+<h5>管程实现</h5>
+<p>管程中包括以下内容：</p>
+<ul>
+<li>一个互斥锁</li>
+<li>4个状态变量</li>
+<li>2个条件变量：可读/可写</li>
+</ul>
+<p>从判断条件可以看出，这一实现采用的是写者优先策略。不过其实我还没想明白能否把对<code>AW</code>和<code>WW</code>变量的修改移动到<code>while</code>循环外面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">class Database &#123;</span><br><span class="line">    Lock lock;  // 管程的互斥锁</span><br><span class="line">    int AR = 0;  // Active Readers</span><br><span class="line">    int AW = 0;  // Active Writers</span><br><span class="line">    int WR = 0;  // Waiting Readers</span><br><span class="line">    int WW = 0;  // Waiting Writers</span><br><span class="line">    Condition okToRead, okToWrite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 两个基本操作</span><br><span class="line">Database::Read() &#123;</span><br><span class="line">    StartRead();  // Wait until no writers</span><br><span class="line">    read database;</span><br><span class="line">    DoneRead();  // Exit &amp; wake up waiting writers</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Database::Write() &#123;</span><br><span class="line">    StartWrite();  // Waite until no readers/writers;</span><br><span class="line">    write database;</span><br><span class="line">    DoneWrite();  // Exit &amp; wake up waiting readers/writers</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Private Database::StartRead() &#123;</span><br><span class="line">    lock.Acquire();</span><br><span class="line">    while (AW + WW &gt; 0) &#123;</span><br><span class="line">        WR++;</span><br><span class="line">        okToRead.wait(&amp;lock);</span><br><span class="line">        WR--;</span><br><span class="line">    &#125;</span><br><span class="line">    AR++;</span><br><span class="line">    lock.Release();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Private Database::DoneRead() &#123;</span><br><span class="line">    lock.Acquire();</span><br><span class="line">    AR--;</span><br><span class="line">    if (AR == 0 &amp;&amp; WW &gt; 0)</span><br><span class="line">        okToWrite.signal();</span><br><span class="line">    lock.Release();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Private Database::StartWrite() &#123;</span><br><span class="line">    lock.Acquire();</span><br><span class="line">    while (AW + AR &gt; 0) &#123;</span><br><span class="line">        WW++;</span><br><span class="line">        okToWrite.wait(&amp;lock);</span><br><span class="line">        WW--;</span><br><span class="line">    &#125;</span><br><span class="line">    AW++;</span><br><span class="line">    lock.Release();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Private Database::DoneWrite() &#123;</span><br><span class="line">    lock.Acquire();</span><br><span class="line">    AW--;</span><br><span class="line">    if (WW &gt; 0)</span><br><span class="line">        okToWrite.signal();</span><br><span class="line">    else if (AW &gt; 0)</span><br><span class="line">        okToRead.broadcast();</span><br><span class="line">    lock.Release();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2>练习</h2>
+<p>来自<a href="https://github.com/chyyuu/os_course_exercises/blob/2018spring/all/07-2-quiz.md" target="_blank" rel="noopener">lec18 信号量与管程 在线练习</a>和<a href="https://github.com/chyyuu/os_course_exercises/blob/2018spring/all/07-2-spoc-discussion.md" target="_blank" rel="noopener">同步互斥(lec 18) spoc 思考题</a>。</p>
+<h3>选择题</h3>
+<p><strong>如果有5个进程共享同一程序段，每次允许3个进程进入该程序段，若用PV操作作为同步机制，则信号量S为-1时表示什么（）</strong></p>
+<ul>
+<li>有四个进程进入了该程序段</li>
+<li>有一个进程在等待</li>
+<li><strong>有三个进程进入了程序段，有一个进程在等待</strong></li>
+<li>有一个进程进入了该程序段，其余四个进程在等待</li>
+</ul>
+<p>一般来说，信号量实现中会满足，它的整数值如果为负数，则负数的绝对值表示等待中的线程数量。当然似乎也有些实现不是这么做的。</p>
+<hr>
+<p><strong>2元信号量可以初始化为（）</strong></p>
+<ul>
+<li><strong>0或1</strong></li>
+<li>0或-1</li>
+<li>只能为1</li>
+<li>任意值</li>
+</ul>
+<p>之所以可以初始化为0或1，是因为二元信号量至少有两种不同的使用场景：</p>
+<ul>
+<li>资源数目为1，如只能互斥访问的代码关键区</li>
+<li>代码条件等待，这种情况下有可能会先执行V操作，再执行P操作</li>
+</ul>
+<hr>
+<p><strong>多个进程对信号量S进行了6次P操作，2次V操作后，现在信号量的值是-3，与信号量S相关的处于阻塞状态的进程有几个（）</strong></p>
+<ul>
+<li>1个</li>
+<li>2个</li>
+<li><strong>3个</strong></li>
+<li>4个</li>
+</ul>
+<p>等待进程的数量就是信号量的值的负数。不过这样可以推导出，请求过信号量资源的进程为6个，得到资源的为2个，现在仍在等待的进程为3个，说明信号量的初值为6-2-3=1。</p>
+<hr>
+<p><strong>(2011年全国统考)有两个并发执行的进程P1和P2，共享初值为1的变量x。P1对x加1，P2对x减1。加1和减1操作的指令序列分别如下所示；两个操作完成后，x的值（）。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">加一操作    		减一操作</span><br><span class="line">Load R1,x  		load R2,x</span><br><span class="line">inc R1     		dec R2</span><br><span class="line">store x,R1 		store x,R2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可能为-1或3</li>
+<li>只能为1</li>
+<li><strong>可能为0、1或2</strong></li>
+<li>可能为-1、0、1、1或2</li>
+</ul>
+<p>分成以下几种情况讨论：</p>
+<ul>
+<li>P1和P2的执行完全错开（即加载了不同的x的值）：结果正确，x=1</li>
+<li>P1和P2加载了相同的x的值：结果依赖于P1先写还是P2先写，如果P1先写则x=2，否则x=0</li>
+</ul>
+<hr>
+<p><strong>管程的主要特点有（）</strong></p>
+<ul>
+<li><strong>局部数据变量只能被管程的过程访问</strong></li>
+<li><strong>一个进程通过调用管程的一个过程进入管程</strong></li>
+<li>不会出现死锁</li>
+<li><strong>在任何时候，只能有一个进程在管程中执行</strong></li>
+</ul>
+<p>课上好像没有讲这么多管程的特点……</p>
+<hr>
+<p><strong>关于管程的叙述正确的是（）</strong></p>
+<ul>
+<li>管程中的局部数据变量可以被外部直接访问</li>
+<li>当一个进程在管程中执行时，调用管程的其他进程都不会被阻塞</li>
+<li>在管程中的signal()与信号量中的signal()操作实现及意义完全相同</li>
+<li><strong>管程通过使用条件变量提供对同步的支持，这些条件变量包含在管程中，并且只有管程才能访问</strong></li>
+</ul>
+<p>管程中的局部变量只能通过管程的过程访问。一个进程在管程中执行时，调用管程的其他过程都会被阻塞。管程中的signal是通过条件变量实现的，而不是信号量，所以意义有微妙的不同。</p>
+<h3>简答题</h3>
+<p><strong>什么是信号量？它与软件同步方法的区别在什么地方？</strong></p>
+<p>信号量是由操作系统提供的一种协调共享资源访问的方法。信号量是一种抽象数据类，由一个被保护的整形变量（sem）和P()、V()两个原子操作组成，表示系统资源的数量。</p>
+<p>区别：</p>
+<ul>
+<li>软件同步是平等线程间的一种同步协商机制；</li>
+<li>信号量是由地位高于进程的管理者OS协调的同步机制。</li>
+</ul>
+<hr>
+<p><strong>自旋锁为什么无法按先来先服务方式使用资源？</strong></p>
+<p>原因：自旋锁是由TS指令实现的临界区申请操作，第一个检测到临界区空闲的申请者而不是第一个开始检测的申请者进入。也就是说，访问顺序是由硬件随机决定的。如果要实现FIFO方式，一般都需要一个队列。</p>
+<hr>
+<p><strong>下面是一种P操作的实现伪码。它能按FIFO顺序进行信号量申请吗？</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">while (s.count == 0) &#123;  //没有可用资源时，进入挂起状态；</span><br><span class="line">        调用进程进入等待队列s.queue;</span><br><span class="line">        阻塞调用进程;</span><br><span class="line">&#125;</span><br><span class="line">s.count--;              //有可用资源，占用该资源；</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考回答： 它的问题是，不能按FIFO进行信号量申请。<br>
+它的一种出错的情况如下：</p>
+</blockquote>
+<ul>
+<li>一个线程A调用P()原语时，由于线程B正在使用该信号量而进入阻塞状态；注意，这时value的值为0。</li>
+<li>线程B放弃信号量的使用，线程A被唤醒而进入就绪状态，但没有立即进入运行状态；注意，这里value为1。</li>
+<li>在线程A处于就绪状态时，处理机正在执行线程C的代码；线程C这时也正好调用P()原语访问同一个信号量，并得到使用权。注意，这时value又变回0。</li>
+<li>线程A进入运行状态后，重新检查value的值，条件不成立，又一次进入阻塞状态。</li>
+<li>至此，线程C比线程A后调用P原语，但线程C比线程A先得到信号量。</li>
+</ul>
+<p>虽然参考答案是这么说的，但我觉得这有些牵强：事实上这种错误情况取决于V操作的语义。如果V操作能够保证使唤醒的进程立刻抢占处理机，就不会发生以上问题了。这就类似于管程的Hoare语义和Mesa语义的区别。</p>
+<p><a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=1219" target="_blank" rel="noopener">Piazza</a>上有一个类似的讨论。事实上，在一般的Mesa语义下，使用<code>if</code>进行检查根本就是不正确的，需要用<code>while</code>。改用<code>while</code>之后，确实能保证正确性，但是FIFO无法保证了。</p>
+<hr>
+<p><strong>什么是条件同步？如何使用信号量来实现条件同步？</strong></p>
+<p>条件同步是指线程间的事件等待。</p>
+<p>条件同步的实现方法：定义初始值为<strong>0</strong>的信号量，事件触发进程使用V()操作表示事件出现，事件等待进程使用P()操作表示开始等待事件。</p>
+<p>也就是说，此处P和V操作的顺序是颠倒的。</p>
+<hr>
+<p><strong>什么是生产者-消费者问题？</strong></p>
+<ul>
+<li>生产者生成数据，并放入缓冲区</li>
+<li>消费者从缓冲区取出数据，进行处理</li>
+<li>任何时间只有一个进程访问缓冲区</li>
+</ul>
+<hr>
+<p><strong>为什么在生产者-消费者问题中先申请互斥信号量会导致死锁？</strong></p>
+<p>如果先申请互斥信号量，后申请资源信号量，则在两种情况下可能会出现循环等待：</p>
+<ul>
+<li>生产者获得互斥信号量后检查<code>emptyBuffers</code>资源信号量，发现缓冲区满了，于是进入睡眠状态；此时消费者无法获得互斥信号量，于是无法消耗缓冲区内的资源</li>
+<li>消费者获得互斥信号量后检查<code>fullBuffers</code>资源信号量，发现缓冲区空了，于是进入睡眠状态；此时生产者无法获得互斥信号量，于是无法将资源放入缓冲区内</li>
+</ul>
+<p>按答案中更抽象的说法就是这样：</p>
+<blockquote></blockquote>
+<ul>
+<li>缓冲区空时，生产者等待缓冲区的互斥访问，以便放入数据；消费者占有缓冲区访问权，等待生产者放入的数据</li>
+<li>缓冲区满时，生产者占有缓冲区访问权，等待空的缓冲块；消费者等待缓冲区的互斥访问，以便取出数据</li>
+</ul>
+<hr>
+<p><strong>为什么互斥信号量的实现比资源信号量的实现要简单？请说明．</strong></p>
+<blockquote>
+<p>信号量中的整形变量的取值不同，互斥信号量的最大取值为1；而资源信号量的最大取值为资源总数。</p>
+</blockquote>
+<p>事实上，互斥信号量和互斥锁是等价的。（如果不考虑sem值和等待进程数量关系的问题）。</p>
+<hr>
+<p><strong>管程的组成包括哪几部分？入口队列和条件变量等待队列的作用是什么？</strong></p>
+<blockquote>
+<p>管程是一种并发程序的编程方法，由一个与入口队列对应的锁和若干个与共享数据访问的等待队列对应的条件变量组成，从而实现在任一时刻最多只有一个线程执行管程代码。</p>
+</blockquote>
+<p>管程的组成部分：</p>
+<ul>
+<li>一个锁：控制管程代码的互斥访问</li>
+<li>入口队列：每次只能有一个线程进入</li>
+<li>0或多个条件变量（及其对应的等待队列）：管理共享数据的并发访问</li>
+</ul>
+<p>入口的等待队列和锁保证任一时刻最多只有一个线程执行管程代码；每个条件变量等待队列表示一种等待的资源。</p>
+<hr>
+<p><strong>管程与临界区有什么异同？</strong></p>
+<ul>
+<li>相同点：在任一时刻最多只有一个线程执行管程代码或临界区代码</li>
+<li>不同点：正在管程中的线程可临时放弃管程的互斥访问（进入条件变量的等待队列），等待事件出现时恢复；而临界区不支持临时退出</li>
+</ul>
+<p>（所以其实在管程的概念里面我们已经不谈临界区了？）</p>
+<hr>
+<p><strong>为什么用管程实现的生产者-消费者问题中，可以在进入管程后才判断缓冲区的状态？</strong></p>
+<p>因为管程允许临时放弃管程的互斥访问，而信号量并不支持临时放弃互斥访问权。在具体实现上，在管程内部的条件变量上进行等待时，会将管程的锁作为<code>wait()</code>操作的参数传递过去，此操作会同时放弃锁（返回时又会重新获得锁），因此不会导致死锁。</p>
+<hr>
+<p><strong>请描述管程条件变量的三种释放处理方式的区别是什么？条件判断中的while和if是如何影响释放处理中的顺序的？</strong></p>
+<ul>
+<li>Mesa管程：占用管程的当前进程可在任何时刻释放占用资源并唤醒相应的等待进程，当前进程继续执行，被唤醒进程放回入口等待队列队首等待当前进程释放管程访问权</li>
+<li>Hoare管程：占用管程的当前进程可在任何时刻释放占用资源并唤醒相应的等待进程，当前进程进入唤醒队列等待，被唤醒进程继续执行直到释放管程访问权；管程空闲时，优先查看唤醒队列中的等待进程，唤醒队列中没有等待进程时再查看入口队列</li>
+<li>Hansen管程：占用管程的当前进程只在退出管程时释放占用资源并唤醒相应的等待进程，被唤醒进程继续执行直到释放管程访问权</li>
+</ul>
+<p>条件判断中while和if对释放处理中的执行顺序影响：</p>
+<ul>
+<li>在Hansen和Mesa管程中，由于条件变量释放操作signal时并没有立即放弃管程访问权，资源的可用状态可能变化，需使用while()进行重新检查；</li>
+<li>在Hoare管程中，由于条件变量释放操作signal同时表示立即放弃管程访问权，资源的可用状态保持不变，可使用if判断，不需要再次检查。</li>
+</ul>
+<p>Ref: <a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=894" target="_blank" rel="noopener">https://piazza.com/class/i5j09fnsl7k5x0?cid=894</a></p>
+<p>Ref: <a href="https://www.andrew.cmu.edu/course/15-440-kesden/applications/ln/lecture6.html" target="_blank" rel="noopener">https://www.andrew.cmu.edu/course/15-440-kesden/applications/ln/lecture6.html</a></p>
+<p>（不过在上述Piazza帖子中也有人提出了这样的问题：Hansen管程似乎是直接把访问权转移给了等待进程，这样还需要使用if来判断吗？）</p>
+<hr>
+<p><strong>哲学家就餐问题的方案2和方案3的性能有什么区别？</strong></p>
+<ul>
+<li>方案2中，最多只有一个哲学家在吃饭</li>
+<li>方案3中，最多可以有两个哲学家在同时吃饭</li>
+</ul>
+<hr>
+<p><strong>在读者-写者问题的读者优先和写者优先在行为上有什么不同？</strong></p>
+<ul>
+<li>读者优先策略：
+<ul>
+<li>只要有读者正在读状态，后来的读者就能直接进入</li>
+<li>如果读者不断进入，则写者就处于饥饿</li>
+</ul>
+</li>
+<li>写者优先策略
+<ul>
+<li>只要有写者就绪，写者应尽快执行写操作（后来的读者需要阻塞）</li>
+<li>如果写者持续不断就绪，则读者就处于饥饿</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>在读者-写者问题的读者优先实现中优先于读者到达的写者在什么地方等待？</strong></p>
+<p>互斥信号<code>WriteMutex</code>。因为这是控制读写互斥访问的锁。</p>
+<h3>实践题</h3>
+<p><strong>请用管程with条件变量来实现信号量。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Semaphore &#123;</span><br><span class="line">    Lock lock;  // 管程的锁</span><br><span class="line">    int count;  // 剩余可用资源个数</span><br><span class="line">    Condition isEmpty;  // 表示是否有可用资源的事件的条件变量</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Semaphore::Semaphore(int numRes) &#123;</span><br><span class="line">    count = numRes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Semaphore::P() &#123;</span><br><span class="line">    lock.acquire();</span><br><span class="line">    while (count == 0)</span><br><span class="line">        isEmpty.wait(&amp;lock);</span><br><span class="line">    count--;</span><br><span class="line">    lock.release();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Semaphore::V() &#123;</span><br><span class="line">    lock.acquire();</span><br><span class="line">    count++;</span><br><span class="line">    isEmpty.signal();</span><br><span class="line">    lock.release();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>考虑到可能是Mesa语义的管程，因此进行了<code>while</code>检查。参考了这个<a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=845" target="_blank" rel="noopener">Piazza</a>帖子，我认为上述实现可以满足：</p>
+<ul>
+<li>在任一状态，条件变量的等待队列与信号量的等待队列完全相同</li>
+<li>当<code>count != 0</code>时，其含义与信号量中的<code>sem</code>相同，此时条件变量的<code>numWaiting = 0</code></li>
+<li>当<code>count = 0</code>时，条件变量的<code>numWaiting</code>等于信号量的<code>sem</code>的相反数（实现保证了count不会为负数）</li>
+</ul>
+<hr>
+<p><strong>请用信号量来实现管程with条件变量。</strong></p>
+<p>这个就有一定的难度了。当然，管程的核心是条件变量，其实实现条件变量就可以了。以下内容参考了<a href="https://birrell.org/andrew/papers/ImplementingCVs.pdf" target="_blank" rel="noopener">Implementing Condition Variables with Semaphores</a>这篇文章。</p>
+<p>首先用信号量实现一个锁，这是非常容易的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Lock &#123;</span><br><span class="line">    Semaphore sm;</span><br><span class="line">    public Lock() &#123; // constructor</span><br><span class="line">        sm = new Semaphore(); sm.count =1; sm.limit = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    public void Acquire() &#123; sm.P(); &#125;</span><br><span class="line">    public void Release() &#123; sm.V(); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面给出一种非常简单但是也非常错误的实现。该实现的显而易见的问题是，wait操作中对锁的释放和当前线程的睡眠不是原子的。然后好像会出现一个叫做“wake-up waiting race”的问题，不过此处好像并不会发生错误。以及，即使在没有线程正在等待时，signal操作也会使得信号量的值增加，这样，下一个等待进程就不会阻塞了，这是不正确的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class CV &#123;</span><br><span class="line">    Semaphore s;</span><br><span class="line">    public CV() &#123; // Constructor</span><br><span class="line">        s = new Semaphore();</span><br><span class="line">        s.count = 0;</span><br><span class="line">        s.limit = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    public void Wait(Lock m) &#123; // Pre-condition: this thread holds “m”</span><br><span class="line">        m.Release();</span><br><span class="line">        s.P();</span><br><span class="line">        m.Acquire();</span><br><span class="line">    &#125;</span><br><span class="line">    public void Signal() &#123;</span><br><span class="line">        s.V();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是我们用信号量x作为互斥锁来保护wait操作，同时统计等待进程的个数。但这个实现也有两个问题：</p>
+<ul>
+<li>由于s信号量的资源个数为1，因此最多只有一个调用wait的进程能够从s.P中返回，其余的都阻塞在s.P上；解决方法是把s的资源个数调到无限大</li>
+<li>没有保证先进先出的语义</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class CV &#123;</span><br><span class="line">    Semaphore s, x;</span><br><span class="line">    int waiters = 0;</span><br><span class="line">    public CV() &#123; // Constructor</span><br><span class="line">        s = new Semaphore(); s.count = 0; s.limit = 1;</span><br><span class="line">        x = new Semaphore(); x.count = 1; x.limit = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    public void Wait(Lock m) &#123; // Pre-condition: this thread holds “m”</span><br><span class="line">        x.P();</span><br><span class="line">        waiters++;</span><br><span class="line">        x.V();</span><br><span class="line">        m.Release();</span><br><span class="line">        s.P();</span><br><span class="line">        m.Acquire();</span><br><span class="line">    &#125;</span><br><span class="line">    public void Signal() &#123;</span><br><span class="line">        x.P();</span><br><span class="line">        if (waiters &gt; 0) &#123;</span><br><span class="line">            waiters--;</span><br><span class="line">            s.V();</span><br><span class="line">        &#125;</span><br><span class="line">        x.V();</span><br><span class="line">    &#125;</span><br><span class="line">    public void Broadcast() &#123;</span><br><span class="line">        x.P();</span><br><span class="line">        while (waiters &gt; 0) &#123;</span><br><span class="line">            waiters--;</span><br><span class="line">            s.V();</span><br><span class="line">        &#125;</span><br><span class="line">        x.V();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下一种实现中，加入了信号量h，它会使发出信号的线程在等待线程离开等待队列之前也阻塞。这个实现是正确的，但是似乎太麻烦了。论文最后表示，他们决定还是在OS中用硬件指令来实现条件变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class CV &#123;</span><br><span class="line">    Semaphore s, x;</span><br><span class="line">    int waiters = 0;</span><br><span class="line">    Semaphore h;</span><br><span class="line">    public CV() &#123; // Constructor</span><br><span class="line">        this.m = m;</span><br><span class="line">        s = new Semaphore(); s.count = 0; s.limit = 999999;</span><br><span class="line">        x = new Semaphore(); x.count = 1; x.limit = 1;</span><br><span class="line">        h = new Semaphore(); h.count = 0; h.limit = 999999;</span><br><span class="line">    &#125;</span><br><span class="line">    public void Wait(Lock m) &#123; // Pre-condition: this thread holds “m”</span><br><span class="line">        x.P();</span><br><span class="line">        waiters++;</span><br><span class="line">        x.V();</span><br><span class="line">        m.Release();</span><br><span class="line">        s.P();</span><br><span class="line">        h.V();</span><br><span class="line">        m.Acquire();</span><br><span class="line">    &#125;</span><br><span class="line">    public void Signal() &#123;</span><br><span class="line">        x.P();</span><br><span class="line">        if (waiters &gt; 0) &#123;</span><br><span class="line">            waiters--;</span><br><span class="line">            s.V();</span><br><span class="line">            h.P();</span><br><span class="line">        &#125;</span><br><span class="line">        x.V();</span><br><span class="line">    &#125;</span><br><span class="line">    public void Broadcast() &#123;</span><br><span class="line">        x.P();</span><br><span class="line">        for (int i = 0; i &lt; waiters; i++)</span><br><span class="line">            s.V();</span><br><span class="line">        while (waiters &gt; 0) &#123;</span><br><span class="line">            waiters--;</span><br><span class="line">            h.P();</span><br><span class="line">        &#125;</span><br><span class="line">        x.V();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>请评价如下的实现(用信号量来实现管程with条件变量)是否合理？简要说明理由。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">Implementing a Monitor</span><br><span class="line"></span><br><span class="line">CONTROL VARIABLES:</span><br><span class="line"></span><br><span class="line">	mutex: semaphore, initial value 1 (FREE)</span><br><span class="line">	next: record, with 2 fields:</span><br><span class="line">		next.sem: semaphore, initial value 0</span><br><span class="line">		next.count: counter, initial value 0</span><br><span class="line"></span><br><span class="line">	FOR EACH CONDITION x:</span><br><span class="line"></span><br><span class="line">	x: record, with 2 fields:</span><br><span class="line">		x.sem: semaphore, initial value 0</span><br><span class="line">		x.count: counter, initial value 0</span><br><span class="line">ENTRY PROTOCOL (at the beginning of each monitor function):</span><br><span class="line"></span><br><span class="line">	/* wait for exclusive access to the monitor */</span><br><span class="line">	P(mutex);</span><br><span class="line">EXIT PROTOCOL (at the end of each monitor function):</span><br><span class="line"></span><br><span class="line">	/* if there are processes in the &quot;next&quot; queue, release one */</span><br><span class="line">	if (next.count &gt; 0) V(next.sem);</span><br><span class="line"></span><br><span class="line">	/* otherwise, release the monitor */</span><br><span class="line">	else V(mutex);</span><br><span class="line">WAIT ON CONDITION x (x.wait):</span><br><span class="line"></span><br><span class="line">	/* first perform the exit protocol */</span><br><span class="line">	if (next.count &gt; 0) V(next.sem);</span><br><span class="line">	else V(mutex);</span><br><span class="line"></span><br><span class="line">	/* now wait on the condition queue */</span><br><span class="line">	x.count++;</span><br><span class="line">	P(x.sem);</span><br><span class="line">	x.count--;</span><br><span class="line">SIGNAL CONDITION x (x.signal):</span><br><span class="line"></span><br><span class="line">	/* do nothing unless a process is waiting */</span><br><span class="line">	if (x.count &gt; 0) &#123;</span><br><span class="line"></span><br><span class="line">		/* release the next waiting process */</span><br><span class="line">		V(x.sem);</span><br><span class="line"></span><br><span class="line">		/* wait on the &quot;next&quot; queue */</span><br><span class="line">		next.count++;</span><br><span class="line">		P(next.sem);</span><br><span class="line">		next.count--;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>每人使用C++或python语言用信号量和条件变量两种手段分别实现<a href="https://github.com/chyyuu/os_course_exercises/blob/2018spring/all/07-2-spoc-pv-problems.md" target="_blank" rel="noopener">40个同步互斥问题</a>中的一题。请先理解<a href="https://github.com/chyyuu/ucore_os_lab/tree/master/related_info/lab7/semaphore_condition" target="_blank" rel="noopener">python threading 机制的介绍和实例</a></strong></p>
+<p>参考：<a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=391" target="_blank" rel="noopener">2015年操作系统课的信号量问题回答</a></p>
+<p>建议参考梁锡豪同学的输出信息显示方式，这种方式的可读性很好。</p>
+<p>建议重视测试用例的设计，以检查自己的实现是否有错。</p>
+<hr>
+<p><strong>设计某个方法，能够动态检查出对于两个或多个进程的同步互斥问题执行中，没有互斥问题，能够同步等，以说明实现的正确性。</strong></p>
+<hr>
+<p><strong>管程和信号量在解决同步互斥问题上是否等价？请证明/说明你的结论．</strong></p>
+<p>Piazza上有两个非常优秀的讨论：</p>
+<ul>
+<li><a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=845" target="_blank" rel="noopener">https://piazza.com/class/i5j09fnsl7k5x0?cid=845</a>：阐述了信号量和条件变量在具体实现和操作层面的异同</li>
+<li><a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=839" target="_blank" rel="noopener">https://piazza.com/class/i5j09fnsl7k5x0?cid=839</a>：对信号量和条件变量抽象的理解</li>
+</ul>
+<p>简单来说，就是：信号量可以实现管程，管程可以实现信号量，所以在这个层面，二者等价。</p>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-05-25T01:14:40+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2018-05-25
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;OS</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/os-mooc-lecture-14-summary/" rel="prev" title="《操作系统》第14讲：“实验5-用户线程管理”总结">
+                                  
+                                      《操作系统》第14讲：“实验5-用户线程管理”总结
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/os-mooc-lecture-22-summary/" rel="prev" title="《操作系统》第22讲：“实验8-文件系统”总结">
+                                    
+                                        《操作系统》第22讲：“实验8-文件系统”总结
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '《操作系统》第18讲：“信号量与管程”总结',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">课程内容概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">信号量（Semaphore）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">信号量简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">信号量使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">互斥访问</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">条件同步</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">管程（Monitor）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">条件变量（Condition Variable）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">管程的语义</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Mesa语义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Hoare语义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Brinch Hanson语义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">经典问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">生产者-消费者问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">信号量实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">管程实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">信号量和管程实现的对比</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">哲学家就餐问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">信号量实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">读者-写者问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">信号量实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">管程实现</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">练习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">选择题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">简答题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">实践题</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

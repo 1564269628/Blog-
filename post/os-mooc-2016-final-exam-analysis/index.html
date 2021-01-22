@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>《操作系统》2016年期末考试分析 | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">《操作系统》2016年期末考试分析</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-05-19
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>试题来自<a href="http://os.cs.tsinghua.edu.cn/oscourse/OS2016spring/FinalExam?action=AttachFile&amp;do=view&amp;target=20160524-%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E9%A2%98%E7%9B%AE-v1a.pdf" target="_blank" rel="noopener">20160524-期末考试题目-v1a.pdf</a>。</p>
+<h2>判断题（20分）</h2>
+<ol>
+<li>在进程控制块数据结构中，必须为进程建立内核栈结构，确保进程可以得到操作系统的可靠服务和管理等支持。（√）</li>
+</ol>
+<p>以下解释摘自ucore docs Lab4：</p>
+<blockquote>
+<p>每个线程都有一个内核栈，并且位于内核地址空间的不同位置。对于内核线程，该栈就是运行时的程序使用的栈；而对于普通进程，该栈是发生特权级改变的时候使保存被打断的硬件信息用的栈。uCore在创建进程时分配了2个连续的物理页（参见memlayout.h中KSTACKSIZE的定义） 作为内核栈的空间。这个栈很小，所以内核中的代码应该尽可能的紧凑，并且避免在栈上分配大的数据结构，以免栈溢出，导致系统崩溃。kstack记录了分配给该进程/线程的内核栈的位置。主要作用有以下几点。首先，当内核准备从一个进程切换到另一个的时候，需要根据kstack 的值正确的设置好tss（可以回顾一下在实验一中讲述的 tss在中断处理过程中的作用），以便在进程切换以后再发生中断时能够使用正确的栈。其次，内核<br>
+栈位于内核地址空间，并且是不共享的（ 每个线程都拥有自己的内核栈） ，因此不受到mm的管理，当进程退出的时候，内核能够根据kstack的值快速定位栈的位置并进行回收。</p>
+</blockquote>
+<hr>
+<ol start="2">
+<li>在进程切换过程中，进程上下文信息的保存与恢复过程必须在内核态完成。（√）</li>
+</ol>
+<p>以下内容摘自ucore docs Lab4：</p>
+<blockquote>
+<p>context：进程的上下文，用于进程切换（参见switch.S）。在uCore中，所有的进程在内核中也是相对独立的（例如独立的内核堆栈以及上下文等等） 。使用context保存寄存器的目的就在于在内核态中能够进行上下文之间的切换。实际利用context进行上下文切换的函数是在<code>kern/process/switch.S</code>中定义的<code>switch_to</code>。</p>
+</blockquote>
+<p>进程的上下文信息除了context以外，还包括页表信息（CR3寄存器），访问和修改这些内容需要特权指令，因此必须在内核态完成。</p>
+<hr>
+<ol start="3">
+<li>对于父进程而言，<code>fork()</code>的返回值只能是子进程的pid号。（×）</li>
+</ol>
+<p>如果<code>fork()</code>不成功，则会返回-1。</p>
+<hr>
+<ol start="4">
+<li>对于分属不同进程的线程A和线程B之间进行切换，必须要切换页表。（√）</li>
+</ol>
+<p>同一进程的不同线程共享同一页表，但不同进程对应的页表一般是不同的。</p>
+<hr>
+<ol start="5">
+<li>在用户空间中实现的线程模型可以有效的避开操作系统调度带来的时间开销。（?）</li>
+</ol>
+<p>我猜这是<a href="/post/os-mooc-lecture-11-summary">第11讲“进程和线程”</a>中的内容。用户线程的优点是同一进程内的用户线程切换快，但是内核并不了解用户线程，因此只能按进程分配CPU时间；而内核线程的创建、终止和切换的代价相对较大（因为需要在内核态实现），但可以以线程为单位进行CPU时间分配。总的来说，避免操作系统的调度是不太可能的，所以我认为此题的描述是错误的。</p>
+<p>2018.5.25 UPD：tsz同学认为此题题意不清。我同意这一观点。用户态实现的线程切换的时候的确可以不通过OS的进程调度，但是当然，完全避开OS的调度是不太可能的。</p>
+<p>2018.12.19 UPD：评论区<a href="https://disqus.com/by/disqus_PF6zRZnxXv/" target="_blank" rel="noopener">酒和弦</a>的回复提醒了我，“避开操作系统调度带来的时间开销”的意思不一定是真的要避开操作系统的调度，而是用用户线程调度替代OS线程调度。这的确可以节省时间开销。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>不过我仍然认为这道题的含义不明确，所以现在我把答案改成了？</p>
+<hr>
+<ol start="6">
+<li>对于应用程序而言，编译器生成的程序地址是虚拟地址，由操作系统建立段/页表完成虚实地址转换。（√）</li>
+</ol>
+<p>好像确实是这么回事。</p>
+<hr>
+<ol start="7">
+<li>对于采用段页式的x86而言，CPU访问一个虚拟地址时，如TLB访问缺失，则需先通过页表，再通过段表才能找到对应的物理地址。（×）</li>
+</ol>
+<p>反了，是先通过段表，再通过页表。</p>
+<hr>
+<ol start="8">
+<li>通过动态链接库和操作系统的页表设置，可以让多个不同的应用程序运行时共用一个库函数（如<code>printf</code>等）的代码实现。（√）</li>
+</ol>
+<p>反正就是可以通过页表设置映射到同一块物理内存。OS本身的代码也是这么操作的。</p>
+<hr>
+<ol start="9">
+<li>当设置好GDT（全局描述符表）的内容：然后CPU执行<code>lgdt</code>指令加载GDT；接着立刻执行<code>incl 0x80</code>指令时，CPU将查找GDT并完成虚拟地址<code>0x80</code>到线性地址的转换。（×）</li>
+</ol>
+<p>这道题的表述比较模糊不清。不过据说这个描述是错误的，因为里面没有提到对GDT项指向的段寄存器的更新。</p>
+<hr>
+<ol start="10">
+<li>在32位计算机系统中，由于4GB内存普遍存在，导致虚拟内存管理已经不再有存在的必要。（×）</li>
+</ol>
+<p>这种说法显然有很多问题，比如：</p>
+<ul>
+<li>4GB仍然很不够用</li>
+<li>虚拟内存管理的功能不止有增加“虚拟”内存，还有细粒度的对内存访问权限和内存共享的管理</li>
+</ul>
+<hr>
+<ol start="11">
+<li>对于实时系统中的优先级反转（反置）问题，可通过优先级继承算法或优先级天花板算法来解决。（√）</li>
+</ol>
+<p>这是<a href="/post/os-mooc-lecture-15-summary">第15讲“处理机调度”</a>中的内容。优先级继承算法的思路是，占有资源的低优先级进程继承申请资源的高优先级进程的优先级；而优先级天花板算法的思路是，占有资源进程的优先级和所有可能申请该资源的进程的最高优先级相同。</p>
+<hr>
+<ol start="12">
+<li>信号量机制可实现基于条件变量的管程机制，反之亦然。（√）</li>
+</ol>
+<p>信号量和条件变量是等价的（也就是它们可以互相实现）。</p>
+<hr>
+<ol start="13">
+<li>在多CPU系统中，仅通过CPU中断使能和屏蔽指令，就可实现对临界区代码的互斥保护。（×）</li>
+</ol>
+<p>因为有多个CPU，因此使能单个CPU的中断完全不能保证互斥保护。</p>
+<hr>
+<ol start="14">
+<li>在银行家算法中，不安全状态不一定会造成死锁。（√）</li>
+</ol>
+<p><img src="safe-state-and-deadlock.png" alt="安全状态和死锁的关系"></p>
+<hr>
+<ol start="15">
+<li>操作系统中的虚拟文件系统屏蔽了底层具体文件系统的差异性，给上层应用提供了统一的访问接口。（√）</li>
+</ol>
+<p>这是很原理性的话了。显然是对的。</p>
+<hr>
+<ol start="16">
+<li>在Linux中，存在不需要把数据保存到磁盘上的文件系统，比如<code>/proc</code>文件系统，其作用是给应用程序提供一种内核信息的访问通道。（√）</li>
+</ol>
+<p>是的。以下内容摘自<a href="https://www.cnblogs.com/cute/archive/2011/04/20/2022280.html" target="_blank" rel="noopener">深入理解linux系统下proc文件系统内容</a>：</p>
+<blockquote>
+<p>Linux系统上的/proc目录是一种文件系统，即proc文件系统。与其它常见的文件系统不同的是，/proc是一种伪文件系统（也即虚拟文件系统），存储的是当前内核运行状态的一系列特殊文件，用户可以通过这些文件查看有关系统硬件及当前正在运行进程的信息，甚至可以通过更改其中某些文件来改变内核的运行状态。<br>
+基于/proc文件系统如上所述的特殊性，其内的文件也常被称作虚拟文件，并具有一些独特的特点。例如，其中有些文件虽然使用查看命令查看时会返回大量信息，但文件本身的大小却会显示为0字节。此外，这些特殊文件中大多数文件的时间及日期属性通常为当前系统时间和日期，这跟它们随时会被刷新（存储于RAM中）有关。<br>
+为了查看及使用上的方便，这些文件通常会按照相关性进行分类存储于不同的目录甚至子目录中，如/proc/scsi目录中存储的就是当前系统上所有SCSI设备的相关信息，/proc/N中存储的则是系统当前正在运行的进程的相关信息，其中N为正在运行的进程（可以想象得到，在某进程结束后其相关目录则会消失）。<br>
+大多数虚拟文件可以使用文件查看命令如cat、more或者less进行查看，有些文件信息表述的内容可以一目了然，但也有文件的信息却不怎么具有可读性。不过，这些可读性较差的文件在使用一些命令如apm、free、lspci或top查看时却可以有着不错的表现。</p>
+</blockquote>
+<hr>
+<ol start="17">
+<li>在当前的计算机系统中，存在计算能力比CPU还快的外设。（√）</li>
+</ol>
+<p>我也不知道到底是什么外设……不过我大胆猜测这里指的是GPU。不过，即使是CPU和GPU的比较，这个说法仍然不见得是很严谨的。</p>
+<blockquote>
+<p>造成GPU和CPU根本差别的原因在于不同的目标需求：GPU假设运行其上的工作都是高度可并行的，而CPU需要同时很好的支持并行和顺序操作。于是，CPU需要大的片上缓存和复杂的控制逻辑，GPU则利用多线程并行运行节省了片上的大缓存，同时针对一簇线程执行同一套控制逻辑。因此，在高度并行化且数据规模巨大的应用下，GPU可以获得很高的浮点运算性能，然而如果问题无法良好映射到某个合适的并行模型或当数据规模较小时，SIMT就无法发挥并行的优势，CPU与GPU之间的数据交换也会大大降低运算效率。不过，后一个问题在刚刚发布的CUDA4.0中已经通过GPUDirect2.0得到了改进)。<br>
+作者：王洋子豪<br>
+链接：<a href="https://www.zhihu.com/question/19584781/answer/12292363" target="_blank" rel="noopener">https://www.zhihu.com/question/19584781/answer/12292363</a><br>
+来源：知乎<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<hr>
+<ol start="18">
+<li>DMA机制允许外设不经过CPU进行数据传输。（√）</li>
+</ol>
+<p>以下内容摘自<a href="https://zh.wikipedia.org/wiki/%E7%9B%B4%E6%8E%A5%E8%A8%98%E6%86%B6%E9%AB%94%E5%AD%98%E5%8F%96" target="_blank" rel="noopener">直接内存访问</a>：</p>
+<blockquote>
+<p>直接内存访问（Direct Memory Access，DMA）是计算机科学中的一种内存访问技术。它允许某些电脑内部的硬件子系统（电脑外设），可以独立地直接读写系统内存，而不需中央处理器（CPU）介入处理 。在同等程度的处理器负担下，DMA是一种快速的数据传送方式。很多硬件的系统会使用DMA，包含硬盘控制器、绘图显卡、网卡和声卡。</p>
+</blockquote>
+<hr>
+<ol start="19">
+<li>循环扫描算法（C-SCAN）对硬盘访问带来的好处在U盘上不存在。（√）</li>
+</ol>
+<blockquote>
+<p>循环扫描算法是对扫描算法的改进。如果对磁道的访问请求是均匀分布的，当磁头到达磁盘的一端，并反向运动时落在磁头之后的访问请求相对较少。这是由于这些磁道刚被处理，而磁盘另一端的请求密度相当高，且这些访问请求等待的时间较长，为了解决这种情况，循环扫描算法规定磁头单向移动。例如，只自里向外移动，当磁头移到最外的被访问磁道时，磁头立即返回到最里的欲访磁道，即将最小磁道号紧接着最大磁道号构成循环，进行扫描。（<a href="http://gengning938.blog.163.com/blog/static/128225381201161884614990/" target="_blank" rel="noopener">磁盘调度算法</a>）</p>
+</blockquote>
+<blockquote>
+<p>对于U盘和SSD等随机访问的Flash半导体存储器，采用FCFS（先来先服务）调度策略更高效。 因为Flash的半导体存储器的物理结构不需要考虑寻道时间和旋转延迟，可直接按I/O请求的先后顺序服务。（<a href="https://www.nowcoder.com/questionTerminal/64fe6441b3fe47708803354979645a36" target="_blank" rel="noopener">https://www.nowcoder.com/questionTerminal/64fe6441b3fe47708803354979645a36</a>）</p>
+</blockquote>
+<hr>
+<ol start="20">
+<li>访问频率置换算法（Frequency-based Replacement）的基本思路是，在短周期中使用LFU算法，而在长周期中使用LRU算法。（×）</li>
+</ol>
+<p>其实我现在还没有学到这里，但似乎这个描述反了，应该是短周期使用LRU，长周期使用LFU。</p>
+<h2>填空题（20分）</h2>
+<h3>21</h3>
+<p>在基于x86-32的ucore操作系统中，一般函数调用的参数通过（<strong>1.1</strong>）传递，系统调用的参数通过（<strong>1.2</strong>）传递，将系统调用号存放在（<strong>1.3</strong>），通过（<strong>1.4</strong>）指令进入内核态。此时还应该保存执行现场，需要在<code>trapframe</code>里保存（<strong>1.5</strong>）、（<strong>1.6</strong>）、（<strong>1.7</strong>）等信息（填三项即可）。</p>
+<ol>
+<li>栈</li>
+<li>寄存器和栈</li>
+<li>eax寄存器</li>
+<li><code>int 0x80</code></li>
+<li>通用寄存器</li>
+<li>EFLAGS寄存器</li>
+<li>EIP</li>
+</ol>
+<hr>
+<p>以下内容摘自<a href="https://blog.csdn.net/xinghun_4/article/details/8288321" target="_blank" rel="noopener">系统调用和函数参数传递</a>：</p>
+<blockquote>
+<p>系统调用参数传递：</p>
+</blockquote>
+<ul>
+<li>x86_32
+<ul>
+<li>通过中断（int 0x80）来实现</li>
+<li>寄存器 eax 中存放系统调用号，同时系统调用返回值也存放在 eax 中</li>
+<li>当系统调用参数小于等于6个时，参数则必须按顺序放到寄存器 ebx，ecx，edx，esi，edi ，ebp中</li>
+<li>当系统调用参数大于6个时，全部参数应该依次放在一块连续的内存区域里，同时在寄存器 ebx 中保存指向该内存区域的指针</li>
+</ul>
+</li>
+<li>x86_64
+<ul>
+<li>通过中断（syscall）指令来实现</li>
+<li>寄存器 eax 中存放系统调用号，同时系统调用返回值也存放在 eax 中</li>
+<li>当系统调用参数小于等于6个时，参数则必须按顺序放到寄存器 rdi，rsi，rdx，r10，r8，r9中</li>
+<li>当系统调用参数大于6个时，全部参数应该依次放在一块连续的内存区域里，同时在寄存器 ebx 中保存指向该内存区域的指针</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>函数参数传递：</p>
+</blockquote>
+<ul>
+<li>x86_32
+<ul>
+<li>C调用约定（即用__cdecl关键字说明）按从右至左的顺序压参数入栈，由调用者把参数弹出栈。</li>
+</ul>
+</li>
+<li>x86_64
+<ul>
+<li>当参数少于7个时， 参数从左到右放入寄存器: rdi, rsi, rdx, rcx, r8, r9。当参数为7个以上时， 前6个与前面一样， 但后面的依次从&quot;右向左&quot;放入栈中。</li>
+</ul>
+</li>
+</ul>
+<p><code>struct trapframe</code>的定义如下（摘自<code>kern/trap/trap.h</code>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">struct trapframe &#123;</span><br><span class="line">    struct pushregs tf_regs;</span><br><span class="line">    uint16_t tf_gs;</span><br><span class="line">    uint16_t tf_padding0;</span><br><span class="line">    uint16_t tf_fs;</span><br><span class="line">    uint16_t tf_padding1;</span><br><span class="line">    uint16_t tf_es;</span><br><span class="line">    uint16_t tf_padding2;</span><br><span class="line">    uint16_t tf_ds;</span><br><span class="line">    uint16_t tf_padding3;</span><br><span class="line">    uint32_t tf_trapno;</span><br><span class="line">    /* below here defined by x86 hardware */</span><br><span class="line">    uint32_t tf_err;</span><br><span class="line">    uintptr_t tf_eip;</span><br><span class="line">    uint16_t tf_cs;</span><br><span class="line">    uint16_t tf_padding4;</span><br><span class="line">    uint32_t tf_eflags;</span><br><span class="line">    /* below here only when crossing rings, such as from user to kernel */</span><br><span class="line">    uintptr_t tf_esp;</span><br><span class="line">    uint16_t tf_ss;</span><br><span class="line">    uint16_t tf_padding5;</span><br><span class="line">&#125; __attribute__((packed));</span><br></pre></td></tr></table></figure>
+<p>可以看出，<code>trapframe</code>中保存的信息包括：</p>
+<ul>
+<li>通用寄存器（<code>tf_regs</code>，其中保存了edi、esi、ebp、ebx、edx、ecx和eax）</li>
+<li>中断错误码（<code>err</code>）</li>
+<li>eip（指令指针）</li>
+<li>cs（代码段寄存器）</li>
+<li>EFLAGS寄存器</li>
+<li>esp（栈寄存器，可选）</li>
+<li>ss（堆栈段寄存器，可选）</li>
+</ul>
+<h3>22</h3>
+<p>（<strong>2.1</strong>）是一种将不同文件名链接至同一个文件的机制，它可以使同一文件具有多个不同的名字，而文件系统只存在一个文件内容的副本。（<strong>2.2</strong>）和原文件共享一个相同的inode号（文件在文件系统上的唯一标识）。若原文件删除了，则（<strong>2.3</strong>）不能访问它指向的原文件，而（<strong>2.4</strong>）则是可以的。（<strong>2.5</strong>）可以跨越磁盘分区，但（<strong>2.6</strong>）不具备这个特性。</p>
+<ol>
+<li>链接</li>
+<li><del>软链接</del>硬链接</li>
+<li>软链接</li>
+<li>硬链接</li>
+<li>软链接</li>
+<li>硬链接</li>
+</ol>
+<hr>
+<p>以下内容摘自<a href="http://www.cnblogs.com/itech/archive/2009/04/10/1433052.html" target="_blank" rel="noopener">Linux软连接和硬链接</a>：</p>
+<blockquote>
+<p>Linux链接分两种，一种被称为硬链接（Hard Link），另一种被称为符号链接（Symbolic Link）。默认情况下，ln命令产生硬链接。<br>
+【硬连接】<br>
+硬连接指通过索引节点来进行连接。在Linux的文件系统中，保存在磁盘分区中的文件不管是什么类型都给它分配一个编号，称为索引节点号(Inode Index)。在Linux中，多个文件名指向同一索引节点是存在的。一般这种连接就是硬连接。硬连接的作用是允许一个文件拥有多个有效路径名，这样用户就可以建立硬连接到重要文件，以防止“误删”的功能。其原因如上所述，因为对应该目录的索引节点有一个以上的连接。只删除一个连接并不影响索引节点本身和其它的连接，只有当最后一个连接被删除后，文件的数据块及目录的连接才会被释放。也就是说，文件真正删除的条件是与之相关的所有硬连接文件均被删除。<br>
+【软连接】<br>
+另外一种连接称之为符号连接（Symbolic Link），也叫软连接。软链接文件有类似于Windows的快捷方式。它实际上是一个特殊的文件。在符号连接中，文件实际上是一个文本文件，其中包含的有另一文件的位置信息。</p>
+</blockquote>
+<p>更详细的解释可以参见<a href="https://blog.csdn.net/hairetz/article/details/4168296" target="_blank" rel="noopener">关于硬链接和软连接（符号链接）的区别</a>。</p>
+<p>2018.5.25 UPD：经过wj同学的提示，我发现不知为何2抽风写错了。共享inode号的应该是硬链接。</p>
+<h3>23</h3>
+<p>RAID是一种机制，即把多块独立的硬盘按某种方式组合，形成硬盘阵列，从而提供比单块硬盘更快的访问性能或更可靠的数据存储能力。组成磁盘阵列的不同方式称为RAID级别，其中，（<strong>3.1</strong>）级别没有数据冗余存储功能，而（<strong>3.2</strong>）的数据可靠性在所有的RAID级别中是最高的。RAID 5是一种存储性能、数据安全和存储成本兼顾的磁盘阵列组成方式。它至少需要（<strong>3.3</strong>）块硬盘。当RAID5的一个磁盘数据发生损坏后，可利用剩下的数据和相应的（<strong>3.4</strong>）信息去恢复被损坏的数据。</p>
+<ol>
+<li>RAID 0</li>
+<li>RAID 6</li>
+<li>3</li>
+<li>校验</li>
+</ol>
+<hr>
+<ul>
+<li>RAID-0：磁盘条带化
+<ul>
+<li>把数据块分成多个子块，存储在独立的磁盘中</li>
+<li>通过独立磁盘上并行数据块访问来提供更大的磁盘带宽</li>
+</ul>
+</li>
+<li>RAID-1：磁盘镜像
+<ul>
+<li>向两个磁盘写入相同的数据，从任何一个磁盘读取</li>
+</ul>
+</li>
+<li>RAID-4：带校验的磁盘条带化
+<ul>
+<li>数据块级的磁盘条带化+专用奇偶校验磁盘</li>
+</ul>
+</li>
+<li>RAID-5：带分布式校验的磁盘条带化
+<ul>
+<li>分摊校验磁盘的带宽限制</li>
+<li>把校验和分布在各个磁盘上</li>
+</ul>
+</li>
+<li>RAID-6：每组条带块有两个冗余块，允许两个磁盘错误</li>
+</ul>
+<h3>24</h3>
+<p>信号提供了异步处理事件的一种方式。例如，用户在终端按下“Ctrl-C”键，会产生可使当前进程终止的SIGINT信号。每一个信号对应一个（<strong>4.1</strong>）数，定义在头文件<code>&lt;signal.h&gt;</code>中。信号处理行为可由三种方式可供选择：（<strong>4.2</strong>）、（<strong>4.3</strong>）、（<strong>4.4</strong>）。</p>
+<ol>
+<li>整</li>
+<li>捕获</li>
+<li>忽略</li>
+<li>屏蔽</li>
+</ol>
+<hr>
+<p>这部分是第20讲“死锁和进程通信”里的，但是我几乎都忘掉了……总之，信号和“信号号”的对应关系很类似于中断和中断号的关系，但是并没有一个明确的名称，所以我觉得回答“整数”是可以的。（参考<a href="https://blog.csdn.net/jnu_simba/article/details/11746217" target="_blank" rel="noopener">https://blog.csdn.net/jnu_simba/article/details/11746217</a>）</p>
+<h2>问答题（60分）</h2>
+<h3>25. 银行家算法（10分）</h3>
+<p>下面是采用银行家算法的操作系统在某一时刻的资源分配状态。</p>
+<p>Allocation矩阵：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>1</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>0</td>
+<td>6</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>Max矩阵：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>1</td>
+<td>7</td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>0</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>6</td>
+<td>5</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>Available矩阵：</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5</td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>请回答下列问题：</p>
+<ol>
+<li>请写出当前时刻的Need矩阵的内容是什么？</li>
+<li>当前时刻，系统是否处于安全状态？</li>
+<li>接下来，如果进程P1发出一个请求(0, 4, 2, 0)。这个请求能否立刻被满足？</li>
+</ol>
+<hr>
+<p>要获得Need矩阵，只需将Allocation矩阵从Max矩阵中减去。于是得到：</p>
+<p>Need矩阵：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>7</td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>6</td>
+<td>4</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>下面判断系统是否处于安全状态：</p>
+<ol>
+<li>Finish[P0] = false，Need[P0] &lt;= Available；于是释放P0资源，Available += [0, 0, 1, 2] = [1, 5, 3, 2]，Finish[P0] = true</li>
+<li>Finish[P2] = false，Need[P2] &lt;= Available；于是释放P2资源，Available += [1, 3, 5, 4] = [2, 8, 8, 6]，Finish[P2] = true</li>
+<li>Finish[P1] = false，Need[P1] &lt;= Available；于是释放P1资源，Available += [1, 0, 0, 0] = [3, 8, 8, 6]，Finish[P1] = true</li>
+<li>Finish[P3] = false，Need[P3] &lt;= Available；于是释放P3资源，Available += [0, 6, 3, 2] = [3, 14, 11, 8]，Finish[P3] = true</li>
+<li>Finish[P4] = false，Need[P4] &lt;= Available；于是释放P4资源，Available += [0, 0, 1, 4] = [3, 14, 12, 12]，Finish[P4] = true</li>
+<li>算法结束，系统处于安全状态</li>
+</ol>
+<p>如果P1发出请求为Request = [0, 4, 2, 0]：</p>
+<ol>
+<li>Request &lt;= Need[P1]，资源申请未超过限度</li>
+<li>Request &lt;= Available，不需等待</li>
+<li>假设资源已分配，更新各矩阵内容：</li>
+</ol>
+<p>Allocation矩阵：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>1</td>
+<td>4</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>1</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>0</td>
+<td>6</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>Available矩阵：</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Need矩阵：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>6</td>
+<td>4</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>然后判断当前状态是否为安全状态：</p>
+<ol>
+<li>Finish[P0] = false，Need[P0] &lt;= Available；于是释放P0资源，Available += [0, 0, 1, 2] = [1, 1, 1, 2]，Finish[P0] = true</li>
+<li>Finish[P2] = false，Need[P2] &lt;= Available；于是释放P2资源，Available += [1, 3, 5, 4] = [2, 4, 6, 6]，Finish[P2] = true</li>
+<li>Finish[P1] = false，Need[P1] &lt;= Available；于是释放P1资源，Available += [1, 4, 2, 0] = [3, 8, 8, 6]，Finish[P1] = true</li>
+<li>Finish[P3] = false，Need[P3] &lt;= Available；于是释放P3资源，Available += [0, 6, 3, 2] = [3, 14, 11, 8]，Finish[P3] = true</li>
+<li>Finish[P4] = false，Need[P4] &lt;= Available；于是释放P4资源，Available += [0, 0, 1, 4] = [3, 14, 12, 12]，Finish[P4] = true</li>
+<li>算法结束，系统处于安全状态</li>
+</ol>
+<p>由于分配后系统仍然处于安全状态，这个请求可以立刻被满足。</p>
+<h3>26. 同步互斥（10分）</h3>
+<p>通过软件机制可正确实现互斥机制。</p>
+<h4>（1）</h4>
+<p>下列二线程互斥机制的伪码实现是否有错？请给出原因分析，如果有错请给出反例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">INITIALIZATION:</span><br><span class="line">    shared int turn;</span><br><span class="line">    ...</span><br><span class="line">    turn = i ;</span><br><span class="line"></span><br><span class="line">ENTRY PROTOCOL (for Thread i ):</span><br><span class="line">    /* wait until it&apos;s our turn */</span><br><span class="line">    while (turn != i ) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">EXIT PROTOCOL (for Thread i ):</span><br><span class="line">    /* pass the turn on */</span><br><span class="line">    turn = j ;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>事实上这就是第17讲“同步互斥”中“基于软件的同步方法”中介绍的第一种错误做法。这种做法满足“忙则等待”，但不满足“空闲则入”。线程i和j必须轮流访问临界区；如果i始终不进入临界区，则j无法进入，会发生饥饿。</p>
+<p>我有时会忽略“空闲则入”这条规则，事实上这也是临界区实现中非常重要的一条规则。</p>
+<h4>（2）</h4>
+<p>下列N线程互斥机制的伪码实现是否有误？请给出原因分析，如果有错请给出反例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">INITIALIZATION:</span><br><span class="line">    typedef char boolean;</span><br><span class="line">    ...</span><br><span class="line">    shared int num[n];</span><br><span class="line">    ...</span><br><span class="line">    for (j=0; j &lt; n; j++) &#123;</span><br><span class="line">        num[j] = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">ENTRY PROTOCOL (for Thread i):</span><br><span class="line">    /* choose a number */</span><br><span class="line">    num[i] = max(num[0], ..., num[n-1]) + 1;</span><br><span class="line"></span><br><span class="line">    /* for all other Threads */</span><br><span class="line">    for (j=0; j &lt; n; j++) &#123;</span><br><span class="line">        /* wait if the Thread has a number and comes ahead of us */</span><br><span class="line">        if ((num[j] &gt; 0) &amp;&amp;</span><br><span class="line">            ((num[j] &lt; num[i]) ||</span><br><span class="line">            (num[j] == num[i]) &amp;&amp; (j &lt; i))) &#123;</span><br><span class="line">            while (num[j] &gt; 0) &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">EXIT PROTOCOL (for Thread i):</span><br><span class="line">    /* clear our number */</span><br><span class="line">    num[i] = 0;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>这种做法是错误的。假设有两个进程，i&lt;j，Ti正在执行<code>num[i] = max(num[0], ..., num[n-1]) + 1;</code>时，已计算得<code>max(num[0], ..., num[n-1])==0</code>；此时切换到Tj，也计算得<code>max(num[0], ..., num[n-1])==0</code>，随后<code>num[j]=1</code>，Tj先进入临界区。随后切换到Ti，计算得到<code>num[i]=1</code>，检查后Ti也进入临界区，违反互斥。</p>
+<p>据说修改num[i]前后应用bool变量choose[i]保护起来，在后面枚举其他进程时先要等待choose[i]完成。这样就可以解决问题了。</p>
+<p>（上述解释来自学长答案；这种做法和Eisenberg &amp; Mcquire还是挺不像的）</p>
+<h3>27. 信号量与管程（15分）</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">IMPLEMENTATION:</span><br><span class="line">monitor mt &#123;</span><br><span class="line">    -----variable in monitor-----------</span><br><span class="line">    semaphore mutex; // the mutex lock for going into the routines in monitor, should be initialized to 1</span><br><span class="line">    semaphore next; // the next is used to down the signaling proc, some proc should wake up the sleeped cv.signaling proc. should be initialized to 0</span><br><span class="line">    int next_count; // the number of of sleeped signaling proc, should be initialized to 0</span><br><span class="line">    condvar &#123;int count, sempahore sem&#125; cv[N]; // the condvars in monitor, count initial value 0, sem initial value 0</span><br><span class="line">    other shared variables in mt; // shared variables should protected by mutex lock</span><br><span class="line"></span><br><span class="line">    --------condvar wait---------------</span><br><span class="line">    cond_wait (cv) &#123;</span><br><span class="line">        cv.count ++;</span><br><span class="line">        if(mt.next_count&gt;0)</span><br><span class="line">            V(mt.next); // first perform the EXIT PROTOCOL</span><br><span class="line">        else</span><br><span class="line">            V(mt.mutex);</span><br><span class="line">        P(cv.sem); // now wait on the condition waiting queue (cv.sem)</span><br><span class="line">        cv.count --;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    --------condvar signal--------------</span><br><span class="line">    cond_signal(cv) &#123;</span><br><span class="line">        if(cv.count&gt;0) &#123; // do nothing unless a process is waiting on condition waiting queue (cv.sem)</span><br><span class="line">            mt.next_count ++;</span><br><span class="line">            V(cv.sem);  // release the waiting process which on condition waiting queue (cv.sem)</span><br><span class="line">            P(mt.next); // wait on the &quot;next&quot; waiting queue for cv.signaling proc</span><br><span class="line">            mt.next_count--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    --------routines in monitor-------------</span><br><span class="line">    routineA_in_mt () &#123;</span><br><span class="line">        P(mt.mutex); // ENTRY PROTOCOL (at the beginning of each monitor routines), wait for exclusive access to the monitor</span><br><span class="line">        ...</span><br><span class="line">        real body of routineA // in here, may access shared variables, call cond_wait OR cond_signal</span><br><span class="line">        ...</span><br><span class="line">        if(next_count&gt;0) // EXIT PROTOCOL (at the end of each monitor function)</span><br><span class="line">            V(mt.next); // if there are processes(sleeped cv.signaling proc) in the &quot;next&quot; queue, release one</span><br><span class="line">        else</span><br><span class="line">            V(mt.mutex); // otherwise, release the monitor</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4>（1）</h4>
+<p>请说明管程的特征。上述管程实现是哪种类型的管程？</p>
+<hr>
+<p>管程的特征：</p>
+<ul>
+<li>管程是一种用于多线程互斥访问共享资源的程序结构</li>
+<li>采用面向对象方法，简化了线程间的同步控制</li>
+<li>任一时刻最多只有一个线程执行管程代码</li>
+<li>正在管程中的线程可临时放弃管程的互斥访问，等待事件出现时恢复</li>
+</ul>
+<p>很显然，这就是ucore Lab7中实现的管程，属于Hoare语义。在这种语义下，如果条件变量上有进程正在等待，发出signal的进程会立刻进入等待状态，将控制权交给被唤醒的进程。</p>
+<h4>（2）</h4>
+<p>在上述伪码中，如果有3个线程a，b，c需要访问管程，并会使用管程中的2个条件变量<code>cv[0]</code>，<code>cv[1]</code>。</p>
+<ol>
+<li>请问<code>cv[i]-&gt;count</code>的含义是什么？<code>cv[i]-&gt;count</code>是否可能<code>&lt;0</code>，是否可能<code>&gt;1</code>？请举例或说明原因。</li>
+<li>请问<code>mt-&gt;next_count</code>的含义是什么？<code>mt-&gt;next_count</code>是否可能<code>&lt;0</code>，是否可能<code>&gt;1</code>？请举例或说明原因。</li>
+</ol>
+<hr>
+<p><code>cv[i]-&gt;count</code>的含义是在该条件变量上等待的线程数。显然这个数不可能<code>&lt;0</code>。如果有多于1个线程执行了<code>cond_wait(cv[i])</code>操作且还未被唤醒，这个数是可能<code>&gt;1</code>的。</p>
+<p><code>mt-&gt;next_count</code>的含义是发出signal后暂时进入等待状态的线程的个数。显然，这个数不可能<code>&lt;0</code>。假设b执行<code>cond_wait(cv[0])</code>开始等待，c也执行<code>cond_wait(cv[0])</code>开始等待。a进入管程，执行<code>cond_signal(cv[0])</code>，唤醒b，a进入signal队列；b被唤醒后，立即执行<code>cond_signal(cv[0])</code>，唤醒c，b也进入signal队列。此时<code>mt-&gt;next_count=2</code>。</p>
+<h3>28. stride调度算法（10分）</h3>
+<p>请描述stride调度算法的思路？stride算法的特征是什么？stride调度算法是如何避免stride溢出问题的？</p>
+<hr>
+<p>思路：</p>
+<ul>
+<li>每个进程有两个属性：
+<ul>
+<li>pass：当前位置</li>
+<li>stride：一次要前进的步数</li>
+<li>stride ∝ 1 / priority</li>
+</ul>
+</li>
+<li>选择进程的方法：
+<ul>
+<li>执行当前pass最小的进程</li>
+<li>该进程的pass += stride</li>
+<li>重复该过程</li>
+</ul>
+</li>
+</ul>
+<p>特征：</p>
+<ul>
+<li>stride越小（优先级越高），被调度的次数会越多</li>
+<li>基于优先级（priority-based）</li>
+<li>调度选择是确定的（deterministic）</li>
+</ul>
+<p>避免stride溢出的方法：</p>
+<ul>
+<li>uint32存储、int32相减比较</li>
+<li>最大步进值-最小步进值&lt;无符号整数/2</li>
+<li>具体可参见Piazza帖子<a href="https://piazza.com/class/i5j09fnsl7k5x0?cid=357" target="_blank" rel="noopener">https://piazza.com/class/i5j09fnsl7k5x0?cid=357</a></li>
+</ul>
+<h3>29. 文件系统（15分）</h3>
+<h4>（1）</h4>
+<p>试以图示描述ucore操作系统中的SFS文件系统的文件组织方式。</p>
+<hr>
+<p><img src="sfs-inode.jpg" alt="SFS文件系统的索引分配"></p>
+<p>呃，这个怎么描述，不会啊。。。</p>
+<p><del>总之据说是链式分配……</del></p>
+<p>2018.5.25 UPD：<br>
+在ssh同学的提醒下，我想起来SFS使用的是索引分配这回事了……</p>
+<h4>（2）</h4>
+<p>下面是SFS的磁盘索引节点数据结构定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">struct sfs_disk_inode &#123;</span><br><span class="line">    uint32_t size;</span><br><span class="line">    uint16_t type;</span><br><span class="line">    uint16_t nlinks;</span><br><span class="line">    uint32_t blocks;</span><br><span class="line">    uint32_t direct[SFS_NDIRECT];</span><br><span class="line">    uint32_t indirect;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>假定ucore里SFS_NDIRECT的取值是16，而磁盘上数据块大小为1KB。请计算这时ucore支持的最大文件大小。请给出计算过程。（这样可给步骤分）</p>
+<hr>
+<p>以下内容摘自ucore docs Lab8：</p>
+<p>SFS中的磁盘索引节点代表了一个实际位于磁盘上的文件。首先我们看看在硬盘上的索引节点的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">struct sfs_disk_inode &#123;</span><br><span class="line">    uint32_t size; // 如果inode表示常规文件，则size是文件大小</span><br><span class="line">    uint16_t type; // inode的文件类型</span><br><span class="line">    uint16_t nlinks; // 此inode的硬链接数</span><br><span class="line">    uint32_t blocks; // 此inode的数据块数的个数</span><br><span class="line">    uint32_t direct[SFS_NDIRECT]; // 此inode的直接数据块索引值（ 有SFS_NDIRECT个）</span><br><span class="line">    uint32_t indirect; // 此inode的一级间接数据块索引值</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>通过上表可以看出，如果inode表示的是文件，则成员变量direct[]直接指向了保存文件内容数据的数据块索引值。indirect间接指向了保存文件内容数据的数据块，indirect指向的是间接数据块（indirect block），此数据块实际存放的全部是数据块索引，这些数据块索引指向的数据块才被用来存放文件内容数据。</p>
+<p>默认的，ucore里SFS_NDIRECT是12，即直接索引的数据页大小为12 * 4k = 48k；当使用一级间接数据块索引时，ucore 支持最大的文件大小为 12 * 4k + 1024 * 4k = 48k + 4m。数据索引表内，0表示一个无效的索引，inode里blocks表示该文件或者目录占用的磁盘的block的个数。indiret为0时，表示不使用一级索引块。（因为 block 0用来保存super block，它不可能被其他任何文件或目录使用，所以这么设计也是合理的）</p>
+<p>显然，在题设中，最大可能的文件大小为使用一级间接数据块索引时，为(16 + 1KB/4B) * 1KB = 272KB。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://github.com/chyyuu/simple_os_book/blob/master/zh/chapter-4/what_is_thread.md" target="_blank" rel="noopener">【原理】线程的属性与特征分析</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-12-19T00:23:00+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2018-12-19
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;OS</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/os-mooc-final-exam-analysis/" rel="prev" title="《操作系统》MOOC期末考试题分析">
+                                  
+                                      《操作系统》MOOC期末考试题分析
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/prothalamion-by-e-spenser/" rel="prev" title="《英诗金库》I-53：Prothalamion, by E. Spenser">
+                                    
+                                        《英诗金库》I-53：Prothalamion, by E. Spenser
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/GoldenTreasury/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>GoldenTreasury</a> <a class="tag" href="/tags/戴镏龄/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>戴镏龄</a> <a class="tag" href="/tags/E-Spencer/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>E.Spencer</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '《操作系统》2016年期末考试分析',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">判断题（20分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">填空题（20分）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">21</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">22</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">23</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">24</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">问答题（60分）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">25. 银行家算法（10分）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">26. 同步互斥（10分）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">（1）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">（2）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">27. 信号量与管程（15分）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">（1）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">（2）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">28. stride调度算法（10分）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">29. 文件系统（15分）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">（1）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">（2）</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

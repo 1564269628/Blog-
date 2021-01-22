@@ -1,0 +1,2302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Tag: alg:Binary Search Tree | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+    <script>
+        window.subData= { title:'标签 : alg:Binary Search Tree'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-weekly-contest-127/">
+              
+                  Leetcode Weekly Contest 127总结
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2019-03-13
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/Leetcode/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Leetcode
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>这周的题目都很简单，没有特别难的。</p>
+      
+        <div class="readmore">
+          <a href="/post/leetcode-weekly-contest-127/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Binary-Search-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search Tree</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-938-range-sum-of-bst/">
+              
+                  Leetcode 938. Range Sum of BST（树）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-11-12
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/reorder-log-files/description/" target="_blank" rel="noopener">https://leetcode.com/problems/reorder-log-files/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：</p>
+<ul>
+<li>剪枝：120ms</li>
+<li>不剪枝：120ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定一棵二叉查找树、<code>L</code>和<code>R</code>，返回<code>[L, R]</code>中的结点的值的和。</p>
+<h2>分析</h2>
+<p>这个题总的来说很简单。直接DFS，然后根据当前<code>node</code>的值进行剪枝即可。（事实上不剪枝也能过，而且没慢多少。）</p>
+<h2>代码</h2>
+<h3>不剪枝</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rangeSumBST</span><span class="params">(TreeNode* root, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> rangeSumBST(root-&gt;left, L, R) + rangeSumBST(root-&gt;right, L, R) + </span><br><span class="line">            (L &lt;= root-&gt;val &amp;&amp; root-&gt;val &lt;= R ? root-&gt;val : <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>剪枝</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rangeSumBST</span><span class="params">(TreeNode* root, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;val &gt; L) sum += rangeSumBST(root-&gt;left, L, R);</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;val &lt; R) sum += rangeSumBST(root-&gt;right, L, R);</span><br><span class="line">        <span class="keyword">return</span> sum + (L &lt;= root-&gt;val &amp;&amp; root-&gt;val &lt;= R ? root-&gt;val : <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Binary-Search-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search Tree</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-911-online-election/">
+              
+                  Leetcode 911. Online Election（BST）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-23
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/online-election/description/" target="_blank" rel="noopener">https://leetcode.com/problems/online-election/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/4</p>
+<p>代码效率：</p>
+<ul>
+<li>使用BST进行离线计算：248ms</li>
+<li>线性扫描：384ms</li>
+<li>二维链表：396ms</li>
+</ul>
+<h2>题意</h2>
+<p>给定<code>N</code>个时间点，在<code>times[i]</code>时刻，就有一个人投票给<code>person[i]</code>。对于若干个时刻<code>t</code>，请给出<code>t</code>时刻领先的人。</p>
+<h2>分析</h2>
+<p>这道题的设计好像不是很适合在线方法，所以我觉得离线还是比较合适的。</p>
+<h3>BST+二分查找</h3>
+<p>我比赛的时候用了一种相当之麻烦的方法——仍然是用优先队列的思想，在TreeSet中存储<code>(person, votes, recency)</code>的元组，然后在每个有人投票的时间点，更新TreeSet，并找出当前领先的人，保存下来；之后在查询的时候进行二分查找。这种方法的复杂度大约是<code>O(N * log(N) + M * log(N))</code>（假定<code>M</code>是查询的总次数）。</p>
+<h3>线性扫描+二分查找</h3>
+<p>事实上找出各个时刻领先的人并不需要这么麻烦。事实上<code>persons</code>和<code>times</code>数组都是已经排好序的了。因此，可以用一个<code>map</code>来维护每个人的票数，然后在每个时刻更新被投票的人的票数，并判断<strong>当前领先的人是否会变成这个人</strong>。如果不变的话，完全可以忽略这个时间点。这种方法的复杂度大约是<code>O(N + M * log(N))</code>。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<h3>二维链表</h3>
+<p>我感觉这是一种特别神奇的做法……简单来说，我觉得可以维护一个<code>vector&lt;vector&lt;pair&lt;int, int&gt;&gt;</code>，其中外层<code>vector</code>的含义是，所有投的是某人的第<code>i</code>票的选票；内层<code>vector</code>按时间顺序存储了每张选票的<code>(person, time)</code>。用题目中的例子来描述一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[0,1,1,0,0,1,0],[0,5,10,15,20,25,30]</span><br><span class="line"></span><br><span class="line">+------+    +---+      +---+      +---+      +---+</span><br><span class="line">| Head |----| 1 |------| 2 |------| 3 |------| 4 |  count</span><br><span class="line">+------+    +-+-+      +-+-+      +-+-+      +---+</span><br><span class="line">              |          |          |          |</span><br><span class="line">            +-+-+     -+-+-+-    -+-+-+-    -+-+-+-          |</span><br><span class="line">            |0,0|     |1, 10|    |0, 20|    |0, 30|          |</span><br><span class="line">            +-+-+     -+-+-+-    -+-+-+-    -+-+-+-          | Most recent</span><br><span class="line">              |          |          |                        |</span><br><span class="line">            +-+-+     -+-+-+-    -+-+-+-                     |</span><br><span class="line">            |1,5|     |0, 15|    |1, 25|                     |</span><br><span class="line">            +-+-+     -+-+-+-    -+-+-+-                     v</span><br></pre></td></tr></table></figure>
+<p>然后很显然，每个外层<code>vector</code>的第一个元素都是递增的，每个内层<code>vector</code>自己也是递增的。对于每个时间点，我们可以首先对外层<code>vector</code>进行二分查找，然后再在内层进行二分查找。整体复杂度是<code>O(N + M * log(N)^2)</code>。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p>以及，我觉得这种做法有些像<a href="/post/leetcode-460-lfu-cache">Leetcode 460</a>中给出的HashMap+List方法。</p>
+<h2>代码</h2>
+<h3>BST</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TopVotedCandidate</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; timesOfVote;  <span class="comment">// time, vote</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; times;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; leaders;</span><br><span class="line">    <span class="keyword">int</span> N;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">VotedPerson</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> person;</span><br><span class="line">        <span class="keyword">int</span> recency;</span><br><span class="line">        <span class="keyword">int</span> votes;</span><br><span class="line"></span><br><span class="line">        VotedPerson(<span class="keyword">int</span> p, <span class="keyword">int</span> r, <span class="keyword">int</span> v) &#123;</span><br><span class="line">            person = p;</span><br><span class="line">            recency = r;</span><br><span class="line">            votes = v;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> VotedPerson&amp; p1, <span class="keyword">const</span> VotedPerson&amp; p2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p1.votes != p2.votes) <span class="keyword">return</span> p1.votes &gt; p2.votes;</span><br><span class="line">            <span class="keyword">return</span> p1.recency &gt; p2.recency;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">const</span> VotedPerson&amp; p1, <span class="keyword">const</span> VotedPerson&amp; p2) &#123;</span><br><span class="line">            <span class="keyword">return</span> p1.person == p2.person &amp;&amp; p1.recency == p2.recency &amp;&amp; p1.votes == p2.votes;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TopVotedCandidate(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; persons, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; times) &#123;</span><br><span class="line">        N = persons.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            timesOfVote.emplace_back(times[i], persons[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(timesOfVote.begin(), timesOfVote.end());</span><br><span class="line"></span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; recMap;  <span class="comment">// person to recency</span></span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; voteMap;  <span class="comment">// person to vote</span></span><br><span class="line">        <span class="built_in">set</span>&lt;VotedPerson&gt; treeSet;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> person = timesOfVote[i].second;</span><br><span class="line">            <span class="keyword">int</span> time = timesOfVote[i].first;</span><br><span class="line">            <span class="keyword">int</span> recency = recMap[person];</span><br><span class="line">            <span class="keyword">int</span> votes = voteMap[person];</span><br><span class="line">            <span class="keyword">auto</span> it = treeSet.find(VotedPerson(person, recency, votes));</span><br><span class="line">            <span class="keyword">if</span> (it != treeSet.end()) treeSet.erase(it);</span><br><span class="line">            recMap[person] = recency = i;</span><br><span class="line">            voteMap[person]++;</span><br><span class="line">            votes++;</span><br><span class="line">            treeSet.insert(VotedPerson(person, recency, votes));</span><br><span class="line"></span><br><span class="line">            <span class="keyword">this</span>-&gt;times.push_back(time);</span><br><span class="line">            <span class="keyword">this</span>-&gt;leaders.push_back(treeSet.begin()-&gt;person);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">q</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it = upper_bound(times.begin(), times.end(), t);</span><br><span class="line">        it--;</span><br><span class="line">        <span class="keyword">return</span> leaders[it - times.begin()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>线性扫描</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TopVotedCandidate</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; leader;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ctimes;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TopVotedCandidate(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; persons, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; times) &#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; voteMap;</span><br><span class="line">        <span class="keyword">int</span> curLeader = <span class="number">-1</span>, curLeadVotes = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; persons.size(); i++) &#123;</span><br><span class="line">            voteMap[persons[i]]++;</span><br><span class="line">            <span class="keyword">if</span> (voteMap[persons[i]] &gt;= curLeadVotes) &#123;</span><br><span class="line">                curLeadVotes = voteMap[persons[i]];</span><br><span class="line">                curLeader = persons[i];</span><br><span class="line">                leader.push_back(curLeader);</span><br><span class="line">                ctimes.push_back(times[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">q</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it = upper_bound(ctimes.begin(), ctimes.end(), t);</span><br><span class="line">        <span class="keyword">return</span> leader[it - ctimes.begin() - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>二维链表</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TopVotedCandidate</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&gt; bucket;  <span class="comment">// (time, person)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TopVotedCandidate(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; persons, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; times) &#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; voteMap;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; persons.size(); i++) &#123;</span><br><span class="line">            voteMap[persons[i]]++;</span><br><span class="line">            <span class="keyword">int</span> c = voteMap[persons[i]];</span><br><span class="line">            <span class="keyword">while</span> (bucket.size() &lt; c) bucket.push_back(<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;());</span><br><span class="line">            bucket[c<span class="number">-1</span>].emplace_back(times[i], persons[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">q</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = bucket.size();</span><br><span class="line">        <span class="comment">// upper_bound, then -1</span></span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (bucket[mid][<span class="number">0</span>].first &lt;= t)</span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                r = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> i = l - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        l = <span class="number">0</span>, r = bucket[i].size();</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (bucket[i][mid].first &lt;= t)</span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                r = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> j = l - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (j &lt; <span class="number">0</span>) j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> bucket[i][j].second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/online-election/discuss/173382/C++JavaPython-Binary-Search-in-Times" target="_blank" rel="noopener">[C++/Java/Python] Binary Search in Times</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://leetcode.com/articles/online-election/#approach-2-precomputed-answer-binary-search" target="_blank" rel="noopener">911. Online Election, Approach 2: Precomputed Answer + Binary Search</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Binary-Search-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search Tree</a>
+        
+          <a href="/tags/alg-Hash-Table/"><i class="fas fa-hashtag fa-fw"></i>alg:Hash Table</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-460-lfu-cache/">
+              
+                  Leetcode 460. LFU Cache（STL）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/merge-two-sorted-lists/description/" target="_blank" rel="noopener">https://leetcode.com/problems/merge-two-sorted-lists/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：4/9</p>
+<p>代码效率：</p>
+<ul>
+<li>map O(n)：3.13%</li>
+<li>HashMap + list O(1)：45.28%</li>
+<li>TreeSet + map O(log(n))：23.78%</li>
+<li>简单版map + list O(1)：11.36%</li>
+</ul>
+<h2>题意</h2>
+<p>实现LFU缓存。</p>
+<h2>分析</h2>
+<h3>map O(n)</h3>
+<p>这是我想出来的第一种做法：用三个<code>map</code>分别记录每个<code>key</code>对应的值（<code>valueMap</code>）、访问次数（<code>freqMap</code>）和最近访问时间（<code>recentMap</code>）。</p>
+<ul>
+<li><code>get(int key)</code>：在<code>valueMap</code>中查找<code>key</code>对应的值，然后更新<code>freqMap</code>和<code>recentMap</code>。</li>
+<li><code>put(int key, int value)</code>：
+<ul>
+<li>如果不需要换出，则直接更新三个<code>map</code>中维护的值</li>
+<li>如果需要换出，则遍历当前的所有<code>key</code>，从中找出访问频率最小的最不频繁访问的元素，把它换出，再插入新元素</li>
+</ul>
+</li>
+</ul>
+<p>这种做法显然不是很聪明。</p>
+<h3>HashMap + list O(1)</h3>
+<p>这是一种相对比较复杂的方法，原理是这样的<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Increasing frequencies</span><br><span class="line">----------------------------------&gt;</span><br><span class="line"></span><br><span class="line">+------+    +---+    +---+    +---+</span><br><span class="line">| Head |----| 1 |----| 5 |----| 9 |  Frequencies</span><br><span class="line">+------+    +-+-+    +-+-+    +-+-+</span><br><span class="line">              |        |        |</span><br><span class="line">            +-+-+    +-+-+    +-+-+     |</span><br><span class="line">            |2,3|    |4,3|    |6,2|     |</span><br><span class="line">            +-+-+    +-+-+    +-+-+     | Most recent</span><br><span class="line">                       |        |       |</span><br><span class="line">                     +-+-+    +-+-+     |</span><br><span class="line"> key,value pairs     |1,2|    |7,9|     |</span><br><span class="line">                     +---+    +---+     v</span><br></pre></td></tr></table></figure>
+<p>作者在代码中维护了两个数据结构：</p>
+<ul>
+<li><code>unordered_map&lt;int, pair&lt;list&lt;LRUNode&gt;::iterator, list&lt;pair&lt;int, int&gt;&gt;::iterator&gt;&gt; kv_</code>：存放每个<code>key</code>对应的桶的头结点，以及<code>key</code>在桶中对应的具体结点</li>
+<li><code>list&lt;LRUNode&gt; cache_</code>：所有桶组成的链表；其中<code>LRUNode = (int freq, list&lt;pair&lt;int, int&gt;&gt; vals)</code>，表示频率<code>freq</code>的<code>key</code>组成的链表，其中<code>pair</code>的第一项表示<code>key</code>，第二项表示<code>value</code>。</li>
+</ul>
+<p>具体实现的核心是三个成员函数：</p>
+<ul>
+<li><code>promote(int key, int val)</code>：找到<code>key</code>对应的桶的头结点<code>i</code>和<code>key</code>在桶中对应的结点<code>j</code>，以及下一个频率对应的桶<code>k</code>，在有必要的情况下取出<code>j-&gt;second</code>；然后从<code>i</code>中删除<code>j</code>，把<code>i</code>插入到<code>k</code>的最末端。</li>
+<li><code>evict()</code>：找到频率最小的桶<code>i</code>，以及位于桶头部的访问最不频繁的结点<code>j</code>，然后从<code>i</code>和<code>kv_</code>中删除<code>j</code></li>
+<li><code>insert(int key, int val)</code>：找到频率最小的桶<code>i</code>，如果<code>i</code>对应的频率不是<code>1</code>，则在<code>cahce_</code>头部插入一个新的桶，对应的频率为<code>1</code>；最后在该桶的末端插入<code>(key, val)</code>。</li>
+</ul>
+<p>利用上述函数很容易实现<code>get</code>和<code>put</code>，我就不写了。</p>
+<hr>
+<p>我的实现方法则比较复杂。维护4个<code>map</code>和一个<code>list</code>：</p>
+<ul>
+<li><code>unordered_map&lt;int, int&gt; valMap</code>：存放<code>key</code>和<code>value</code>的对应关系</li>
+<li><code>unordered_map&lt;int, int&gt; freqMap</code>：存放<code>key</code>和访问频率的对应关系</li>
+<li><code>unordered_map&lt;int, list&lt;list&lt;int&gt;&gt;::iterator&gt; headMap</code>：存放访问频率和桶的对应关系</li>
+<li><code>unordered_map&lt;int, list&lt;int&gt;::iterator&gt; nodeMap</code>：存放<code>key</code>和桶中结点的对应关系</li>
+<li><code>list&lt;list&lt;int&gt;&gt; buckets</code>：桶</li>
+</ul>
+<p>实现了一个更新函数<code>touch(int key)</code>，主要功能是将<code>key</code>的访问频率+1，即把<code>key</code>从<code>headMap[freqMap[key]]</code>对应的桶中删除，放入<code>headMap[freqMap[key] + 1]</code>对应的桶中，并更新各<code>map</code>之间的关系。</p>
+<ul>
+<li><code>get(int key)</code>：在<code>valMap</code>中查找<code>key</code>，如果<code>key</code>不存在则返回<code>-1</code>；如果存在则执行<code>touch(key)</code>，然后返回<code>valMap[key]</code>。</li>
+<li><code>put(int key, int value)</code>：
+<ul>
+<li>如果<code>key</code>已经存在，则执行<code>touch(key)</code>，并更新<code>valMap</code>。</li>
+<li>如果<code>key</code>不存在且需要换出，则在<code>buckets</code>中找到当前对应频率值最低的桶，将桶中最末一个元素删除，并更新其他<code>map</code>。</li>
+<li>最后将（还不存在的）<code>key</code>插入访问频率1对应的桶中，更新其他<code>map</code>。</li>
+</ul>
+</li>
+</ul>
+<h3>TreeSet + map O(log(n))</h3>
+<p>上一种方法实在是太繁琐了，于是我又发现了另一种利用<code>TreeSet</code>（或者说优先队列）的方法。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<ul>
+<li>维护一个集合<code>treeSet</code>（对C++来说，用<code>priority_queue</code>有一些缺陷，所以此处实际上用的是<code>set</code>），其中的元素是<code>(frequency, recency, key)</code></li>
+<li><code>unordered_map&lt;int, int&gt; valMap</code>，用于存储<code>key</code>到<code>value</code>的对应关系。</li>
+<li><code>unordered_map&lt;int, (frequency, recency, key)&gt; keyMap</code>，用于存储<code>key</code>到<code>freq</code>和<code>recency</code>的对应关系。</li>
+</ul>
+<p>实现一种<code>touch(int key)</code>操作：在<code>treeSet</code>中删除当前的<code>keyMap[key]</code>，更新<code>key</code>的访问频率（<code>keyMap[key].frequency++</code>），并将更新后的<code>keyMap[key]</code>重新插入到<code>treeSet</code>中。</p>
+<ul>
+<li><code>get(int key)</code>：在<code>valMap</code>中查找<code>key</code>，如果找不到则返回<code>-1</code>；否则执行<code>touch(key)</code>。</li>
+<li><code>put(int key, int value)</code>：
+<ul>
+<li>如果<code>key</code>已经存在，则执行<code>touch(key)</code>。</li>
+<li>如果<code>key</code>不存在且需要换出，则通过<code>treeSet-&gt;begin()</code>找到当前的LFU<code>key</code>，从<code>treeSet</code>和其他<code>map</code>中删除该<code>key</code>对应的元素。</li>
+<li>最后，令<code>keyMap[key] = (1, curTime, key)</code>，<code>valMap[key] = value</code>，将<code>keyMap[key]</code>插入到<code>treeSet</code>中。</li>
+</ul>
+</li>
+</ul>
+<p>由于<code>treeSet</code>中按值查找、删除和插入的复杂度都是<code>O(log(n))</code>，所以这种方法的时间复杂度是<code>O(log(n))</code>，比之前的方法稍微高一点，不过写起来方便多了。</p>
+<p>以及，随便说一下C++中鸡肋一般的<code>priority_queue</code>。事实上，像这道题中这样的需求——插入元素、寻找最小元素、删除最小元素、元素下滤（显然对元素的操作只会使<code>frequency</code>和<code>recency</code>增加）——是很适合堆的。然而C++中并没有为<code>priority_queue</code>提供修改其中元素的接口，如果想要实现，大概只能自己继承这个类然后重写。Java中的<code>PriorityQueue</code>倒是有<code>remove</code>接口，但时间复杂度是<code>O(n)</code>。那还不如用<code>set</code>（Java中的<code>TreeSet</code>）和运算符重载算了。</p>
+<p>不过我之前从未想过，<code>set</code>可以实现和<code>priority_queue</code>类似的功能这回事，而且时间复杂度差不多。嗯，只是差不多而已，此处又想起了邓公的话：</p>
+<blockquote>
+<p>由上可见，上滤调整过程中交换操作的累计次数，不致超过全堆的高度$\lfloor \log_2{(n)} \rfloor$。 而在向量中， 每次交换操作只需常数时间，故上滤调整乃至整个词条插入算法整体的时间复杂度，均为$O(\log{n})$。这也是从一个方面，兑现了10.1节末尾就优先级队列性能所做的承诺。<br>
+当然，不难通过构造实例说明，新词条有时的确需要一直上滤至堆顶。然而实际上，此类最坏情况通常极为罕见。以常规的随机分布而言，新词条平均需要爬升的高度，要远远低于直觉的估计（习题[10-6]）。<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
+</blockquote>
+<p>不过，我觉得在这道题的语境下，优先队列的上滤过程恐怕没有那么大的优势（因为插入的新元素的<code>frequency</code>必然为<code>1</code>，因此很可能会上升到堆中比较高的位置），下滤过程倒可能有类似的效果（因为下滤时作为排序的第一关键字的<code>frequency</code>只增加了<code>1</code>，因此很可能不需要下降很多层）。</p>
+<h3>简单版map + list O(1)</h3>
+<p>这是最简单的一种方法了。本质上也是利用桶排序，但是这种方法利用了一个我们之前都没有注意到的事实：插入新<code>key</code>时，它的<code>frequency</code>必然是1。因此我们并不需要一个有序集或一个链表来维护最小的访问频率，因为在删除一个访问频率最小的结点之后，插入的新结点的频率（1）必然是现在的最小频率。这样，我们就可以用一个<code>unordered_map&lt;int, list&lt;int&gt;&gt;</code>来存储访问频率和桶的对应的关系了。</p>
+<p>其余的想法和第一种桶排序是非常类似的。具体内容看代码和注释好了。</p>
+<hr>
+<p>有一件很有趣的事情。在这种方法中，我仍然需要维护一个<code>unordered_map&lt;int, list&lt;int&gt;::iterator&gt; iterMap</code>，用于从桶中删除元素；但是Java里有一个比较神奇的东西，叫<a href="http://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashSet.html" target="_blank" rel="noopener">LinkedHashSet</a>，同时实现了链表和哈希表的特性，所以Java代码会看起来好看一点。<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>不过也许它内部也就是把一个<code>HashSet&lt;Type, ListNode&gt;</code>和一个<code>ListNode&lt;Type&gt;</code>这样拼起来的。</p>
+<h2>代码</h2>
+<h3>map O(n)</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; valueMap;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; freqMap;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; recentMap;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> time;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">        time = <span class="number">0</span>;</span><br><span class="line">        num = <span class="number">0</span>;</span><br><span class="line">        cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> i = valueMap.find(key);</span><br><span class="line">        <span class="keyword">if</span> (i == valueMap.end())</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">        recentMap[key] = time;</span><br><span class="line">        freqMap[key]++;</span><br><span class="line"></span><br><span class="line">        time++;</span><br><span class="line">        <span class="keyword">return</span> i-&gt;second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 这是一个不容易注意到的corner case</span></span><br><span class="line">        <span class="comment">// 虽然毫无意义。</span></span><br><span class="line">        <span class="keyword">if</span> (cap == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (valueMap.find(key) != valueMap.end()) &#123;</span><br><span class="line">            valueMap[key] = value;</span><br><span class="line">            freqMap[key]++;</span><br><span class="line">            recentMap[key] = time;</span><br><span class="line"></span><br><span class="line">            time++;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (num &gt;= cap) &#123;</span><br><span class="line">            <span class="comment">// find LFU</span></span><br><span class="line">            <span class="keyword">int</span> minKey = <span class="number">-1</span>, minFreq, minRec;</span><br><span class="line">            <span class="comment">// 遍历所有的key，找到其中freq和recent最小的</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> <span class="keyword">const</span>&amp; i: freqMap) &#123;</span><br><span class="line">                <span class="keyword">int</span> freq = i.second;</span><br><span class="line">                <span class="keyword">int</span> recent = recentMap[i.first];</span><br><span class="line">                <span class="keyword">if</span> (minKey == <span class="number">-1</span> || freq &lt; minFreq || (freq == minFreq &amp;&amp; recent &lt; minRec)) &#123;</span><br><span class="line">                    minKey = i.first;</span><br><span class="line">                    minFreq = freq;</span><br><span class="line">                    minRec = recent;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// cout &lt;&lt; minKey &lt;&lt; ' ' &lt;&lt; minFreq &lt;&lt; ' ' &lt;&lt; minRec &lt;&lt; endl;</span></span><br><span class="line">            valueMap.erase(minKey);</span><br><span class="line">            freqMap.erase(minKey);</span><br><span class="line">            recentMap.erase(minKey);</span><br><span class="line">            num--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        valueMap[key] = value;</span><br><span class="line">        freqMap[key]++;</span><br><span class="line">        recentMap[key] = time;</span><br><span class="line">        num++;</span><br><span class="line"></span><br><span class="line">        time++;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>HashMap + list O(1)</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; valMap;  <span class="comment">// key --&gt; value</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; freqMap;  <span class="comment">// key --&gt; frequence</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt;::iterator&gt; headMap;  <span class="comment">// frequence --&gt; bucket head</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator&gt; nodeMap;  <span class="comment">// key --&gt; node in list</span></span><br><span class="line">    <span class="built_in">list</span>&lt;<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt; buckets;  <span class="comment">// buckets</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* increase the frequence of @key */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">touch</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> freq = freqMap[key];</span><br><span class="line">        <span class="keyword">auto</span> head = headMap[freq];  <span class="comment">// head of the bucket containing key</span></span><br><span class="line">        <span class="keyword">auto</span> node = nodeMap[key];  <span class="comment">// the list node containing key</span></span><br><span class="line">        head-&gt;erase(node);  <span class="comment">// delete the key from this bucket</span></span><br><span class="line">        <span class="comment">// find new bucket head</span></span><br><span class="line">        <span class="keyword">auto</span> newHead = head;</span><br><span class="line">        <span class="keyword">if</span> (headMap.find(freq + <span class="number">1</span>) != headMap.end())</span><br><span class="line">            newHead = headMap[freq + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// Note: that's "insert before" for C++</span></span><br><span class="line">            buckets.insert(head, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">            newHead--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// insert the key into another bucket</span></span><br><span class="line">        <span class="comment">// put the most recent values in the front</span></span><br><span class="line">        newHead-&gt;push_front(key);</span><br><span class="line">        <span class="comment">// delete empty bucket (for convenience of finding LFU)</span></span><br><span class="line">        <span class="keyword">if</span> (head-&gt;empty()) &#123;</span><br><span class="line">            buckets.erase(head);</span><br><span class="line">            headMap.erase(freq);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// update the maps</span></span><br><span class="line">        freqMap[key]++;</span><br><span class="line">        headMap[freq + <span class="number">1</span>] = newHead;</span><br><span class="line">        nodeMap[key] = newHead-&gt;begin();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">        num = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (valMap.find(key) == valMap.end()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        touch(key);  <span class="comment">// update frequence</span></span><br><span class="line">        <span class="keyword">return</span> valMap[key];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cap == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Only update value</span></span><br><span class="line">        <span class="keyword">if</span> (valMap.find(key) != valMap.end()) &#123;</span><br><span class="line">            valMap[key] = value;</span><br><span class="line">            touch(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Need to evict a LFU key-value pair</span></span><br><span class="line">        <span class="keyword">if</span> (num &gt;= cap) &#123;</span><br><span class="line">            <span class="comment">// find the head of the bucket of minimum frequency</span></span><br><span class="line">            <span class="keyword">auto</span> head = buckets.end();</span><br><span class="line">            head--;</span><br><span class="line">            <span class="comment">// find least visited key of this frequency and delete it</span></span><br><span class="line">            <span class="keyword">int</span> evict = head-&gt;back();</span><br><span class="line">            head-&gt;pop_back();</span><br><span class="line">            <span class="keyword">int</span> freq = freqMap[evict];</span><br><span class="line">            <span class="comment">// if this bucket becomes empty, then delete it</span></span><br><span class="line">            <span class="keyword">if</span> (head-&gt;empty()) &#123;</span><br><span class="line">                headMap.erase(freq);</span><br><span class="line">                buckets.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// delete the evicted key</span></span><br><span class="line">            valMap.erase(evict);</span><br><span class="line">            freqMap.erase(evict);</span><br><span class="line">            nodeMap.erase(evict);</span><br><span class="line">            num--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// find the head of frequency 1</span></span><br><span class="line">        <span class="keyword">if</span> (headMap.find(<span class="number">1</span>) == headMap.end()) &#123;</span><br><span class="line">            buckets.push_back(<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">            <span class="keyword">auto</span> head = buckets.end(); head--;</span><br><span class="line">            headMap[<span class="number">1</span>] = head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// insert new key at the front of list</span></span><br><span class="line">        <span class="keyword">auto</span> head = headMap[<span class="number">1</span>];</span><br><span class="line">        head-&gt;push_front(key);</span><br><span class="line">        nodeMap[key] = head-&gt;begin();</span><br><span class="line">        valMap[key] = value;</span><br><span class="line">        freqMap[key] = <span class="number">1</span>;</span><br><span class="line">        num++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>TreeSet + map O(log(n))</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Tuple</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> key;</span><br><span class="line">        <span class="keyword">int</span> freq;</span><br><span class="line">        <span class="keyword">int</span> recent;</span><br><span class="line"></span><br><span class="line">        Tuple() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        Tuple(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z): key(x), freq(y), recent(z) &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// For ordered set</span></span><br><span class="line">        <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Tuple&amp; a, <span class="keyword">const</span> Tuple&amp; b) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a.freq != b.freq) <span class="keyword">return</span> a.freq &lt; b.freq;</span><br><span class="line">            <span class="keyword">return</span> a.recent &lt; b.recent;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">const</span> Tuple&amp; a, <span class="keyword">const</span> Tuple&amp; b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a.key==b.key &amp;&amp; a.freq==b.freq &amp;&amp; a.recent==b.recent;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; valMap;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, Tuple&gt; keyMap;</span><br><span class="line">    <span class="built_in">set</span>&lt;Tuple&gt; treeSet;</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="keyword">int</span> time;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">        num = <span class="number">0</span>;</span><br><span class="line">        time = <span class="number">0</span>;</span><br><span class="line">        cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (valMap.find(key) == valMap.end()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="comment">// Erase old Tuple and insert new one</span></span><br><span class="line">        treeSet.erase(keyMap[key]);</span><br><span class="line">        keyMap[key].freq++;</span><br><span class="line">        keyMap[key].recent = time;</span><br><span class="line">        treeSet.insert(keyMap[key]);</span><br><span class="line">        time++;</span><br><span class="line">        <span class="keyword">return</span> valMap[key];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cap &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (valMap.find(key) != valMap.end()) &#123;</span><br><span class="line">            treeSet.erase(keyMap[key]);</span><br><span class="line">            keyMap[key].freq++;</span><br><span class="line">            keyMap[key].recent = time;</span><br><span class="line">            valMap[key] = value;</span><br><span class="line">            treeSet.insert(keyMap[key]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (num &gt;= cap) &#123;</span><br><span class="line">                <span class="comment">// Find LFU (ordered set head)</span></span><br><span class="line">                <span class="keyword">auto</span> iter = treeSet.begin();</span><br><span class="line">                <span class="keyword">int</span> evict = iter-&gt;key;</span><br><span class="line">                treeSet.erase(iter);</span><br><span class="line">                valMap.erase(evict);</span><br><span class="line">                keyMap.erase(evict);</span><br><span class="line">                num--;</span><br><span class="line">            &#125;</span><br><span class="line">            keyMap[key] = Tuple(key, <span class="number">1</span>, time);</span><br><span class="line">            treeSet.insert(keyMap[key]);</span><br><span class="line">            valMap[key] = value;</span><br><span class="line">            num++;</span><br><span class="line">        &#125;</span><br><span class="line">        time++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>简单版map + list O(1)</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; valMap;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; freqMap;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator&gt; iterMap;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt; bucketMap;</span><br><span class="line">    <span class="keyword">int</span> minFreq;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// visit @key</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">touch</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> freq = freqMap[key];</span><br><span class="line">        <span class="keyword">auto</span> iter = iterMap[key];</span><br><span class="line">        bucketMap[freq].erase(iter);  <span class="comment">// erase key from old bucket</span></span><br><span class="line">        <span class="keyword">if</span> (freq == minFreq &amp;&amp; bucketMap[freq].empty())  <span class="comment">// update minFreq</span></span><br><span class="line">            minFreq++;</span><br><span class="line">        bucketMap[freq + <span class="number">1</span>].push_front(key);  <span class="comment">// insert key to new bucket</span></span><br><span class="line">        iterMap[key] = bucketMap[freq + <span class="number">1</span>].begin();</span><br><span class="line">        freqMap[key]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">        num = <span class="number">0</span>;</span><br><span class="line">        minFreq = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (freqMap.find(key) == freqMap.end()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        touch(key);</span><br><span class="line">        <span class="keyword">return</span> valMap[key];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cap == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (freqMap.find(key) != freqMap.end()) &#123;</span><br><span class="line">            valMap[key] = value;</span><br><span class="line">            touch(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (num &gt;= cap) &#123;</span><br><span class="line">            <span class="keyword">int</span> evict = bucketMap[minFreq].back();  <span class="comment">// find LFU</span></span><br><span class="line">            <span class="comment">// delete LFU</span></span><br><span class="line">            bucketMap[minFreq].pop_back();</span><br><span class="line">            valMap.erase(evict);</span><br><span class="line">            freqMap.erase(evict);</span><br><span class="line">            iterMap.erase(evict);</span><br><span class="line">            num--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// because the freq of new key is 1, minFreq will certainly become 1</span></span><br><span class="line">        minFreq = <span class="number">1</span>;</span><br><span class="line">        bucketMap[<span class="number">1</span>].push_front(key);</span><br><span class="line">        valMap[key] = value;</span><br><span class="line">        freqMap[key] = <span class="number">1</span>;</span><br><span class="line">        iterMap[key] = bucketMap[<span class="number">1</span>].begin();</span><br><span class="line">        num++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/lfu-cache/discuss/94602/C%2B%2B-list-with-hashmap-with-explanation/172522" target="_blank" rel="noopener">C++ list with hashmap with explanation</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://leetcode.com/problems/lfu-cache/discuss/94536/Java-solution-using-PriorityQueue-with-detailed-explanation" target="_blank" rel="noopener">Java solution using PriorityQueue, with detailed explanation</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>《数据结构(C++语言版)》（第三版） P290，清华大学出版社，2013.9 <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><a href="https://leetcode.com/problems/lfu-cache/discuss/94521/JAVA-O%281%29-very-easy-solution-using-3-HashMaps-and-LinkedHashSet" target="_blank" rel="noopener">JAVA O(1) very easy solution using 3 HashMaps and LinkedHashSet</a> <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Binary-Search-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search Tree</a>
+        
+          <a href="/tags/alg-Linked-List/"><i class="fas fa-hashtag fa-fw"></i>alg:Linked List</a>
+        
+          <a href="/tags/alg-Hash-Table/"><i class="fas fa-hashtag fa-fw"></i>alg:Hash Table</a>
+        
+          <a href="/tags/alg-Priority-Queue/"><i class="fas fa-hashtag fa-fw"></i>alg:Priority Queue</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-701-insert-into-a-binary-search-tree/">
+              
+                  Leetcode 701. Insert into a Binary Search Tree（BST）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-01
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/insert-into-a-binary-search-tree/description/" target="_blank" rel="noopener">https://leetcode.com/problems/insert-into-a-binary-search-tree/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：15.50%</p>
+<h2>题意</h2>
+<p>在二叉搜索树中插入元素。</p>
+<h2>分析</h2>
+<p>感觉和<a href="/post/leetcode-700-search-in-a-binary-search-tree">Leetcode 700</a>是同一系列的题目。同样直接插入就可以了。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">insertIntoBST</span><span class="params">(TreeNode* root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">        TreeNode* p = root;</span><br><span class="line">        <span class="keyword">while</span> (p != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (val &lt; p-&gt;val) &#123;</span><br><span class="line">                <span class="keyword">if</span> (p-&gt;left == <span class="literal">NULL</span>) &#123;</span><br><span class="line">                    p-&gt;left = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                p = p-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (p-&gt;right == <span class="literal">NULL</span>) &#123;</span><br><span class="line">                    p-&gt;right = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                p = p-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Binary-Search-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search Tree</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-700-search-in-a-binary-search-tree/">
+              
+                  Leetcode 700. Search in a Binary Search Tree（BST）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-01
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/search-in-a-binary-search-tree/description/" target="_blank" rel="noopener">https://leetcode.com/problems/search-in-a-binary-search-tree/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：14.34%</p>
+<h2>题意</h2>
+<p>在二叉搜索树中查找元素。</p>
+<h2>分析</h2>
+<p>水题。直接按BST的性质查找就可以了。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">searchBST</span><span class="params">(TreeNode* root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        TreeNode* p = root;</span><br><span class="line">        <span class="keyword">while</span> (p != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p-&gt;val == val)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (val &lt; p-&gt;val)</span><br><span class="line">                p = p-&gt;left;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                p = p-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Binary-Search-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search Tree</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-783-530-minimum-distance-between-bst-nodes/">
+              
+                  Leetcode 783 (530). Minimum Distance Between BST Nodes（二叉搜索树遍历）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-22
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/minimum-distance-between-bst-nodes/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimum-distance-between-bst-nodes/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：12.62%</p>
+<h2>题意</h2>
+<p>给定一个二叉搜索树，返回树中任意两个结点之间差的最小值。</p>
+<h2>分析</h2>
+<p>Leetcode有些题目，真是水得有点过头……这道题数据规模只有100，简直是直接枚举都能做了。当然正确的做法是中序遍历。我最开始还以为要像<a href="/post/leetcode-173-binary-search-tree-iterator">173题</a>那样手写一个找后继的方法，结果发现根本不用，直接中序遍历然后记录上一个元素就行了。</p>
+<p>甚至更水的是，这道题和<a href="https://leetcode.com/problems/minimum-absolute-difference-in-bst/description/" target="_blank" rel="noopener">530题</a>基本一模一样（通过<a href="https://leetcode.com/problems/minimum-distance-between-bst-nodes/discuss/118531/Come-on-guys-it-is-obviously-the-same-as-Problems-530.-Minimum-Absolute-Difference-in-BST" target="_blank" rel="noopener">评论区</a>的提示得知……），直接用同一份代码交上去就可以AC了，于是我收获了两个AC……</p>
+<p>不过，一个有趣的问题是，如果我们把530题的描述改一下，从“差的绝对值”改成“绝对值的差”会怎么样？这样改过之后，我觉得我们实际上获得了0-2棵子BST，以及一棵“反的”子BST（因为从负数取反了）。从树的角度来做处理其实不太好做，还不如干脆就把负数结点从树里全删掉，然后再把它们的绝对值加回去，最后再遍历。当然，更简单的做法是把树中的全部结点的绝对值都取出来，排序，然后直接做……</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> last;</span><br><span class="line">    <span class="keyword">int</span> minDif;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode* cur)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        traverse(cur-&gt;left);</span><br><span class="line">        <span class="keyword">if</span> (last != <span class="number">-1</span>)</span><br><span class="line">            minDif = min(minDif, cur-&gt;val - last);</span><br><span class="line">        last = cur-&gt;val;</span><br><span class="line">        traverse(cur-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minDiffInBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        last = <span class="number">-1</span>;</span><br><span class="line">        minDif = <span class="number">1000000</span>;</span><br><span class="line">        traverse(root);</span><br><span class="line">        <span class="keyword">return</span> minDif;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Binary-Search-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search Tree</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-493-reverse-pairs/">
+              
+                  Leetcode 493. Reverse Pairs（数组子问题）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-11
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/reverse-pairs/description/" target="_blank" rel="noopener">https://leetcode.com/problems/reverse-pairs/description/</a></p>
+<p>标记难度：Hard</p>
+<p>提交次数：1/4</p>
+<p>代码效率：93.15%</p>
+<h2>题意</h2>
+<p>计算数组中<strong>重要逆序对</strong>的数量。称<code>(i, j)</code>为重要逆序对，当且仅当<code>i &lt; j</code>且<code>nums[i] &gt; 2 * nums[j]</code>。</p>
+<h2>分析</h2>
+<p>其实思路并不是很难。归并排序求逆序对的思路已经很平常了，这道题中直接把计数的条件改一改，只统计另一半数组中至少为当前的数的两倍的数的数量（而不是单纯“大于”）就可以了。</p>
+<p>但是我提交了4次。第一次是数组边界写错了，后面几次都是被卡在这个<code>*2</code>上了——我还是第一次见到卡<code>2 * (int) 2147483647</code>这个位置的题，也可能是我孤陋寡闻吧。当然，我承认这么做有点道理，这和单纯比大小是不一样的。反正我最后手动在比较的时候把<code>int</code>cast成<code>long long</code>了。</p>
+<h3>一种合并的方法</h3>
+<p>我之前从来没有听说过<a href="https://zh.cppreference.com/w/cpp/algorithm/inplace_merge" target="_blank" rel="noopener">inplace_merge</a>这个函数。又一次在<a href="https://leetcode.com/problems/reverse-pairs/discuss/97287/C++-with-iterators" target="_blank" rel="noopener">StephanPochmann的题解</a>中看到了一些闻所未闻的东西之后，我去查了一下，发现：原来STL算法库里为我们提供了一个原址合并算法啊！</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Iter</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">merge_sort</span>(<span class="title">Iter</span> <span class="title">first</span>, <span class="title">Iter</span> <span class="title">last</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">if</span> (last - first &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        Iter middle = first + (last - first) / <span class="number">2</span>;</span><br><span class="line">        merge_sort(first, middle);</span><br><span class="line">        merge_sort(middle, last);</span><br><span class="line">        <span class="built_in">std</span>::inplace_merge(first, middle, last);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用这个算法来实现归并排序无疑是非常简单明了的。</p>
+<p>另一个问题是，<code>inplace_merge</code>是如何实现的？我之前从未想过归并算法可以是原址的。事实是，确实可以。请参见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.88.1155&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">Practical In-Place Merging</a>这篇论文和相应的实现（<a href="http://keithschwarz.com/interesting/code/?dir=inplace-merge" target="_blank" rel="noopener">InplaceMerge.hh</a>）。不过这个算法的确有点复杂。</p>
+<h3>类似于逆序对的题目</h3>
+<p>讨论区里有一篇非常好的<a href="https://leetcode.com/problems/reverse-pairs/discuss/97268/General-principles-behind-problems-similar-to-%22Reverse-Pairs%22" target="_blank" rel="noopener">文章</a>，对相似类型的题目进行了一个整体的讨论。简单来说，此类题目的共同点是：将数组分解，然后解决子问题。</p>
+<p>通常我们有两种分解数组（子问题）的方法：</p>
+<ol>
+<li>顺序分解：<code>T(i, j) = T(i, j - 1) + C</code></li>
+<li>二分分解：<code>T(i, j) = T(i, m) + T(m + 1, j) + C</code>，其中<code>m = (i + j) / 2</code>。</li>
+</ol>
+<p>（是的，我之前没有想过，其实顺序分解也是可以做到<code>O(n * log(n))</code>的。）</p>
+<p>顺序分解对于本题来说，也就意味着，顺序扫描数组，寻找以当前的数为逆序对的第二个元素的逆序对的数量。显然直接扫描是可以的，但是复杂度会上升到<code>O(n^2)</code>。为了提高搜索的效率，我们注意到，子数组内部的顺序不重要，因此我们可以把它转换成一棵二叉搜索树（或者任何类似的东西）。这样效率就可以提高到<code>O(n * log(n))</code>了。</p>
+<p>二分分解就是我的做法：分别寻找元素都来自左半数组和右半数组的逆序对，然后寻找元素各自来自一侧的逆序对，最后加在一起。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span>* tmp;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">split</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l == r)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        sum += split(l, m, nums);</span><br><span class="line">        sum += split(m+<span class="number">1</span>, r, nums);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 统计important逆序对的数目</span></span><br><span class="line">        <span class="keyword">int</span> i = l, j = m+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= m &amp;&amp; j &lt;= r) &#123;</span><br><span class="line">            <span class="comment">// 第一次遇到卡这里的题目……</span></span><br><span class="line">            <span class="keyword">while</span> (i &lt;= m &amp;&amp; (<span class="keyword">long</span> <span class="keyword">long</span>)nums[i] &lt;= (<span class="keyword">long</span> <span class="keyword">long</span>)(nums[j]) * <span class="number">2</span>)</span><br><span class="line">                i++;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; m)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            sum += m - i + <span class="number">1</span>;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 合并</span></span><br><span class="line">        i = l;</span><br><span class="line">        j = m+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= m &amp;&amp; j &lt;= r) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt;= nums[j])</span><br><span class="line">                tmp[k++] = nums[i++];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                tmp[k++] = nums[j++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= m)</span><br><span class="line">            tmp[k++] = nums[i++];</span><br><span class="line">        <span class="keyword">while</span> (j &lt;= r)</span><br><span class="line">            tmp[k++] = nums[j++];</span><br><span class="line">        <span class="keyword">for</span> (i = l; i &lt;= r; i++)</span><br><span class="line">            nums[i] = tmp[i - l];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">reversePairs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 只是普通的求逆序对算法的一个变形</span></span><br><span class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        tmp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.size() + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> sum = split(<span class="number">0</span>, nums.size() - <span class="number">1</span>, nums);</span><br><span class="line">        <span class="keyword">delete</span>[] tmp;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Binary-Search-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search Tree</a>
+        
+          <a href="/tags/alg-Divide-and-Conquer/"><i class="fas fa-hashtag fa-fw"></i>alg:Divide and Conquer</a>
+        
+          <a href="/tags/alg-Binary-Indexed-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Indexed Tree</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-173-binary-search-tree-iterator/">
+              
+                  Leetcode 173. Binary Search Tree Iterator（中序遍历）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-31
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/binary-search-tree-iterator/description/" target="_blank" rel="noopener">https://leetcode.com/problems/binary-search-tree-iterator/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：98.53%</p>
+<h2>题意</h2>
+<p>写一个二叉搜索树的迭代器，包括初始化、<code>next()</code>和<code>hasNext()</code>操作，要求平摊时间复杂度为O(1)，空间复杂度为O(h)。</p>
+<h2>分析</h2>
+<p>因为空间复杂度是O(h)，所以肯定不能把整个树直接存成一个数组然后直接查找，而是要利用树的性质。好吧，其实《数据结构》里在迭代版中序遍历中讲了这个东西。</p>
+<p><img src="in-order-traverse.png" alt="中序遍历过程"></p>
+<blockquote>
+<p>与所有遍历一样，中序遍历的实质功能也可理解为，为所有节点赋予一个次序，从而将半线性的二叉树转化为线性结构。于是一旦指定了遍历策略，即可与向量和列表一样，在二叉树的节点之间定义前驱与后继关系。其中没有前驱（后继）的节点称作首（末）节点。<br>
+对于后面将要介绍的二叉搜索树，中序遍历的作用至关重要。相关算法必需的一项基本操作，就是定位任一节点在中序遍历序列中的直接后继。为此，可实现succ()接口如代码5.16所示。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 代码5.16 二叉树节点直接后继的定位</span><br><span class="line">template &lt;typename T&gt; BinNodePosi(T) BinNode&lt;T&gt;::succ() &#123; //定位节点v的直接后继</span><br><span class="line">    BinNodePosi(T) s = this; //记录后继的临时变量</span><br><span class="line">    if (rChild) &#123; //若有右孩子，则直接后继必在右子树中，具体地就是</span><br><span class="line">        s = rChild; //右子树中</span><br><span class="line">        while (HasLChild(*s)) s = s-&gt;lChild; //最靠左（最小）的节点</span><br><span class="line">    &#125; else &#123; //否则，直接后继应是“将当前节点包含于其左子树中的最低祖先”，具体地就是</span><br><span class="line">        while (IsRChild(*s)) s = s-&gt;parent; //逆向地沿右向分支，不断朝左上方移动</span><br><span class="line">        s = s-&gt;parent; //最后再朝右上方移动一步，即抵达直接后继（如果存在）</span><br><span class="line">    &#125;</span><br><span class="line">    return s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里，共分两大类情况。若当前节点有右孩子，则其直接后继必然存在，且属于其右子树。此时只需转入右子树，再沿该子树的最左侧通路朝左下方深入，直到抵达子树中最靠左（最小）的节点。<br>
+反之，若当前节点没有右子树，则若其直接后继存在， 必为该节点的某一祖先，且是将当前节点纳入其左子树的最低祖先。于是首先沿右侧通路朝左上方上升，当不能继续前进时，再朝右上方移动一步即可。<br>
+作为后一情况的特例，出口时s可能为NULL。这意味着此前沿着右侧通路向上的回溯，抵达了树根。也就是说，当前节点是全树右侧通路的终点——它也是中序遍历的终点，没有后继。<br>
+（摘自《数据结构(C++语言版)》（第三版），清华大学出版社，2013.9）</p>
+</blockquote>
+<p>我的代码实现得不怎么漂亮，不过里面被注释掉的关键的一句代码<code>path.push(_cur);</code>变相实现了“右侧通路朝左上方上升，当不能继续前进时，再朝右上方移动一步”这个操作：栈中实际上存储的就是经过这个操作之后能够得到的结点，因此右转时的结点是不能入栈的。</p>
+<h2>代码</h2>
+<h3>我的代码</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for binary tree</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class BSTIterator &#123;</span><br><span class="line">private:</span><br><span class="line">    TreeNode* _root;</span><br><span class="line">    TreeNode* _cur;</span><br><span class="line">    stack&lt;TreeNode*&gt; path;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    BSTIterator(TreeNode *root) &#123;</span><br><span class="line">        _root = root;</span><br><span class="line">        _cur = root;</span><br><span class="line">        // 找到树中最小的结点</span><br><span class="line">        while (_cur != NULL &amp;&amp; _cur-&gt;left != NULL) &#123;</span><br><span class="line">            path.push(_cur);</span><br><span class="line">            _cur = _cur-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // cout &lt;&lt; _cur-&gt;val &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** @return whether we have a next smallest number */</span><br><span class="line">    bool hasNext() &#123;</span><br><span class="line">        // 和next()的判断逻辑相同：</span><br><span class="line">        // 当前结点有右子树，或者仍然有向上回溯的空间</span><br><span class="line">        return _cur != NULL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** @return the next smallest number */</span><br><span class="line">    int next() &#123;</span><br><span class="line">        int smallest = _cur-&gt;val;</span><br><span class="line">        // cout &lt;&lt; smallest &lt;&lt; &apos; &apos; &lt;&lt; path.size() &lt;&lt; endl;</span><br><span class="line">        // 寻找_cur的后继</span><br><span class="line">        // _cur的右子树不为空，此时后继必为_cur的右子树中最靠左的结点</span><br><span class="line">        if (_cur-&gt;right != NULL) &#123;</span><br><span class="line">            // 必须注释掉这句话，因为path（这个名字起得不好）指的并不是从root到当前结点的路径上的所有结点</span><br><span class="line">            // 而是“右子树仍未被访问到的结点”</span><br><span class="line">            // path.push(_cur);</span><br><span class="line">            _cur = _cur-&gt;right;</span><br><span class="line">            while (_cur-&gt;left != NULL) &#123;</span><br><span class="line">                path.push(_cur);</span><br><span class="line">                _cur = _cur-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // _cur的右子树为空，此时需要向上回溯</span><br><span class="line">        // 因为TreeNode的定义中没有提供父结点指针，所以只好用栈来记录了</span><br><span class="line">        // 当然，按照邓公的意见，这样可以省空间，应该是最好的……</span><br><span class="line">        else &#123;</span><br><span class="line">            if (path.size() &gt; 0) &#123;</span><br><span class="line">                _cur = path.top();</span><br><span class="line">                path.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">                _cur = NULL;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return smallest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Your BSTIterator will be called like this:</span><br><span class="line"> * BSTIterator i = BSTIterator(root);</span><br><span class="line"> * while (i.hasNext()) cout &lt;&lt; i.next();</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+<h3>Sample 20ms Submission</h3>
+<p>我刚发现在提交后的结果页面点时间会得到相应的标程，惊了，Leetcode真是越来越强了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for binary tree</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class BSTIterator &#123;</span><br><span class="line">public:</span><br><span class="line">    stack&lt;TreeNode *&gt; s;</span><br><span class="line">    void addToStack(TreeNode * root)&#123;</span><br><span class="line">        while(root)&#123;</span><br><span class="line">            s.push(root);</span><br><span class="line">            root=root-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    BSTIterator(TreeNode *root) &#123;</span><br><span class="line">        addToStack(root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** @return whether we have a next smallest number */</span><br><span class="line">    bool hasNext() &#123;</span><br><span class="line">        return s.size()&gt;0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** @return the next smallest number */</span><br><span class="line">    int next() &#123;</span><br><span class="line">        int res = s.top()-&gt;val;</span><br><span class="line">        TreeNode * top = s.top();</span><br><span class="line">        s.pop();</span><br><span class="line">        if(top-&gt; right)&#123;</span><br><span class="line">            addToStack(top-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Your BSTIterator will be called like this:</span><br><span class="line"> * BSTIterator i = BSTIterator(root);</span><br><span class="line"> * while (i.hasNext()) cout &lt;&lt; i.next();</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Tree</a>
+        
+          <a href="/tags/alg-Binary-Search-Tree/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search Tree</a>
+        
+          <a href="/tags/alg-In-Order-Traversal/"><i class="fas fa-hashtag fa-fw"></i>alg:In-Order Traversal</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+  
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

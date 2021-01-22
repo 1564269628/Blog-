@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-887-super-egg-drop/">
+              
+                  Leetcode 887. Super Egg Drop（动态规划）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-07
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/super-egg-drop/description/" target="_blank" rel="noopener">https://leetcode.com/problems/super-egg-drop/description/</a></p>
+<p>标记难度：Hard</p>
+<p>提交次数：1/3</p>
+<p>代码效率：</p>
+<ul>
+<li>动态规划（plain）：TLE</li>
+<li>动态规划（二分优化）：14.92%</li>
+</ul>
+<h2>题意</h2>
+<p>你有<code>K</code>个鸡蛋，它们从高度<code>&gt;F</code>的地方被丢下来时会破碎，但从高度<code>&lt;=F</code>的地方被丢下来时不会破碎。但是你不知道<code>F</code>的值。现有一栋高楼，高度<code>N</code>满足<code>0 &lt;= F &lt;= N</code>，请在这栋楼上通过丢鸡蛋的方式尝试确定<code>F</code>的值。问：对于任意<code>F</code>，至少需要丢多少次鸡蛋才能确定<code>F</code>的值？</p>
+<hr>
+<p>题意还是挺绕的。丢鸡蛋这一点我当时就想了很久也没明白……比如说，你只有一个鸡蛋：假如直接把它从高度为<code>N</code>的地方丢下来，鸡蛋有可能碎了，也可能没有碎。如果它没有碎，则可以确定<code>F = N</code>；否则只能知道<code>F &lt; N</code>，而且鸡蛋已经碎了，没有更多鸡蛋可以扔了，所以无法确定<code>F</code>。因此更合理的做法是，先把鸡蛋从<code>1</code>处扔下来，假如碎了则<code>F = 0</code>，结束；否则可知<code>F &gt; 0</code>，再把鸡蛋从<code>2</code>处扔下来，假如碎了则<code>F = 1</code>，否则可知<code>F &gt; 1</code>……以此类推。所以<code>K = 1</code>时需要的丢鸡蛋次数为<code>N - 1</code>。</p>
+<p>因为只有一个鸡蛋，所以不能冒太大风险；假如有两个鸡蛋，就可以先把其中一个从<code>N / 2</code>处丢下来。假如鸡蛋碎了，则可以知道<code>F &lt; N / 2</code>；否则<code>F &gt;= N / 2</code>……以此类推。</p>
+<h2>分析</h2>
+<p>比赛的时候我好像尝试这样推导了一下：以两个鸡蛋的情况为例，如果进行二分式的扔法，就会出现这样的情形：</p>
+<ul>
+<li>从<code>N/2</code>处丢下鸡蛋，鸡蛋碎了，于是之后只能从下往上逐层丢鸡蛋，需要约<code>N/2</code>次操作</li>
+<li>从<code>N/2</code>处丢下鸡蛋，鸡蛋没碎，于是可以把这个鸡蛋再次从<code>3/4*N</code>层丢下去
+<ul>
+<li>如果鸡蛋碎了，则之后需要从<code>N/2+1</code>到<code>3/4*N-1</code>逐层丢鸡蛋，需要约<code>N/4</code>次操作</li>
+<li>如果鸡蛋没碎，则可以把这个鸡蛋再次从<code>7/8*N</code>层丢下去</li>
+<li>……</li>
+</ul>
+</li>
+</ul>
+<p>可以看出，鸡蛋碎了的情况需要的迭代次数比较多，所以不应该二分，而应该偏分，鸡蛋可能碎掉的情况分配的层数少一点……比如三分？</p>
+<p>想到这里比赛就结束了……</p>
+<hr>
+<h3>动态规划</h3>
+<p>事实上正解之一是动态规划。之前分析的时候并没有意识到这一点：丢下一个鸡蛋，它碎了/没碎之后，事实上当前的状态仍然可以用鸡蛋数目和总层数（如果鸡蛋碎了则层数上限减小，否则层数下限增大，但和从0开始的层数的情况仍然相同）来概括。于是我们就得到了一个子状态。</p>
+<p>令<code>f[n][k]</code>表示用<code>k</code>个鸡蛋在<code>n</code>层中确定<code>F</code>至少需要的操作次数，则<code>f[n][k] = 1 + min(max(f[i][k-1], f[n-i][k]))</code>，且<code>f[n][1] = n</code>，<code>f[0][k] = 0</code>。这种做法的复杂度为<code>O(N^2 * K)</code>。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>然后就TLE了。（也对，N的范围是10000）</p>
+<p>对于一个确定的<code>k</code>，显然<code>f[n][k]</code>随着<code>n</code>的增大而增大。（如果这从式子并不显然的话……那么显然如果鸡蛋不变，层数越多，所需的操作数就越多）。所以<code>f[i][k-1]</code>是随着<code>i</code>的增大而增大的，<code>f[n-i][k]</code>是随着<code>i</code>的增大而减小的。因此这两者的最大值是随着<code>i</code>先减小再增大的。所以可以通过二分查找找到这个点。这种做法的复杂度是`O(N*K*log(N))（注意边界条件）<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p>还有一种做法可以优化到<code>O(KN)</code>，但我不想管它了，毕竟这道题拖了有一个多月了，太累了……</p>
+<h2>代码</h2>
+<h3>普通的动态规划</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">superEggDrop</span><span class="params">(<span class="keyword">int</span> K, <span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> f[N + <span class="number">1</span>][K + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= K; i++) &#123;</span><br><span class="line">            f[<span class="number">0</span>][i] = <span class="number">0</span>;  <span class="comment">// zero floor, no need to check</span></span><br><span class="line">            f[<span class="number">1</span>][i] = <span class="number">1</span>;  <span class="comment">// one floor, check once</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N; i++) &#123;</span><br><span class="line">            f[i][<span class="number">1</span>] = i;  <span class="comment">// one egg checks all floors</span></span><br><span class="line">            f[i][<span class="number">0</span>] = <span class="number">0</span>;  <span class="comment">// no egg to check</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= N; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= K; j++) &#123;</span><br><span class="line">                f[i][j] = INT_MAX;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; i; k++) &#123;</span><br><span class="line">                    f[i][j] = min(f[i][j], max(f[i - k][j], f[k - <span class="number">1</span>][j - <span class="number">1</span>]) + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[N][K];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>二分优化的动态规划</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">superEggDrop</span><span class="params">(<span class="keyword">int</span> K, <span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> f[N + <span class="number">1</span>][K + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= K; i++) &#123;</span><br><span class="line">            f[<span class="number">0</span>][i] = <span class="number">0</span>;  <span class="comment">// zero floor, no need to check</span></span><br><span class="line">            f[<span class="number">1</span>][i] = <span class="number">1</span>;  <span class="comment">// one floor, check once</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N; i++) &#123;</span><br><span class="line">            f[i][<span class="number">1</span>] = i;  <span class="comment">// one egg checks all floors</span></span><br><span class="line">            f[i][<span class="number">0</span>] = <span class="number">0</span>;  <span class="comment">// no egg to check</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= N; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= K; j++) &#123;</span><br><span class="line">                f[i][j] = INT_MAX;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 注意边界条件</span></span><br><span class="line">                <span class="keyword">int</span> left = <span class="number">1</span>, right = i;</span><br><span class="line">                <span class="keyword">while</span> (left + <span class="number">1</span> &lt; right) &#123;</span><br><span class="line">                    <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">if</span> (f[i - mid][j] &lt; f[mid - <span class="number">1</span>][j - <span class="number">1</span>])</span><br><span class="line">                        right = mid;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (f[i - mid][j] &gt; f[mid - <span class="number">1</span>][j - <span class="number">1</span>])</span><br><span class="line">                        left = mid;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        left = right = mid;</span><br><span class="line">                &#125;</span><br><span class="line">                f[i][j] = min(max(f[right - <span class="number">1</span>][j - <span class="number">1</span>], f[i - right][j]), max(f[left - <span class="number">1</span>][j - <span class="number">1</span>], f[i - left][j])) + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[N][K];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/problems/super-egg-drop/discuss/159079/Python-DP-from-kn2-to-knlogn-to-kn" target="_blank" rel="noopener">Greatjian's solution for Leetcode 887 - Python DP from kn^2 to knlogn to kn</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://leetcode.com/problems/super-egg-drop/solution/" target="_blank" rel="noopener">Leetcode's Official Solution for Leetcode 887</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/Leetcode-Contest/"><i class="fas fa-hashtag fa-fw"></i>Leetcode Contest</a>
+        
+          <a href="/tags/alg-Dynamic-Programming/"><i class="fas fa-hashtag fa-fw"></i>alg:Dynamic Programming</a>
+        
+          <a href="/tags/alg-Math/"><i class="fas fa-hashtag fa-fw"></i>alg:Math</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/learn-thumt-2-small-model/">
+              
+                  学习THUMT（2）：尝试训练一个小型模型（to be continued...）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-06
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>今天我决定照着UserManual里给出的方法训练一个小型的模型尝试一下，了解一下各个步骤都在做什么。</p>
+<h2>一些微小的问题</h2>
+<h3>tensorflow-gpu</h3>
+<p>我首先尝试在自己的电脑上安装<code>tensorflow-gpu</code>。最后我虽然装上了，但却决定不用它了，因为我意识到我的这块普通显卡过于菜了（以至于<code>nvidia-smi</code>不能打印它的具体信息），这么做没什么太大的意义。</p>
+<h3>PyCharm和virtualenv</h3>
+<p>目前我的所有Python项目都是通过这两个东西运行的，看起来还不错；可是virtualenv存在一个问题，就是不容易卸载，或者说卸载包的时候可能会出一点问题——反正我卸载<code>tensorflow-gpu</code>再安装<code>tensorflow</code>之后，根本都找不到<code>Module tensorflow</code>了。但这大概不算什么大问题，因为网上的人都说<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>，&quot;virtualenv is cheap&quot;，如果把当前的环境搞乱了，直接删了新建一个就好。</p>
+<p><code>virtualenv</code>还有一个我之前没有想到的好处。它不止可以管理Python包，还可以管理环境变量。UserManual里要求在<code>$PYTHONPATH</code>里加上项目根路径，我一开始不太理解为什么，后来发现如果不加的话根本就找不到THUMT自己的包。我还以为是PyCharm没有定义好源文件夹的问题或者<code>tensorflow</code>挂了的问题呢。看来我对Python模块化和类编程根本就不是很熟悉……</p>
+<p>总之在<code>virtualenv</code>里可以在<code>venv/bin/activate</code>中增加以下命令来修改虚拟环境中的环境变量<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_OLD_PYTHONPATH=<span class="string">"<span class="variable">$PYTHONPATH</span>"</span></span><br><span class="line"><span class="built_in">export</span> PYTHONPATH=<span class="string">"/path/to/THUMT:<span class="variable">$PYTHONPATH</span>"</span></span><br></pre></td></tr></table></figure>
+<p>然后在<code>deactivate()</code>函数中增加以下内容：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PYTHONPATH=<span class="string">"<span class="variable">$_OLD_PYTHONPATH</span>"</span></span><br></pre></td></tr></table></figure>
+<p>可以使用<code>printenv PYTHONPATH</code>以查看设置情况。</p>
+<p>当然实际上应该写得更复杂一点，<code>activate</code>文件中本身就有设置和取消设置环境变量的例子，这里就先这样好了。</p>
+<h2>准备数据</h2>
+<h3>语料</h3>
+<p>UserManual中使用的示例语料来自<a href="http://data.statmt.org/wmt17/translation-task/preprocessed/de-en/" target="_blank" rel="noopener">http://data.statmt.org/wmt17/translation-task/preprocessed/de-en/</a>，是经过预处理的语料。不过这些语料到底经历了怎样的预处理呢……</p>
+<p>被预处理完的corpus是这个样子的（取了前5个句子）：</p>
+<table>
+<thead>
+<tr>
+<th>Deutsch</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Europäische Kommission - Upcoming events</td>
+<td>European Commission - Upcoming events</td>
+</tr>
+<tr>
+<td>die Nachricht :</td>
+<td>the news :</td>
+</tr>
+<tr>
+<td>die Anmeldung zur Veranstaltung kann vorgenommen werden .</td>
+<td>registration for the event can be submitted .</td>
+</tr>
+<tr>
+<td>Hintergrund :</td>
+<td>the background :</td>
+</tr>
+<tr>
+<td>die folgen dem Vorbild der &amp;quot; Gemeindeversammlung &amp;quot; bzw. lokaler Bürgerforen , bei denen Vertreter der Politik sich mit Bürgerinnen und Bürgern über politische Fragen und anstehende Entscheidungen austauschen .</td>
+<td>the concept of builds on the model of &amp;quot; town hall meetings &amp;quot; or local fora during which politicians listen and debate with citizens about policies and decisions being taken .</td>
+</tr>
+</tbody>
+</table>
+<p>被预处理完的测试数据是这个样子的：</p>
+<table>
+<thead>
+<tr>
+<th>Deutsch</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gutach : noch mehr Sicherheit für Fußgänger</td>
+<td>Gutach : increased safety for pedestrians</td>
+</tr>
+<tr>
+<td>Sie stehen keine 100 Meter voneinander entfernt : am Dienstag ist in Gutach die neue B 33 @-@ Fußgängerampel am Dorfparkplatz in Betrieb genommen worden - in Sichtweite der älteren Rathausampel .</td>
+<td>they are not even 100 metres apart : on Tuesday , the new B 33 pedestrian lights in Dorfparkplatz in Gutach became operational - within view of the existing Town Hall traffic lights .</td>
+</tr>
+<tr>
+<td>zwei Anlagen so nah beieinander : Absicht oder Schildbürgerstreich ?</td>
+<td>two sets of lights so close to one another : intentional or just a silly error ?</td>
+</tr>
+<tr>
+<td>diese Frage hat Gutachs Bürgermeister gestern klar beantwortet .</td>
+<td>yesterday , Gutacht &amp;apos;s Mayor gave a clear answer to this question .</td>
+</tr>
+<tr>
+<td>&amp;quot; die Rathausampel ist damals installiert worden , weil diese den Schulweg sichert &amp;quot; , erläuterte Eckert gestern .</td>
+<td>&amp;quot; at the time , the Town Hall traffic lights were installed because this was a school route , &amp;quot; explained Eckert yesterday .</td>
+</tr>
+</tbody>
+</table>
+<p>至少可以看出有一部分符号被转义了（@-@），而且符号也进行了分词。</p>
+<p>根据<a href="http://data.statmt.org/wmt17/translation-task/preprocessed/de-en/prepare.sh" target="_blank" rel="noopener">prepare.sh</a>，训练数据经过了以下处理：</p>
+<ul>
+<li><a href="https://github.com/moses-smt/mosesdecoder/blob/master/scripts/tokenizer/normalize-punctuation.perl" target="_blank" rel="noopener">normalize-punctuation</a>：去除多余空白字符，将Unicode标点转义。</li>
+<li><a href="https://github.com/moses-smt/mosesdecoder/blob/master/scripts/tokenizer/tokenizer.perl" target="_blank" rel="noopener">tokenizer</a>：将句子tokenize。</li>
+<li><a href="https://github.com/moses-smt/mosesdecoder/blob/master/scripts/training/clean-corpus-n.perl" target="_blank" rel="noopener">clean-corpus-n</a>：清理平行语料，删除空行、多余的空白字符和不合法的行。<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></li>
+<li><a href="https://github.com/moses-smt/mosesdecoder/blob/master/scripts/recaser/train-truecaser.perl" target="_blank" rel="noopener">train-truecaser</a>和<a href="https://github.com/moses-smt/mosesdecoder/blob/master/scripts/recaser/truecase.perl" target="_blank" rel="noopener">truecase</a>：保持词语的大小写形式，只将句首的词的首字母转为小写。<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></li>
+</ul>
+<p>测试数据是从<code>.sgm</code>格式转换来的，所以前面多一个<a href="https://github.com/moses-smt/mosesdecoder/blob/master/scripts/ems/support/input-from-sgm.perl" target="_blank" rel="noopener">input-from-sgm</a>，其他的处理都一样。</p>
+<h3>BPE</h3>
+<p>然后就是用<a href="https://github.com/rsennrich/subword-nmt" target="_blank" rel="noopener">rsennrich/subword-nmt</a>中提供的脚本对原始语料进行BPE处理。此处我尝试对训练语料（单语大小约800M）跑了一下BPE，发现花了一个多小时，遂放弃，准备把其中一个测试集当做训练集来用。</p>
+<p>以及现在<a href="https://github.com/rsennrich/subword-nmt" target="_blank" rel="noopener">subword-nmt</a>这个仓库的使用方式已经有了一些变化，目前推荐的是<code>pip install subword-nmt</code>，然后直接通过包来调用脚本（而不是直接调用脚本）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subword-nmt learn-joint-bpe-and-vocab --input &#123;train_file&#125;.L1 &#123;train_file&#125;.L2 -s &#123;num_operations&#125; -o &#123;codes_file&#125; --write-vocabulary &#123;vocab_file&#125;.L1 &#123;vocab_file&#125;.L2</span><br></pre></td></tr></table></figure>
+<p>于是得到了BPE编码文件（其中<code>&lt;/w&gt;</code>应该表示的是<strong>词尾</strong>）：</p>
+<p>2018.11.28 UPDATE：感谢评论区<a href="https://disqus.com/by/aoben/" target="_blank" rel="noopener">@ao ben</a>指出，BPE编码文件中<code>&lt;/w&gt;</code>表达的应该是单词的结尾。阅读了一些代码<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>之后，我想这个文件可能从上到下表示了将词中的字母进行合并的顺序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#version: 0.2</span><br><span class="line">e n&lt;/w&gt;</span><br><span class="line">e r</span><br><span class="line">i n</span><br><span class="line">t h</span><br><span class="line">e r&lt;/w&gt;</span><br><span class="line">c h</span><br><span class="line">a n</span><br><span class="line">e n</span><br><span class="line">u n</span><br><span class="line">th e&lt;/w&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>和两种语料上的词汇表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">, 3761</span><br><span class="line">. 2782</span><br><span class="line">die 2067</span><br><span class="line">der 1761</span><br><span class="line">und 1263</span><br><span class="line">&amp;quot; 1156</span><br><span class="line">in 1022</span><br><span class="line">@-@ 710</span><br><span class="line">das 667</span><br><span class="line">zu 645</span><br><span class="line">von 629</span><br><span class="line">... (Deutsch)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">the 4290</span><br><span class="line">, 3050</span><br><span class="line">. 2776</span><br><span class="line">of 1700</span><br><span class="line">to 1693</span><br><span class="line">a 1369</span><br><span class="line">in 1291</span><br><span class="line">and 1259</span><br><span class="line">&amp;quot; 1182</span><br><span class="line">@-@ 658</span><br><span class="line">is 615</span><br><span class="line">... (English)</span><br></pre></td></tr></table></figure>
+<p>然后用上述得到的BPE编码文件和词汇表对训练集、验证集、测试集的源语言一侧分别进行编码。以训练集为例，此时就得到了一堆这样的东西：</p>
+<table>
+<thead>
+<tr>
+<th>Deutsch</th>
+<th>Deutsch (BPE)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gutach : noch mehr Sicherheit für Fußgänger</td>
+<td>G@@ u@@ t@@ a@@ c@@ h : noch mehr S@@ i@@ c@@ h@@ er@@ h@@ e@@ i@@ t für F@@ u@@ ß@@ g@@ ä@@ n@@ g@@ er</td>
+</tr>
+<tr>
+<td>Sie stehen keine 100 Meter voneinander entfernt : am Dienstag ist in Gutach die neue B 33 @-@ Fußgängerampel am Dorfparkplatz in Betrieb genommen worden - in Sichtweite der älteren Rathausampel .</td>
+<td>Sie s@@ t@@ e@@ h@@ en keine 1@@ 0@@ 0 M@@ e@@ t@@ er v@@ o@@ n@@ ein@@ an@@ der e@@ n@@ t@@ f@@ er@@ n@@ t : am D@@ i@@ e@@ n@@ s@@ t@@ a@@ g ist in G@@ u@@ t@@ a@@ c@@ h die n@@ e@@ u@@ e B 3@@ 3 @-@ F@@ u@@ ß@@ g@@ ä@@ n@@ g@@ er@@ a@@ m@@ p@@ e@@ l am D@@ o@@ r@@ f@@ p@@ a@@ r@@ k@@ p@@ l@@ a@@ t@@ z in B@@ e@@ t@@ r@@ i@@ e@@ b g@@ e@@ n@@ o@@ m@@ m@@ en worden - in S@@ i@@ c@@ h@@ t@@ w@@ e@@ i@@ te der ä@@ l@@ t@@ er@@ en R@@ a@@ t@@ h@@ a@@ u@@ s@@ a@@ m@@ p@@ e@@ l .</td>
+</tr>
+<tr>
+<td>zwei Anlagen so nah beieinander : Absicht oder Schildbürgerstreich ?</td>
+<td>zwei A@@ n@@ l@@ a@@ g@@ en so n@@ a@@ h b@@ e@@ i@@ ein@@ an@@ der : A@@ b@@ s@@ i@@ c@@ h@@ t oder S@@ c@@ h@@ i@@ l@@ d@@ b@@ ü@@ r@@ g@@ er@@ s@@ t@@ r@@ e@@ i@@ c@@ h ?</td>
+</tr>
+<tr>
+<td>diese Frage hat Gutachs Bürgermeister gestern klar beantwortet .</td>
+<td>diese F@@ r@@ a@@ g@@ e hat G@@ u@@ t@@ a@@ c@@ h@@ s B@@ ü@@ r@@ g@@ er@@ m@@ e@@ i@@ s@@ t@@ er ge@@ s@@ t@@ er@@ n k@@ l@@ a@@ r be@@ an@@ t@@ w@@ o@@ r@@ t@@ e@@ t .</td>
+</tr>
+<tr>
+<td>&amp;quot; die Rathausampel ist damals installiert worden , weil diese den Schulweg sichert &amp;quot; , erläuterte Eckert gestern .</td>
+<td>&amp;quot; die R@@ a@@ t@@ h@@ a@@ u@@ s@@ a@@ m@@ p@@ e@@ l ist d@@ a@@ m@@ als i@@ n@@ s@@ t@@ a@@ l@@ l@@ i@@ er@@ t worden , w@@ e@@ i@@ l diese den S@@ c@@ h@@ u@@ l@@ w@@ e@@ g s@@ i@@ c@@ h@@ er@@ t &amp;quot; , er@@ l@@ ä@@ u@@ t@@ er@@ te E@@ c@@ k@@ er@@ t ge@@ s@@ t@@ er@@ n .</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>English</th>
+<th>English (BPE)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gutach : increased safety for pedestrians</td>
+<td>G@@ u@@ t@@ a@@ c@@ h : i@@ n@@ c@@ re@@ a@@ s@@ e@@ d s@@ a@@ f@@ e@@ t@@ y for p@@ e@@ d@@ e@@ s@@ t@@ r@@ i@@ a@@ n@@ s</td>
+</tr>
+<tr>
+<td>they are not even 100 metres apart : on Tuesday , the new B 33 pedestrian lights in Dorfparkplatz in Gutach became operational - within view of the existing Town Hall traffic lights .</td>
+<td>they are not even 1@@ 0@@ 0 m@@ e@@ t@@ re@@ s a@@ p@@ a@@ r@@ t : on T@@ u@@ e@@ s@@ d@@ a@@ y , the new B 3@@ 3 p@@ e@@ d@@ e@@ s@@ t@@ r@@ i@@ an l@@ i@@ g@@ h@@ t@@ s in D@@ o@@ r@@ f@@ p@@ a@@ r@@ k@@ p@@ l@@ a@@ t@@ z in G@@ u@@ t@@ a@@ c@@ h b@@ e@@ c@@ a@@ m@@ e o@@ p@@ e@@ r@@ a@@ t@@ i@@ o@@ n@@ a@@ l - w@@ i@@ t@@ h@@ in v@@ i@@ e@@ w of the e@@ x@@ i@@ s@@ t@@ ing T@@ o@@ w@@ n H@@ all t@@ r@@ a@@ f@@ f@@ i@@ c l@@ i@@ g@@ h@@ t@@ s .</td>
+</tr>
+<tr>
+<td>two sets of lights so close to one another : intentional or just a silly error ?</td>
+<td>two s@@ e@@ t@@ s of l@@ i@@ g@@ h@@ t@@ s so c@@ l@@ o@@ s@@ e to one a@@ n@@ other : i@@ n@@ t@@ e@@ n@@ t@@ i@@ o@@ n@@ a@@ l or j@@ u@@ s@@ t a s@@ i@@ l@@ l@@ y e@@ r@@ r@@ o@@ r ?</td>
+</tr>
+<tr>
+<td>yesterday , Gutacht &amp;apos;s Mayor gave a clear answer to this question .</td>
+<td>y@@ e@@ s@@ t@@ e@@ r@@ d@@ a@@ y , G@@ u@@ t@@ a@@ c@@ h@@ t &amp;apos;s M@@ a@@ y@@ or g@@ a@@ v@@ e a c@@ l@@ e@@ a@@ r a@@ n@@ s@@ w@@ e@@ r to this q@@ u@@ e@@ s@@ t@@ i@@ on .</td>
+</tr>
+<tr>
+<td>&amp;quot; at the time , the Town Hall traffic lights were installed because this was a school route , &amp;quot; explained Eckert yesterday .</td>
+<td>&amp;quot; at the time , the T@@ o@@ w@@ n H@@ all t@@ r@@ a@@ f@@ f@@ i@@ c l@@ i@@ g@@ h@@ t@@ s were i@@ n@@ s@@ t@@ a@@ l@@ l@@ e@@ d because this was a s@@ c@@ h@@ o@@ o@@ l r@@ o@@ u@@ t@@ e , &amp;quot; e@@ x@@ p@@ l@@ a@@ i@@ n@@ e@@ d E@@ c@@ k@@ e@@ r@@ t y@@ e@@ s@@ t@@ e@@ r@@ d@@ a@@ y .</td>
+</tr>
+</tbody>
+</table>
+<p>我猜<code>@@</code>指示的是词中间的分词。显然这不是一个正常的学习状况——因为学习的语料太少，词语出现频率不够，很多常见词都被切成字母了。我猜这将导致最后的测试结果不太像人类语言（如果还能跑出测试结果的话……）。不过可以看出，这个BPE还是学到了一些最常用的词汇的，比如德语的sie，am，ist，diese，den，英语的they，are，other，all等。</p>
+<h3>shuffle</h3>
+<p>据说这一步可以提高翻译质量（虽然我目前还不知道为什么）。我之前猜测可能和ensemble有关，不过这一点还需要思考一下。</p>
+<h3>生成NMT使用的词表</h3>
+<p>这一步的工作不需要用到之前生成的BPE操作和词表，而是由THUMT里的脚本直接从训练数据中再生成一次词表。我目前还不知道为什么要这么做——当然，这么做肯定没有问题，而且还有通用性。显然里面添加了一些控制字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;pad&gt;</span><br><span class="line">&lt;eos&gt;</span><br><span class="line">&lt;unk&gt;</span><br><span class="line">e@@</span><br><span class="line">i@@</span><br><span class="line">n@@</span><br><span class="line">s@@</span><br><span class="line">t@@</span><br><span class="line">a@@</span><br><span class="line">h@@</span><br><span class="line">... (Deutsch)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;pad&gt;</span><br><span class="line">&lt;eos&gt;</span><br><span class="line">&lt;unk&gt;</span><br><span class="line">e@@</span><br><span class="line">a@@</span><br><span class="line">i@@</span><br><span class="line">t@@</span><br><span class="line">o@@</span><br><span class="line">r@@</span><br><span class="line">n@@</span><br><span class="line">... (English)</span><br></pre></td></tr></table></figure>
+<h2>训练</h2>
+<p>训练的时候主要有这样的一些参数：</p>
+<ul>
+<li><code>input</code>：经过BPE和shuffle的训练数据（de+en）</li>
+<li><code>vocabulary</code>：通过脚本从经过BPE处理的训练数据中提取的词表（de+en）</li>
+<li><code>model</code>：使用的模型（目前使用的是推荐的<code>transformer</code>）</li>
+<li><code>validation</code>：经过BPE的验证数据（de）</li>
+<li><code>references</code>：经过BPE的验证数据（en）</li>
+<li><code>parameters</code>：其他超参数
+<ul>
+<li><code>batch_size</code>：每个batch训练多少个词</li>
+<li><code>device_list</code>：使用哪些显卡进行训练</li>
+<li><code>train_steps</code>：迭代次数</li>
+<li><code>eval_steps</code>：训练多少步输出一次在验证集上的BLEU值</li>
+<li><code>keep_checkpoint_max</code>：最多保留几个中间checkpoint</li>
+<li><code>keep_top_checkpoint_max</code>：最多保留几个最佳checkpoint</li>
+</ul>
+</li>
+</ul>
+<p>目前我正在我的垃圾小电脑上用<code>batch_size=400, train_steps=2000</code>的参数训练（毕竟现在训练集只有25万个词），已经输出了两个checkpoint，但它似乎卡在计算模型在验证集上的BLEU值这一步上了……好像验证这一步的确是比较慢的，我打算明天再看到底是TensorFlow卡死了，还是单纯太慢了。</p>
+<p>To be continued...</p>
+<p>UPDATE：跑了一晚上，终于验证出一个结果了。程序输出如下图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INFO:tensorflow:BLEU at step 2000: 0.001024</span><br><span class="line">INFO:tensorflow:Copying train/model.ckpt-2000 to train/eval/model.ckpt-2000</span><br><span class="line">INFO:tensorflow:Best score at step 2000: 0.001024</span><br></pre></td></tr></table></figure>
+<p>并在<code>train/eval</code>中保留了这个checkpoint。</p>
+<p>（0.001，这个BLEU值还真是惊人的低呢……虽然训练过程只花了大约两个小时，验证花了可能得有10个小时……）</p>
+<h2>测试</h2>
+<p>下面就可以尝试用训练出的模型对测试集进行翻译了。使用的参数包括：</p>
+<ul>
+<li><code>models</code>：模型</li>
+<li><code>checkpoints</code>：模型checkpoints位置，可以通过输入多个模型的checkpoints位置进行ensemble</li>
+<li><code>input</code>：经过BPE的测试数据（de）</li>
+<li><code>output</code>：翻译结果（en）</li>
+<li><code>vocabulary</code>：通过脚本从经过BPE处理的训练数据中提取的词表（de+en），需要与训练使用的词表保持一致</li>
+<li><code>parameters</code>：其他超参数</li>
+</ul>
+<p>垃圾小电脑大约需要1.5小时才能跑完一个batch，不知道一共有多少个batch……</p>
+<p>To be continued...</p>
+<p>2018.10.8 UPDATE：跑完了，一共94个batch。删除BPE分词之后，得到了这样的东西：</p>
+<table>
+<thead>
+<tr>
+<th>Deutsch</th>
+<th>English</th>
+<th>English (Translated)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Obama empfängt Netanyahu</td>
+<td>Obama receives Netanyahu</td>
+<td><code>&lt;unk&gt; Progen&lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt;</code></td>
+</tr>
+<tr>
+<td>das Verhältnis zwischen Obama und Netanyahu ist nicht gerade freundschaftlich .</td>
+<td>the relationship between Obama and Netanyahu is not exactly friendly .</td>
+<td><code>&lt;unk&gt; &lt;unk&gt; staff&lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt;</code></td>
+</tr>
+<tr>
+<td>die beiden wollten über die Umsetzung der internationalen Vereinbarung sowie über Teherans destabilisierende Maßnahmen im Nahen Osten sprechen .</td>
+<td>the two wanted to talk about the implementation of the international agreement and about Teheran &amp;apos;s destabilising activities in the Middle East .</td>
+<td><code>&lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt;</code></td>
+</tr>
+<tr>
+<td>bei der Begegnung soll es aber auch um den Konflikt mit den Palästinensern und die diskutierte Zwei @-@ Staaten @-@ Lösung gehen .</td>
+<td>the meeting was also planned to cover the conflict with the Palestinians and the disputed two state solution .</td>
+<td><code>&lt;unk&gt; &lt;unk&gt; &lt;unk&gt; st&lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt;</code></td>
+</tr>
+<tr>
+<td>das Verhältnis zwischen Obama und Netanyahu ist seit Jahren gespannt .</td>
+<td>relations between Obama and Netanyahu have been strained for years .</td>
+<td><code>&lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; st&lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>可以看出，这个模型根本什么都没翻译出来。考虑到BPE把词都切成字母了，这一点也可以想象得到。最后可以通过Moses里提供的脚本计算验证集的BLEU值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BLEU = 0.00, 0.0/0.0/0.0/0.0 (BP=1.000, ratio=5.679, hyp_len=372780, ref_len=65647)</span><br></pre></td></tr></table></figure>
+<p>虽然我猜BLEU值应该并没有低到严格为0，但是显然已经被四舍五入为0了。简直低破天际。</p>
+<h3>模型平均和集成</h3>
+<p>THUMT支持model averaging（把训练过程中生成的部分checkpoint进行平均）和model ensemble（对同一模型的不同训练结果进行ensemble）。以后有时间的话我要去读一下ensemble是怎么实现的。不过现在就不用这些功能了……</p>
+<h2>可视化</h2>
+<h3>TensorBoard</h3>
+<p>在训练过程中，<code>train/</code>文件夹下打印出了一个<code>events.out.tfevents</code>文件，可以用TensorBoard进行可视化。</p>
+<p><img src="tensorboard.png" alt="TensorBoard整体示意图（其中只有Graph的内容能看懂）"></p>
+<h4>batch_examples</h4>
+<p><img src="batch_examples.png" alt="batch_examples：处理数据"></p>
+<p>从代码中可知，这个结点在<code>trainer.py</code>中通过调用<code>record.py</code>中的<code>get_input_features</code>函数生成，其中<code>batch_examples</code>函数大概是做了一个将输入数据按长度分块的工作，内部调用了<code>tf.contrib.training.bucket_by_sequence_length</code>函数。</p>
+<h4>embedding</h4>
+<p>Transformer结点中显示在左下角的是embedding结点：</p>
+<p><img src="embedding.png" alt="embedding：将one hot向量embed成稠密向量"></p>
+<p><code>source_embedding</code>和<code>target_embedding</code>分别定义于<code>transformer.py/encoding_graph</code>和<code>transformer.py/decoding_graph</code>中，它们并不是Encoder和Decoder结点的一部分。至于<code>bias</code>……好吧，我目前还不知道这个<code>bias</code>是干什么的。</p>
+<p>（不，我现在意识到了，之前的描述中为了简便起见忽略了所有<code>bias</code>项，但显然这些项还是得有的。）</p>
+<h4>encoder</h4>
+<p><img src="encoder.png" alt="encoder：整个Transformer的encoder"></p>
+<p>图中encoder的输入有两个：一个是<code>dropout</code>（<code>adding_timing_signal -&gt; dropout</code>），一个是<code>attention_bias</code>（<code>SequenceMask -&gt; attention_bias</code>）。我觉得数据应该是通过<code>dropout</code>输入的（因为按照Transformer的论文，数据是加了time signal之后输入到encoder的……），不过我现在只发现数据从<code>batch_examples</code>输入到<code>SequenceMask</code>了。</p>
+<p>以及几乎所有结点都有一个叫<code>create_train_op</code>的输入，这个结点定义在<code>optimize.py</code>里，我猜测它是TensorFlow生成的后向图，用于对参数进行更新。</p>
+<p><img src="encoder_layers.png" alt="encoder内部的6个layer"></p>
+<p>encoder的内部是这样的：6个layer连在一起，这一点倒是很清楚。</p>
+<p><img src="one_encoder_layer.png" alt="encoder中一个layer的结构：attention+前馈网络"></p>
+<p>每一层内部都是<code>self_attention</code>加上<code>feed_forward</code>。</p>
+<p><img src="self_attention.png" alt="attention的内部结构：multi-attention+layer-normalization"></p>
+<p>在<code>self_attention</code>这个部分中，主要就是<code>multihead_attention</code>进行<code>dropout</code>和layer-normalization。</p>
+<p><img src="multi_attention.png" alt="multi-attention的内部结构：split+merge"></p>
+<p>在这个结点中，输入似乎首先被用于计算出q、k、v三个部分，然后再在q、k、v的计算中各自进行多个操作（所以只有3个<code>split_heads</code>结点……？），最后再通过<code>combine_heads</code>合并在一起。</p>
+<h4>decoder</h4>
+<p><img src="decoder.png" alt="decoder"></p>
+<p>decoder的输入包括翻译后的数据（如果有的话）、bias和encoder的输出。</p>
+<p><img src="decoder_layer.png" alt="decoder内部由6层组成"></p>
+<p>decoder内部也由6个layer组成，其中每一个layer的输入除了前一个layer的输入外，还有数据、bias和encoder的输出（大概是这样的）。</p>
+<p><img src="one_decoder_layer.png" alt="decoder的一层：self-attention + encoder-decoder attention + 前馈网络"></p>
+<p>每个layer内部由<code>self_attention</code>、<code>encdec_attention</code>和<code>feed_forward</code>三部分组成，其中接收encoder输出的是<code>encdec_attention</code>。<code>self_attention</code>和<code>encdec_attention</code>的结构与encoder的<code>self_attention</code>结构基本相同，但是在q、k、v的计算上有一些差异。以及<code>feed_forward</code>中含有一个<code>ffn_layer</code>。</p>
+<h4>softmax</h4>
+<p><img src="softmax.png" alt="linear + softmax：输出概率"></p>
+<p>decoder的输出通过<code>softmax</code>层得到概率。（大概是这样的）</p>
+<h3>Relevance</h3>
+<p>UserManual中提供了计算每个源句和翻译出来的目标句之间的relevance矩阵的工具。不过鉴于我这个结果的翻译质量，就先不去尝试了……</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://stackoverflow.com/questions/19609041/how-can-i-remove-unused-packages-from-virtualenv" target="_blank" rel="noopener">StackOverflow - How can I remove unused packages from virtualenv?</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://stackoverflow.com/questions/4757178/how-do-you-set-your-pythonpath-in-an-already-created-virtualenv" target="_blank" rel="noopener">StackOverflow - How do you set your pythonpath in an already-created virtualenv?</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a href="http://www.statmt.org/moses/?n=FactoredTraining.PrepareTraining" target="_blank" rel="noopener">Moses - Preparing Training Data</a> <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><a href="http://www.statmt.org/moses/?n=Moses.SupportTools#ntoc11" target="_blank" rel="noopener">Moses - Truecaser</a> <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p><a href="https://plmsmile.github.io/2017/10/19/subword-units/#Byte-Pair-Encoding" target="_blank" rel="noopener">PLM's blog - subword-units</a> <a href="#fnref5" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Natural-Language-Processing/"><i class="fas fa-hashtag fa-fw"></i>Natural Language Processing</a>
+        
+          <a href="/tags/Machine-Translation/"><i class="fas fa-hashtag fa-fw"></i>Machine Translation</a>
+        
+          <a href="/tags/THUMT/"><i class="fas fa-hashtag fa-fw"></i>THUMT</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-84-largest-rectangle-in-histogram/">
+              
+                  Leetcode 84. Largest Rectangle in Histogram（栈）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-06
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/largest-rectangle-in-histogram/description/" target="_blank" rel="noopener">https://leetcode.com/problems/largest-rectangle-in-histogram/description/</a></p>
+<p>标记难度：Hard</p>
+<p>提交次数：1/3</p>
+<p>代码效率：</p>
+<ul>
+<li>O(N^2)递推：超时</li>
+<li>单栈：98.96%</li>
+</ul>
+<h2>题意</h2>
+<p>给定一个直方图的高度（或者说给定一排宽度都为1的矩形柱子的高度），找出图中包含的面积最大的矩形。</p>
+<h2>分析</h2>
+<p>显然可以有这样的直觉：所能找到的面积最大的矩形必定与某个矩形柱子的高度是相等的，否则它的高度必然小于它覆盖的所有柱子，因此高度还可以再升高，直到到达某个柱子的高度为止。因此问题可以转化为，对于每个柱子，它左边和右边各有多少个连续的柱子的高度不小于它？不妨记这两个值为<code>left[i]</code>和<code>right[i]</code>，则以第<code>i</code>个柱子为最大高度的矩形的面积就是<code>(left[i] + right[i] + 1) * heights[i]</code>。</p>
+<p>我的第一个解法是错误的：试图直接通过前一个柱子的<code>left[i-1]</code>推导出下一个柱子的<code>left[i]</code>。显然这两者并不存在一个直接的推导关系，所以我WA了。</p>
+<p>于是我立刻想出了第二种解法——用<code>O(N^2)</code>的复杂度直接计算<code>left</code>和<code>right</code>数组。题目里没给<code>N</code>的范围，不过我还是TLE了。</p>
+<p>这时候我才想起来，我已经见过三道类似的题目了，它们分别是：</p>
+<ul>
+<li><a href="/post/leetcode-901-online-stock-span/">Leetcode 901</a></li>
+<li><a href="/post/leetcode-739-daily-temperatures/">Leetcode 739</a></li>
+<li><a href="/post/leetcode-907-sum-of-subarray-minimums/">Leetcode 907</a></li>
+</ul>
+<p>它们所需要完成的任务是相似的：给定一个数组，为其中的每个数求出它左边/右边/both的第一个比它大/小的数的位置。这种算法我已经详细分析过了，所以现在不妨来比较一下这几道题的区别，特别是有重复数字时的边界问题的处理。下面用<code>A</code>表示数组：</p>
+<ul>
+<li><a href="/post/leetcode-901-online-stock-span/">Leetcode 901</a>：求左侧第一个<code>&gt; A[i]</code>的值。</li>
+<li><a href="/post/leetcode-739-daily-temperatures/">Leetcode 739</a>：求右侧第一个<code>&gt; A[i]</code>的值。</li>
+<li><a href="/post/leetcode-907-sum-of-subarray-minimums/">Leetcode 907</a>：在问题的转换过程中需要自行确定边界：
+<ul>
+<li>计算“以<code>A[i]</code>为最小值的子序列的数量”之前，就需要考虑一个子序列中有多个最小值的情况怎么办。显然一个子序列只能被作为其中一个最小值所对应的子序列计算一次。所以问题是应该选择哪一个最小值作为“最小值”。显然比较方便的办法是取最左边或最右边的最小值。</li>
+<li>如果取的是最左边的最小值，则对于每个值，需要求的是左侧第一个<code>&lt;= A[i]</code>的值，和右侧第一个<code>&lt; A[i]</code>的值；</li>
+<li>反之，则需要求左侧第一个<code>&lt; A[i]</code>的值，和右侧第一个<code>&lt;= A[i]</code>的值。</li>
+</ul>
+</li>
+<li><a href="/post/leetcode-84-largest-rectangle-in-histogram">Leetcode 84</a>：求左侧第一个<code>&lt; A[i]</code>的值，和右侧第一个<code>&lt; A[i]</code>的值。</li>
+</ul>
+<p>在<a href="/post/leetcode-907-sum-of-subarray-minimums/">Leetcode 907</a>的分析中已经提到，有两种做法，一种是用两次迭代分别求左侧和右侧的值；另一种是直接用一次迭代。这种方法很聪明，但面临着一个问题：它无法实现左右两侧都严格不等或都不严格不等的情况。考虑用这一算法实现的<a href="/post/leetcode-907-sum-of-subarray-minimums/">907题</a>，假如在栈中，<code>A[i]</code>将要被<code>A[j]</code>弹出了：</p>
+<ul>
+<li>如果条件是<code>A[i] &gt;= A[j]</code>，则对于<code>A[j]</code>，它将找到左侧第一个<code>&lt; A[j]</code>的值，但对于<code>A[i]</code>，它找到的是右侧第一个<code>&lt;= A[i]</code>的值</li>
+<li>如果条件是<code>A[i] &gt; A[j]</code>，则<code>A[j]</code>找到的是左侧第一个<code>&lt;= A[j]</code>的值，但<code>A[i]</code>找到的是右侧第一个<code>&lt; A[i]</code>的值</li>
+</ul>
+<p>我想这是算法本身的限制。（也许可以改进，但我现在不太想思考了）所以严格来说，单栈算法对本题之前的模型是不太合适的。</p>
+<p>但是我还是用了单栈的算法，因为可以把模型改一下。假如最大的矩形碰到了至少两个柱子的边界，说明对于这些柱子，它们都能计算得到对应的矩形面积（按照之前的算法）。那么只要保证其中至少一根柱子在计算的时候得到正确结果即可（其他的可以不管）。于是问题就转化成类似于<a href="/post/leetcode-907-sum-of-subarray-minimums/">907题</a>的情况了。</p>
+<h2>代码</h2>
+<h3>O(N^2)递推</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; heights)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = heights.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> heights[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sorted(heights);</span><br><span class="line">        sort(sorted.begin(), sorted.end());</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> f[n];</span><br><span class="line">        <span class="built_in">memset</span>(f, <span class="number">0</span>, <span class="keyword">sizeof</span>(f));</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// for each rectangle</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (sorted[j] &gt; heights[i])</span><br><span class="line">                    f[j] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    f[j]++;</span><br><span class="line">                    ans = max(ans, f[j] * sorted[j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>单栈</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; heights)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = heights.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> heights[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="built_in">stack</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; s; <span class="comment">// height, pos</span></span><br><span class="line">        <span class="comment">// Note: the left and right arrays are defined slightly differently</span></span><br><span class="line">        <span class="comment">// - They denote positions, not length (not a big deal though)</span></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> left[n], right[n], ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!s.empty() &amp;&amp; s.top().first &gt; heights[i]) &#123;</span><br><span class="line">                right[s.top().second] = i;</span><br><span class="line">                s.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (s.empty()) left[i] = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">else</span> left[i] = s.top().second;</span><br><span class="line"></span><br><span class="line">            s.emplace(heights[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            right[s.top().second] = n;</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            ans = max(ans, (right[i] - left[i] - <span class="number">1</span>) * heights[i]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/alg-Monotonic-Stack/"><i class="fas fa-hashtag fa-fw"></i>alg:Monotonic Stack</a>
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Stack/"><i class="fas fa-hashtag fa-fw"></i>alg:Stack</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/usaco-1-4-2-barn-repair/">
+              
+                  USACO 1.4.2: Barn Repair（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-06
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2>题意</h2>
+<p>见<a href="https://www.luogu.org/problemnew/show/P1209" target="_blank" rel="noopener">洛谷 P1209</a>。</p>
+<h2>分析</h2>
+<p>这道题就是<a href="/post/greedy-algorithm-usaco-translation">上回的文章</a>里的例题，所以具体的算法内容和正确性就不再讲了。总之我是这样实现的：</p>
+<ul>
+<li>统计所有空隙（同时排除两侧的空牛棚，因为它们显然不需要覆盖）</li>
+<li>排序</li>
+<li>根据木板的数量，从牛棚总数中依次减去最大的空隙</li>
+</ul>
+<p>其中我没有注意到这一点：木板的数量可能会超过所有连续牛棚的数量，结果数组越界了，WA了一次。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ID: zhanghu15</span></span><br><span class="line"><span class="comment">TASK: barn1</span></span><br><span class="line"><span class="comment">LANG: C++14</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> occupied[<span class="number">205</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">ofstream <span class="title">fout</span><span class="params">(<span class="string">"barn1.out"</span>)</span></span>;</span><br><span class="line">    <span class="function">ifstream <span class="title">fin</span><span class="params">(<span class="string">"barn1.in"</span>)</span></span>;</span><br><span class="line">    <span class="keyword">int</span> M, S, C;</span><br><span class="line">    fin &gt;&gt; M &gt;&gt; S &gt;&gt; C;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; C; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        fin &gt;&gt; x;</span><br><span class="line">        occupied[x] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = S;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; gaps;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= S; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (start == <span class="number">-1</span> &amp;&amp; !occupied[i]) start = i;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (start != <span class="number">-1</span> &amp;&amp; occupied[i]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (start == <span class="number">1</span>) ans -= i - start;</span><br><span class="line">            <span class="keyword">else</span> gaps.push_back(i - start);</span><br><span class="line">            start = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (start != <span class="number">-1</span>) ans -= S + <span class="number">1</span> - start;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// do the greedy (note that gaps can be exhausted...)</span></span><br><span class="line">    sort(gaps.begin(), gaps.end());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M - <span class="number">1</span> &amp;&amp; i &lt; gaps.size(); i++)</span><br><span class="line">        ans -= gaps[gaps.size() - i - <span class="number">1</span>];</span><br><span class="line">    fout &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/USACO/"><i class="fas fa-hashtag fa-fw"></i>USACO</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/learn-thumt-1/">
+              
+                  学习THUMT（1）：UserManual和代码结构
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>代码：<a href="https://github.com/thumt/THUMT" target="_blank" rel="noopener">THUMT</a></p>
+<h2>目录结构</h2>
+<p>目前<code>thumt/</code>文件夹下的目录结构是这样的：</p>
+<ul>
+<li><code>bin/</code>
+<ul>
+<li><code>get_relevance.py</code>：输入训练好的模型checkpoints、模型在测试数据上的输入和输出、词表，输出测试数据中每个句子及其翻译之间的关联矩阵。（似乎只对Transformer和RNNsearch模型有效）。</li>
+<li><code>scorer.py</code>：暂时不知道是做什么的。</li>
+<li><code>trainer.py</code>：用于训练模型，输入训练数据、词表、验证数据、参数，输出训练模型的checkpoints和在验证集上的得分。</li>
+<li><code>translator.py</code>：用训练好的模型对测试数据进行翻译，输入模型checkpoints、测试数据、词表，输出翻译结果。</li>
+</ul>
+</li>
+<li><code>data/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>cache.py</code>：从字义上看好像是存储feature用的，实际上看不懂。</li>
+<li><code>dataset.py</code>：输入训练和验证数据文件，将数据分成batch。</li>
+<li><code>record.py</code>：看起来和<code>dataset.py</code>有点像，仍然不知道是干什么的。</li>
+<li><code>vocab.py</code>：加载和处理词表。</li>
+</ul>
+</li>
+<li><code>interface/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>model.py</code>：表示NMT模型的抽象类<code>NMTModel</code>。</li>
+</ul>
+</li>
+<li><code>layers/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>attention.py</code>：Attention机制的实现。</li>
+<li><code>nn.py</code>：一些神经网络层的实现，包括<code>linear</code>和<code>maxout</code>。</li>
+<li><code>rnn_cell.py</code>：GRU的实现，以及一些wrapper。</li>
+</ul>
+</li>
+<li><code>models/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>rnnsearch.py</code>：RNNsearch模型的实现。</li>
+<li><code>rnnsearch_lrp.py</code>：<a href="http://www.aclweb.org/anthology/P17-1106" target="_blank" rel="noopener">LRP</a>和RNNsearch模型的实现。</li>
+<li><code>seq2seq.py</code>：Seq2Seq模型的实现。</li>
+<li><code>transformer.py</code>：Transformer模型的实现。</li>
+<li><code>transformer_lrq.py</code>：LRP和Transformer模型的实现。</li>
+</ul>
+</li>
+<li><code>scripts/</code>
+<ul>
+<li><code>build_vocab.py</code>：通过输入的测试数据创建词表。</li>
+<li><code>checkpoint_averaging.py</code>：输入模型checkpoints，输出平均结果。</li>
+<li><code>convert_old_model.py</code>：看起来好像是用于把旧实现生成的模型转换成新模型的。</li>
+<li><code>convert_vocab.py</code>：不知道是干什么的。</li>
+<li><code>input_converter.py</code>：把输入转换成<code>tf.Record</code>格式。不知道有什么用。</li>
+<li><code>shuffle_corpus.py</code>：随机打乱训练数据。</li>
+<li><code>visualize.py</code>：对Transformer或RNNsearch输出的关联矩阵进行可视化。</li>
+</ul>
+</li>
+<li><code>utils/</code>
+<ul>
+<li><code>__init__.py</code>：这是一个模块。</li>
+<li><code>bleu.py</code>：BLEU值的计算。</li>
+<li><code>common.py</code>：看起来好像是一些用于推导形状的函数。</li>
+<li><code>hooks.py</code>：用于保存模型checkpoint。</li>
+<li><code>inference.py</code>：实现了Beam Search和不知道是什么的Inference。</li>
+<li><code>lrp_utils.py</code>：看名字可能和LRP有关，实际上好像有很多模型的实现，并不知道是干什么的。</li>
+<li><code>optimize.py</code>：不知道是干什么的。</li>
+<li><code>parallel.py</code>：看起来好像是用于多GPU训练的。</li>
+<li><code>sampling.py</code>：？</li>
+<li><code>weight_ratio.py</code>：？</li>
+</ul>
+</li>
+<li><code>__init__.py</code>：这是一个模块。</li>
+</ul>
+<h2>训练过程</h2>
+<p>一般来说训练过程可以分成以下几个阶段：</p>
+<ul>
+<li>准备数据
+<ul>
+<li>训练集、验证集、测试集语料</li>
+<li>用训练集生成BPE操作和词典（大概？）</li>
+<li>用上述BPE操作和词典对训练集、验证集和测试集的源语言部分分别进行处理</li>
+<li>将训练集随机排序（<code>shuffle_corpus.py</code>）</li>
+<li>通过训练集生成词表（<code>build_vocab.py</code>）</li>
+</ul>
+</li>
+<li>训练：输入训练集、验证集和词表，输出模型checkpoints、在验证集上得分最高的模型，以及模型在训练过程中在验证集上的评测结果</li>
+<li>测试：
+<ul>
+<li>输入测试集、词表和模型checkpoints，输出翻译结果（<code>translator.py</code>），经过一定处理后可以得到BLEU分值</li>
+<li>可以进行model averaging（<code>checkpoint_averaging.py</code>）</li>
+<li>可以进行model ensemble（<code>translator.py</code>）</li>
+</ul>
+</li>
+<li>可视化：输入测试集、词表、模型checkpoints，输出模型在每个翻译句对上的关联矩阵（<code>get_relevance.py</code>，<code>visualize.py</code>）</li>
+</ul>
+<hr>
+<p>明天我打算用比较少的数据在自己的电脑上试验一下。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Natural-Language-Processing/"><i class="fas fa-hashtag fa-fw"></i>Natural Language Processing</a>
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/THUMT/"><i class="fas fa-hashtag fa-fw"></i>THUMT</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/usaco-1-4-1-mixing-milk/">
+              
+                  USACO 1.4.1: Mixing Milk（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2>题意</h2>
+<p>见<a href="https://www.luogu.org/problemnew/show/P1208" target="_blank" rel="noopener">洛谷 P1208</a>。</p>
+<h2>分析</h2>
+<p>典型的贪心问题，可以通过对最优解的exchange方法简单地证明，必然是按顺序选择价格从低到高的牛奶是最好的，否则总能找出更优的解。</p>
+<p>这道题的Analysis中有很多人的讨论。因为题目对牛奶的价格做了限制（1000），所以可以利用这个来做一些优化。最开始好像有人打算用计数排序来进行优化，然后还写了个链表。很快就有人指出链表根本没有意义，因为价格相同的牛奶完全可以看做是一样的，直接存进一个大小为1000的数组中就行。总之这些优化还是挺有意思的。</p>
+<h2>代码</h2>
+<h3>普通排序</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ID: zhanghu15</span></span><br><span class="line"><span class="comment">TASK: milk</span></span><br><span class="line"><span class="comment">LANG: C++14</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">ofstream <span class="title">fout</span><span class="params">(<span class="string">"milk.out"</span>)</span></span>;</span><br><span class="line">    <span class="function">ifstream <span class="title">fin</span><span class="params">(<span class="string">"milk.in"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> N, M;</span><br><span class="line">    fin &gt;&gt; N &gt;&gt; M;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>&gt;&gt; milks;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> P, A;</span><br><span class="line">        fin &gt;&gt; P &gt;&gt; A;</span><br><span class="line">        milks.emplace_back(P, A);</span><br><span class="line">    &#125;</span><br><span class="line">    sort(milks.begin(), milks.end());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; milks.size(); i++) &#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> c = min(N, milks[i].second);</span><br><span class="line">        ans += c * milks[i].first;</span><br><span class="line">        N -= c;</span><br><span class="line">        <span class="keyword">if</span> (N &lt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fout &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3>计数排序</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ID: zhanghu15</span></span><br><span class="line"><span class="comment">TASK: milk</span></span><br><span class="line"><span class="comment">LANG: C++14</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> milkPrice[<span class="number">1005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">ofstream <span class="title">fout</span><span class="params">(<span class="string">"milk.out"</span>)</span></span>;</span><br><span class="line">    <span class="function">ifstream <span class="title">fin</span><span class="params">(<span class="string">"milk.in"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> N, M;</span><br><span class="line">    fin &gt;&gt; N &gt;&gt; M;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> P, A;</span><br><span class="line">        fin &gt;&gt; P &gt;&gt; A;</span><br><span class="line">        milkPrice[P] += A;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 用计数排序来代替快排</span></span><br><span class="line">    <span class="comment">// 2. 合并所有价格相同的牛奶</span></span><br><span class="line">    <span class="comment">// 3. 直接进行遍历</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (N &gt;= milkPrice[i]) &#123;</span><br><span class="line">            ans += milkPrice[i] * i;</span><br><span class="line">            N -= milkPrice[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ans += N * i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fout &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/USACO/"><i class="fas fa-hashtag fa-fw"></i>USACO</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/greedy-algorithm-usaco-translation/">
+              
+                  翻译：贪心算法（USACO）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>之前我在USACO上的做题计划卡住了，主要是因为我想仔细阅读一下这篇文章，因为我觉得写得很好——结果因为各种原因卡了一个多月。</p>
+<p>总之下面的翻译主要来自<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>，进行了一些小修改。</p>
+<hr>
+<!--Sample Problem: Barn Repair [1999 USACO Spring Open]-->
+<h2>例题: 栅栏修理（1999 USACO Spring Open）</h2>
+<!--There is a long list of stalls, some of which need to be covered with boards. You can use up to N (1 <= N <= 50) boards, each of which may cover any number of consecutive stalls. Cover all the necessary stalls, while covering as few total stalls as possible.-->
+<blockquote>
+<p>农场里有一排牛棚，其中的一些牛棚需要用木板遮盖起来。你最多可以使用<code>N</code>（<code>1&lt;=N&lt;=50</code>）块木板，其中每一块都可以遮盖任何数数量的连续的牛棚。请遮盖所有需要被遮盖的牛棚，而且使总的遮盖的牛棚的数量尽可能的少。</p>
+</blockquote>
+<!--The Idea-->
+<h2>思路</h2>
+<!--The basic idea behind greedy algorithms is to build large solutions up from smaller ones. Unlike other approaches, however, greedy algorithms keep only the best solution they find as they go along. Thus, for the sample problem, to build the answer for N = 5, they find the best solution for N = 4, and then alter it to get a solution for N = 5. No other solution for N = 4 is ever considered.-->
+<blockquote>
+<p>贪心法的基本思想是用局部解构造全局解。和其它方法不同的是，贪心法在求解过程中只保留所找到的最优解。以上面这道题为例，为了构造<code>N=5</code>时的最优解，贪心法需要先找到<code>N=4</code>时的最优解，然后在此基础上进行修改，以得到<code>N=5</code>时的解。<code>N=4</code>时的所有其他解都不予考虑。</p>
+</blockquote>
+<p>很显然，很多其他方法的基本思想都是用局部解构造全局解（大概包括回溯法和动态规划法，以及我现在都想不起来的很多很多算法，毕竟很难凭空造一个解出来）。只保留最优解就是贪心法速度快的原因（因为需要的解空间少）。以及在实际中（也就是不一定需要一个“正确”算法的时候），贪心法实际上不一定只会保留“the best solution”，而可能是若干个“best solutions”。昨天刚读的<a href="https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf" target="_blank" rel="noopener">seq2seq</a>里用到的<a href="https://en.wikipedia.org/wiki/Beam_search" target="_blank" rel="noopener">Beam Search</a>就是一个很好的例子。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p>不过我感觉在竞赛算法中一般用不到这个策略……</p>
+<!--Greedy algorithms are fast, generally linear to quadratic and require little extra memory. Unfortunately, they usually aren't correct. But when they do work, they are often easy to implement and fast enough to execute.-->
+<blockquote>
+<p>贪心法的特点是速度快，时间复杂度通常在<code>O(N)</code>和<code>O(N^2)</code>之间，不需要太多额外的内存。不幸的是，它们通常是不正确的。不过在贪心法确实正确的时候，它们通常很容易实现，且执行速度很快。</p>
+</blockquote>
+<!--Problems-->
+<h2>基本问题</h2>
+<!--There are two basic problems to greedy algorithms.-->
+<blockquote>
+<p>贪心法通常将面临两个基本问题。</p>
+</blockquote>
+<!--How to Build-->
+<h3>如何构造？</h3>
+<!--How does one create larger solutions from smaller ones? In general, this is a function of the problem. For the sample problem, the most obvious way to go from four boards to five boards is to pick a board and remove a section, thus creating two boards from one. You should choose to remove the largest section from any board which covers only stalls which don't need covering (so as to minimize the total number of stalls covered).-->
+<blockquote>
+<p>怎样通过小规模的解构造更大规模的解呢？一般来说，这与问题本身有关。对于这道例题来说，通过4块板的解构造5块板的解的最显然的方法就是，选出一块木板，从中间去掉一段，这样就把一块木板变成了两块木板。你应该选择去掉所有木板中只包含不需要被遮盖的牛棚的最长的一段（这样就可以使得被遮盖的牛棚总数最少）。</p>
+</blockquote>
+<!--To remove a section of covered stalls, take the board which spans those stalls, and make into two boards: one of which covers the stalls before the section, one of which covers the stalls after the section.-->
+<blockquote>
+<p>将一段被遮盖的牛棚上遮盖的木板去除的方法是，把遮盖了这些牛棚的那块木板分成两块木板：一块遮盖了这一段之前的牛棚，另一块遮盖了这一段之后的牛棚。</p>
+</blockquote>
+<!--Does it work?-->
+<h3>是否正确？</h3>
+<!--The real challenge for the programmer lies in the fact that greedy solutions don't always work. Even if they seem to work for the sample input, random input, and all the cases you can think of, if there's a case where it won't work, at least one (if not more!) of the judges' test cases will be of that form.-->
+<blockquote>
+<p>对编程者而言，最大的挑战来自这一事实：贪心法得到的解并不总是正确的。即使它们看起来好像在样例输入、随机输入，以及你能想到的任何情形下都是正确的，只要存在一种使贪心法发生错误的输入，评测样例中必然会包含至少一种（如果不是更多）该类型的输入。</p>
+</blockquote>
+<p>（出题人的小心机……）</p>
+<!--For the sample problem, to see that the greedy algorithm described above works, consider the following:-->
+<blockquote>
+<p>对于之前的例题，下面的内容证明了之前描述的贪心算法的正确性：</p>
+</blockquote>
+<!--Assume that the answer doesn't contain the large gap which the algorithm removed, but does contain a gap which is smaller. By combining the two boards at the end of the smaller gap and splitting the board across the larger gap, an answer is obtained which uses as many boards as the original solution but which covers fewer stalls. This new answer is better, so therefore the assumption is wrong and we should always choose to remove the largest gap.-->
+<blockquote>
+<p>假设正确的解中里没有包含贪心算法移除的最长的一段木板留下的缺口，却包含了另外一段较小的缺口。通过把位于较小缺口两端的两块木板合并，并将跨越较长缺口的那块板分开，就可以得到一个与原解使用的木板数量相同，但覆盖的牛棚数量更少的新解。这个新的解更好，所以这个假设是错误的，我们总是应该选择移除最长的可以移除的一段木板。</p>
+</blockquote>
+<!--If the answer doesn't contain this particular gap but does contain another gap which is just as large, doing the same transformation yields an answer which uses as many boards and covers as many stalls as the other answer. This new answer is just as good as the original solution but no better, so we may choose either.-->
+<blockquote>
+<p>如果正解中不包含这一个缺口，却包含另一个大小相同的缺口，使用同样的方法，可以得到一个与原解使用的木板数量相同，且覆盖的牛棚数量相同的解。新解与原解一样好，我们可以任选其一。</p>
+</blockquote>
+<!--Thus, there exists an optimal answer which contains the large gap, so at each step, there is always an optimal answer which is a superset of the current state. Thus, the final answer is optimal.-->
+<blockquote>
+<p>因此存在一个包含最大缺口的最优解，所以在每一步，总存在一个包含当前状态的最优解。因此，得到的解是最优的。</p>
+</blockquote>
+<p>这是我比较喜欢的一个贪心法正确性证明的例子（虽然这里写得不是很严格）。这很显然是两种贪心法证明（exchange和stay ahead）中的exchange，其主要步骤为<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>：</p>
+<ul>
+<li>用符号分别对贪心算法得到的解和最优解进行表示</li>
+<li>将贪心解和最优解进行比较（假设两者不等），则可能
+<ul>
+<li>两者含有不同的元素（如上述证明中的不同的缺口）</li>
+<li>两者元素顺序不同</li>
+</ul>
+</li>
+<li>对最优解中的元素进行修改，使得最优解更接近于贪心解，同时不比之前更差。继续进行修改，直到最优解与贪心解相同，这就证明了贪心解即最优解</li>
+</ul>
+<!--Conclusions-->
+<h2>总结</h2>
+<!--If a greedy solution exists, use it. They are easy to code, easy to debug, run quickly, and use little memory, basically defining a good algorithm in contest terms. The only missing element from that list is correctness. If the greedy algorithm finds the correct answer, go for it, but don't get suckered into thinking the greedy solution will work for all problems.-->
+<blockquote>
+<p>假如贪心法存在，可以用它。贪心法容易编写，调试方便，运行速度快，使用的内存少，这使得它在竞赛中不失为一个优秀算法。这里唯一没有提到的问题是它的正确性。如果贪心法能找到正确答案，就用它吧，但不要把时间浪费在试图把贪心算法应用于任何问题上。</p>
+</blockquote>
+<p>（不过大部分情况下正确性是死结吧！）</p>
+<!--Sample Problems-->
+<h2>其他例题</h2>
+<!--Sorting a three-valued sequence [IOI 1996]-->
+<h3>对三值序列排序（IOI 1996）</h3>
+<!--You are given a three-valued (1, 2, or 3) sequence of length up to 1000. Find a minimum set of exchanges to put the sequence in sorted order.-->
+<blockquote>
+<p>给定一个长度最大为1000的三值序列（只包含1、2和3），找出总数最小的能将该序列排序的交换操作的集合。</p>
+</blockquote>
+<h4>算法</h4>
+<!--The sequence has three parts: the part which will be 1 when in sorted order, 2 when in sorted order, and 3 when in sorted order. The greedy algorithm swaps as many as possible of the 1's in the 2 part with 2's in the 1 part, as many as possible 1's in the 3 part with 3's in the 1 part, and 2's in the 3 part with 3's in the 2 part. Once none of these types remains, the remaining elements out of place need to be rotated one way or the other in sets of 3. You can optimally sort these by swapping all the 1's into place and then all the 2's into place.-->
+<blockquote>
+<p>序列由三个区域组成：第一个区域在排序后都是1，第二个区域在排序后都是2，第三个区域都是3。贪心算法尽量把位于区域二中的1和位于区域一中的2交换，把位于区域三中的1和位于区域一中的3交换，把位于区域三中的2和区域二中的3交换。将这些类型交换完后，剩余的不在正确区域的元素需要在某种意义上进行旋转。你可以通过首先把所有1交换到区域一中，再把所有2交换到区域二中完成最优排序。</p>
+</blockquote>
+<p>事实上“旋转”的意思类似于置换，就像下面的证明中说的那样，三个数需要两次交换才能回到正确位置。</p>
+<h4>分析</h4>
+<!--Obviously, a swap can put at most two elements in place, so all the swaps of the first type are optimal. Also, it is clear that they use different types of elements, so there is no ``interference'' between those types. This means the order does not matter. Once those swaps have been performed, the best you can do is two swaps for every three elements not in the correct location, which is what the second part will achieve (for example, all the 1's are put in place but no others; then all that remains are 2's in the 3's place and vice-versa, and which can be swapped).-->
+<blockquote>
+<p>显然，一次交换最多能将两个元素复位，所以所有的第一类交换操作都是最优的。而且，很显然不同的第一类操作交换的元素类型都是不同的，所以不同类型的操作之间没有“相互干渉”。这意味着交换的顺序对结果没有影响。完成所有第一类交换操作之后，最优的交换方法就是将不在正确位置的三个元素通过两次交换复位，这就是第二类交换操作将完成的（比如，所有的1都归位了，所有的2都在区域三，反之亦然，这可以进行交换）。</p>
+</blockquote>
+<p>这似乎只是一个分析，而不是证明。（以及我没看懂他那个比如……）但是我还真的不知道该怎么证……目前的一个初步的想法是，假设一个最优的交换操作序列，证明它的一些比较好的性质（比如把一个元素归位之后就不会再动它了之类的），然后也用exchange的方法去做。</p>
+<p>我刚才脑子一晕，还以为操作的总数应该等于逆序对的数量（不，那是冒泡排序）。实际上好像可以严格证明排序到底最少需要多少次swap操作。<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>所以可能不宜把这个题当做是一道贪心来证明。但是因为有重复元素，所以比较困难。</p>
+<!--Friendly Coins - A Counterexample [abridged]-->
+<h3>友好的硬币——一个反例（有删节）</h3>
+<!--Given the denominations of coins for a newly founded country, the Dairy Republic, and some monetary amount, find the smallest set of coins that sums to that amount. The Dairy Republic is guaranteed to have a 1 cent coin.-->
+<blockquote>
+<p>给定一个新建立的国家（乳品共和国）的硬币面值和一些钱数，找出最小的和等于钱数的硬币集合。保证乳品共和国有1分硬币。</p>
+</blockquote>
+<h4>算法</h4>
+<!--Take the largest coin value that isn't more than the goal and iterate on the total minus this value.-->
+<blockquote>
+<p>找出最大的不大于目标值的硬币，将目标钱数减去该硬币，然后继续直到完成。</p>
+</blockquote>
+<h4>（错误的）分析</h4>
+<!--(Faulty) Analysis: Obviously, you'd never want to take a smaller coin value, as that would mean you'd have to take more coins to make up the difference, so this algorithm works.-->
+<blockquote>
+<p>显然你绝不会想要拿一个面值更小的硬币，因为这意味着你需要拿更多的硬币以补上缺的部分，所以这个算法是正确的。</p>
+</blockquote>
+<h4>（大概没错的）分析</h4>
+<!--Maybe not: Okay, the algorithm usually works. In fact, for the U.S. coin system {1, 5, 10, 25}, it always yields the optimal set. However, for other sets, like {1, 5, 8, 10} and a goal of 13, this greedy algorithm would take one 10, and then three 1's, for a total of four coins, when the two coin solution {5, 8} also exists.-->
+<blockquote>
+<p>好吧，这个算法通常是正确的。事实上，对于美国硬币系统（1、5、10、25），这一算法总会输出最优解。但是，对于其他系统，如1、5、8、10和目标值13，贪心算法会拿一个10和三个1，总共为4个硬币；而实际上最优解是拿8和5。</p>
+</blockquote>
+<p>这说明贪心算法还是很可能不对的。这个问题的正解大概是回溯法。</p>
+<!--Topological Sort-->
+<h3>拓扑排序</h3>
+<!--Given a collection of objects, along with some ordering constraints, such as "A must be before B," find an order of the objects such that all the ordering constraints hold.-->
+<blockquote>
+<p>给定一系列对象，以及一些顺序约束，如“A必须在B前面”，找出一个对象的顺序，满足全部约束。</p>
+</blockquote>
+<h4>算法</h4>
+<!--Algorithm: Create a directed graph over the objects, where there is an arc from A to B if "A must be before B." Make a pass through the objects in arbitrary order. Each time you find an object with in-degree of 0, greedily place it on the end of the current ordering, delete all of its out-arcs, and recurse on its (former) children, performing the same check. If this algorithm gets through all the objects without putting every object in the ordering, there is no ordering which satisfies the constraints.-->
+<blockquote>
+<p>以对象为结点创建一个有向图，如果“A必须在B前面”，就从A到B创建一条边。以随机顺序遍历所有对象。每次你发现一个入度为0的的对象，就贪心地把它放在当前顺序序列的末尾，删除所有它的出边，然后对它（之前）的孩子结点执行相同的检查。如果算法遍历了所有对象，却没能把每个对象都放入顺序序列中，说明没有顺序能满足所有约束。</p>
+</blockquote>
+<p>好吧，拓扑排序也是一种贪心算法。这个要证明起来还是比较容易的（而且，对于拓扑排序存在的情况，实际上没有“最优解”可言，都是可行解）：每找到一个入度为0的结点，说明它要么没有约束，要么所有约束都已经位于序列前面了，所以可以直接把它加入序列。这大概是一种类似于stay ahead<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>的方法。问题是怎么证明拓扑排序找不到序列的时候，拓扑序是不存在的。大概可以应用反证法。如果存在一个拓扑序列，则在每一步必然可以找到序列中的下一个结点，不可能找不到。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://blog.csdn.net/jiajie999/article/details/1515167" target="_blank" rel="noopener">贪心算法简介</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://www.zhihu.com/question/54356960" target="_blank" rel="noopener">谁能解释下seq2seq中的beam search算法过程? - 知乎</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a href="http://www.cs.cornell.edu/courses/cs482/2003su/handouts/greedy_exchange.pdf" target="_blank" rel="noopener">Greedy Exchange</a> <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><a href="https://www.geeksforgeeks.org/minimum-number-swaps-required-sort-array/" target="_blank" rel="noopener">Minimum number of swaps required to sort an array</a> <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p><a href="http://www.cs.cornell.edu/courses/cs482/2003su/handouts/greedy_ahead.pdf" target="_blank" rel="noopener">Stays Ahead</a> <a href="#fnref5" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Translation/"><i class="fas fa-hashtag fa-fw"></i>Translation</a>
+        
+          <a href="/tags/USACO/"><i class="fas fa-hashtag fa-fw"></i>USACO</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-187-repeated-dna-qequences/">
+              
+                  Leetcode 187. Repeated DNA Sequences（Hash）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-04
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/repeated-dna-sequences/description/" target="_blank" rel="noopener">https://leetcode.com/problems/repeated-dna-sequences/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/3</p>
+<p>代码效率：</p>
+<ul>
+<li>普通的map：84.31%</li>
+<li>bitset+Rolling hash：99.74%</li>
+</ul>
+<h2>题意</h2>
+<p>有一个只包含ATGC的字符串序列，求其中全部长度为10的且出现了不止一次的序列。</p>
+<h2>分析</h2>
+<h3>初步的想法</h3>
+<p>只要使用<code>unordered_map</code>作为Hash表，那就很简单了：只要依次遍历所有长度为10的字符串，然后把它们加入到<code>unordered_map</code>中，最后统计<code>unordered_map</code>中出现长度多于1次的序列即可。显然这个方法是可行的。</p>
+<p>交上去之后我居然还写错了一次长度为10的子串的边界条件，所以wa了。</p>
+<h3>如何加速？</h3>
+<p>上述做法存在几个显而易见的问题：</p>
+<ul>
+<li>最后需要多遍历一次<code>unordered_map</code>，能否节省这一次遍历？</li>
+<li><code>unordered_map&lt;string, int&gt;</code>的速度是否太慢？</li>
+<li>是否存在对<code>string</code>的更好的hash方法？</li>
+</ul>
+<p>所以可以进行如下改进：</p>
+<ul>
+<li>用两个Hash表来存储序列，一个存储的是所有出现过的序列，另一个只存储至少出现了两次的序列，这样就可以节省最后的一次遍历了。</li>
+<li>改为采用<a href="https://en.wikipedia.org/wiki/Rolling_hash" target="_blank" rel="noopener">Rolling Hash</a>的方法滚动计算Hash值，并利用位运算进一步减少计算所需的时间。</li>
+<li>由于对Hash值的范围进行了限定，因此可以改用其他的数据结构（如<code>bitset</code>）作为Hash表。</li>
+</ul>
+<p>至于Rolling Hash如何和位运算结合起来，我见到的一种比较好的平衡了编写难度和运行时间的写法<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>是这样的：</p>
+<ul>
+<li>把4个字符分别映射为0、1、2、3</li>
+<li>对每一个新的序列计算Hash值时，先令<code>hash = (hash &lt;&lt; 2) | charMap[ch]</code></li>
+<li>显然<code>hash</code>的长度固定为20bit，其最大值为<code>(1 &lt;&lt; 20) - 1</code>（全为1），因此可以通过<code>hash &amp;= (1 &lt;&lt; 20) - 1</code>的方法来去掉最前面的项</li>
+</ul>
+<p>此处使用的应该是Polynomial rolling hash，很类似于四进制的一种想法（也因此能保证hash函数是双射的）。</p>
+<hr>
+<p>从中至少可以学到几点：</p>
+<ol>
+<li>位运算是个很好用的东西（前提是没有写错）</li>
+<li><code>bitset</code>在适当的时候可以拿来代替Hash表或者大数组，但一般来说并不是一个关键数据结构</li>
+</ol>
+<h2>代码</h2>
+<h3>普通的map</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; findRepeatedDnaSequences(<span class="built_in">string</span> s) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = s.length();</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; mmap;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="built_in">string</span> str = s.substr(i, <span class="number">10</span>);</span><br><span class="line">            mmap[str]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; k: mmap) &#123;</span><br><span class="line">            <span class="keyword">if</span> (k.second &gt; <span class="number">1</span>)</span><br><span class="line">                ans.push_back(k.first);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>bitset+Rolling hash</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参考了https://leetcode.com/submissions/detail/180202097/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; findRepeatedDnaSequences(<span class="built_in">string</span> s) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = s.length();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">11</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// cheap mapping</span></span><br><span class="line">        <span class="keyword">int</span> charToInt[<span class="number">200</span>];</span><br><span class="line">        charToInt[<span class="string">'A'</span>] = <span class="number">0</span>;</span><br><span class="line">        charToInt[<span class="string">'C'</span>] = <span class="number">1</span>;</span><br><span class="line">        charToInt[<span class="string">'G'</span>] = <span class="number">2</span>;</span><br><span class="line">        charToInt[<span class="string">'T'</span>] = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> MASK = (<span class="number">1</span> &lt;&lt; <span class="number">20</span>) - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> rhash = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">            rhash = (rhash &lt;&lt; <span class="number">2</span>) | charToInt[s[i]];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// use bitset as hash table</span></span><br><span class="line">        <span class="built_in">bitset</span>&lt;(1 &lt;&lt; 20)&gt; onceSet;</span><br><span class="line">        <span class="built_in">bitset</span>&lt;(1 &lt;&lt; 20)&gt; twiceSet;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">9</span>; i &lt; n; i++) &#123;</span><br><span class="line">            rhash = (rhash &lt;&lt; <span class="number">2</span>) | charToInt[s[i]];</span><br><span class="line">            rhash &amp;= MASK;</span><br><span class="line">            <span class="comment">// 简化代码逻辑</span></span><br><span class="line">            <span class="keyword">if</span> (twiceSet[rhash]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (onceSet[rhash]) &#123;</span><br><span class="line">                ans.push_back(s.substr(i - <span class="number">9</span>, <span class="number">10</span>));</span><br><span class="line">                twiceSet.<span class="built_in">set</span>(rhash);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                onceSet.<span class="built_in">set</span>(rhash);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://leetcode.com/submissions/detail/180202097/" target="_blank" rel="noopener">sample 4 ms submission</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Bit-Manipulation/"><i class="fas fa-hashtag fa-fw"></i>alg:Bit Manipulation</a>
+        
+          <a href="/tags/alg-Hash-Table/"><i class="fas fa-hashtag fa-fw"></i>alg:Hash Table</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/learning-phrase-representations-using-rnn-encoder-decoder-for-statistical-machine-translation/">
+              
+                  论文：Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-03
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>论文地址：<a href="https://arxiv.org/abs/1406.1078" target="_blank" rel="noopener">https://arxiv.org/abs/1406.1078</a></p>
+<p>这篇文章提出了RNN Encoder-Decoder架构，使得RNN能够处理序列数据的输入输出：先把序列数据encode成一个定长vector，再把它decode成另一个序列。有趣的一点是，这篇文章的题目里带了“SMT”这个词，说明它并不是一种纯NMT的方法——事实上论文里用它替代了现存的方法里给短语打分的部分。当然这种方法也是可以直接用于整句翻译的（<a href="https://arxiv.org/abs/1409.1259" target="_blank" rel="noopener">On the Properties of Neural Machine Translation: Encoder-Decoder Approaches</a>），但由于RNN的特性，使得在长句上表现不太好，最后又改进出了<a href="https://arxiv.org/abs/1409.0473" target="_blank" rel="noopener">Attention方法</a>。<del>目前我还不知道这篇文章和Seq2Seq具体是什么关系。</del></p>
+<p>2018.10.11 UPDATE：Seq2Seq和这篇文章提出的架构很类似，但是提高了长句翻译的表现（通过把句子倒过来的trick），一般说Seq2Seq架构的时候应该指的是那篇文章（至少我认为是这样）。本文的另一个重要贡献是LSTM的简化版，<a href="https://www.tensorflow.org/api_docs/python/tf/nn/rnn_cell/GRUCell" target="_blank" rel="noopener">GRU单元</a>。</p>
+<h2>简介</h2>
+<p>本文中提出了一种新的模型，称为RNN Encoder-Decoder，包括两个RNN。一个RNN（encoder）把符号序列编码成一个定长向量表示（fixed-length vector representation）；另一个RNN（decoder）把该表示解码成另一个符号序列。这两个RNN共同被训练，以最大化输出目标序列的概率。我们同时提出了一种新的隐藏层单元（hidden unit）。将该模型计算出的短语对条件概率作为现有SMT模型的额外特征之后，SMT的翻译结果提升了；且可以发现，该模型学到的短语中间表示在语义上和句法上都是有意义的。</p>
+<h2>RNN</h2>
+<p>RNN是一个神经网络，它输入变长序列$\mathbf{x} = (x_1, ..., x_T)$，内部有一个隐状态$\mathbf{h}$，输出（可选）为$\mathbf{y}$。在每个时刻$t$，RNN的隐状态$\mathbf{h}_{\langle t \rangle}$会被更新：</p>
+<p>$$\mathbf{h}_{\langle t \rangle} = f(\mathbf{h}_{\langle t - 1 \rangle}, x_t)$$</p>
+<p>其中$f$是一个非线性激活函数，可能很简单，也可能很复杂（如LSTM）。</p>
+<p>RNN可以通过被训练为预测序列中的下一个符号来学习序列的概率分布。在这种情况下，$t$时刻输出的就是概率分布$p(x_t | x_{t-1}, ..., x_1)$。比如说，一个multinomial distribution（1-K编码）就可以用一个softmax激活函数输出（这里并没有看懂……）：</p>
+<p>$$p(x_{t, j} = 1 | x_{t-1}, ..., x_1) = \frac{\exp{(\mathbf{w}_j\mathbf{h}_{\langle t \rangle})}}{\sum_{j'=1}^{K} \exp{(\mathbf{w}_{j'}\mathbf{h}_{\langle t \rangle})}}$$</p>
+<p>其中$j = 1, ..., K$，$\mathbf{w}_j$是权重矩阵$\mathbf{W}$的行。</p>
+<p>现在就可以计算出序列$\mathbf{x}$出现的概率了：</p>
+<p>$$p(\mathbf{x}) = \prod_{t=1}^T p(x_t | x_{t-1}, ..., x_1)$$</p>
+<p>通过这一学到的分布，生成一个新的序列的方法是显然的，逐步选择符号即可。</p>
+<h2>RNN Encoder-Decoder</h2>
+<p>之前已经说过了，RNN Encoder-Decoder是把一个变长序列编码为一个定长向量表示，再把这个表示解码为另一个变长序列的过程。从概率论的角度看（但是我不知道为什么要从概率论的角度看），这是学习两个变长序列之间的条件概率的方法：</p>
+<p>$$p(y_1, ..., y_{T'} | x_1, ..., x_T)$$</p>
+<h3>Encoder</h3>
+<p>Encoder是一个RNN，它顺序读入输入序列$\mathbf{x}$，并逐步更新隐状态（和普通的RNN是一样的）：</p>
+<p>$$\mathbf{h}_{\langle t \rangle} = f(\mathbf{h}_{\langle t - 1 \rangle}, x_t)$$</p>
+<p>读到序列结尾（EOS）之后，RNN的隐状态就是整个输入序列对应的表示$\mathbf{c}$。</p>
+<h3>Decoder</h3>
+<p>Decoder也是一个RNN，它通过隐状态$\mathbf{h}_{\langle t \rangle}$预测下一个符号$y_t$。不过，$y_t$和$\mathbf{h}_{\langle t \rangle}$都依赖于$y_{t-1}$和$\mathbf{c}$，所以$t$时刻的隐状态为：</p>
+<p>$$\mathbf{h}_{\langle t \rangle} = f(\mathbf{h}_{\langle t - 1 \rangle}, y_{t-1}, \mathbf{c})$$</p>
+<p>相似地，下一个符号的条件分布就是（虽然不是很懂这是怎么相似出来的）：</p>
+<p>$$P(y_t | y_{t-1}, y_{t-2}, ..., y_1, \mathbf{c}) = g(\mathbf{h}_{\langle t \rangle}, y_{t-1}, \mathbf{c})$$</p>
+<h3>Encoder+Decoder</h3>
+<p><img src="encdec.png" alt="RNN Encoder-Decoder图示"></p>
+<p>Encoder和Decoder共同进行训练，以最大化conditional log-likelihood：</p>
+<p>$$\max_{\mathbf{\theta}} \frac{1}{N} \sum_{n=1}^N \log{p_{\mathbf{\theta}}(\mathbf{y}_n | \mathbf{x}_n)}$$</p>
+<p>其中$\mathbf{\theta}$是模型参数，每个$(\mathbf{x}_n, \mathbf{y}_n)$都是训练集中的一个输入输出对。由于decoder的输出是可微分的， 因此可以通过基于梯度的算法来估计模型参数。</p>
+<p>训练完RNN Encoder-Decoder之后，模型可以通过两种方式使用。一种是根据输入序列来生成输出序列。另一种是对给定的输入输出序列进行打分，分数就是概率$p_{\mathbf{\theta}}(\mathbf{y} | \mathbf{x})$。</p>
+<h2>新的隐藏单元</h2>
+<p><img src="gru.png" alt="隐藏单元图示"></p>
+<p>这一单元的灵感来自LSTM，但是计算和实现都简单得多。图中$z$是update gate，用于控制当前隐状态是否需要被新的隐状态$\tilde{h}$更新；$r$是reset gate，用于确定是否要丢弃上一个隐状态。</p>
+<blockquote>
+<p>这个计算方法是否说明，是很多个隐藏单元一起更新和训练……但是为什么输入是个向量呢？大概是因为1-K表示法和Embedding？</p>
+</blockquote>
+<p>2018.10.11 UPDATE：用一般的术语来说，下列内容实际上说明的是“一个GRU cell中的一个unit的计算过程”，因此$r_j$、$z_j$和$h_j^{\langle t \rangle}$都是标量。在本文中，layer=cell。</p>
+<p>$r_j$通过下式计算：</p>
+<p>$$r_j = \sigma([\mathbf{W}_r\mathbf{x}]_j + [\mathbf{U}_r \mathbf{h}_{\langle t-1 \rangle}]_j)$$</p>
+<p>其中$\sigma$是<a href="https://en.wikipedia.org/wiki/Logistic_function" target="_blank" rel="noopener">Logistic Sigmoid</a>函数，$[.]_j$是向量的第$j$个元素，$\mathbf{x}$是输入，$\mathbf{h}_{\langle t-1 \rangle}$是上一个隐状态，$\mathbf{W}_r$和$\mathbf{U}_r$是学习到的权重矩阵。</p>
+<p>$z_j$类似地通过下式计算：</p>
+<p>$$z_j = \sigma([\mathbf{W}_z\mathbf{x}]_j + [\mathbf{U}_z \mathbf{h}_{\langle t-1 \rangle}]_j)$$</p>
+<p>单元$h_j$的实际激活状态通过下式计算：</p>
+<p>$$h_j^{\langle t \rangle} = z_j h_j^{\langle t-1 \rangle} + (1 - z_j) \tilde{h}_j^{\langle t \rangle}$$</p>
+<p>其中</p>
+<p>$$\tilde{h}_j^{\langle t \rangle} = \phi([\mathbf{W}\mathbf{x}]_j + [\mathbf{U}(\mathbf{r} \odot \mathbf{h}_{\langle t-1 \rangle})]_j)$$</p>
+<p><del>（虽然我看不懂这个式子是怎么使用$r_j$的，以及它对激活状态有什么影响……）</del>reset gate通过与$\mathbf{h}_{\langle t-1 \rangle})$点乘对$\tilde{h}_j^{\langle t \rangle}$产生影响。</p>
+<hr>
+<h3>另一种对GRU的描述方式</h3>
+<h2>SMT模型和RNN Encoder-Decoder的结合</h2>
+<p>传统的SMT系统的目标是对于源句$\mathbf{e}$，找到一个使下式最大化的翻译$\mathbf{f}$：</p>
+<p>$$p(\mathbf{f} | \mathbf{e}) \propto p(\mathbf{e} | \mathbf{f}) p(\mathbf{f})$$</p>
+<p>其中$p(\mathbf{e} | \mathbf{f})$称为翻译模型（translation model），$p(\mathbf{f})$称为语言模型（language model）。</p>
+<p>但在实际中，大部分SMT系统都把$\log{p(\mathbf{f} | \mathbf{e})}$做为一个log-linear模型，包括一些额外的feature和相应的权重：</p>
+<p>$$\log{p(\mathbf{f} | \mathbf{e})} = \sum_{n=1}^N w_n f_n(\mathbf{f}, \mathbf{e}) + \log{Z(\mathbf{e})}$$</p>
+<p>其中$f_n$是feature，$w_n$是权重，$Z(\mathbf{e})$是与权重无关的normalization constant。</p>
+<p>在基于短语的SMT模型中，翻译模型$p(\mathbf{e} | \mathbf{f})$被分解为源句和目标句中短语匹配的概率。这一概率再一次被作为log-linear模型中的额外feature进行优化。</p>
+<hr>
+<p>作者在一个短语对表中训练RNN Encoder-Decoder，并将得到的分数作为log-linear模型中的额外feature。目前的做法是把得到的短语对分数直接加入现有的短语对表中；事实上也可以直接用RNN Encoder-Decoder代替这个表，但这就意味着对于每个源短语，RNN Encoder-Decoder都需要生成一系列好的目标短语，因此需要进行很多采样，这太昂贵了。</p>
+<h2>实验</h2>
+<p>在WMT'14的En-Fr任务上进行了评测。对于每种语言都只保留了最常见的15000个词，将不常用的词标记为[UNK]。</p>
+<p>实验中，RNN Encoder-Decoder的encoder和decoder各有1000个隐藏单元。每个输入符号$x_{\langle t \rangle}$和隐藏单元之间的输入矩阵用两个低秩（100）矩阵来模拟，相当于学习了每个词的100维embedding。隐藏单元中的$\tilde{h}$使用的是双曲余弦函数（hyperbolic tangent function）。decoder中隐状态到输出的计算使用的是一个深度神经网络，含有一个包含了500个maxout单元的中间层。</p>
+<p>RNN Encoder-Decoder的权重初值都是通过对一个各向同性的均值为零的高斯分布采样得到的，其标准差为0.01。（但是另一种权重矩阵的初值不一样，而且我没看懂……）</p>
+<p>通过Adadelta和随机梯度下降法进行训练，其中超参数为$\epsilon = 10^{-6}$，$\rho = 0.95$。每次更新时，从短语表中随机选出64个短语对。模型训练了大约3天。</p>
+<p><img src="table1.png" alt="实验结果"></p>
+<p>因为CSLM和RNN Encoder-Decoder共同使用能进一步提高表现，说明这两种方法对结果的贡献并不相同。</p>
+<p>除此之外，它学习到的word embedding矩阵也是有意义的。</p>
+<p><img src="figure4.png" alt="Word Embedding和词义"></p>
+<p>（不过考虑到这就是Word Embedding的根本用途，这件事听起来就没有那么令人兴奋了……）</p>
+<h2>附录：RNN Encoder-Decoder的详细描述</h2>
+<p>令$X = (\mathbf{x}_1, \mathbf{x}_2, ..., \mathbf{x}_N)$表示源短语，$Y = (\mathbf{y}_1, \mathbf{y}_2, ..., \mathbf{y}_M)$。每个短语都是一系列$K$维的one-hot向量。</p>
+<h3>Encoder</h3>
+<p>源短语的每个词都被embed成了500维：$e(\mathbf{x}_i) \in \mathbb{R}^{500}$。</p>
+<p>encoder的隐状态由1000个隐藏单元组成，其中每一个单元在$t$时刻的状态由下式计算：</p>
+<p>$$h_j^{\langle t \rangle} = z_j h_j^{\langle t-1 \rangle} + (1 - z_j) \tilde{h}_j^{\langle t \rangle}$$</p>
+<p>其中</p>
+<p>$$\tilde{h}_j^{\langle t \rangle} = \tanh([\mathbf{W}e(\mathbf{x}_t)]_j + [\mathbf{U}(\mathbf{r} \odot \mathbf{h}_{\langle t-1 \rangle})]_j)$$</p>
+<p>$$z_j = \sigma([\mathbf{W}_z e(\mathbf{x}_t)]_j + [\mathbf{U}_z \mathbf{h}_{\langle t-1 \rangle}]_j)$$</p>
+<p>$$r_j = \sigma([\mathbf{W}_r e(\mathbf{x}_t)]_j + [\mathbf{U}_r \mathbf{h}_{\langle t-1 \rangle}]_j)$$</p>
+<p>其中$\sigma$是logistic sigmoid函数，$\odot$是元素对应乘积。上式中忽略了偏移项。初始隐状态$h_j^{\langle 0 \rangle} = 0$。</p>
+<p>在隐状态计算完第$N$步之后，就可以得到源短语的表示$\mathbf{c}$：</p>
+<p>$$\mathbf{c} = \tanh{\mathbf{V}\mathbf{h}^{\langle N \rangle}}$$</p>
+<p>（但是$\mathbf{V}$矩阵是哪里来的？也是需要学习的吗？）</p>
+<h3>Decoder</h3>
+<p>decoder通过下式对隐状态进行初始化：</p>
+<p>$$\mathbf{h'}^{\langle 0 \rangle} = \tanh(\mathbf{V'c})$$</p>
+<p>（大概$\mathbf{V'}$矩阵也是一个参数吧。当然和Encoder的参数不一样）</p>
+<p>decoder的隐藏单元在时刻$t$的隐状态通过下式计算：</p>
+<p>$${h'}_j^{\langle t \rangle} = {z'}_j {h'}_j^{\langle t-1 \rangle} + (1 - {z'}_j) \tilde{h'}_j^{\langle t \rangle}$$</p>
+<p>其中</p>
+<p>$$\tilde{h'}_j^{\langle t \rangle} = \tanh([\mathbf{W'}e(\mathbf{y}_{t-1})]_j + r'_j [\mathbf{U'}\mathbf{h'}_{\langle t-1 \rangle} + \mathbf{Cc}]_j)$$</p>
+<p>（我在上式的最后一项上加了个$j$。我觉得可能打错了，虽然更有可能是我看错了，不过也没有找到什么验证的方法。）</p>
+<p>$${z'}_j = \sigma([\mathbf{W'}_z e(\mathbf{y}_{t-1})]_j + [\mathbf{U'}_z \mathbf{h'}_{\langle t-1 \rangle}]_j + [\mathbf{C}_z\mathbf{c}]_j)$$</p>
+<p>$${r'}_j = \sigma([\mathbf{W'}_r e(\mathbf{y}_{t-1})]_j + [\mathbf{U'}_r \mathbf{h'}_{\langle t-1 \rangle}]_j + [\mathbf{C}_r\mathbf{c}]_j)$$</p>
+<p>其中$e(\mathbf{y}_0)$是一个全零向量。类似于encoder中的情况，$e(\mathbf{y})$也是目标词的embedding。</p>
+<p>decoder需要学习如何生成一个目标短语。在$t$时刻，decoder需要计算生成的词是第$j$个的概率：</p>
+<p>$$p(y_{t,j} = 1 | \mathbf{y}_{t-1}, ..., \mathbf{y}_1, X) = \frac{\exp{(\mathbf{g}_j \mathbf{s}_{\langle t \rangle}})}{\sum_{j'=1}^K \exp{(\mathbf{g}_{j'} \mathbf{s}_{\langle t \rangle})}}$$</p>
+<p>其中$\mathbf{s}_{\langle t \rangle}$的第$i$个元素是</p>
+
+$$\mathbf{s}_i^{\langle t \rangle} = \max{{{s'}_{2i-1}^{\langle t \rangle}, {s'}_{2i}^{\langle t \rangle}}}$$
+
+<p>且</p>
+
+$$\mathbf{s'}^{\langle t \rangle} = \mathbf{O}_h \mathbf{h'}^{\langle t \rangle} + \mathbf{O}_y \mathbf{y}_{t-1} + \mathbf{O}_c \mathbf{c}$$
+
+<p>简单来说，$\mathbf{s}_i^{\langle t \rangle}$就是所谓的maxout单元。</p>
+<p>（虽然我目前还不知道maxout是什么，以及这个$\mathbf{g}$是怎么来的，以及这一堆到底是怎么算的……）</p>
+<p>为了计算效率，我们使用两个矩阵的乘积作为输出权重矩阵$\mathbf{G}$：</p>
+<p>$$\mathbf{G} = \mathbf{G}_l \mathbf{G}_r$$</p>
+<p>其中$\mathbf{G}_l \in \mathrm{R}^{K \times 500}$，$\mathbf{G}_r \in \mathrm{R}^{500 \times 1000}$。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Natural-Language-Processing/"><i class="fas fa-hashtag fa-fw"></i>Natural Language Processing</a>
+        
+          <a href="/tags/Machine-Learning/"><i class="fas fa-hashtag fa-fw"></i>Machine Learning</a>
+        
+          <a href="/tags/Reading-Report/"><i class="fas fa-hashtag fa-fw"></i>Reading Report</a>
+        
+          <a href="/tags/Paper/"><i class="fas fa-hashtag fa-fw"></i>Paper</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/bleu-a-method-for-automatic-evaluation-of-machine-translation-acl2002/">
+              
+                  论文：BLEU: a Method for Automatic Evaluation of Machine Translation (ACL2002)
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-10-02
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>论文地址：<a href="https://www.aclweb.org/anthology/P02-1040.pdf" target="_blank" rel="noopener">https://www.aclweb.org/anthology/P02-1040.pdf</a></p>
+<p>这篇文章大概是MT领域非常著名的一篇文章了，因为它提出了一种根据参考翻译为机器翻译质量打分的方法（BLEU值），直到现在还在被广泛使用。</p>
+<h2>基本思路</h2>
+<p>BLEU评价翻译水平的基本假设是这样的：机器翻译越接近人类翻译，机器翻译的质量就越高。因此，在这一前提下，需要量化机器翻译与人类翻译的相似程度。经过观察可以发现，一个较好的机器翻译和人工翻译中相同的词和短语比较多；因此可以通过比较机器翻译和人工翻译中相同n-gram的数量来评价一个机器翻译。因此令$p_n$表示改进的n-gram精度（modified n-gram precision）：</p>
+<p>$$p_n = \frac{\sum_{C \in {Candidates}} \sum_{n-gram \in C} Count_{clip}(n-gram)}{\sum_{C' \in {Candidates}} \sum_{n-gram' \in C'} Count(n-gram')}$$</p>
+<p>其中$Count_{clip}(n-gram)$的意思是，对于某一个在机器翻译结果中出现的n-gram，它被统计的数量不超过该n-gram在某一个参考翻译中出现的总数量。这样可以防止出现机器翻译大量重复参考翻译中出现的某个词，结果却会得到较高分数的情况。</p>
+<p><img src="figure1.png" alt="人类翻译和机器翻译的得分"></p>
+<p>此时可以看出，这一评分方法可以区分人类和机器翻译了，且n越大，得分的差异越大。</p>
+<p><img src="figure2.png" alt="不同水平人类翻译和机器翻译的得分"></p>
+<p>此时可以看出，这一评分方法也可以在较细粒度上区分人类和机器翻译。</p>
+<h3>改进：组合多种n-gram的得分</h3>
+<p>可以看出，n-gram分数大致随n的增加指数衰减，所以对$p_n$的对数做加权平均是比较好的。实验得出，取$n \leq 4$时得到的评测结果最为接近。</p>
+<h3>改进：短句惩罚</h3>
+<p>很显然上面的做法已经惩罚了过长的句子和被使用太多次的词，但是并没有考虑到句子太短的情况。只考虑精度可能会使得短句得到非常高的分数。但是考虑召回率又可能会使得事情变得过于复杂。所以直接考虑机器翻译和参考翻译的长度。对于每个机器翻译得到的句子，在（可能有多个的）参考翻译中找到与它长度最为接近的句子，称其长度为最佳匹配长度（best match length）。然后计算出整体语料的机器翻译最佳匹配长度之和，称为$r$；令$c$是机器翻译结果的总长度，定义短句惩罚（brevity penalty）为</p>
+<p>$$<br>
+\text{BP} =<br>
+\begin{cases}<br>
+1 &amp; \text{if} \: c &gt; r\\<br>
+e^{(1 - r/c)} &amp; \text{if} \: c \leq r<br>
+\end{cases}<br>
+$$</p>
+<p>将这个因子乘到BLEU分数上：</p>
+<p>$$\text{BLEU} = \text{BP} \cdot \exp{(\sum_{n=1}^{N} w_n \log{p_n})}$$</p>
+<p>即</p>
+<p>$$\log{\text{BLEU}} = \min{(1 - \frac{r}{c}, 0)} + \sum_{n=1}^{N} w_n \log{p_n}$$</p>
+<h2>测试</h2>
+<p>在测试中，取$N = 4$，$w_n = 1/N$（也就是直接平均）。</p>
+<p>作者首先回答了这样几个问题：</p>
+<ul>
+<li>（不同机器/人类翻译）BLEU值的差异是可信的吗？</li>
+<li>（不同机器/人类翻译）BLEU值的差异是稳定的吗？</li>
+<li>BLEU值的方差是多少？</li>
+</ul>
+<p><img src="table1-2.png" alt="500个句子"></p>
+<p>作者找了500个句子，每个各有4个参考翻译，首先让机器/人类分别翻译500个句子，分别计算其BLEU值；然后把这500个句子分成20组，分组计算BLEU值，并计算出平均值和标准差，并对不同系统翻译的结果进行结对T检验。即使只随机留下每个句子的一个参考翻译，BLEU值的排序也没有改变。这说明BLEU值的差异是可信和稳定的，且方差不是很大。</p>
+<p>之后作者比较了BLEU评测和人类评测（之前对人类评测也做了一个结对T检验，虽然我并不知道有什么用）的结果。</p>
+<p><img src="figure5.png" alt="BLEU值和单语言评测者打分的比较"></p>
+<p><img src="figure6.png" alt="BLEU值和多语言评测者打分的比较"></p>
+<p><img src="figure7.png" alt="BLEU值和两种评测者的比较"></p>
+<p>可以看出，BLEU值和单语言评测者的打分比较相近，和多语言评测者的打分差别比较大。这可能是因为BLEU值只考虑了翻译结果的流利度等因素，不像多语言评测者那样，会考虑更多的语义方面的问题。</p>
+<h2>总结</h2>
+<p>这个评价方法主要考虑的是翻译结果和参考翻译之间的相似程度，用比较简单的方法得到了与人类评价相似的结果。不过我的问题是：</p>
+<ol>
+<li>单纯用n-gram计数的比较是否过于简单，没有考虑参考翻译和机器翻译之间语义比较的问题？</li>
+<li>BLEU和单语言评测者比较接近大概是有原因的：这一评测方法完全依赖于参考翻译，完全没有管源句的结构之类的问题。不过我觉得只要能保证参考翻译是高质量的，这并不能说是一件坏事，这应该取决于MT的主要应用场景。</li>
+</ol>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Natural-Language-Processing/"><i class="fas fa-hashtag fa-fw"></i>Natural Language Processing</a>
+        
+          <a href="/tags/Reading-Report/"><i class="fas fa-hashtag fa-fw"></i>Reading Report</a>
+        
+          <a href="/tags/Machine-Translation/"><i class="fas fa-hashtag fa-fw"></i>Machine Translation</a>
+        
+          <a href="/tags/Paper/"><i class="fas fa-hashtag fa-fw"></i>Paper</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/page/19/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  20 / 44
+              </p>
+              
+                  <a class="next" rel="next" href="/page/21/">
+                      <section class="post next">
+                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                      </section>
+                  </a>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+  
+
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

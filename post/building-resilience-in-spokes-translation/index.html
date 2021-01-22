@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>在Spokes中实现弹性（resilience） | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">在Spokes中实现弹性（resilience）</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-07-05
+          </a>
+        </div>
+      
+      
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>这篇文章翻译自<a href="https://githubengineering.com/building-resilience-in-spokes/" target="_blank" rel="noopener">Building resilience in Spokes</a>，我加入了一些自己的注解。</p>
+<hr>
+<p>Spokes是我们的文件服务器的复制系统，我们在里面存储了超过3800万个Git仓库和超过3600万个gists。它至少存储了每个仓库和每个gist的三个副本，这样，即使服务器和网络出现故障，我们也可以提供持久且高可用的内容访问。Spokes使用Git和rsync<a href="#note1" id="note1ref"><sup>1</sup></a>的组合来对存储库进行复制，修复和重新平衡。</p>
+<h2>Spokes是什么？</h2>
+<p>在我们进入这一主题——如何实现弹性——之前，我们需要声明一个新的名字：DGit现在改名为Spokes了。</p>
+<p>今年早些时候，我们<a href="https://githubengineering.com/introducing-dgit/" target="_blank" rel="noopener">宣布了</a>我们的应用级Git复制系统，名为“DGit”（“Distributed Git”）。我们得到的反馈表明，“DGit”这个名字的区分度不高，可能会导致与Git项目本身混淆。所以我们决定重命名这个系统为<em>Spokes</em>。</p>
+<h2>“弹性”的定义</h2>
+<p>在任何系统或服务中，有两种衡量弹性的关键方法：可用性（availability）和持久性（durability）。系统的可用性指的是系统提供它应当提供的服务所需的运行时间。它可以提供内容吗？它能接受写操作吗？可用性可能是部分的，完整的或退化的：每个仓库都可用吗？是否有一些仓库——或者整个服务器——的访问很缓慢？</p>
+<p>系统的持久性指的是它对永久性数据丢失的抵抗能力。一旦系统接受了一个写操作——推送，合并，通过网站进行的编辑，创建新仓库等——它就应该永远不会破坏或回退该内容到之前的状态。这里的关键问题出现在系统接受写入时：需要存储多少副本，以及在哪里存储？显然，必须存储足够数量的副本，才能保证写操作不丢失的可能性足够高。</p>
+<p>系统可以是持久但不可用的。例如，如果系统能够为当前写操作制造的副本数量不能超过最低要求，则系统可能会拒绝接受写操作。这样的系统对于写操作是暂时不可用的，不过它同时能够保证不会丢失数据。当然，系统也可以是不持久但可用的。例如，接收任何写入，无论它们是否可以安全地提交，。</p>
+<p>读者可能会意识到这与<a href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">CAP定理</a><a href="#note2" id="note2ref"><sup>2</sup></a>有关。简而言之，系统最多可以满足以下三个特性中的两个：</p>
+<ul>
+<li>一致性（consistency）：所有节点都读到相同的数据</li>
+<li>可用性（availability）：系统可以满足读写请求</li>
+<li>分区容错性（partition tolerance）：即使节点关闭或无法通信，系统也能正常工作</li>
+</ul>
+<p>Spokes将一致性和分区容错性放在首位。在最坏的情况下，它将拒绝接受一些写入，对于这些写入，它不能同步提交至至少两个副本。</p>
+<h2>可用性</h2>
+<p>Spokes的可用性取决于底层服务器和网络的可用性，以及我们检测和绕过服务器和网络问题的能力。</p>
+<p>单个服务器经常会变得不可用。自从今年春天开始试用Spokes以来，由于内核死锁和RAM芯片故障，我们的一些服务器崩溃了。有时，由于较轻的硬件故障或较高的系统负载，服务器能够提供的服务退化了。在所有这些情况下，Spokes都必须快速检测出问题并绕过它。每个存储库都复制在三台服务器上，因此即使一台服务器处于脱机状态，也基本总会有一个最新的可用副本可以访问。不过，Spokes可不只是它的每个单独的容错部分的总和。<a href="#note3" id="note3ref"><sup>3</sup></a></p>
+<p>快速检测问题只是第一步。Spokes同时使用心跳服务（heartbeat）<a href="#note4" id="note4ref"><sup>4</sup></a>和实际应用程序流量的组合来确定文件服务器何时停止工作。使用实际应用流量很关键，原因如下。首先，心跳服务的学习和反应速度很慢。我们的每个文件服务器每秒需要处理超过100个请求。如果心跳每秒发生一次，则只有在一百个请求都已经失败后才能发现故障。其次，心跳测试只能覆盖服务器功能的一个子集：例如，服务器是否可以接受TCP连接并响应无操作请求。但是如果失败的情形更微妙呢？如果Git二进制文件已损坏怎么办？如果磁盘访问停止了怎么办？如果所有经过身份验证的操作都失败怎么办？当真正的流量失败时，有时无操作服务仍然能够成功。</p>
+<p>因此，Spokes会在处理实际应用程序流量时监视失败情况，如果有太多请求失败，它会将节点标记为脱机。当然，实际请求在正常情况下有时也会失败。例如，有人会尝试读取已经删除的分支，或尝试推送到他们无权访问的分支。因此，Spoke仅仅在三个请求连续失败时才将节点标记为脱机。这有时会导致完全健康的节点脱机——在正常情况下，三个请求也可能会连续失败——但这种情况很少发生，并且导致的代价并不大。</p>
+<p>Spokes也使用心跳服务，但不是作为主要的故障检测机制。相反的是，心跳有两个目的：轮询系统负载，并在节点被标记为脱机后提供全清信号（all-clear signal）<a href="#note5" id="note5ref"><sup>5</sup></a>。一旦心跳成功，该节点将再次标记为在线。如果在服务器出现问题的情况下心跳成功（检索系统负载几乎是无操作），则在三次失败的请求之后，节点将再次标记为脱机。</p>
+<p>因此，Spokes在节点大约发生三次失败之后就会检测到故障。但是连续三次失败的操作仍然太多了！对于干净的故障——连接被拒绝或超时——所有操作都知道如何尝试下一个主机。请记住，Spokes对于每个仓库都维护了三个或更多的副本。对仓库的路由查询不只返回一个服务器，而是返回按优先顺序排序的三个（大约）最新副本的列表。如果对首选副本上的操作失败，则通常还有至少两个个副本可以尝试。</p>
+<p>从一个服务器故障转移到另一个服务器的操作图（此处为远程过程调用（Remote Procedure Call，RPC）<a href="#note6" id="note6ref"><sup>6</sup></a>）清楚地显示了服务器何时脱机。在下图中，有一个服务器在约1.5小时的时间内不可用；在此期间，数千个RPC操作被重定向到其他服务器。这样的图表是Spokes团队发现出错服务器的最佳检测方法。</p>
+<p><img src="one-server-down.png" alt="一台服务器停机"></p>
+<p>Spokes的节点离线检测只是建议性的——这只是一种优化。连续三次失败的节点只会被移动到所有读操作的优先顺序列表的末尾，而不是直接从副本列表中移除。尝试一个可能离线的副本还是比根本不进行尝试要好的。</p>
+<p>这个故障检测器对服务器故障很有效：当服务器过载或脱机时，对它的操作将失败。Spokes检测到这些故障，并暂时停止将流量定向到故障服务器，直到心跳成功为止。但是，网络和应用程序（Rails）服务器的故障更加混乱。给定的文件服务器可能只对应用程序服务器的一个子集处于脱机状态，而一个出错的应用程序服务器可能会看到每个文件服务器都处于脱机状态的假象。因此，Spokess的故障检测实际上是MxN<a href="#note7" id="note7ref"><sup>7</sup></a>的：每个应用程序服务器都保留自己的脱机文件服务器列表。如果我们发现许多应用程序服务器都将某个文件服务器标记为脱机，那么它可能确实脱机了。而如果我们发现某一个应用程序服务器将许多文件服务器标记为脱机，则发现了一个应用程序服务器的错误。</p>
+<p>下图说明了故障检测的MxN特性，并以红色显示，如果文件服务器<code>dfs4</code>处于脱机状态，哪些故障检测器会发现错误。<a href="#note8" id="note8ref"><sup>8</sup></a></p>
+<p><img src="mxn.png" alt="MxN故障检测"></p>
+<p>在最近的一次事件中，开发环境中的一个前端应用程序服务器发生了无法解析文件服务器的DNS名称的错误。因为它无法到达文件服务器以向它们发送RPC操作或心跳，所以它得出结论，每个文件服务器都处于脱机状态。但是，只有那台应用程序服务器发生了这些错误；所有其他应用服务器都在正常工作。因此，这台坏掉的应用程序服务器在RPC故障转移图中变得非常明显，并没有没有生产流量因此受到影响。<a href="#note9" id="note9ref"><sup>9</sup></a></p>
+<h2>持久性</h2>
+<p>有时，服务器会失效。磁盘可能会失效；RAID控制器可能会失败；甚至整个服务器或整个机架上的全部机器都可能出现故障。即使面对这种逆境，Spokes也为仓库数据提供了持久性。</p>
+<p>就像可用性那样，持久性的的实现基础是复制。Spokes至少保留了每个存储库，wiki和gist的三个副本，且这些副本位于不同的机架中。除非严格多数个副本可以应用更改并获得相同的结果，否则不接受对仓库的更新——推送，重命名，编辑维基等。</p>
+<p>Spokes只需要一个额外的副本即可避免单节点故障。那么，为什么需要严格多数呢？存储库很可能在大致相同的时间被多次写入，这种情况是很常见的。这些写入可能会发生冲突：例如，一个用户可能会删除一个分支，而另一个用户将新的提交推送到同一个分支。冲突的写入必须被序列化——也就是说，必须在每个副本上以相同的顺序应用（或拒绝）这些写入，这样每个副本才能得到相同的结果。Spokes将写入序列化的方式是确保每次写入都获得对大多数副本的独占锁定。两个写入不可能同时获得多数锁定，因此Spokes通过完全消除并发写入来避免冲突。</p>
+<p>如果一个仓库恰好有三个副本上，则在两个副本上的成功写入既保证了持久性，也保证了多数。如果仓库有四个或五个副本，则成功写入需要三个副本。</p>
+<p>在很多其他的复制和共识协议（consensus protocols）中，写入到主副本的顺序是官方顺序，所有其他副本都必须按该顺序进行写入。主副本通常需要手动指定，或使用选举协议（election protocol）自动指定。Spokes简单地跳过这一步骤，并将每次写操作都视为一次选举——选择出胜出的顺序之后，可以直接得到写入结果，而不是得到一个能够指示写入顺序的获胜服务器。</p>
+<p>无法在多数副本上以相同方式应用的任何写操作都会被Spokes从它被应用的副本上回退。实质上，每个写入操作都需要经过一个投票协议，投票失败方的任何副本都被标记为不健康——不可读取或写入——直到它们被修复。维修是自动和快速的。由于需要多数副本同意接受或回滚更新，在修复不健康的副本时，仍然至少有两个副本可以继续接受读取和写入。</p>
+<p>需要明确的一点是，分歧和修复发生的概率是很小的。GitHub每天接受数百万次仓库写入操作。在典型的一天里，几十次写入才会导致一次非一致投票，通常是因为一个副本特别繁忙，到它的连接超时了，而其他副本在没有它的情况下投票成功，继续前进。落后的副本几乎总是在一两分钟内恢复，不会对仓库的可用性造成用户可见的影响。</p>
+<p>整个磁盘和整个服务器的故障更罕见，但它们确实会发生。当我们必须移除整个服务器时，突然有数十万个仓库只剩下有两个副本了，而不是三个。这一状况也是可修复的。Spokes会定期检查每个仓库是否具有所需数量的副本；如果没有，则创建更多副本。可以在任何地方创建新副本，并且可以通过每个仓库剩余的两个副本中的任何一个进行复制。因此，服务器故障后的修复是N对N的。文件服务器的集群越大，从单节点故障中恢复的速度就越快。</p>
+<h2>正常关机</h2>
+<p>如上所述，Spokes可以快速透明地处理服务器脱机和永久失效。那么，我们可以将这一方法直接用于需要计划维护时对服务器的重启或移除吗？是，也不是。</p>
+<p>我们的确可以通过<code>sudo reboot</code>重新启动服务器，也可以通过直接把服务器拔掉来移除它。但这样做有一些微妙的缺点，因此我们需要设计一种更谨慎的机制，重用一些用于应对崩溃和故障的相同逻辑。</p>
+<p>简单地重新启动服务器不会影响未来的读写操作，这些操作将被透明地指向其他副本。它也不影响正在进行的写入操作，因为这些操作发生在所有副本上，而其他两个副本可以直接投票成功并继续写入，不需要我们正在重新启动的服务器上的副本。但重启确实会打断正在进行的读取操作。大多数读取操作——例如，获取README以显示在仓库的主页上——速度都很快，能够在服务器正常关闭之前完成。但有些读取，特别是大型仓库的克隆，取决于最终用户的网速，需要几分钟或几小时才能完成。直接打断这些操作是非常粗鲁的。可以在另一个副本上重新启动这些操作，但到目前为止的所有进度都将丢失。</p>
+<p>因此，在Spokes中，为了主动重启一台服务器，我们需要先将它置于静默期（quiescing period）。当服务器处于静默状态时，它对于新的读取操作被标记为脱机，但允许现有的读取操作（包括克隆）完成。静默期可能会持续几秒到几个小时，具体取决于被重启的服务器上哪些读取操作处于活动状态。</p>
+<p>可能会令人惊讶的是，写操作像往常一样被发送到服务器，即使它们静默也是如此。这是因为写操作需要在所有副本上运行，因此单个副本可以随时丢弃，不会发生用户可见的影响。此外，如果副本在静默时没有接收到任何写入操作，那么该副本将大大落后于其他副本，当它最终完全重新上线时，时会产生大量的追赶负载（catch-up load）。</p>
+<p>我们不在Spokes文件服务器上执行“混乱猴子”（chaos monkey）测试<a href="#note10" id="note10ref"><sup>10</sup></a>，原因与我们在重新启动它们之前要将它们置为静默状态的原因相同：避免中断需要长时间运行的读取操作。也就是说，我们不会仅仅为了确认突发的单节点故障仍然（在大多数情况下）是无害的而随机重启文件服务器。</p>
+<p>虽然我们不执行“混乱猴子”测试，我们仍然会按需要对服务器轮流进行重启，这实现了大致相同的测试目标。当我们需要进行一些需要重启的更改时——比如更改内核或文件系统参数，或更改BIOS设置——我们会将这些服务器置于静默状态并重启它们。我们将机架作为可用性区域<a href="#note11" id="note11ref"><sup>11</sup></a>，因此我们一次将整个机架置于静默状态。当给定机架中的服务器结束静默状态——即完成所有未完成的读取操作——我们分批重启这些服务器，每次最多五个。整个机架重启结束后，我们继续前进到下一个机架。</p>
+<p>下图显示了在轮流重启期间失败的RPC操作。用不同的颜色标记每个服务器。值是堆叠的，因此在最高的峰值表示的时刻中，八个服务器在同时重启。浅红色块表示一台服务器未能正常重启，因此离线了大约两个小时。</p>
+<p><img src="rolling-reboots.png" alt="滚动重启"></p>
+<p>用直接插拔的方法移除服务器的弊端与计划外重启的弊端类似。除了会中断任何正在进行的读取操作外，这种行为还会为在这台服务器上托管的所有仓库带来几个小时的额外风险。当一台服务器突然消失时，之前存储在里面的所有仓库现在都只剩下两个副本了。两个副本足够执行任何读取或写入操作，但两个副本无法承受额外的故障。换句话说，在没有警告的情况下就删除服务器，这样会增加在同一天晚些时候写入操作被拒绝的概率。我们的目标是将这种可能性保持在最低水平。</p>
+<p>因此，在准备移除一台服务器之前，我们不再把它存储的仓库副本作为任何仓库的活跃副本。Spokes仍然可以使用该服务器进行读写操作。但当它询问是否所有仓库都有足够的副本时，其中一些仓库——有副本位于将被移除的服务器上的那些 ——将声称不够，然后创建更多的副本。修复这一问题的过程类似于服务器直接消失后的修复过程，不过，区别在于，现在服务器仍然可用，以防其他服务器出现故障。</p>
+<h2>结论</h2>
+<p>可用性是很重要的，而持久性甚至更为重要。可用性衡量的是服务响应请求的时间长度<a href="#note12" id="note12ref"><sup>12</sup></a>。持久性衡量的是，服务能够可信地存储输入数据中的多少。</p>
+<p>为了提供可用性和持久性，Spokes为每个仓库至少保留了三个副本。三个副本意味着，即使一个服务器失效，也不会对用户产生可见的影响。如果两个服务器都发生了故障，Spokes仍然可以为大部分仓库提供完全的访问权限，并为那些恰好有两个副本存储在这两个故障服务器上的存储库提供只读访问。</p>
+<p>Spokes只在大多数副本——一般至少为两个——能够提交写入并得到相同的仓库状态时才接受对仓库的写入，这一要求通过确保所有副本上的写入顺序相同提供了一致性。通过在至少两个位置存储每个已提交的写入，它也可以在单个​​服务器发生故障时提供持久性。</p>
+<p>Spokes的故障检测器通过监视实时应用程序流量，确定服务器何时脱机并绕过该问题。最后，Spokes具有自动修复功能，可在磁盘或服务器发生永久性故障时快速恢复。</p>
+<h2>注解</h2>
+<p><a id="note1" href="#note1ref"><sup>1</sup></a>关于<a href="https://zh.wikipedia.org/wiki/Rsync" target="_blank" rel="noopener">rsync</a>：</p>
+<blockquote>
+<p>rsync是Unix下的一款应用软件，它能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。rsync可以拷贝／显示目录内容，以及拷贝文件，并可选压缩以及递归拷贝。<br>
+在常驻模式（daemon mode）下，rsync默认监听TCP端口873，以原生rsync传输协议或者通过远程shell如RSH或者SSH提供文件。SSH模式下，rsync客户端运行程序必须同时在本地和远程机器上安装。<br>
+rsync是以GNU通用公共许可证发行的自由软件。</p>
+</blockquote>
+<p><a id="note2" href="#note2ref"><sup>2</sup></a><a href="https://zh.wikipedia.org/wiki/CAP%E5%AE%9A%E7%90%86" target="_blank" rel="noopener">CAP定理</a>：</p>
+<blockquote>
+<p>在理论计算机科学中，<strong>CAP定理</strong>（CAP theorem），又被称作<strong>布鲁尔定理</strong>（Brewer's theorem），它指出对于一个分布式计算系统来说，不可能同时满足以下三点：</p>
+</blockquote>
+<ul>
+<li>一致性（<strong>C</strong>onsistence） （等同于所有节点访问同一份最新的数据副本）</li>
+<li>可用性（<strong>A</strong>vailability）（每次请求都能获取到非错的响应——但是不保证获取的数据为最新数据）</li>
+<li>分区容错性（<strong>P</strong> artition tolerance）（以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择。）<br>
+根据定理，分布式系统只能满足三项中的两项而不可能满足全部三项。理解CAP理论的最简单方式是想象两个节点分处分区两侧。允许至少一个节点更新状态会导致数据不一致，即丧失了C性质。如果为了保证数据一致性，将分区一侧的节点设置为不可用，那么又丧失了A性质。除非两个节点可以互相通信，才能既保证C又保证A，这又会导致丧失P性质。</li>
+</ul>
+<p><a id="note3" href="#note3ref"><sup>3</sup></a>不知道这个地方在说什么。是说Spokes能提供的功能远多于冗余性吗？</p>
+<p><a id="note4" href="#note4ref"><sup>4</sup></a>heartbeat的定义（<a href="http://blog.51cto.com/hoolee/1408615" target="_blank" rel="noopener">http://blog.51cto.com/hoolee/1408615</a>）：</p>
+<blockquote>
+<p>Heartbeat 项目是Linux-HA工程的一个组成部分，它实现了一个高可用集群系统。心跳服务和集群通信是高可用集群的两个关键组件，在 Heartbeat 项目里，由 heartbeat 模块实现了这两个功能。<br>
+heartbeat（Linux-HA）的工作原理：heartbeat最核心的包括两个部分，心跳监测部分和资源接管部分，心跳监测可以通过网络链路和串口进行，而且支持冗 余链路，它们之间相互发送报文来告诉对方自己当前的状态，如果在指定的时间内未收到对方发送的报文，那么就认为对方失效，这时需启动资源接管模块来接管运行在对方主机上的资源或者服务。</p>
+</blockquote>
+<p><a id="note5" href="#note5ref"><sup>5</sup></a>所谓“<a href="https://en.wikipedia.org/wiki/All_clear" target="_blank" rel="noopener">All clear</a>”是一种防空警报，它的含义是空袭已经结束，民众可以离开防空洞。</p>
+<p><a id="note6" href="#note6ref"><sup>6</sup></a><a href="https://zh.wikipedia.org/wiki/%E9%81%A0%E7%A8%8B%E9%81%8E%E7%A8%8B%E8%AA%BF%E7%94%A8" target="_blank" rel="noopener">远程过程调用</a>：</p>
+<blockquote>
+<p>远程过程调用（英语：Remote Procedure Call，缩写为 RPC）是一个计算机通信协议。该协议允许运行于一台计算机的程序调用另一台计算机的子程序，而程序员无需额外地为这个交互作用编程。如果涉及的软件采用面向对象编程，那么远程过程调用亦可称作远程调用或远程方法调用，例：Java RMI。</p>
+</blockquote>
+<p><a id="note7" href="#note7ref"><sup>7</sup></a>我没有完全理解M*N是什么意思。不过我猜测，这指的是错误是可以双向检测的。</p>
+<p><a id="note8" href="#note8ref"><sup>8</sup></a>这张图大概显示了3个fetch请求，一个远端git worker请求和一个web api请求。</p>
+<p><a id="note9" href="#note9ref"><sup>9</sup></a>此处令人思考的是，这一故障检测是如何实现的。我们需要了解请求是否会失败，以及一些能够进行请求的非文件服务器记录下的请求失败情况。通过其他服务器的请求情况，实际上，我们可以确定这些服务器的实际运行状况。而RPC图大概是需要通过收集所有请求的实际状况来绘制的。绘制完成之后，Spokes系统可能会根据某种策略自动进行结点状况判断，也可以绘制成实时状态图，让人类判断里面发生错误的结点。</p>
+<p><a id="note10" href="#note10ref"><sup>10</sup></a><a href="https://github.com/Netflix/SimianArmy/wiki/Chaos-Monkey" target="_blank" rel="noopener">Chaos monkey</a>：</p>
+<blockquote>
+<p>Chaos Monkey是一种识别系统组并随机终止组中某个系统的服务。该服务在受控时间（不在周末和假日运行）和间隔（仅在工作时间运行）运行。在大多数情况下，我们将应用程序设计为在对等设备脱机时继续工作，但在这些特殊情况下，我们希望确保周围有人来解决和学习任何问题。考虑到这一点，Chaos Monkey只在工作时间运行，其目的是让工程师保持警觉并能够做出响应。</p>
+</blockquote>
+<p>（其实就是在系统里自动造成随机失败，增加工程师的警觉性）</p>
+<p><a id="note11" href="#note11ref"><sup>11</sup></a>（原注）将机架作为可用性区域处理意味着我们放置仓库副本的时候需要保证同一机架中不会存储同一存储库的两个副本。这样就可以保证，即使丢失了整个服务器机架，也不会影响托管在里面的任何仓库的可用性或持久性。我们选择机架作为可用性区域，是因为几种重要的故障模式（failure mode），特别是与电源和网络相关的故障模式，可能会同时影响整个服务器机架。</p>
+<blockquote>
+<p>“可用性区域”（Availability Zone）由独立的数据中心构成，每个地区都是一个数据中心集群，这些数据中心之间距离足够近，这样可以保证数据库等应用的延迟足够低，但又足够远，这样可以防止出现意外时同时宕机，例如亚马逊在日本的数据中心就分布在不同的地震区。（<a href="https://ctocio.com/ccnews/5685.html" target="_blank" rel="noopener">香港：亚马逊云计算全球化布局下一站？</a>）</p>
+</blockquote>
+<p><a id="note12" href="#note12ref"><sup>12</sup></a>所以这个是单次请求所需的时间长度，和服务器自己的运行时间没有关系？那么，看来前面搞错了……</p>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-07-06T09:51:00+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2018-07-06
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Translation/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Translation</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Github/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Github</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Spokes/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Spokes</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/ostep-ch-05-summary-interlude-process-api/" rel="prev" title="OSTEP第05章总结：Interlude: Process API">
+                                  
+                                      OSTEP第05章总结：Interlude: Process API
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/OS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OS</a> <a class="tag" href="/tags/OSTEP/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>OSTEP</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/introducing-dgit-translation/" rel="prev" title="DGit简介">
+                                    
+                                        DGit简介
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Translation/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Translation</a> <a class="tag" href="/tags/Github/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Github</a> <a class="tag" href="/tags/Spokes/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Spokes</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '在Spokes中实现弹性（resilience）',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Spokes是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">“弹性”的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">可用性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">持久性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">正常关机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">注解</span></a></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

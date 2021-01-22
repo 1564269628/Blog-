@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Tag: alg:Greedy | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+    <script>
+        window.subData= { title:'标签 : alg:Greedy'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/sgu-546-ternary-password/">
+              
+                  SGU 546. Ternary Password（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-09-01
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="http://codeforces.com/problemsets/acmsguru/problem/99999/546" target="_blank" rel="noopener">http://codeforces.com/problemsets/acmsguru/problem/99999/546</a></p>
+<p>提交次数：2/3</p>
+<h2>题意</h2>
+<p>给定一个只包含<code>0</code>，<code>1</code>，<code>2</code>三种字符的字符串，长度为<code>n</code>（<code>1 &lt;= n &lt;= 200</code>）；要求通过替换操作修改字符串，使得<code>0</code>的个数为<code>a</code>，<code>1</code>的个数为<code>b</code>（<code>0 &lt;= a,b &lt;= 200</code>）。输出最少的替换次数和任意替换后的合法字符串，如无法完成要求，输出<code>-1</code>。</p>
+<h2>分析</h2>
+<p>这道题还比较简单。</p>
+<p>通过替换操作修改字符串实际上相当于可以把字符串完全换掉一遍，所以无法完成要求，只可能是<code>a + b &gt; n</code>的情况。</p>
+<p>然后很显然可以贪心。只要给定了<code>a</code>和<code>b</code>，事实上替换的方向和数量就都确定了：如果<code>0</code>当前的数量比<code>a</code>多，那么其中必然有一部分<code>0</code>需要被替换掉，而被替换的这些<code>0</code>可以是当前字符串中所有<code>0</code>的任意子集，所以不妨替换最靠前的那些。进行一次操作之后，得到的必然仍是一个最优子问题。</p>
+<p>进行实际替换的操作过程大概是一个贪心，不过这道题的确定性显然比一般所说的“贪心”问题更强。比如说，替换次数就可以直接计算出来：<code>changeTimes * 2 = abs(a-count('0')) + abs(b-count('1')) + abs(n-a-b-count('2'))</code>。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> p[<span class="number">205</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, a, b;</span><br><span class="line">    <span class="keyword">int</span> actNum[<span class="number">3</span>], expNum[<span class="number">3</span>];</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; p;</span><br><span class="line">    <span class="built_in">memset</span>(actNum, <span class="number">0</span>, <span class="keyword">sizeof</span>(actNum));</span><br><span class="line">    expNum[<span class="number">0</span>] = a;</span><br><span class="line">    expNum[<span class="number">1</span>] = b;</span><br><span class="line">    expNum[<span class="number">2</span>] = n - a - b;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (a &lt; <span class="number">0</span> || b &lt; <span class="number">0</span> || a + b &gt; n) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="number">-1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        actNum[p[i] - <span class="string">'0'</span>]++;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// int changed = 0;</span></span><br><span class="line">    <span class="keyword">int</span> changed = (<span class="built_in">abs</span>(actNum[<span class="number">0</span>]-expNum[<span class="number">0</span>]) + <span class="built_in">abs</span>(actNum[<span class="number">1</span>]-expNum[<span class="number">1</span>]) + <span class="built_in">abs</span>(actNum[<span class="number">2</span>]-expNum[<span class="number">2</span>])) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> x = p[i] - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (actNum[x] &gt; expNum[x]) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++)</span><br><span class="line">                <span class="keyword">if</span> (j != x &amp;&amp; actNum[j] &lt; expNum[j]) &#123;</span><br><span class="line">                    p[i] = j + <span class="string">'0'</span>;</span><br><span class="line">                    actNum[j]++;</span><br><span class="line">                    actNum[x]--;</span><br><span class="line">                    <span class="comment">// changed++;</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; changed &lt;&lt; <span class="built_in">endl</span> &lt;&lt; p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+          <a href="/tags/SGU/"><i class="fas fa-hashtag fa-fw"></i>SGU</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-860-lemonade-change/">
+              
+                  Leetcode 860. Lemonade Change（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-22
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/lemonade-change/description/" target="_blank" rel="noopener">https://leetcode.com/problems/lemonade-change/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：15.43%</p>
+<h2>题意</h2>
+<p>你在卖一种5元的柠檬水，顾客会分别用5元、10元和20元的纸币购买，你在开始的时候没有零钱。给定顾客使用的纸币类型顺序，问你能否顺利完成找零过程。</p>
+<h2>分析</h2>
+<p>看起来是道水题，模拟就行，不过中间有一个选择的问题：当顾客使用20元纸币的时候，你应该找3张5元的纸币，还是找1张5元和1张10元呢？直觉告诉我们，应该尽量找1张5元和1张10元的，因为5元纸币的用途更广，而10元纸币除了在收到20元时找零，其他时候是花不出去的。</p>
+<p>我在考虑如何形式化的证明这一问题。比如说，用stay-ahead方法。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>把原问题的目标扩大一下，优化目标变为“尽可能的服务最多的顾客”。记我们的算法给出的解（给每个顾客找零的纸币）为$A = \{a_1, a_2, ..., a_k \}$，最优解（之一）为$O = \{ o_1, o_2, ..., o_m \}$。令$f(i)$表示按顺序服务完第$i$个顾客后剩余的每种纸币的数量。由于我们的算法中会尽可能的节省5元纸币，所以对于任意$i$，都满足$f_{A5}(i) \geq f_{O5}(i)$，$f_{A10}(i) \leq f_{O10}(i)$。因为总钱数不变，且只能用5元和10元纸币找零，所以这两种零钱的总数是一定的，$5f_{A5}(i) + 10f_{A10}(i) = 5f_{O5}(i) + 10f_{O10}(i)$。</p>
+<p>下面证明$A$必然是一个最优算法。若$A$不是最优的，则必然$k &lt; m$，也就是$A$无法为第$k + 1$位顾客找零，但$O$可以。若第$k + 1$位顾客使用的是5元或10元纸币，由于$f_{A5}(k + 1) \geq f_{O5}(k + 1)$，只要$O$满足要求，$A$必然满足要求，所以这显然是不可能的。若该顾客使用的是20元纸币，由于$O$可以为他找零，说明$f_{O5}(k + 1) \geq 3$，或$f_{O5}(k + 1) \geq 1, f_{O10}(k + 1) \geq 1$。如果$f_{O5}(k + 1) \geq 3$，和刚才的情况相同，$A$必然也满足要求。如果$f_{O5}(k + 1) \geq 1, f_{O10}(k + 1) \geq 1$，由于两种算法剩余的5元和10元纸币的总钱数必然相等，必有$f_{A5}(k + 1) \geq 3$或$f_{A5}(k + 1) \geq 1, f_{A10}(k + 1) \geq 1$，$A$仍然可以找零，推出矛盾。</p>
+<p>综上，我们的算法可以给出最优解。</p>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">lemonadeChange</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; bills)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 收5元：没有问题</span></span><br><span class="line">        <span class="comment">// 收10元：需要找一张5元</span></span><br><span class="line">        <span class="comment">// 收20元：需要找3张5元，或1张5元+1张10元</span></span><br><span class="line">        <span class="comment">// 所以从贪心的角度，我觉得对于收20元，优先找10元+5元是合理的</span></span><br><span class="line">        <span class="keyword">int</span> fiveCnt = <span class="number">0</span>, tenCnt = <span class="number">0</span>, twentyCnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> bill: bills) &#123;</span><br><span class="line">            <span class="keyword">if</span> (bill == <span class="number">5</span>)</span><br><span class="line">                fiveCnt++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (bill == <span class="number">10</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (fiveCnt == <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                fiveCnt--;</span><br><span class="line">                tenCnt++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (bill == <span class="number">20</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (tenCnt &gt; <span class="number">0</span> &amp;&amp; fiveCnt &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    tenCnt--;</span><br><span class="line">                    fiveCnt--;</span><br><span class="line">                    twentyCnt++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (fiveCnt &gt;= <span class="number">3</span>) &#123;</span><br><span class="line">                    fiveCnt -= <span class="number">3</span>;</span><br><span class="line">                    twentyCnt++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="http://www.cs.cornell.edu/courses/cs482/2003su/handouts/greedy_ahead.pdf" target="_blank" rel="noopener">Proof Techniques: Greedy Stay Ahead</a> （另一种常见技巧是<a href="http://www.cs.cornell.edu/courses/cs482/2003su/handouts/greedy_exchange.pdf" target="_blank" rel="noopener">Greedy Exchange</a>） <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-621-task-scheduler/">
+              
+                  Leetcode 621. Task Scheduler（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-18
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/task-scheduler/description/" target="_blank" rel="noopener">https://leetcode.com/problems/task-scheduler/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：2/5</p>
+<p>代码效率：</p>
+<ul>
+<li>排序+贪心：6.90%</li>
+<li>直接贪心：98.84%</li>
+</ul>
+<h2>题意</h2>
+<p>有若干种任务，每种任务有若干个时间片，同一任务的两个时间片之间的间隔必须超过<code>n</code>。问执行完所有任务至少需要多少个时间片。</p>
+<h2>分析</h2>
+<p>很容易想到一种直接的贪心方法：每次选择已经到了冷却时间且剩余个数最多的任务来执行。</p>
+<p>另一种思路则十分巧妙。事实上，上一种思路中我们浪费了过多的信息。从题意中可以看出，任务的名称和执行并没有明确的关系，因此不妨假设我们已经按任务所需时间片的数量从大到小排好序了，为<code>A</code>到<code>Z</code>。若<code>n &gt;= 25</code>，则任务的执行必然呈现出周期性，因为：</p>
+<ul>
+<li>第<code>1</code>个时间片：因为之前没有执行过A，且A所需时间片最多，所以执行A</li>
+<li>第<code>2</code>个时间片：A未到冷却时间；之前没有执行过B，且B在剩余任务中所需时间片最多，所以执行B</li>
+<li>第<code>3</code>个时间片：A、B未到冷却时间；之前没有执行过C，且C在剩余任务中所需时间片最多，所以执行C</li>
+<li>……</li>
+<li>第<code>26</code>个时间片：只有Z未到冷却时间，执行Z</li>
+<li>空闲……</li>
+<li>第<code>n+2</code>个时间片：由于A-Z已经各执行了一次，剩余时间片大小的顺序关系不变，因此仍然按上述顺序执行</li>
+<li>……</li>
+<li>第？个时间片：此时只有时间片总量最大的A（也许还有B，等等）还没有执行完，执行完A后，我们就可以结束执行了。</li>
+</ul>
+<p>此时用图来表现执行顺序，就会变成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ABCD......ZXXXX</span><br><span class="line">ABCD......ZXXXX</span><br><span class="line">ABCD......ZXXXX</span><br><span class="line">......</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+<p>显然我们应该把<code>n</code>的界再缩小一些：假设实际任务的总数为<code>m</code>，则<code>n &gt;= m - 1</code>时，实际执行状况都是这样的。不妨设A的时间片个数为<code>maxIntervals</code>，时间片数量与A相等的任务个数为<code>maxCount</code>，则所需时间片总量为<code>(maxIntervals - 1) * (n + 1) + maxCount</code>。</p>
+<p>当<code>n &lt; m - 1</code>时，我们只需先把前<code>n + 1</code>个任务安排好：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ABCDE</span><br><span class="line">ABCDE</span><br><span class="line">ABCDE</span><br><span class="line">ABCDE</span><br><span class="line">...</span><br><span class="line">ABC</span><br></pre></td></tr></table></figure>
+<p>然后把剩余的任务按顺序插进去，有多少个就插多少个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ABCDEFGHI</span><br><span class="line">ABCDEFGH</span><br><span class="line">ABCDEFGH</span><br><span class="line">ABCDEFG</span><br><span class="line">...</span><br><span class="line">ABC</span><br></pre></td></tr></table></figure>
+<p>此时没有空闲时间片，所以需要的时间片总量为全部任务时间片的总量。</p>
+<p>特别地，当<code>n &lt; m - 1</code>且<code>maxCount &gt;= n - 1</code>时，我们不需要按照<code>n</code>的循环来安排任务，直接按照<code>m</code>来循环即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ABCD......Z</span><br><span class="line">ABCD......Z</span><br><span class="line">ABCD......Z</span><br><span class="line">......</span><br><span class="line">AB</span><br></pre></td></tr></table></figure>
+<p>上述思路参考了<a href="https://leetcode.com/problems/task-scheduler/discuss/104496/concise-Java-Solution-O%28N%29-time-O%2826%29-space" target="_blank" rel="noopener">concise Java Solution O(N) time O(26) space</a>和<a href="https://leetcode.com/problems/task-scheduler/discuss/104500/Java-O%28n%29-time-O%281%29-space-1-pass-no-sorting-solution-with-detailed-explanation" target="_blank" rel="noopener">Java O(n) time O(1) space 1 pass, no sorting solution with detailed explanation</a>。</p>
+<h2>代码</h2>
+<h3>排序+贪心</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; tasks, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> taskLeft[<span class="number">26</span>];</span><br><span class="line">        <span class="built_in">memset</span>(taskLeft, <span class="number">0</span>, <span class="keyword">sizeof</span>(taskLeft));</span><br><span class="line">        <span class="keyword">int</span> lastExecute[<span class="number">26</span>];</span><br><span class="line">        <span class="built_in">memset</span>(lastExecute, <span class="number">-1</span>, <span class="keyword">sizeof</span>(lastExecute));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c: tasks)</span><br><span class="line">            taskLeft[c - <span class="string">'A'</span>]++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> task = <span class="number">-1</span>, left = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (taskLeft[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    found = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (lastExecute[i] == <span class="number">-1</span> || now - lastExecute[i] &gt; n) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (left == <span class="number">-1</span> || taskLeft[i] &gt; left) &#123;</span><br><span class="line">                            left = taskLeft[i];</span><br><span class="line">                            task = i;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!found)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">// cout &lt;&lt; now &lt;&lt; ' ' &lt;&lt; task &lt;&lt; endl;</span></span><br><span class="line">            <span class="keyword">if</span> (found &amp;&amp; task == <span class="number">-1</span>) &#123;</span><br><span class="line">                now++;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            taskLeft[task]--;</span><br><span class="line">            lastExecute[task] = now;</span><br><span class="line">            now++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> now;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3>直接贪心</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; tasks, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> taskLeft[<span class="number">26</span>];</span><br><span class="line">        <span class="built_in">memset</span>(taskLeft, <span class="number">0</span>, <span class="keyword">sizeof</span>(taskLeft));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c: tasks)</span><br><span class="line">            taskLeft[c - <span class="string">'A'</span>]++;</span><br><span class="line"></span><br><span class="line">        sort(taskLeft, taskLeft + <span class="number">26</span>);</span><br><span class="line">        <span class="keyword">int</span> maxes = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">25</span>; i &gt;= <span class="number">0</span> &amp;&amp; taskLeft[i] == taskLeft[<span class="number">25</span>]; i--)</span><br><span class="line">            maxes++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max((<span class="keyword">int</span>) tasks.size(), (taskLeft[<span class="number">25</span>] - <span class="number">1</span>) * (n + <span class="number">1</span>) + maxes);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-881-boats-to-save-people/">
+              
+                  Leetcode 881. Boats to Save People（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-17
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/boats-to-save-people/description/" target="_blank" rel="noopener">https://leetcode.com/problems/boats-to-save-people/description/</a></p>
+<p>标记难度：Medium</p>
+<p>提交次数：1/1</p>
+<p>代码效率：25.56%</p>
+<h2>题意</h2>
+<p>给定若干个人的重量，以及一条船的载重限制，一条船上最多载两个人，且总重量不能超过载重限制，问至少需要多少条船运载所有人。</p>
+<h2>分析</h2>
+<h3>一种证明贪心算法正确的方法</h3>
+<p>一道非常简单（经典）的贪心问题，但我却被<a href="https://leetcode.com/problems/boats-to-save-people/discuss/156748/Python-short-2-pointer-solution-and-some-thoughts" target="_blank" rel="noopener">这样的一个问题</a>困扰住了：对于当前重量最大的人，为何我们寻找的匹配是当前重量最小的人，而不是所有可能的匹配中重量最大的人？</p>
+<p>当然，寻找当前重量最小的匹配方法是正确的。<a href="https://leetcode.com/problems/boats-to-save-people/discuss/156855/6-lines-Java-O%28nlogn%29-code-sorting-+-greedy-with-greedy-algorithm-proof." target="_blank" rel="noopener">6 lines Java O(nlogn) code, sorting + greedy, with greedy algorithm proof. </a>中提供了一份形式化的证明，翻译如下（作为贪心算法证明方法的参考）：</p>
+<p>令<code>S</code>表示一种最优解（显然，由于优化目标只是船的数量，最优解可能不止有一种），<code>O</code>表示我们的算法输出的解。</p>
+<ol>
+<li>贪心选择性质（greedy choice property）：选择只需依赖于当前情形，不需要依赖于未来的选择和子问题的其他解。</li>
+</ol>
+<p>从最沉的人<code>hi</code>开始，有2种可能的情况：</p>
+<p>(a) 如果<code>hi</code><strong>不能</strong>和其他任何人进入同一艘船，则在<code>S</code>和<code>O</code>中，<code>hi</code>都独自处于一艘船中。显然，在这种情况下，我们的这一选择是最优的，贪心选择性质维持不变。</p>
+<p>(b) 如果<code>hi</code><strong>可以</strong>和其他某一个人进入一艘船，则在<code>O</code>中，根据我们的算法，<code>hi</code>和最轻的人<code>lo</code>必然位于同一条船上。</p>
+<p>在<code>S</code>中，如果他们也在同一条船上，则我们的这一步骤是最优的，贪心选择性质保持不变；如果他们不在同一条船上，则我们可以把<code>hi</code>和<code>lo</code>在船上的同伴<code>m</code>交换一下。显然，<code>m &lt;= hi</code>，因此交换是可以进行的。因为交换没有导致船变多，我们得到了一个新的最优解<code>T</code>，且在这种解中，<code>hi</code>和<code>lo</code>在同一条船上。这表明，我们的第一个步骤——把<code>hi</code>和<code>lo</code>放进同一条船中——是一个最优步骤，贪心选择性质也维持不变。</p>
+<ol start="2">
+<li>最优子结构性质（optimal substructure property）：对原问题的最优解必然包含对子问题的最优解</li>
+</ol>
+<p>令<code>P</code>表示规模为<code>n</code>的原问题，其中<code>n = people.length</code>。从上述推导中，可以看出，在第一步之后，我们得到了一个子问题<code>P'</code>，规模为<code>n'</code>（如果<code>hi</code>独自占据一艘船，则<code>n' = n - 1</code>，否则<code>n' = n - 2</code>）。我们可以相似地对<code>P'</code>中的<code>hi'</code>和<code>lo'</code>进行和刚才一样的操作。</p>
+<p>由于我们已经证明了，<code>T</code>也是一种最优解，且<code>P'</code>的解（不妨称之为<code>O'</code>）包含在<code>T</code>内，也是一种最优解，所以这一问题具有最优子结构性质。</p>
+<p>综上，我们的算法符合贪心选择性质和最优子结构性质，证毕。</p>
+<hr>
+<p>好吧，我之前并不知道<a href="https://en.wikipedia.org/wiki/Greedy_algorithm" target="_blank" rel="noopener">贪心算法的这两种性质</a>。按照算法导论上的说法，这两种性质实际上是用来分析问题的——只有证明问题具有这两种性质时，才能确定可以应用贪心算法。而在此处的证明里，作者把实际的解法也混在证明过程中了。而“证明问题符合贪心的两种性质”和“证明贪心算法的正确性”本质上是两个问题。事实上，此处作者的证明策略应该叫做“exchange arguments”。<a href="http://www.idi.ntnu.no/~mlh/algkon/greedy.pdf" target="_blank" rel="noopener">Proof methods and greedy algorithms</a>这篇文章中包含了对两种策略的详细论述。</p>
+<h3>对于上述贪心算法的另一种理解</h3>
+<p>在开始查找这些资料之前，我尝试从直觉上去理解这种算法的重要性，并且确实找到了一种理解方法。</p>
+<p>由于有一条船上最多坐两个人的限制，在这种算法下，实际上，我们是在为那些<code>weight &gt; floor(limit/2)</code>的人寻找配对的，能坐在同一条船里的人；结束寻找之后，那些<code>weight &lt;= floor(limit/2)</code>的人之间则可以随意组合。</p>
+<p>把所有的人按重量排序，记<code>mid = floor(limit/2)+1</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| 0 | 1 | ... | mid-1 | mid | ... | n-1 |</span><br></pre></td></tr></table></figure>
+<p>显然，此时最重的人能够配对的人是最少的，次重的人能够配对的人可能会稍微多一些。记最重的人能够配对的人的位置区间为<code>[0, r_1]</code>，次重的人能够配对的人的位置区间为<code>[0, r_2]</code>……直到<code>[0, r_mid]</code>。显然，<code>r_1 &lt;= r_2 &lt;= ... &lt;= r_mid</code>。</p>
+<p>现在我们实际上是在做这样一件事：从上述整数区间中选择一些点，使得它们具有这样的性质：</p>
+<ul>
+<li>每个人只能在自己对应的区间中选点</li>
+<li>点不能重复选择</li>
+</ul>
+<p>我们的目的是最大化能选到点的人的数量。</p>
+<p>此时，将最重的人与最轻的人匹配（假如他们能够匹配）的做法就很好理解了：我们实际上是为他选择了对应的线段中（还没被选择过的）最靠前的一个点。而“所有可能的匹配中重量最大的人”相当于是选择了线段上（还没被选择过的）最靠后的一个点。</p>
+<p>对于这两种算法，不能找到匹配的情况都满足<code>r_i &lt; i</code>。所以这两种算法本质上是一样的。</p>
+<hr>
+<p>我感觉我的证明能力不是很强。以后再遇到贪心问题的时候，我也会尝试去做一下问题的贪心性质和贪心算法的正确性这两种证明的。</p>
+<h3>在Leetcode上的英文回答</h3>
+<p><a href="https://leetcode.com/problems/boats-to-save-people/discuss/156748/Python-short-2-pointer-solution-and-some-thoughts/166286" target="_blank" rel="noopener">https://leetcode.com/problems/boats-to-save-people/discuss/156748/Python-short-2-pointer-solution-and-some-thoughts/166286</a></p>
+<p>In short: I think both &quot;smallest&quot; and &quot;possibly maximum&quot; methods are correct, and they are in some way equivalent.</p>
+<p>Another person has provided a formal proof for the &quot;smallest&quot; selection method. (<a href="https://leetcode.com/problems/boats-to-save-people/discuss/156855/6-lines-Java-O%28nlogn%29-code-sorting-+-greedy-with-greedy-algorithm-proof." target="_blank" rel="noopener">6 lines Java O(nlogn) code, sorting + greedy, with greedy algorithm proof. </a>) Of course, that method is correct, but this might not be immediately obvious. So I'd like to share my understanding of this problem with you. (So it's not a formal proof.)</p>
+<p>Let <code>mid = floor(limit/2)</code>, and divide those people into two groups: 'heavy' people, whose <code>weight &gt; mid</code>; and 'light' people, whose <code>weight &lt;= mid</code>. Minimizing the number of boats is equivalent to maximizing the number of boats with two people in them. It is obvious that, if a 'heavy' person wants to sit in a boat with another person, the other person must be a 'light' one; on the other hand, a 'light' person can certainly sit with another 'light' person, and maybe some of the 'heavy' people.</p>
+<p>Now, a solution is at hand: we first try to pair each 'heavy' person with a 'light' person, and put them in a boat; when a 'heavy' person can't find a pair, we put him alone in a boat; finally, if there are any 'light' person left, we can arbitrarily pair them together. The biggest question is, how can we maximize these 'heavy'-'light' pairs?</p>
+<p>Sort all the people in ascending order. Let <code>n = people.length</code>, and suppose there are altogether <code>m</code> heavy people, denoted by <code>people[n-m]</code>, <code>people[n-m+1]</code>, ... <code>people[n-1]</code>. After sorting, the 'light' people that a 'heavy' person can pair with will form a <strong>interval</strong>. Denote these intervals by <code>[0, r_{n-m})</code>, <code>[0, r_{n-m+1})</code>, ..., <code>[0, r_{n-1})</code>. (Intervals might be empty)</p>
+<p>Example: <code>limit = 8</code>, <code>people = [2, 3, 3, 5, 6, 7]</code></p>
+<p>In this example, <code>heavy = [5, 6, 7]</code>, <code>light =</code>[2, 3, 3]`.</p>
+<ul>
+<li>For <code>7</code>, the interval is <code>[0, 0)</code> (no one can sit with <code>7</code>);</li>
+<li>For <code>6</code>, the interval is <code>[0, 1)</code> (<code>2</code> can sit with <code>6</code>);</li>
+<li>For <code>5</code>, the interval is <code>[0, 3)</code> (<code>[2, 3, 3]</code> can all sit with <code>5</code>).</li>
+</ul>
+<p>And it is obvious that <code>r_{n-m} &gt;= r_{n-m+1} &gt;= ... &gt;= r_{n-1} &gt;= 0</code>. So these intervals are all overlapping, and the left endpoints are all zero.</p>
+<p>Now we can analyze the difference between &quot;smallest&quot; and &quot;possibly maximum&quot; methods. When we choose the &quot;smallest&quot; person, we are choosing the <strong>leftmost</strong> point of the interval (which hasn't be chosen yet); when we choose the &quot;possibly maximum&quot; person, we are choosing the <strong>rightmost</strong> point of the interval (which hasn't be chosen yet).</p>
+<p>Because all intervals has 0 as the left endpoint, when we start from the heaviest person, only when <code>r_k &lt; k</code> (<code>k</code> is the number of 'heavy' people we have considered or is considering) can this 'heavy' person not find a 'light' person to pair. So, in these two methods, we find different 'light' people for the 'heavy' people to pair, but the set of 'heavy' people who cannot find a pair is the same.</p>
+<p>Example: <code>limit = 8</code>, <code>people = [1, 2, 2, 2, 3, 4, 5, 6, 7, 7]</code></p>
+<table>
+<thead>
+<tr>
+<th><code>people[i]</code></th>
+<th><code>k</code></th>
+<th>interval</th>
+<th>&quot;smallest&quot; pair</th>
+<th>&quot;possibly maximum&quot; pair</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>people[9] = 7</code></td>
+<td>1</td>
+<td><code>[0, 1)</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>people[8] = 7</code></td>
+<td>2</td>
+<td><code>[0, 1)</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>people[7] = 6</code></td>
+<td>3</td>
+<td><code>[0, 4)</code></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>people[6] = 5</code></td>
+<td>4</td>
+<td><code>[0, 5)</code></td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h2>代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numRescueBoats</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; people, <span class="keyword">int</span> limit)</span> </span>&#123;</span><br><span class="line">        sort(people.begin(), people.end());</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = people.size() - <span class="number">1</span>, sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; people[i] + people[j] &gt; limit) &#123;</span><br><span class="line">                j--;</span><br><span class="line">                sum++;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">            sum++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i == j)</span><br><span class="line">            sum++;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+          <a href="/tags/alg-Two-Pointers/"><i class="fas fa-hashtag fa-fw"></i>alg:Two Pointers</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class='post-wrapper'>
+              <article class="post reveal ">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/post/leetcode-475-heaters/">
+              
+                  Leetcode 475. Heaters（贪心）
+              
+          </a>
+      </h2>
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2018-08-01
+          </a>
+        </div>
+      
+      
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>题目来源：<a href="https://leetcode.com/problems/heaters/description/" target="_blank" rel="noopener">https://leetcode.com/problems/heaters/description/</a></p>
+<p>标记难度：Easy</p>
+<p>提交次数：1/1</p>
+<p>代码效率：18.81%</p>
+<h2>题意</h2>
+<p>x轴上有若干个暖气和若干个房子，每个暖气能够覆盖到半径为x的圆内的房子，问至少取x为多少，才能覆盖所有房子。（所有暖气的半径是一样的）</p>
+<h2>分析</h2>
+<p>如果需要排序，则时间复杂度下限应该是$O(n \log{n})$。排序之后，很显然可以立刻利用二分查找（<code>lower_bound</code>或<code>upper_bound</code>）来寻找距离每所房子最近的暖气，并确定所需的最小半径。如果房子和暖气开始时都是排好序的，则很显然有$O(n)$的解法，因为此时随着房子坐标的递增，它在暖气中的<code>lower_bound</code>必然也是单调递增的，因此扫描一遍所有暖气就够了，具体解法可参见<a href="https://leetcode.com/problems/heaters/discuss/95927/C++-O%28N%29-speed-O%281%29-space" target="_blank" rel="noopener">C++ O(N) speed O(1) space</a>。</p>
+<!--
+只好把()转义成%28和%29了
+-->
+<p>以及我每次都记不住<a href="https://zh.cppreference.com/w/cpp/algorithm/upper_bound" target="_blank" rel="noopener">upper_bound</a>的用法。</p>
+<ul>
+<li>调用方法：<code>upper_bound(vector.begin(), vector.end(), val)</code></li>
+<li>返回值：<code>iterator</code>（虽然这么说不算很准确）</li>
+<li>返回值使用方法：
+<ul>
+<li><code>*iterator</code>：<code>lower_bound</code>的数值</li>
+<li><code>iterator - vector.begin()</code>：<code>lower_bound</code>对应的数在数组中的下标</li>
+<li><code>iterator != vector.end()</code>：是否找到了<code>lower_bound</code></li>
+</ul>
+</li>
+</ul>
+<h2>代码</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int findRadius(vector&lt;int&gt;&amp; houses, vector&lt;int&gt;&amp; heaters) &#123;</span><br><span class="line">        // 既然标签是Easy，那我觉得大概是个贪心问题，至多是动态规划问题</span><br><span class="line">        // （当然这个思考方式是不好的）</span><br><span class="line">        // 又看错题了，原来所有的暖气的半径要求是一样的。</span><br><span class="line">        // 我感觉有O(n)的解法，但是显然直接O(n * log(n))比较方便。</span><br><span class="line"></span><br><span class="line">        if (houses.size() &lt;= 0 || heaters.size() &lt;= 0)</span><br><span class="line">            return 0;</span><br><span class="line"></span><br><span class="line">        int n = houses.size(), m = heaters.size();</span><br><span class="line">        sort(houses.begin(), houses.end());</span><br><span class="line">        sort(heaters.begin(), heaters.end());</span><br><span class="line"></span><br><span class="line">        // 我决定为每一个房子找到离它最近的暖气。</span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            auto ub = upper_bound(heaters.begin(), heaters.end(), houses[i]);</span><br><span class="line">            int dist;</span><br><span class="line">            // 此house的坐标&gt;=所有heater的坐标</span><br><span class="line">            if (ub == heaters.end())</span><br><span class="line">                dist = houses[i] - heaters[m-1];</span><br><span class="line">            else &#123;</span><br><span class="line">                int j = ub - heaters.begin();</span><br><span class="line">                dist = heaters[j] - houses[i];</span><br><span class="line">                if (j &gt; 0)</span><br><span class="line">                    dist = min(dist, houses[i] - heaters[j-1]);</span><br><span class="line">            &#125;</span><br><span class="line">            ans = max(ans, dist);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Leetcode/"><i class="fas fa-hashtag fa-fw"></i>Leetcode</a>
+        
+          <a href="/tags/alg-Binary-Search/"><i class="fas fa-hashtag fa-fw"></i>alg:Binary Search</a>
+        
+          <a href="/tags/alg-Greedy/"><i class="fas fa-hashtag fa-fw"></i>alg:Greedy</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+      <br>
+      <div class="prev-next">
+          <div class="prev-next">
+              
+                  <a class="prev" rel="prev" href="/tags/alg-Greedy/page/3/">
+                      <section class="post prev" >
+                          <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+                      </section>
+                  </a>
+              
+              <p class="current">
+                  4 / 4
+              </p>
+              
+
+          </div>
+      </div>
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+    console.log("mathjax did loaded!");
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+  
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>翻译：网络流算法（USACO） | 张慕晖的博客</title>
+  
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="张慕晖的博客">
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css'>
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="/files/favicon.ico">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119345306-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119345306-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          张慕晖的博客
+        
+      </a>
+			<div class='menu'>
+				<ul class='h-list'>
+          
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+				<li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class='meta'>
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">翻译：网络流算法（USACO）</h1>
+      
+    
+
+    <div class='new-meta-box'>
+      
+        <div class='new-meta-item author'>
+          <a href="https://zhanghuimeng.github.io">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            张慕晖
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class='notlink'>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            2019-04-01
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class='new-meta-item category'>
+            <a href='/categories/USACO/'>
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              USACO
+            </a>
+          </div>
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class='notlink'>
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>这是几乎全部机翻的版本。几乎可以肯定的是，这个翻译需要改进。</p>
+<p>网络流真难……</p>
+<a id="more"></a>
+<!-- Prerequisite -->
+<h2>前置知识</h2>
+<!-- Shortest Path -->
+<blockquote>
+<ul>
+<li>最短路</li>
+</ul>
+</blockquote>
+<!-- The Problem -->
+<h2>问题</h2>
+<!-- Given: A direct connected graph with integer weighted arcs, along with a source node and a sink node. -->
+<blockquote>
+<p>给定一个具有整数权重的连通图，以及一个源结点和一个汇结点。</p>
+</blockquote>
+<!-- Each arc weight corresponds to the ``capacity'' of that arc. A flow through the graph is constructed by assigning an integer amount of ``flow'' to send through each edge such that: -->
+<blockquote>
+<p>每条边的权重表示该边的“容量”。穿越该图的一个流通过为每条边分配一个整数流量构成，且满足：</p>
+</blockquote>
+<!-- The flow through each arc is no greater than the arc's capacity.
+For each node other than the source and sink, total flow in is the same as total flow out. -->
+<blockquote>
+<ul>
+<li>通过每条边的流量不超过每条边的容量。</li>
+<li>除了源和汇之外的结点，输入流量等于输出流量。</li>
+</ul>
+</blockquote>
+<!-- Maximize the total of the weights of the out-arcs of the source minus the weights of the in-arcs (or the total of the weights of the in-arcs of the sink minus the weights of the out-arcs). -->
+<blockquote>
+<p>最大化源结点的输出量减输入量（或汇结点的输入量减输出量）。</p>
+</blockquote>
+<!-- Example -->
+<h3>例子</h3>
+<!-- Given: The layout of a collection of water pipes, along with the capacity of each pipe. Water in these pipes must flow downhill, so within each pipe, water can only flow in one direction. -->
+<blockquote>
+<p>给定水管集合的布局，以及每个管道的容量。这些管道中的水必须向下流动，因此在每个管道内，水只能沿一个方向流动。</p>
+</blockquote>
+<!-- Calculate the amount of water that can flow from a given start (the water-purification plant) to a given end (your farm). -->
+<blockquote>
+<p>计算从给定的起点（净水厂）到给定的终点（您的农场）可以流动的水量。</p>
+</blockquote>
+<!-- The Algorithm -->
+<h2>算法</h2>
+<!-- The algorithm (greedily) builds the network flow by iteratively adding flow from the source to the sink. -->
+<blockquote>
+<p>该算法（贪婪地）通过迭代地添加从源到汇的流量来构建网络流。</p>
+</blockquote>
+<!-- Start with every arc having weight equal to the beginning weight (The arc weights will correspond to the amount of capacity still unused in that arc). -->
+<blockquote>
+<p>开始时，将每条边的权重都置为初始权重（边的权重等于该边中还没有用完的容量）。</p>
+</blockquote>
+<!-- Given the current graph, find a path from the source to the sink across arcs that all have non-zero weight in the current graph. Calculate the maximum flow across this path, call it PathCap. -->
+<blockquote>
+<p>给定当前的图，找到一条在当前图中从源到汇的只经过非零权重的边的路径。计算能通过该路径的最大流量，记为PathCap。</p>
+</blockquote>
+<!-- For each arc along the path, reduce the capacity of that arc by PathCap. In addition, add the reverse arc (the arc between the same two nodes, but in the opposite direction) with capacity equal to PathCap (if the reverse arc already exists, just increase its capacity). -->
+<blockquote>
+<p>对于路径上的每条边，将该边的容量减去PathCap。除此之外，添加容量等于PathCap的反向边（连接两个相同结点但方向相反的边）；如果反向边已经存在，只需增加其容量。</p>
+</blockquote>
+<!-- Continue to add paths until none exist. -->
+<blockquote>
+<p>继续添加路径，直到找不到更多路径位置。</p>
+</blockquote>
+<!-- This is guaranteed to terminate because you add at least one unit of flow each time (since the weights are always integers), and the flow is strictly monotonically increasing. The use of an added reverse arc is equivalent to reducing the flow along that path. -->
+<blockquote>
+<p>这个算法必然可以终止，因为每次都至少增加一个单位的流量（因为权重总是整数），且流量是严格单调递增的。增加反向边的方法和减少路径上的流量是等价的。</p>
+</blockquote>
+<!-- If you are interested in a more detailed analysis of this algorithm, consult Sedgewick. -->
+<blockquote>
+<p>如果你想对这个算法做一个更详细的分析，请去查Sedgewick的书。</p>
+</blockquote>
+<!-- Here is pseudocode for the algorithm:  -->
+<blockquote>
+<p>下面是算法伪代码：</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span>   <span class="keyword">if</span> (source = sink)</span><br><span class="line"> <span class="number">2</span>     totalflow = Infinity</span><br><span class="line"> <span class="number">3</span>     DONE</span><br><span class="line"></span><br><span class="line"> <span class="number">4</span>   totalflow = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"> <span class="number">5</span>   <span class="keyword">while</span> (<span class="keyword">True</span>)</span><br><span class="line"> <span class="number">6</span>   <span class="comment"># 找到源到汇的容量最大的路径</span></span><br><span class="line"> <span class="number">7</span>   <span class="comment"># 使用修改过的Djikstra算法</span></span><br><span class="line">       <span class="comment"># 算法初始化</span></span><br><span class="line"> <span class="number">8</span>     <span class="keyword">for</span> all nodes i</span><br><span class="line"> <span class="number">9</span>       prevnode(i) = nil</span><br><span class="line"><span class="number">10</span>       flow(i) = <span class="number">0</span></span><br><span class="line"><span class="number">11</span>       visited(i) = <span class="keyword">False</span></span><br><span class="line"><span class="number">12</span>     flow(source) = infinity</span><br><span class="line"></span><br><span class="line"><span class="number">13</span>     <span class="keyword">while</span> (<span class="keyword">True</span>)</span><br><span class="line"><span class="number">14</span>       maxflow = <span class="number">0</span></span><br><span class="line"><span class="number">15</span>       maxloc = nil</span><br><span class="line"><span class="number">16</span>       <span class="comment"># 找到还没有访问过的结点中流量（flow）最大的</span></span><br><span class="line"><span class="number">17</span>       <span class="keyword">for</span> all nodes i</span><br><span class="line"><span class="number">18</span>         <span class="keyword">if</span> (flow(i) &gt; maxflow AND <span class="keyword">not</span> visited(i))</span><br><span class="line"><span class="number">19</span>           maxflow = flow(i)</span><br><span class="line"><span class="number">20</span>           maxloc = i</span><br><span class="line"><span class="number">21</span>       <span class="keyword">if</span> (maxloc = nil)</span><br><span class="line"><span class="number">22</span>         <span class="keyword">break</span> inner <span class="keyword">while</span> loop</span><br><span class="line"><span class="number">23</span>       <span class="keyword">if</span> (maxloc = sink)</span><br><span class="line"><span class="number">24</span>         <span class="keyword">break</span> inner <span class="keyword">while</span> loop</span><br><span class="line"><span class="number">24</span>a      visited(maxloc) = true</span><br><span class="line"><span class="number">25</span>       <span class="comment"># 更新它的邻居的流量</span></span><br><span class="line"><span class="number">26</span>       <span class="keyword">for</span> all neighbors i of maxloc</span><br><span class="line"><span class="number">27</span>         <span class="keyword">if</span> (flow(i) &lt; min(maxflow, capacity(maxloc,i)))</span><br><span class="line"><span class="number">28</span>           prevnode(i) = maxloc</span><br><span class="line"><span class="number">29</span>           flow(i) = min(maxflow, capacity(maxloc,i))</span><br><span class="line"></span><br><span class="line"><span class="number">30</span>     <span class="keyword">if</span> (maxloc = nil)         <span class="comment"># 找不到路径</span></span><br><span class="line"><span class="number">31</span>       <span class="keyword">break</span> outer <span class="keyword">while</span> loop</span><br><span class="line"></span><br><span class="line"><span class="number">32</span>     pathcapacity = flow(sink)</span><br><span class="line"><span class="number">33</span>     totalflow = totalflow + pathcapacity</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 将当前流加入网络中，更新容量</span></span><br><span class="line"><span class="number">35</span>     curnode = sink</span><br><span class="line">         <span class="comment"># for each arc, prevnode(curnode),</span></span><br><span class="line">         <span class="comment"># curnode on path:</span></span><br><span class="line"><span class="number">36</span>     <span class="keyword">while</span> (curnode != source)</span><br><span class="line"><span class="number">38</span>       nextnode = prevnode(curnode)</span><br><span class="line"><span class="number">39</span>       capacity(nextnode,curnode) =</span><br><span class="line">           capacity(nextnode,curnode) -</span><br><span class="line"><span class="number">40</span>                           pathcapacity</span><br><span class="line"><span class="number">41</span>       capacity(curnode,nextnode) =</span><br><span class="line">           capacity(curnode,nextnode) +</span><br><span class="line"><span class="number">42</span>                           pathcapacity</span><br><span class="line"><span class="number">43</span>       curnode = nextnode</span><br></pre></td></tr></table></figure>
+<p>这个算法伪代码看起来有些令人头疼……总的来说，这是一种Ford–Fulkerson算法。而且是一种用修改过的Dijkstra算法进行Maximum capacity augmentation的算法。反向边的必要性我还没有完全理解，不过反正加了之后求的也只是min，所以没什么意义……</p>
+<!-- Running time of this formulation is O(F M), where F is the maximum flow and M is the number of arcs. You will generally perform much better, as the algorithm adds as much flow as possible every time. -->
+<blockquote>
+<p>上述算法的复杂度是O(FM)，其中F是最大流量，M是边数。实际运行时间一般会比这好得多，因为算法每次都尽可能地增加流量。</p>
+</blockquote>
+<!-- To determine the flow across each arc, compare the starting capacity with the final capacity. If the final capacity is less, the difference is the amount of flow traversing that arc. -->
+<blockquote>
+<p>为了确定每条边的流量，将起始容量和最终容量比较。如果最终容量更少，则差值就是穿过该边的流量大小。</p>
+</blockquote>
+<!-- This algorithm may create `eddies,' where there is a loop which does not contribute to the flow itself. -->
+<blockquote>
+<p>上述算法可能会产生“漩涡”，即对总体流量没有贡献的环。</p>
+</blockquote>
+<!-- Execution Example -->
+<h2>执行示例</h2>
+<!-- Consider the following network, where the source is node 5, and the sink is node 2. -->
+<blockquote>
+<p>考虑以下网络，其中源是结点5，汇是结点2。</p>
+</blockquote>
+<p><img src="flow1.gif" alt=""></p>
+<!-- The path with the highest capacity is {5,1,3,6,2}.  -->
+<blockquote>
+<p>具有最高容量的路径是{5,1,3,6,2}。</p>
+</blockquote>
+<p><img src="flow2a.gif" alt=""></p>
+<!-- The bottleneck arc on this path is 1->3, which has a capacity of 5. Thus, reduce all arcs on the path by 5, and add 5 to the capacity of the reverse arcs (creating the arcs, if necessary). This gives the following graph:  -->
+<blockquote>
+<p>此路径上的瓶颈边为1-&gt;3，其容量为5。因此，将路径上的所有边的容量减少5，并将反向弧的容量加5（如果需要，创建边）。于是得到下图：</p>
+</blockquote>
+<p><img src="flow2b.gif" alt=""></p>
+<!-- In the new graph, the path with highest capacity is {5,4,6,2}. -->
+<blockquote>
+<p>在新图中，容量最大的路径是{5,4,6,2}。</p>
+</blockquote>
+<p><img src="flow2c.gif" alt=""></p>
+<!-- The capacity of this path is 3, so once again, reduce the forward arcs by 3, and increase the reverse arcs by 3.  -->
+<blockquote>
+<p>此路径的容量为3，因此再次将前向边的容量减少3，并将反向边的容量增加3。</p>
+</blockquote>
+<p><img src="flow2d.gif" alt=""></p>
+<!-- Now the network's maximum capacity path is {5,4,6,3,2} -->
+<blockquote>
+<p>现在网络的最大容量路径为{5,4,6,3,2}</p>
+</blockquote>
+<p><img src="flow2e.gif" alt=""></p>
+<!-- This flow has only a capacity of 1, as the arc from 5 to 4 has capacity 1. Once again, update the forward and backwards arcs appropriately. -->
+<blockquote>
+<p>这条路径的容量仅为1，因为从5到4的边的容量为1。再次适当地更新前向和后向边。</p>
+</blockquote>
+<p><img src="flow2f.gif" alt=""></p>
+<!-- The resulting graph has no paths from the source to the sink. The only nodes reachable from the source node 5 are node 5 itself and node 1. -->
+<blockquote>
+<p>生成的图没有从源到汇的路径。从源结点5可到达的唯一节点是结点5本身和结点1。</p>
+</blockquote>
+<p><img src="flow2g.gif" alt=""></p>
+<!-- The algorithm added three flows, the first with capacity 5, the second with capacity 3, and the last with capacity 1. Thus, the maximum flow through the network from node 5 to node 2 is 9. -->
+<blockquote>
+<p>该算法增广了三次流，第一次容量为5，第二次容量为3，最后一次容量为1。因此，网络中从结点5到结点2的最大流量是9。</p>
+</blockquote>
+<!-- Extensions -->
+<h2>扩展</h2>
+<!-- Network flow problems are very extensible, mostly by playing with the graph. -->
+<blockquote>
+<p>网络流问题是非常容易扩展的，主要是通过对图的修改。</p>
+</blockquote>
+<!-- To extend to the case of undirected graphs, simple expand the edge as two arcs in opposite directions. -->
+<blockquote>
+<p>为了扩展到无向图的情况，简单地将无向边扩展为方向相反的两条边。</p>
+</blockquote>
+<!-- If you want to limit the amount of traffic through any node, split each node into two nodes, an in-node and and out-node. Put all the in-arcs into the in-node, and all of the out-arcs out of the out-node and place an arc from the in-node to the out-node with capacity equal to the capacity of the node. -->
+<blockquote>
+<p>如果要限制通过每个结点的流量，将每个结点拆分为两个结点，即in-结点和out-结点。将所有入边连到in-结点，并将所有出边连出out-节点，并在in-结点和out-结点之间连接一条边，其容量等于结点的容量。</p>
+</blockquote>
+<!-- If you have multiple sources and sinks, create a `virtual source' and `virtual sink' with arcs from the virtual source to each of the sources and arcs from each of the sinks to the virtual sink. Make each of the added arcs have infinite capacity. -->
+<blockquote>
+<p>如果你有多个源和汇，请创建一个“虚拟源”和“虚拟汇”，其中包含从虚拟源到每个源的边和从每个汇到虚拟汇的边。让每条添加的边具有无限的容量。</p>
+</blockquote>
+<!-- If you have arcs with real-valued weights, then this algorithm is no longer guaranteed to terminate, although it will asymptotically approach the maximum. -->
+<blockquote>
+<p>如果边的权重是实数，那么这个算法不再保证能够终止，尽管它会渐近逼近最大值。</p>
+</blockquote>
+<!-- Alternative Problems -->
+<h2>其他问题</h2>
+<!-- Network flow can also be used to solve other types of problems that aren't so obvious -->
+<blockquote>
+<p>网络流也可用于解决不那么明显的其他类型的问题。</p>
+</blockquote>
+<!-- Maximum Matching -->
+<h3>最大匹配</h3>
+<!-- Given a two sets of objects (call them A and B), where you want to `match' as many individual A objects with individual B objects as possible, subject to the constraint that only certain pairs are possible (object A1 can be matched with object B3, but not object B1 or B2). This is called the `maximum matching' problem. -->
+<blockquote>
+<p>给定两组对象（称为A和B），你希望尽可能多地“匹配”单个A对象和单个B对象，且受到一定的限制（对象A1可以与对象B3匹配，但不是对象B1或B2）。这称为“最大匹配”问题。</p>
+</blockquote>
+<!-- To reformulate this as network flow, create a source and add an arc with capacity 1 from this source to each A object. Create a sink with an arc from each B object to it with capacity 1. In addition, if object Ai and Bk may be matched together, add an arc from Ai to Bk with capacity 1. Now run the algorithm and determine which arcs between A objects and B objects are used. -->
+<blockquote>
+<p>要将这个问题重新表示为网络流问题，创建一个源，从该源到每个A对象连接一条容量为1的边。创建一个汇，从每个B对象连接一条容量为1的边到汇。此外，如果对象Ai和Bk可以匹配在一起，则添加一条从Ai到Bk的容量为1的边。现在运行算法，并确定A和B之间的哪些边被使用了。</p>
+</blockquote>
+<!-- Minimum Cut -->
+<h3>最小割</h3>
+<!-- Given a weight undirected graph, what is the set of edges with minimum total weight such that it separates two given nodes. -->
+<blockquote>
+<p>给定带权无向图，求能够分离两个给定结点的具有最小总权重的边集。</p>
+</blockquote>
+<!-- The minimum total weight is exactly the flow between those two nodes. -->
+<blockquote>
+<p>最小总权重恰好是这两个结点之间的流量。</p>
+</blockquote>
+<!-- To determine the path, try removing each edge in increasing weight order, and seeing if it reduces the network flow (if it does, it should reduce the flow by the capacity of that edge. The first one which does is a member of the minimum cut, iterate on the graph without that edge. -->
+<blockquote>
+<p>为了确定路径，尝试按权重递增的顺序删除每条边，并查看它是否减少了网络流量（如果是，它应该使得流量减去这条边的容量）。第一条这样的边是最小割的一部分，在没有这条边的情况下在图上迭代算法。</p>
+</blockquote>
+<p>说实话这段我没太看懂……</p>
+<!-- This can be extended to node cuts by the same trick as nodes with limited capacity. Directed graphs work using the same trick. However, it can not solve the problem of finding a so-called `best match,' where each pairing has a `goodness' value, and you want to create the matching which has the highest total `goodness.' -->
+<blockquote>
+<p>这可以通过与容量有限的结点相同的技巧扩展到结点切割。有向图的方法相同。然而，它无法解决找到所谓的“最佳匹配”的问题，其中每个配对都具有“良好”值，并且您想要创建具有最高总体“良好”的匹配。</p>
+</blockquote>
+<!-- Example Problems -->
+<h2>例题</h2>
+<!-- If the problems talks about maximizing the movement or flow of something from one location to another, it is almost assuredly maximum flow. If it talks about trying to separate two items minimally, it is probably minimum cut. If it talks about maximizes the pairing of any sort of thing (person, object, money, whatever), it is probably maximum matching. -->
+<blockquote>
+<p>如果问题涉及最大化从一个位置到另一个位置的物体的移动或流动，则几乎可以确定是最大流。如果它试图最小化两个项目，它可能是最小割。如果它谈论最大化任何类型的东西（人，物，钱，等等）的配对，它可能是最大匹配。</p>
+</blockquote>
+<!-- Virus Flow -->
+<h3>病毒流</h3>
+<!-- You have a computer network, with individual machines connected together by wires. Data may flow either direction on the wire. Unfortunately, a machine on your network has caught a virus, so you need to separate this machine from your central server to stop the spread of this virus. Given the cost of shutting down the network connection between each pair of machines, calculate the minimum amount of money which must be spent to separate the contaminated machine from your server. -->
+<blockquote>
+<p>有一个计算机网络，通过电线将各个机器连接在一起。数据可以在电线上的任一方向流动。遗憾的是，网络上有一台计算机已经感染了病毒，因此您需要将此计算机与中央服务器分开以阻止此病毒的传播。考虑到关闭每对机器之间的网络连接的成本，计算必须花费的最小金额来将受污染的机器与服务器分开。</p>
+</blockquote>
+<!-- This is exactly the min cut problem. -->
+<blockquote>
+<p>这正是最小割问题。</p>
+</blockquote>
+<!-- Lumberjack Scheduling -->
+<h3>伐木工人调度</h3>
+<!-- Different types of trees require different techniques to be employed by lumberjacks for them to harvest the tree properly. Regardless of the tree or lumberjack, harvest a tree requires 30 minutes. Given a collection of lumberjacks, and the types of trees that each one is able to correctly cut down, and a collection of trees, calculate the maximum number of trees which may be cut down in the next half hour. -->
+<blockquote>
+<p>不同类型的树木需要不同的技术来使伐木工人适当地采伐树木。收获一棵树需要30分钟，与树木和伐木工人无关。给定伐木工人的集合，以及每个人能够正确砍伐的树木类型，以及树木的集合，计算在下一个半小时可以砍伐的最大树木数量。</p>
+</blockquote>
+<!-- Each lumberjack can be paired with each tree of a type that he/she is able to properly harvest. Thus, the problem can be solved using the maximum matching algorithm. -->
+<blockquote>
+<p>每个伐木工人都可以与他/她能够适当收获的每棵树配对。因此，可以使用最大匹配算法来解决该问题。</p>
+</blockquote>
+<!-- Telecowmunication (USACO Championship 1996) -->
+<h3>电话通信（USACO Championship 1996）</h3>
+<!-- Given a group of computers in the field, along with the wires running between the computers, what is the minimum number of machines which may crash before two given machines are the network are unable to communicate? Assume that the two given machines will not crash. -->
+<blockquote>
+<p>给定一组计算机，以及计算机之间运行的电线，在两台给定机器无法通信之前，可能崩溃的最小机器数是多少？假设两台给定的机器不会崩溃。</p>
+</blockquote>
+<!-- This is equivalent to the minimum node cut problem. The two given machines can be arbitrarily labeled the source and sink. The wires are bidirectional. Split each node into an in-node and an out-node, so that we limit the flow through any given machine to 1. Now, the maximum flow across this network is equivalent to the minimum node cut. -->
+<blockquote>
+<p>这相当于最小割问题。两台给定的机器可以任意标记为源和汇。电线是双向的。将每个节点拆分为in-节点和out-节点，这样我们就可以将通过任何给定计算机的流量限制为1。现在，通过该网络的最大流相当于最小割。</p>
+</blockquote>
+<!-- To actually determine the cut, iterative remove the nodes until you find one which lowers the capacity of the network. -->
+<blockquote>
+<p>要实际确定割，请迭代删除节点，直到找到降低网络容量的节点。</p>
+</blockquote>
+<!-- Science Fair Judging -->
+<h3>科学博览会评委</h3>
+<!-- A science fair has N categories, and M judges. Each judge is willing to judge some subset of the categories, and each category needs some number of judges. Each judge is only able to judge one category at a given science fair. How many judges can you assign subject to these constraints? -->
+<blockquote>
+<p>科学博览会有N个类别和M个评委。每位评委都愿意给某些类别打分，每个类别都需要一定数量的评委。每位评委只能在特定的科学博览会上评判一个类别。您可以根据这些限制分配多少名评委？</p>
+</blockquote>
+<!-- This is very similar to the maximum matching problem, except that each category can handle possibly more than one judge. The easiest way to do this is to increase the capacity of the arcs from categories to the sink to be the number of judges required. -->
+<blockquote>
+<p>这与最大匹配问题非常相似，只是每个类别可以接收多个法官。最简单的方法是将从类别到汇的边的容量增加到所需的评委数量。</p>
+</blockquote>
+<!-- Oil Pipe Planning -->
+<h3>油管规划</h3>
+<!-- Given the layout (the capacity of each pipe, and how the pipes are connected together) of the pipelines in Alaska, and the location of each of the intersections, you wish to increase the maximum flow between Juneau and Fairbanks, but you have enough money to only add one pipe of capacity X. Moreover, the pipe can only be 10 miles long. Between which two intersections should this pipe be added to increase the flow the most? -->
+<blockquote>
+<p>考虑到阿拉斯加管道的布局（管道的容量以及管道如何连接在一起）以及每个交叉口的位置，你希望增加朱诺和费尔班克斯之间的最大流量，但是你只有足够的钱增加一个容量为X的管道。此外，管道只能长为10英里。应该在哪两个交叉点之间添加这个管道以增加流量？</p>
+</blockquote>
+<!-- To solve this problem, for each pair of intersections within 10 miles of each other, calculate the increase in the flow between Juneau and Fairbanks if you add a pipe between the intersections. Each of these sub-problems is exactly maximum flow. -->
+<blockquote>
+<p>为了解决这个问题，对于彼此相距10英里内的每对交叉点，计算如果在交叉点之间添加管道，朱诺和费尔班克斯之间增加的流量。每一个子问题都是最大流。</p>
+</blockquote>
+
+      </div>
+        
+          <section class='meta' id="footer-meta">
+            <hr>
+            <div class='new-meta-box'>
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-04-29T16:35:00+00:00">
+                  <a class='notlink'>
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    2019-04-29
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/USACO/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;USACO</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/translation/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;translation</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/post/how-to-debug-a-hexo-blog/" rel="prev" title="如何debug Hexo博客">
+                                  
+                                      如何debug Hexo博客
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Hexo/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Hexo</a> <a class="tag" href="/tags/WebStorm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>WebStorm</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/post/2-methods-of-setting-google-analytics-gtag-js-and-analytics-js/" rel="prev" title="设置Google Analytics的两种方法：gtag.js和analytics.js的比较">
+                                    
+                                        设置Google Analytics的两种方法：gtag.js和analytics.js的比较
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Google-Analytics/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Google Analytics</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80MjgyNi8xOTM3Mw==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+<script>
+    window.subData = {
+        title: '翻译：网络流算法（USACO）',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class='author'>
+  <div class='content pure'>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhanghuimeng1997@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/zhanghuimeng" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=261028414" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">执行示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">最大匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">最小割</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">病毒流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">伐木工人调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">电话通信（USACO Championship 1996）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">科学博览会评委</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">油管规划</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Blogging/" href="/categories/Blogging/"><div class='name'>Blogging</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Codeforces/" href="/categories/Codeforces/"><div class='name'>Codeforces</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Leetcode/" href="/categories/Leetcode/"><div class='name'>Leetcode</div><div class='badge'>(32)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/MLDS/" href="/categories/MLDS/"><div class='name'>MLDS</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/NLP/" href="/categories/NLP/"><div class='name'>NLP</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/USACO/" href="/categories/USACO/"><div class='name'>USACO</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/博客/" href="/categories/博客/"><div class='name'>博客</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/旧博客/" href="/categories/旧博客/"><div class='name'>旧博客</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/机器学习/" href="/categories/机器学习/"><div class='name'>机器学习</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/深度学习/" href="/categories/深度学习/"><div class='name'>深度学习</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/读书笔记/" href="/categories/读书笔记/"><div class='name'>读书笔记</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/随笔/" href="/categories/随笔/"><div class='name'>随笔</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class='tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/A-Munday/" style="font-size: 14px; color: #999">A.Munday</a> <a href="/tags/Blogging/" style="font-size: 14px; color: #999">Blogging</a> <a href="/tags/C-Marlowe/" style="font-size: 14px; color: #999">C.Marlowe</a> <a href="/tags/CSP/" style="font-size: 15.07px; color: #929292">CSP</a> <a href="/tags/Codeforces/" style="font-size: 19.36px; color: #757575">Codeforces</a> <a href="/tags/Codeforces-Contest/" style="font-size: 19px; color: #777">Codeforces Contest</a> <a href="/tags/Counseling/" style="font-size: 14px; color: #999">Counseling</a> <a href="/tags/Cryptography/" style="font-size: 14px; color: #999">Cryptography</a> <a href="/tags/D-Drayton/" style="font-size: 14px; color: #999">D.Drayton</a> <a href="/tags/Deep-Learning/" style="font-size: 15.07px; color: #929292">Deep Learning</a> <a href="/tags/Depth-first-Search/" style="font-size: 14px; color: #999">Depth-first Search</a> <a href="/tags/Deutsch/" style="font-size: 14px; color: #999">Deutsch</a> <a href="/tags/DigitCircuit/" style="font-size: 14px; color: #999">DigitCircuit</a> <a href="/tags/E-Vere/" style="font-size: 14px; color: #999">E. Vere</a> <a href="/tags/E-Spencer/" style="font-size: 14px; color: #999">E.Spencer</a> <a href="/tags/Essay/" style="font-size: 14.36px; color: #979797">Essay</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Github/" style="font-size: 14.71px; color: #949494">Github</a> <a href="/tags/GoldenTreasury/" style="font-size: 23.29px; color: #5a5a5a">GoldenTreasury</a> <a href="/tags/Google-Analytics/" style="font-size: 14px; color: #999">Google Analytics</a> <a href="/tags/H-Constable/" style="font-size: 14px; color: #999">H.Constable</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/J-Donne/" style="font-size: 14px; color: #999">J.Donne</a> <a href="/tags/J-Lyly/" style="font-size: 14px; color: #999">J.Lyly</a> <a href="/tags/J-Sylvester/" style="font-size: 14px; color: #999">J.Sylvester</a> <a href="/tags/J-Webster/" style="font-size: 14px; color: #999">J.Webster</a> <a href="/tags/Leetcode/" style="font-size: 24px; color: #555">Leetcode</a> <a href="/tags/Leetcode-Contest/" style="font-size: 23.64px; color: #575757">Leetcode Contest</a> <a href="/tags/Lyric/" style="font-size: 17.21px; color: #838383">Lyric</a> <a href="/tags/Machine-Learning/" style="font-size: 19.36px; color: #757575">Machine Learning</a> <a href="/tags/Machine-Translation/" style="font-size: 16.5px; color: #888">Machine Translation</a> <a href="/tags/Maths/" style="font-size: 14px; color: #999">Maths</a> <a href="/tags/NLP/" style="font-size: 14px; color: #999">NLP</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 17.21px; color: #838383">Natural Language Processing</a> <a href="/tags/OS/" style="font-size: 21.14px; color: #686868">OS</a> <a href="/tags/OSTEP/" style="font-size: 17.93px; color: #7e7e7e">OSTEP</a> <a href="/tags/Old-Blog/" style="font-size: 14px; color: #999">Old Blog</a> <a href="/tags/OldBlog/" style="font-size: 14.71px; color: #949494">OldBlog</a> <a href="/tags/P-Sidney/" style="font-size: 14px; color: #999">P.Sidney</a> <a href="/tags/PRML/" style="font-size: 18.29px; color: #7c7c7c">PRML</a> <a href="/tags/Paper/" style="font-size: 16.5px; color: #888">Paper</a> <a href="/tags/Paul-Simon/" style="font-size: 14px; color: #999">Paul Simon</a> <a href="/tags/PhysicsExperiment/" style="font-size: 14px; color: #999">PhysicsExperiment</a> <a href="/tags/Psychology/" style="font-size: 14px; color: #999">Psychology</a> <a href="/tags/PyCharm/" style="font-size: 14px; color: #999">PyCharm</a> <a href="/tags/Quality-Estimation/" style="font-size: 15.43px; color: #8f8f8f">Quality Estimation</a> <a href="/tags/R-Barnfield/" style="font-size: 14px; color: #999">R.Barnfield</a> <a href="/tags/Raspberry-Pi/" style="font-size: 14px; color: #999">Raspberry Pi</a> <a href="/tags/Reading-Report/" style="font-size: 17.57px; color: #818181">Reading Report</a> <a href="/tags/S-Daniel/" style="font-size: 14px; color: #999">S.Daniel</a> <a href="/tags/SGU/" style="font-size: 14.36px; color: #979797">SGU</a> <a href="/tags/Sonnet/" style="font-size: 19.71px; color: #727272">Sonnet</a> <a href="/tags/Spokes/" style="font-size: 14.71px; color: #949494">Spokes</a> <a href="/tags/SystemAnalysis-Control/" style="font-size: 14px; color: #999">SystemAnalysis&Control</a> <a href="/tags/T-Dekker/" style="font-size: 14px; color: #999">T.Dekker</a> <a href="/tags/T-Heywood/" style="font-size: 14px; color: #999">T.Heywood</a> <a href="/tags/T-Lodge/" style="font-size: 14px; color: #999">T.Lodge</a> <a href="/tags/T-Nashe/" style="font-size: 14px; color: #999">T.Nashe</a> <a href="/tags/T-Wyatt/" style="font-size: 14px; color: #999">T.Wyatt</a> <a href="/tags/THUMT/" style="font-size: 15.79px; color: #8d8d8d">THUMT</a> <a href="/tags/TensorFlow/" style="font-size: 15.07px; color: #929292">TensorFlow</a> <a href="/tags/Translation/" style="font-size: 18.64px; color: #797979">Translation</a> <a href="/tags/Tree/" style="font-size: 14px; color: #999">Tree</a> <a href="/tags/USACO/" style="font-size: 22.21px; color: #616161">USACO</a> <a href="/tags/W-Alexander/" style="font-size: 14px; color: #999">W.Alexander</a> <a href="/tags/W-Drummond/" style="font-size: 15.07px; color: #929292">W.Drummond</a> <a href="/tags/W-Shakespeare/" style="font-size: 21.5px; color: #666">W.Shakespeare</a> <a href="/tags/WebStorm/" style="font-size: 14px; color: #999">WebStorm</a> <a href="/tags/object-Object/" style="font-size: 14px; color: #999">[object Object]</a> <a href="/tags/alg-Ad-Hoc/" style="font-size: 14.36px; color: #979797">alg:Ad-Hoc</a> <a href="/tags/alg-Aho–Corasick-Algorithm/" style="font-size: 14px; color: #999">alg:Aho–Corasick Algorithm</a> <a href="/tags/alg-Array/" style="font-size: 20.79px; color: #6b6b6b">alg:Array</a> <a href="/tags/alg-Automata/" style="font-size: 14px; color: #999">alg:Automata</a> <a href="/tags/alg-Backtracking/" style="font-size: 15.79px; color: #8d8d8d">alg:Backtracking</a> <a href="/tags/alg-Binary-Indexed-Tree/" style="font-size: 14px; color: #999">alg:Binary Indexed Tree</a> <a href="/tags/alg-Binary-Search/" style="font-size: 16.5px; color: #888">alg:Binary Search</a> <a href="/tags/alg-Binary-Search-Tree/" style="font-size: 16.86px; color: #868686">alg:Binary Search Tree</a> <a href="/tags/alg-Binary-Tree/" style="font-size: 14px; color: #999">alg:Binary Tree</a> <a href="/tags/alg-Binray-Search/" style="font-size: 14px; color: #999">alg:Binray Search</a> <a href="/tags/alg-Bit-Manipulation/" style="font-size: 15.43px; color: #8f8f8f">alg:Bit Manipulation</a> <a href="/tags/alg-Bitmasks/" style="font-size: 14px; color: #999">alg:Bitmasks</a> <a href="/tags/alg-Breadth-First-Search/" style="font-size: 14px; color: #999">alg:Breadth-First Search</a> <a href="/tags/alg-Breadth-first-Search/" style="font-size: 18.29px; color: #7c7c7c">alg:Breadth-first Search</a> <a href="/tags/alg-Breadth-firth-Search/" style="font-size: 14.36px; color: #979797">alg:Breadth-firth Search</a> <a href="/tags/alg-Brute-Force/" style="font-size: 17.21px; color: #838383">alg:Brute Force</a> <a href="/tags/alg-Centroid-Decomposition/" style="font-size: 14px; color: #999">alg:Centroid Decomposition</a> <a href="/tags/alg-Depth-first-Search/" style="font-size: 20.07px; color: #707070">alg:Depth-first Search</a> <a href="/tags/alg-Divide-and-Conquer/" style="font-size: 14px; color: #999">alg:Divide and Conquer</a> <a href="/tags/alg-Dynamic-Porgramming/" style="font-size: 14px; color: #999">alg:Dynamic Porgramming</a> <a href="/tags/alg-Dynamic-Programming/" style="font-size: 22.57px; color: #5f5f5f">alg:Dynamic Programming</a> <a href="/tags/alg-Games/" style="font-size: 14px; color: #999">alg:Games</a> <a href="/tags/alg-Geometry/" style="font-size: 14px; color: #999">alg:Geometry</a> <a href="/tags/alg-Graph/" style="font-size: 15.43px; color: #8f8f8f">alg:Graph</a> <a href="/tags/alg-Greedy/" style="font-size: 21.86px; color: #646464">alg:Greedy</a> <a href="/tags/alg-Hash-Table/" style="font-size: 19.71px; color: #727272">alg:Hash Table</a> <a href="/tags/alg-Heap/" style="font-size: 15.43px; color: #8f8f8f">alg:Heap</a> <a href="/tags/alg-In-Order-Traversal/" style="font-size: 14.36px; color: #979797">alg:In-Order Traversal</a> <a href="/tags/alg-Index-Search-Array/" style="font-size: 14px; color: #999">alg:Index Search Array</a> <a href="/tags/alg-Linked-List/" style="font-size: 15.79px; color: #8d8d8d">alg:Linked List</a> <a href="/tags/alg-Map/" style="font-size: 14px; color: #999">alg:Map</a> <a href="/tags/alg-Math/" style="font-size: 22.93px; color: #5c5c5c">alg:Math</a> <a href="/tags/alg-Matrix/" style="font-size: 14px; color: #999">alg:Matrix</a> <a href="/tags/alg-Meet-in-the-Middle/" style="font-size: 14.36px; color: #979797">alg:Meet in the Middle</a> <a href="/tags/alg-Minimax/" style="font-size: 14.36px; color: #979797">alg:Minimax</a> <a href="/tags/alg-Minmax/" style="font-size: 14px; color: #999">alg:Minmax</a> <a href="/tags/alg-Monotonic-Stack/" style="font-size: 16.14px; color: #8a8a8a">alg:Monotonic Stack</a> <a href="/tags/alg-Network-Flow/" style="font-size: 14px; color: #999">alg:Network Flow</a> <a href="/tags/alg-Priority-Queue/" style="font-size: 14px; color: #999">alg:Priority Queue</a> <a href="/tags/alg-Queue/" style="font-size: 14.71px; color: #949494">alg:Queue</a> <a href="/tags/alg-Rabin-Karp/" style="font-size: 14px; color: #999">alg:Rabin-Karp</a> <a href="/tags/alg-Random/" style="font-size: 14.71px; color: #949494">alg:Random</a> <a href="/tags/alg-Rank-Tree/" style="font-size: 14px; color: #999">alg:Rank Tree</a> <a href="/tags/alg-Recursion/" style="font-size: 15.43px; color: #8f8f8f">alg:Recursion</a> <a href="/tags/alg-Recursive/" style="font-size: 14.36px; color: #979797">alg:Recursive</a> <a href="/tags/alg-Rejection-Sampling/" style="font-size: 14px; color: #999">alg:Rejection Sampling</a> <a href="/tags/alg-Reservoir-Sampling/" style="font-size: 14px; color: #999">alg:Reservoir Sampling</a> <a href="/tags/alg-Segmentation-Tree/" style="font-size: 14px; color: #999">alg:Segmentation Tree</a> <a href="/tags/alg-Set/" style="font-size: 14px; color: #999">alg:Set</a> <a href="/tags/alg-Sliding-Window/" style="font-size: 14px; color: #999">alg:Sliding Window</a> <a href="/tags/alg-Sort/" style="font-size: 15.07px; color: #929292">alg:Sort</a> <a href="/tags/alg-Stack/" style="font-size: 19px; color: #777">alg:Stack</a> <a href="/tags/alg-String/" style="font-size: 19px; color: #777">alg:String</a> <a href="/tags/alg-Suffix-Array/" style="font-size: 14px; color: #999">alg:Suffix Array</a> <a href="/tags/alg-Suffix-Tree/" style="font-size: 14px; color: #999">alg:Suffix Tree</a> <a href="/tags/alg-Ternary-Search/" style="font-size: 14px; color: #999">alg:Ternary Search</a> <a href="/tags/alg-Topological-Sort/" style="font-size: 14px; color: #999">alg:Topological Sort</a> <a href="/tags/alg-Treap/" style="font-size: 14px; color: #999">alg:Treap</a> <a href="/tags/alg-Tree/" style="font-size: 20.43px; color: #6d6d6d">alg:Tree</a> <a href="/tags/alg-Trie/" style="font-size: 14.36px; color: #979797">alg:Trie</a> <a href="/tags/alg-Two-Pointers/" style="font-size: 17.93px; color: #7e7e7e">alg:Two Pointers</a> <a href="/tags/alg-Union-find-Forest/" style="font-size: 15.43px; color: #8f8f8f">alg:Union-find Forest</a> <a href="/tags/artist-Ceremony/" style="font-size: 14px; color: #999">artist:Ceremony</a> <a href="/tags/artist-Cruel-Hand/" style="font-size: 14.36px; color: #979797">artist:Cruel Hand</a> <a href="/tags/artist-Have-Heart/" style="font-size: 14px; color: #999">artist:Have Heart</a> <a href="/tags/artist-Johnny-Cash/" style="font-size: 14px; color: #999">artist:Johnny Cash</a> <a href="/tags/artist-Touche-Amore/" style="font-size: 14px; color: #999">artist:Touche Amore</a> <a href="/tags/artist-Wir-Sind-Helden/" style="font-size: 14.71px; color: #949494">artist:Wir Sind Helden</a> <a href="/tags/translation/" style="font-size: 14.36px; color: #979797">translation</a> <a href="/tags/ucore/" style="font-size: 14px; color: #999">ucore</a> <a href="/tags/付勇林/" style="font-size: 15.79px; color: #8d8d8d">付勇林</a> <a href="/tags/卞之琳/" style="font-size: 14px; color: #999">卞之琳</a> <a href="/tags/屠岸/" style="font-size: 16.14px; color: #8a8a8a">屠岸</a> <a href="/tags/戴镏龄/" style="font-size: 15.79px; color: #8d8d8d">戴镏龄</a> <a href="/tags/曹明伦/" style="font-size: 15.43px; color: #8f8f8f">曹明伦</a> <a href="/tags/朱生豪/" style="font-size: 17.57px; color: #818181">朱生豪</a> <a href="/tags/李霁野/" style="font-size: 15.07px; color: #929292">李霁野</a> <a href="/tags/杨熙龄/" style="font-size: 14px; color: #999">杨熙龄</a> <a href="/tags/林天斗/" style="font-size: 14px; color: #999">林天斗</a> <a href="/tags/梁宗岱/" style="font-size: 16.86px; color: #868686">梁宗岱</a> <a href="/tags/梁葆成/" style="font-size: 14px; color: #999">梁葆成</a> <a href="/tags/袁广达/" style="font-size: 14px; color: #999">袁广达</a> <a href="/tags/郭沫若/" style="font-size: 14px; color: #999">郭沫若</a> <a href="/tags/黄新渠/" style="font-size: 14px; color: #999">黄新渠</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        <section class='list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-link fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;特别链接</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://wenj.github.io/" href="https://wenj.github.io/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;wenj
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="http://bellasong.site/" href="http://bellasong.site/">
+          <div class='name'>
+            
+              <i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;ssh
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhanghuimeng1997@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://github.com/zhanghuimeng" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=261028414" class="social fas fa-music flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+  <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
